@@ -204,11 +204,12 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
             if (this.removeIn <= 0 && !this.level().isClientSide) {
                 this.removeIn = 0;
                 boolean drop;
-                if(this.getEnchant(AMEnchantmentRegistry.STRADDLE_BOARDRETURN.get()) > 0){
-                    drop = returnToPlayer != null && !returnToPlayer.addItem(this.getItemBoard());
-                }else{
+                // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
+                // if(this.getEnchant(AMEnchantmentRegistry.STRADDLE_BOARDRETURN.get()) > 0){
+                //     drop = returnToPlayer != null && !returnToPlayer.addItem(this.getItemBoard());
+                // }else{
                     drop = true;
-                }
+                // }
                 if(drop){
                     spawnAtLocation(this.getItemStack().copy());
                 }
@@ -243,9 +244,10 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
                 returnToPlayer = player;
                 rideForTicks++;
                 if (this.tickCount % 50 == 0) {
-                    if (getEnchant(AMEnchantmentRegistry.STRADDLE_LAVAWAX.get()) > 0) {
-                        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, true, false));
-                    }
+                    // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
+                    // if (getEnchant(AMEnchantmentRegistry.STRADDLE_LAVAWAX.get()) > 0) {
+                    //     player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, true, false));
+                    // }
                 }
                 if (player.getRemainingFireTicks() > 0 && extinguishTimer == 0) {
                     player.clearFire();
@@ -458,7 +460,8 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     public void handleStartJump(int i) {
         this.hasImpulse = true;
         if(canJump()){
-            float f = 0.075F + getEnchant(AMEnchantmentRegistry.STRADDLE_JUMP.get()) * 0.05F;
+            // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
+            float f = 0.075F; // + getEnchant(AMEnchantmentRegistry.STRADDLE_JUMP.get()) * 0.05F;
             jumpFor = 5 + (int)(i * f);
         }
     }
@@ -468,7 +471,8 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     }
 
     public boolean shouldSerpentFriend() {
-        return getEnchant(AMEnchantmentRegistry.STRADDLE_SERPENTFRIEND.get()) > 0;
+        // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
+        return false; // getEnchant(AMEnchantmentRegistry.STRADDLE_SERPENTFRIEND.get()) > 0;
     }
 
     public Vec3 getDismountLocationForPassenger(LivingEntity entity) {
