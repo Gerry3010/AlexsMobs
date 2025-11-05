@@ -20,7 +20,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
 
 import java.util.List;
 
@@ -37,10 +36,6 @@ public class EntityGust extends Entity {
 
     public EntityGust(Level worldIn) {
         this(AMEntityRegistry.GUST.get(), worldIn);
-    }
-
-    public EntityGust(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.GUST.get(), world);
     }
 
     public void push(Entity entityIn) {

@@ -24,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +49,6 @@ public class EntityTendonSegment  extends Entity {
 
     public EntityTendonSegment(EntityType<?> type, Level level) {
         super(type, level);
-    }
-
-    public EntityTendonSegment(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.TENDON_SEGMENT.get(), world);
     }
 
     @Override

@@ -21,7 +21,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -41,10 +40,6 @@ public class EntityFart extends Entity {
         this.setShooter(p_i47273_2_);
         float rot = p_i47273_2_.yHeadRot + (right ? 60 : -60);
         this.setPos(p_i47273_2_.getX() - (double) (p_i47273_2_.getBbWidth()) * 0.5D * (double) Mth.sin(rot * Mth.DEG_TO_RAD), p_i47273_2_.getEyeY() - (double) 0.2F, p_i47273_2_.getZ() + (double) (p_i47273_2_.getBbWidth()) * 0.5D * (double) Mth.cos(rot * Mth.DEG_TO_RAD));
-    }
-
-    public EntityFart(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.FART.get(), world);
     }
 
     public void tick(){

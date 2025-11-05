@@ -28,7 +28,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
 
 import javax.annotation.Nullable;
 
@@ -66,10 +65,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     public EntityStraddleboard(EntityType<?> p_i48580_1_, Level p_i48580_2_) {
         super(p_i48580_1_, p_i48580_2_);
         this.blocksBuilding = true;
-    }
-
-    public EntityStraddleboard(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.STRADDLEBOARD.get(), world);
     }
 
     public EntityStraddleboard(Level worldIn, double x, double y, double z) {
