@@ -34,7 +34,7 @@ public class ItemSkelewagSword extends SwordItem {
 
     @Override
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
+        return ItemAbilities.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
     }
 
     public UseAnim getUseAnimation(ItemStack stack) {

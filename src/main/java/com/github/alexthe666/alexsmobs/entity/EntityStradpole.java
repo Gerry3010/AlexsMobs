@@ -339,7 +339,7 @@ public class EntityStradpole extends WaterAnimal implements Bucketable {
     }
 
     protected void damageShieldFor(Player holder, float damage) {
-        if (holder.getUseItem().canPerformAction(ToolActions.SHIELD_BLOCK)) {
+        if (holder.getUseItem().canPerformAction(ItemAbilities.SHIELD_BLOCK)) {
             if (!this.level().isClientSide) {
                 holder.awardStat(Stats.ITEM_USED.get(holder.getUseItem().getItem()));
             }

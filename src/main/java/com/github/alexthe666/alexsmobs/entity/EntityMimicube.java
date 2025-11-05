@@ -199,7 +199,7 @@ public class EntityMimicube extends Monster implements RangedAttackMob {
     }
 
     public boolean isBlocking() {
-        return this.getMainHandItem().canPerformAction(ToolActions.SHIELD_BLOCK) || this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK);
+        return this.getMainHandItem().canPerformAction(ItemAbilities.SHIELD_BLOCK) || this.getOffhandItem().canPerformAction(ItemAbilities.SHIELD_BLOCK);
     }
 
     public boolean hurt(DamageSource source, float amount) {

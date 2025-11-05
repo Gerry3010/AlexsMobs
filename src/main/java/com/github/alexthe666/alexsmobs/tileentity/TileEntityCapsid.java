@@ -326,14 +326,6 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
         return 0.0F;
     }
 
-    @Override
-    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
-            if (facing == Direction.DOWN)
-                return handlers[0].cast();
-            else
-                return handlers[1].cast();
-        }
-        return super.getCapability(capability, facing);
-    }
+    // Capability system changed in NeoForge 1.21 - capabilities are now registered via data attachments
+    // TODO: Re-implement capability system using new API
 }

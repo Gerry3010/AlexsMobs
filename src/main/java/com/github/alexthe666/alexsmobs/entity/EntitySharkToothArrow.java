@@ -14,8 +14,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.ToolActions;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.ItemAbilities;
 
 public class EntitySharkToothArrow extends Arrow {
 
@@ -37,7 +36,7 @@ public class EntitySharkToothArrow extends Arrow {
     }
 
     protected void damageShield(Player player, float damage) {
-        if (damage >= 3.0F && player.getUseItem().getItem().canPerformAction(player.getUseItem(), ToolActions.SHIELD_BLOCK)) {
+        if (damage >= 3.0F && player.getUseItem().getItem().canPerformAction(player.getUseItem(), ItemAbilities.SHIELD_BLOCK)) {
             ItemStack copyBeforeUse = player.getUseItem().copy();
             int i = 1 + Mth.floor(damage);
             player.getUseItem().hurtAndBreak(i, player, (p_213360_0_) -> {
@@ -81,10 +80,6 @@ public class EntitySharkToothArrow extends Arrow {
     }
 
 
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
-    }
 
 
     @Override

@@ -19,7 +19,7 @@ public class ItemShieldOfTheDeep extends Item {
 
     @Override
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return ToolActions.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
+        return ItemAbilities.DEFAULT_SHIELD_ACTIONS.contains(toolAction);
     }
 
     public UseAnim getUseAnimation(ItemStack p_77661_1_) {

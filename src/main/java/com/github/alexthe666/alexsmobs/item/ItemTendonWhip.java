@@ -112,7 +112,7 @@ public class ItemTendonWhip extends SwordItem implements ILeftClick {
     }
 
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        return toolAction != ToolActions.SWORD_SWEEP && super.canPerformAction(stack, toolAction);
+        return toolAction != ItemAbilities.SWORD_SWEEP && super.canPerformAction(stack, toolAction);
     }
 
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
