@@ -36,7 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidType;
 
@@ -56,16 +56,16 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
         super(monster, level);
         this.xpReward = 10;
         this.moveControl = new AquaticMoveController(this, 1.0F, 15F);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
     }
 
     protected PathNavigation createNavigation(Level worldIn) {
         return new SemiAquaticPathNavigator(this, worldIn);
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEAD;
+    public MobCategory getMobType() {
+        return MobCategory.UNDEAD;
     }
 
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {

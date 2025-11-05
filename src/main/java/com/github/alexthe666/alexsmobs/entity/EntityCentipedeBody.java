@@ -57,8 +57,8 @@ public class EntityCentipedeBody extends Mob implements IHurtableMultipart {
         return  source.is(DamageTypes.IN_WALL)  || super.isInvulnerableTo(source);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     public boolean isNoGravity() {

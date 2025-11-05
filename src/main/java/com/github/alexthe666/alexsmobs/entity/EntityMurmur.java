@@ -78,8 +78,8 @@ public class EntityMurmur extends Monster implements ISemiAquatic {
         return this.getHeadUUID() != null && entity.getUUID().equals(this.getHeadUUID()) || super.isAlliedTo(entity);
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEAD;
+    public MobCategory getMobType() {
+        return MobCategory.UNDEAD;
     }
 
     @Override

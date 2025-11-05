@@ -50,7 +50,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -74,7 +74,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
 
     protected EntityOrca(EntityType type, Level worldIn) {
         super(type, worldIn);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
         this.moveControl = new MoveHelperController(this);
         this.lookControl = new SmoothSwimmingLookControl(this, 10);
     }
@@ -386,8 +386,8 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
         return false;
     }
 
-    public MobType getMobType() {
-        return MobType.WATER;
+    public MobCategory getMobType() {
+        return MobCategory.WATER;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

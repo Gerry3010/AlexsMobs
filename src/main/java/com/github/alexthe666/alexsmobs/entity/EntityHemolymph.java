@@ -19,7 +19,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -53,9 +53,6 @@ public class EntityHemolymph extends Entity {
         this.setDeltaMovement(p_i47274_8_, p_i47274_10_, p_i47274_12_);
     }
 
-    public EntityHemolymph(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.HEMOLYMPH.get(), world);
-    }
 
     protected static float lerpRotation(float p_234614_0_, float p_234614_1_) {
         while (p_234614_1_ - p_234614_0_ < -180.0F) {
@@ -71,7 +68,7 @@ public class EntityHemolymph extends Entity {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     public void tick() {

@@ -33,10 +33,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -49,8 +49,7 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
     public float prevYawSwitchProgress;
     public float yawSwitchProgress;
     public boolean vibratingThisTick = false;
-    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
-            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
+    IItemHandler[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
     private float yawTarget = 0;
     private int transformTime = 0;
     private boolean fnaf = false;
@@ -74,10 +73,10 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
             BlockEntity up = level.getBlockEntity(this.worldPosition.above());
             if (up instanceof Container) {
                 if (floatUpProgress >= 1) {
-                    LazyOptional<IItemHandler> handler = level.getBlockEntity(this.worldPosition.above()).getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.UP);
-                    if (handler.orElse(null) != null) {
-                        if (ItemHandlerHelper.insertItem(handler.orElse(null), this.getItem(0), true).isEmpty()) {
-                            ItemHandlerHelper.insertItem(handler.orElse(null), this.getItem(0).copy(), false);
+                    IItemHandler handler = level.getCapability(Capabilities.ItemHandler.BLOCK, this.worldPosition.above(), level.getBlockState(this.worldPosition.above()), up, Direction.UP);
+                    if (handler != null) {
+                        if (ItemHandlerHelper.insertItem(handler, this.getItem(0), true).isEmpty()) {
+                            ItemHandlerHelper.insertItem(handler, this.getItem(0).copy(), false);
                             this.setItem(0, ItemStack.EMPTY);
                         }
                     }

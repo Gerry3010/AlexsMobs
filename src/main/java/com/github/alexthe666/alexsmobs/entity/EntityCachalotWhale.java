@@ -48,7 +48,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -103,7 +103,7 @@ public class EntityCachalotWhale extends Animal {
 
     public EntityCachalotWhale(EntityType type, Level world) {
         super(type, world);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
         this.moveControl = new AnimalSwimMoveControllerSink(this, 1, 1, 6);
         this.lookControl = new SmoothSwimmingLookControl(this, 4);
         this.headPart = new EntityCachalotPart(this, 3.0F, 3.5F);
@@ -817,7 +817,7 @@ public class EntityCachalotWhale extends Animal {
     }
 
     @Override
-    public net.minecraftforge.entity.PartEntity<?>[] getParts() {
+    public net.neoforged.neoforge.entity.PartEntity<?>[] getParts() {
         return this.whaleParts;
     }
 
@@ -858,8 +858,8 @@ public class EntityCachalotWhale extends Animal {
         return this.isBeached();
     }
 
-    public MobType getMobType() {
-        return MobType.WATER;
+    public MobCategory getMobType() {
+        return MobCategory.WATER;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

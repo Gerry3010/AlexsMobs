@@ -88,8 +88,8 @@ public class EntityCentipedeHead extends Monster {
         return AMSoundRegistry.CENTIPEDE_HURT.get();
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     protected void playStepSound(BlockPos pos, BlockState blockIn) {

@@ -25,9 +25,6 @@ public class EntityMudBall extends EntityMobProjectile {
         this.setPos(vec3.x, vec3.y, vec3.z);
     }
 
-    public EntityMudBall(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.MUD_BALL.get(), world);
-    }
 
     public void doBehavior() {
         this.setDeltaMovement(this.getDeltaMovement().scale((double)0.9F));

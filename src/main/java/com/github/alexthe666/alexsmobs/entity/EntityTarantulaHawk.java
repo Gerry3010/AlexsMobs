@@ -188,14 +188,14 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source.getEntity() instanceof LivingEntity && ((LivingEntity) source.getEntity()).getMobType() == MobType.ARTHROPOD && ((LivingEntity) source.getEntity()).hasEffect(AMEffectRegistry.DEBILITATING_STING.get())) {
+        if (source.getEntity() instanceof LivingEntity && ((LivingEntity) source.getEntity()).getMobType() == MobCategory.ARTHROPOD && ((LivingEntity) source.getEntity()).hasEffect(AMEffectRegistry.DEBILITATING_STING.get())) {
             return false;
         }
         return super.hurt(source, amount);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
@@ -738,7 +738,7 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
         @Override
         public void tick() {
             LivingEntity target = hawk.getTarget();
-            boolean paralized = target != null && target.getMobType() == MobType.ARTHROPOD && !target.noPhysics && target.hasEffect(AMEffectRegistry.DEBILITATING_STING.get());
+            boolean paralized = target != null && target.getMobType() == MobCategory.ARTHROPOD && !target.noPhysics && target.hasEffect(AMEffectRegistry.DEBILITATING_STING.get());
             boolean paralizedWithChild = paralized && target.getEffect(AMEffectRegistry.DEBILITATING_STING.get()).getAmplifier() > 0;
             if (sandPos == null || !level().getBlockState(sandPos).is(BlockTags.SAND)) {
                 sandPos = hawk.genSandPos(target.blockPosition());
@@ -792,11 +792,11 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
                                     target.heal(5);
                                 }
                             }
-                            target.addEffect(new MobEffectInstance(AMEffectRegistry.DEBILITATING_STING.get(), target.getMobType() == MobType.ARTHROPOD ? EntityTarantulaHawk.STING_DURATION : 600, hawk.bredBuryFlag ? 1 : 0));
-                            if (!hawk.level().isClientSide && target.getMobType() == MobType.ARTHROPOD) {
+                            target.addEffect(new MobEffectInstance(AMEffectRegistry.DEBILITATING_STING.get(), target.getMobType() == MobCategory.ARTHROPOD ? EntityTarantulaHawk.STING_DURATION : 600, hawk.bredBuryFlag ? 1 : 0));
+                            if (!hawk.level().isClientSide && target.getMobType() == MobCategory.ARTHROPOD) {
                                 AlexsMobs.sendMSGToAll(new MessageTarantulaHawkSting(hawk.getId(), target.getId()));
                             }
-                            orbitCooldown = target.getMobType() == MobType.ARTHROPOD ? 200 + random.nextInt(200) : 10 + random.nextInt(20);
+                            orbitCooldown = target.getMobType() == MobCategory.ARTHROPOD ? 200 + random.nextInt(200) : 10 + random.nextInt(20);
                         }
                     }
                 }

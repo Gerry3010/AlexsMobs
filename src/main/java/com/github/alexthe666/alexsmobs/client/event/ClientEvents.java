@@ -62,7 +62,6 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.gui.VanillaGuiOverlay;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.bus.api.Event;
@@ -194,7 +193,7 @@ public class ClientEvents {
                 }
             }
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobType.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
             event.getPoseStack().pushPose();
             event.getPoseStack().translate(0.0D, event.getEntity().getBbHeight() + 0.1F, 0.0D);
             event.getPoseStack().mulPose(Axis.ZP.rotationDegrees(180.0F));
@@ -220,7 +219,7 @@ public class ClientEvents {
         if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU.get())) {
             event.getPoseStack().popPose();
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobType.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
             event.getPoseStack().popPose();
             event.getEntity().yBodyRotO = -event.getEntity().yBodyRotO;
             event.getEntity().yBodyRot = -event.getEntity().yBodyRot;
@@ -445,7 +444,8 @@ public class ClientEvents {
                     renderStaticScreenFor--;
                 }
                 float staticLevel = (renderStaticScreenFor / 60F);
-                if (VanillaGuiOverlay.HELMET.id().equals(VanillaGuiOverlay.HELMET.id())) {
+                // Static effect overlay rendering
+                {
                     float screenWidth = event.getWindow().getScreenWidth();
                     float screenHeight = event.getWindow().getScreenHeight();
                     RenderSystem.disableDepthTest();

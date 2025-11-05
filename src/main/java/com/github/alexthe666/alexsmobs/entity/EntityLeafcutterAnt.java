@@ -50,7 +50,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.neoforged.api.distmarker.Dist;
@@ -96,7 +96,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     private int haveBabyCooldown = 0;
     public EntityLeafcutterAnt(EntityType type, Level world) {
         super(type, world);
-        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+        this.setPathfindingMalus(PathType.WATER, -1.0F);
         switchNavigator(true);
 
     }
@@ -113,8 +113,8 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
         return this.isQueen() ? QUEEN_LOOT : super.getDefaultLootTable();
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     private void switchNavigator(boolean rightsideUp) {

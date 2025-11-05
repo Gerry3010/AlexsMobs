@@ -43,13 +43,13 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 
 import java.util.Set;
 
@@ -62,9 +62,9 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
 
     protected EntityStraddler(EntityType type, Level world) {
         super(type, world);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.LAVA, 0.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, 0.0F);
     }
 
     protected SoundEvent getAmbientSound() {
@@ -143,7 +143,7 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
     private void floatStrider() {
         if (this.isInLava()) {
             CollisionContext lvt_1_1_ = CollisionContext.of(this);
-            double d1 = this.getFluidTypeHeight(ForgeMod.LAVA_TYPE.get());
+            double d1 = this.getFluidTypeHeight(NeoForgeMod.LAVA_TYPE.get());
             if(d1 <= 0.5F && d1 > 0){
                 if(this.getDeltaMovement().y < 0){
                     this.setDeltaMovement(this.getDeltaMovement().multiply(1, 0, 1));
@@ -301,8 +301,8 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
             return new PathFinder(this.nodeEvaluator, p_179679_1_);
         }
 
-        protected boolean hasValidPathType(BlockPathTypes p_230287_1_) {
-            return p_230287_1_ == BlockPathTypes.LAVA || p_230287_1_ == BlockPathTypes.DAMAGE_FIRE || p_230287_1_ == BlockPathTypes.DANGER_FIRE || super.hasValidPathType(p_230287_1_);
+        protected boolean hasValidPathType(PathType p_230287_1_) {
+            return p_230287_1_ == PathType.LAVA || p_230287_1_ == PathType.DAMAGE_FIRE || p_230287_1_ == PathType.DANGER_FIRE || super.hasValidPathType(p_230287_1_);
         }
 
         public boolean isStableDestination(BlockPos pos) {

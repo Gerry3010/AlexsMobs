@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class EntityEmuEgg extends ThrowableItemProjectile {
 
@@ -35,7 +35,7 @@ public class EntityEmuEgg extends ThrowableItemProjectile {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)

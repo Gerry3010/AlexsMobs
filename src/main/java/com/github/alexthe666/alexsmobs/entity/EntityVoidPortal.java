@@ -28,7 +28,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.antlr.v4.runtime.misc.Triple;
 
 import javax.annotation.Nullable;
@@ -55,9 +55,6 @@ public class EntityVoidPortal extends Entity {
         super(entityTypeIn, worldIn);
     }
 
-    public EntityVoidPortal(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.VOID_PORTAL.get(), world);
-    }
 
     public EntityVoidPortal(Level world, ItemDimensionalCarver item) {
         this(AMEntityRegistry.VOID_PORTAL.get(), world);
@@ -72,7 +69,7 @@ public class EntityVoidPortal extends Entity {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     public void tick() {

@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.BlockHitResult;
@@ -328,8 +328,8 @@ public class EntityRockyRoller extends Monster implements ICustomCollisions {
     }
 
     static class RockyRollerNodeEvaluator extends WalkNodeEvaluator {
-        protected BlockPathTypes evaluateBlockPathType(BlockGetter level, BlockPos pos, BlockPathTypes typeIn) {
-            return level.getBlockState(pos).getBlock() instanceof PointedDripstoneBlock ? BlockPathTypes.OPEN : super.evaluateBlockPathType(level, pos, typeIn);
+        protected PathType evaluateBlockPathType(BlockGetter level, BlockPos pos, PathType typeIn) {
+            return level.getBlockState(pos).getBlock() instanceof PointedDripstoneBlock ? PathType.OPEN : super.evaluateBlockPathType(level, pos, typeIn);
         }
     }
 

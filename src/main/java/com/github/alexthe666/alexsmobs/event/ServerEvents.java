@@ -151,7 +151,7 @@ public class ServerEvents {
         final float f5 = Mth.sin(f1);
         final float f6 = f3 * f4;
         final float f7 = f2 * f4;
-        final double d0 = player.getAttribute(net.minecraftforge.common.ForgeMod.BLOCK_REACH.get()).getValue();
+        final double d0 = player.getAttribute(net.minecraftforge.common.NeoForgeMod.BLOCK_REACH.get()).getValue();
         Vec3 vector3d1 = vector3d.add(f6 * d0, f5 * d0, f7 * d0);
         return worldIn.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.OUTLINE, fluidMode, player));
     }
@@ -596,13 +596,13 @@ public class ServerEvents {
     @SubscribeEvent
     public void onLivingSetTargetEvent(LivingChangeTargetEvent event) {
         if (event.getNewTarget() != null && event.getEntity() instanceof Mob mob) {
-            if (mob.getMobType() == MobType.ARTHROPOD) {
+            if (mob.getMobType() == MobCategory.ARTHROPOD) {
                 if (event.getNewTarget().hasEffect(AMEffectRegistry.BUG_PHEROMONES.get()) && event.getEntity().getLastHurtByMob() != event.getNewTarget()) {
                     event.setCanceled(true);
                     return;
                 }
             }
-            if (mob.getMobType() == MobType.UNDEAD && !mob.getType().is(AMTagRegistry.IGNORES_KIMONO)) {
+            if (mob.getMobType() == MobCategory.UNDEAD && !mob.getType().is(AMTagRegistry.IGNORES_KIMONO)) {
                 if (event.getNewTarget().getItemBySlot(EquipmentSlot.CHEST).is(AMItemRegistry.UNSETTLING_KIMONO.get()) && event.getEntity().getLastHurtByMob() != event.getNewTarget()) {
                     event.setCanceled(true);
                     return;

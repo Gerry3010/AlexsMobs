@@ -50,7 +50,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.phys.Vec3;
@@ -90,8 +90,8 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
 
     protected EntityMantisShrimp(EntityType type, Level world) {
         super(type, world);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
         switchNavigator(false);
         this.setMaxUpStep(1);
     }
@@ -152,8 +152,8 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
         return !this.isTame();
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
@@ -664,14 +664,14 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
 
         public void start() {
             this.timeToRecalcPath = 0;
-            this.oldWaterCost = this.tameable.getPathfindingMalus(BlockPathTypes.WATER);
-            this.tameable.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+            this.oldWaterCost = this.tameable.getPathfindingMalus(PathType.WATER);
+            this.tameable.setPathfindingMalus(PathType.WATER, 0.0F);
         }
 
         public void stop() {
             this.owner = null;
             this.tameable.getNavigation().stop();
-            this.tameable.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
+            this.tameable.setPathfindingMalus(PathType.WATER, this.oldWaterCost);
         }
 
         public void tick() {
@@ -718,11 +718,11 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
         }
 
         private boolean isTeleportFriendlyBlock(BlockPos p_226329_1_) {
-            BlockPathTypes lvt_2_1_ = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, p_226329_1_.mutable());
+            PathType lvt_2_1_ = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, p_226329_1_.mutable());
             if (world.getFluidState(p_226329_1_).is(FluidTags.WATER) || !world.getFluidState(p_226329_1_).is(FluidTags.WATER) && world.getFluidState(p_226329_1_.below()).is(FluidTags.WATER)) {
                 return true;
             }
-            if (lvt_2_1_ != BlockPathTypes.WALKABLE || tameable.getMoistness() < 2000) {
+            if (lvt_2_1_ != PathType.WALKABLE || tameable.getMoistness() < 2000) {
                 return false;
             } else {
                 BlockState lvt_3_1_ = this.world.getBlockState(p_226329_1_.below());

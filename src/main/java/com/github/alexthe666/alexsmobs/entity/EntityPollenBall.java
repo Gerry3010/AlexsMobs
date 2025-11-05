@@ -21,9 +21,6 @@ public class EntityPollenBall extends EntityMobProjectile {
         this.setPos(vec3.x, vec3.y, vec3.z);
     }
 
-    public EntityPollenBall(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.POLLEN_BALL.get(), world);
-    }
 
     public boolean isNoGravity() {
         return true;

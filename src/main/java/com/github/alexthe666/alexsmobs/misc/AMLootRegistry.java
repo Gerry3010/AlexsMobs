@@ -5,7 +5,7 @@ import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.mojang.serialization.Codec;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class AMLootRegistry {

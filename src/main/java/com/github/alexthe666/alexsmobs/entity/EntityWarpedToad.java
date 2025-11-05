@@ -44,7 +44,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.Vec3;
 
@@ -76,8 +76,8 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
 
     protected EntityWarpedToad(EntityType entityType, Level world) {
         super(entityType, world);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.LAVA, 0.0F);
         switchNavigator(false);
     }
 
@@ -630,14 +630,14 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
 
         public void start() {
             this.timeToRecalcPath = 0;
-            this.oldWaterCost = this.tameable.getPathfindingMalus(BlockPathTypes.WATER);
-            this.tameable.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+            this.oldWaterCost = this.tameable.getPathfindingMalus(PathType.WATER);
+            this.tameable.setPathfindingMalus(PathType.WATER, 0.0F);
         }
 
         public void stop() {
             this.owner = null;
             this.tameable.getNavigation().stop();
-            this.tameable.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
+            this.tameable.setPathfindingMalus(PathType.WATER, this.oldWaterCost);
         }
 
         public void tick() {
@@ -683,8 +683,8 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
         }
 
         private boolean isTeleportFriendlyBlock(BlockPos p_226329_1_) {
-            BlockPathTypes lvt_2_1_ = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, p_226329_1_.mutable());
-            if (lvt_2_1_ != BlockPathTypes.WALKABLE) {
+            PathType lvt_2_1_ = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, p_226329_1_.mutable());
+            if (lvt_2_1_ != PathType.WALKABLE) {
                 return false;
             } else {
                 BlockState lvt_3_1_ = this.world.getBlockState(p_226329_1_.below());

@@ -49,7 +49,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.Vec3;
@@ -98,8 +98,8 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
 
     protected EntityTiger(EntityType type, Level worldIn) {
         super(type, worldIn);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0);
+        this.setPathfindingMalus(PathType.WATER, 0);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0);
         this.moveControl = new MovementControllerCustomCollisions(this);
     }
 
@@ -574,8 +574,8 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
     }
 
     static class TigerNodeEvaluator extends WalkNodeEvaluator {
-        protected BlockPathTypes evaluateBlockPathType(BlockGetter level, BlockPos pos, BlockPathTypes typeIn) {
-            return typeIn == BlockPathTypes.LEAVES || level.getBlockState(pos).getBlock() == Blocks.BAMBOO ? BlockPathTypes.OPEN : super.evaluateBlockPathType(level, pos, typeIn);
+        protected PathType evaluateBlockPathType(BlockGetter level, BlockPos pos, PathType typeIn) {
+            return typeIn == PathType.LEAVES || level.getBlockState(pos).getBlock() == Blocks.BAMBOO ? PathType.OPEN : super.evaluateBlockPathType(level, pos, typeIn);
         }
     }
 

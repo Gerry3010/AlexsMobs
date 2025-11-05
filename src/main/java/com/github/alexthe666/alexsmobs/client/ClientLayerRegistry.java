@@ -11,8 +11,8 @@ import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.minecraft.core.registries.Registries;
 
 import java.util.List;
 import java.util.stream.Collectors;

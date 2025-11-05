@@ -1,7 +1,7 @@
 package com.github.alexthe666.alexsmobs.entity;
 
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.Level;
 
 public class EntityCentipedeTail extends EntityCentipedeBody {
@@ -10,8 +10,8 @@ public class EntityCentipedeTail extends EntityCentipedeBody {
         super(type, worldIn);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
 }

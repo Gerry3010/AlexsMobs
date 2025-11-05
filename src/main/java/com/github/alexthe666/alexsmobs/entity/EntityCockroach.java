@@ -181,8 +181,8 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
         return 0.5F - Math.max(worldIn.getBrightness(LightLayer.BLOCK, pos), worldIn.getBrightness(LightLayer.SKY, pos));
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     public EntityDimensions getDimensions(Pose poseIn) {

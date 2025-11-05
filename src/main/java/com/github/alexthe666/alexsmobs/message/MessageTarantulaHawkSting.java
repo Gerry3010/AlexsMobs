@@ -7,7 +7,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.network.NetworkEvent;
@@ -52,7 +52,7 @@ public class MessageTarantulaHawkSting {
                     if (player.level() != null) {
                         Entity entity = player.level().getEntity(message.hawk);
                         Entity spider = player.level().getEntity(message.spider);
-                        if (entity instanceof EntityTarantulaHawk && spider instanceof LivingEntity && ((LivingEntity) spider).getMobType() == MobType.ARTHROPOD) {
+                        if (entity instanceof EntityTarantulaHawk && spider instanceof LivingEntity && ((LivingEntity) spider).getMobType() == MobCategory.ARTHROPOD) {
                             ((LivingEntity) spider).addEffect(new MobEffectInstance(AMEffectRegistry.DEBILITATING_STING.get(), EntityTarantulaHawk.STING_DURATION));
                         }
                     }

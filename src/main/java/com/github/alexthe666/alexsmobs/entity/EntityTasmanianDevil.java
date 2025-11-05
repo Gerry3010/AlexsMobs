@@ -102,7 +102,7 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
     }
 
     public void killed(ServerLevel world, LivingEntity entity) {
-        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getMobType() == MobType.UNDEAD)){
+        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getMobType() == MobCategory.UNDEAD)){
             entity.spawnAtLocation(new ItemStack(Items.BONE));
         }
     }

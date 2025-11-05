@@ -47,7 +47,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -94,7 +94,7 @@ public class EntityGiantSquid extends WaterAnimal {
 
     protected EntityGiantSquid(EntityType type, Level level) {
         super(type, level);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
         this.mantlePart1 = new EntityGiantSquidPart(this, 0.9F, 0.9F);
         this.mantlePart2 = new EntityGiantSquidPart(this, 1.2F, 1.2F);
         this.mantlePart3 = new EntityGiantSquidPart(this, 0.45F, 0.45F);
@@ -415,8 +415,8 @@ public class EntityGiantSquid extends WaterAnimal {
         return false;
     }
 
-    public MobType getMobType() {
-        return MobType.WATER;
+    public MobCategory getMobType() {
+        return MobCategory.WATER;
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {
@@ -538,7 +538,7 @@ public class EntityGiantSquid extends WaterAnimal {
     }
 
     @Override
-    public net.minecraftforge.entity.PartEntity<?>[] getParts() {
+    public net.neoforged.neoforge.entity.PartEntity<?>[] getParts() {
         return this.allParts;
     }
 

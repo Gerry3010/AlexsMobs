@@ -15,7 +15,7 @@ import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ToolActions;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class EntitySharkToothArrow extends Arrow {
 
@@ -64,7 +64,7 @@ public class EntitySharkToothArrow extends Arrow {
             this.damageShield((Player) living, (float) this.getBaseDamage());
         }
         Entity entity1 = this.getOwner();
-        if(living.getMobType() == MobType.WATER || living instanceof Drowned || living.getMobType() != MobType.UNDEAD && living.canBreatheUnderwater()){
+        if(living.getMobType() == MobCategory.WATER || living instanceof Drowned || living.getMobType() != MobCategory.UNDEAD && living.canBreatheUnderwater()){
             DamageSource damagesource;
             if (entity1 == null) {
                 damagesource = damageSources().arrow(this, this);
@@ -80,13 +80,10 @@ public class EntitySharkToothArrow extends Arrow {
         return false;
     }
 
-    public EntitySharkToothArrow(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.SHARK_TOOTH_ARROW.get(), world);
-    }
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
 

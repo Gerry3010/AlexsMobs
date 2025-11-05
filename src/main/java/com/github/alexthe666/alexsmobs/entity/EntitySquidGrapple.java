@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -45,9 +45,6 @@ public class EntitySquidGrapple extends Entity {
         this.setPos(player.getX() - (double) (player.getBbWidth()) * 0.5D * (double) Mth.sin(rot * Mth.DEG_TO_RAD), player.getEyeY() - (double) 0.2F, player.getZ() + (double) (player.getBbWidth()) * 0.5D * (double) Mth.cos(rot * Mth.DEG_TO_RAD));
     }
 
-    public EntitySquidGrapple(PlayMessages.SpawnEntity spawnEntity, Level level) {
-        this(AMEntityRegistry.SQUID_GRAPPLE.get(), level);
-    }
 
     protected static float lerpRotation(float f2, float f3) {
         while (f3 - f2 < -180.0F) {
@@ -280,7 +277,7 @@ public class EntitySquidGrapple extends Entity {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
 }

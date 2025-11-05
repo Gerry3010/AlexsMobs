@@ -257,8 +257,8 @@ public class EntityTriops extends WaterAnimal implements ITargetsDroppedItems, B
         this.walkAnimation.update(f2, 0.4F);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     @OnlyIn(Dist.CLIENT)

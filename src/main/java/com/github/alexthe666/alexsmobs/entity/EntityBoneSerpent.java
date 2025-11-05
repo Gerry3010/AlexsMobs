@@ -34,7 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -60,8 +60,8 @@ public class EntityBoneSerpent extends Monster {
 
     protected EntityBoneSerpent(EntityType type, Level worldIn) {
         super(type, worldIn);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.LAVA, 0.0F);
         switchNavigator(false);
     }
 
@@ -105,8 +105,8 @@ public class EntityBoneSerpent extends Monster {
         return super.canBeAffected(potioneffectIn);
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEAD;
+    public MobCategory getMobType() {
+        return MobCategory.UNDEAD;
     }
 
     public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {

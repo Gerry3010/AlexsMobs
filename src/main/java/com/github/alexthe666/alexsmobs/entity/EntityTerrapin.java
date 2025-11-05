@@ -46,7 +46,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -87,8 +87,8 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
 
     protected EntityTerrapin(EntityType animal, Level level) {
         super(animal, level);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
         switchNavigator(true);
     }
 
@@ -578,8 +578,8 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
         return s != null && s.toLowerCase().contains("koopa");
     }
 
-    public MobType getMobType() {
-        return MobType.WATER;
+    public MobCategory getMobType() {
+        return MobCategory.WATER;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

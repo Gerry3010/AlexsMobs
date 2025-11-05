@@ -23,7 +23,7 @@ import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -54,8 +54,8 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
         this.offsetY = offsetY;
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEAD;
+    public MobCategory getMobType() {
+        return MobCategory.UNDEAD;
     }
 
     public boolean startRiding(Entity entityIn) {
@@ -183,7 +183,7 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     public void pushEntities() {

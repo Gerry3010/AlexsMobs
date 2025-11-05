@@ -78,8 +78,8 @@ public class EntityWarpedMosco extends Monster implements IAnimatedEntity {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 100D).add(Attributes.FOLLOW_RANGE, 128.0D).add(Attributes.ATTACK_DAMAGE, 10.0D).add(Attributes.ARMOR, 10D).add(Attributes.KNOCKBACK_RESISTANCE, 1D).add(Attributes.ARMOR_TOUGHNESS, 2D).add(Attributes.MOVEMENT_SPEED, 0.3D);
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     private static Animation getRandomAttack(RandomSource rand) {

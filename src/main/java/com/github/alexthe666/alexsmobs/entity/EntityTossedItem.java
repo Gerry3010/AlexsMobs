@@ -21,7 +21,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class EntityTossedItem extends ThrowableItemProjectile {
 
@@ -39,9 +39,6 @@ public class EntityTossedItem extends ThrowableItemProjectile {
         super(AMEntityRegistry.TOSSED_ITEM.get(), x, y, z, worldIn);
     }
 
-    public EntityTossedItem(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.TOSSED_ITEM.get(), world);
-    }
 
     @Override
     protected void defineSynchedData() {
@@ -59,7 +56,7 @@ public class EntityTossedItem extends ThrowableItemProjectile {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)

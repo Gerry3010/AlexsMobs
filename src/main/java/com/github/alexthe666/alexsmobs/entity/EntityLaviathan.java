@@ -52,13 +52,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
-import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
@@ -113,11 +113,11 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     protected EntityLaviathan(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
         this.setMaxUpStep(1.3F);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.LAVA, 0.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, 0.0F);
         this.headPart = new EntityLaviathanPart(this, 1.2F, 0.9F);
         this.neckPart1 = new EntityLaviathanPart(this, 0.9F, 0.9F);
         this.neckPart2 = new EntityLaviathanPart(this, 0.9F, 0.9F);
@@ -471,7 +471,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
 
     @Override
     public double getFluidMotionScale(FluidType type) {
-        return type == ForgeMod.WATER_TYPE.get() || type == ForgeMod.LAVA_TYPE.get() ? 1.0F : super.getFluidMotionScale(type);
+        return type == NeoForgeMod.WATER_TYPE.get() || type == NeoForgeMod.LAVA_TYPE.get() ? 1.0F : super.getFluidMotionScale(type);
     }
 
     public boolean hurt(DamageSource source, float amount) {
@@ -538,8 +538,8 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
         return false;
     }
 
-    public MobType getMobType() {
-        return MobType.WATER;
+    public MobCategory getMobType() {
+        return MobCategory.WATER;
     }
 
     public void tick() {
@@ -977,7 +977,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     }
 
     @Override
-    public net.minecraftforge.entity.PartEntity<?>[] getParts() {
+    public net.neoforged.neoforge.entity.PartEntity<?>[] getParts() {
         return this.allParts;
     }
 

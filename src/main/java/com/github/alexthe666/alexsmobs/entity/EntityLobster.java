@@ -37,7 +37,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nonnull;
@@ -54,8 +54,8 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
 
     protected EntityLobster(EntityType type, Level p_i48565_2_) {
         super(type, p_i48565_2_);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
     }
 
     public int getMaxSpawnClusterSize() {
@@ -106,8 +106,8 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
     }
 
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     public void travel(Vec3 travelVector) {

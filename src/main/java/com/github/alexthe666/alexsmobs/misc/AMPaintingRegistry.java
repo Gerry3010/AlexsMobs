@@ -4,7 +4,7 @@ import net.minecraft.core.registries.Registries;
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class AMPaintingRegistry {

@@ -159,8 +159,8 @@ public class EntityMurmurHead extends Monster implements FlyingAnimal {
         return true;
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEAD;
+    public MobCategory getMobType() {
+        return MobCategory.UNDEAD;
     }
 
     @Nullable
