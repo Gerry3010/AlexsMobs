@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class EntityCockroach extends Animal implements Shearable, net.minecraftforge.common.IForgeShearable, ITargetsDroppedItems {
+public class EntityCockroach extends Animal implements Shearable, net.neoforged.neoforge.common.IShearable, ITargetsDroppedItems {
 
     public static final ResourceLocation MARACA_LOOT = new ResourceLocation("alexsmobs", "entities/cockroach_maracas");
     public static final ResourceLocation MARACA_HEADLESS_LOOT = new ResourceLocation("alexsmobs", "entities/cockroach_maracas_headless");

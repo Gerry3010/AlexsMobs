@@ -878,7 +878,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
 
             ItemStack itemstack1 = this.getItemBySlot(equipmentslottype);
             if (!ItemStack.matches(itemstack1, itemstack)) {
-                net.minecraftforge.common.NeoForge.EVENT_BUS.post(new net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent(this, equipmentslottype, itemstack, itemstack1));
+                net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent(this, equipmentslottype, itemstack, itemstack1));
                 if (map == null) {
                     map = Maps.newEnumMap(EquipmentSlot.class);
                 }

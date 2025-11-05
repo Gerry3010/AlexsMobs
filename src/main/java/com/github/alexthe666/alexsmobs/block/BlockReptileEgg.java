@@ -190,7 +190,7 @@ public class BlockReptileEgg extends Block {
             if (!(trampler instanceof LivingEntity)) {
                 return false;
             } else {
-                return trampler instanceof Player || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, trampler);
+                return trampler instanceof Player || net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent(worldIn, trampler);
             }
         } else {
             return false;

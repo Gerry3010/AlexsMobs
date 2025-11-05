@@ -349,7 +349,7 @@ public class EntityStradpole extends WaterAnimal implements Bucketable {
                 InteractionHand hand = holder.getUsedItemHand();
                 holder.getUseItem().hurtAndBreak(i, holder, (p_213833_1_) -> {
                     p_213833_1_.broadcastBreakEvent(hand);
-                    net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(holder, holder.getUseItem(), hand);
+                    net.neoforged.neoforge.event.EventHooks.onPlayerDestroyItem(holder, holder.getUseItem(), hand);
                 });
                 if (holder.getUseItem().isEmpty()) {
                     if (hand == InteractionHand.MAIN_HAND) {

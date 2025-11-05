@@ -62,12 +62,12 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
-import net.neoforged.neoforge.common.MinecraftForge;
-import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.neoforge.eventbus.api.Event;
-import net.neoforged.neoforge.eventbus.api.EventPriority;
-import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiOverlay;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
@@ -423,10 +423,8 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public void clientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) {
-            AMItemstackRenderer.incrementTick();
-        }
+    public void clientTick(LevelTickEvent.Client event) {
+        AMItemstackRenderer.incrementTick();
     }
 
     @SubscribeEvent
@@ -441,13 +439,13 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public void onPostGameOverlay(RenderGuiOverlayEvent.Post event) {
+    public void onPostGameOverlay(RenderGuiEvent.Post event) {
             if(renderStaticScreenFor > 0){
                 if (Minecraft.getInstance().player.isAlive() && lastStaticTick != Minecraft.getInstance().level.getGameTime()) {
                     renderStaticScreenFor--;
                 }
                 float staticLevel = (renderStaticScreenFor / 60F);
-                if (event.getOverlay().id().equals(VanillaGuiOverlay.HELMET.id())) {
+                if (VanillaGuiOverlay.HELMET.id().equals(VanillaGuiOverlay.HELMET.id())) {
                     float screenWidth = event.getWindow().getScreenWidth();
                     float screenHeight = event.getWindow().getScreenHeight();
                     RenderSystem.disableDepthTest();

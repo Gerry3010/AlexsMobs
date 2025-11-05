@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Optional;
 
-public class EntityMungus extends Animal implements ITargetsDroppedItems, Shearable, net.minecraftforge.common.IForgeShearable {
+public class EntityMungus extends Animal implements ITargetsDroppedItems, Shearable, net.neoforged.neoforge.common.IShearable {
 
     protected static final EntityDataAccessor<Optional<BlockPos>> TARGETED_BLOCK_POS = SynchedEntityData.defineId(EntityMungus.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
     private static final EntityDataAccessor<Boolean> ALT_ORDER_MUSHROOMS = SynchedEntityData.defineId(EntityMungus.class, EntityDataSerializers.BOOLEAN);

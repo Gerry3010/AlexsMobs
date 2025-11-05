@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-public class EntityBison extends Animal implements IAnimatedEntity, Shearable, net.minecraftforge.common.IForgeShearable {
+public class EntityBison extends Animal implements IAnimatedEntity, Shearable, net.neoforged.neoforge.common.IShearable {
 
     public static final Animation ANIMATION_PREPARE_CHARGE = Animation.create(40);
     public static final Animation ANIMATION_EAT = Animation.create(35);
@@ -350,7 +350,7 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
             return;
         }
         boolean flag = false;
-        if (!this.level().isClientSide && this.blockBreakCounter == 0 && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level(), this)) {
+        if (!this.level().isClientSide && this.blockBreakCounter == 0 && net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent(level(), this)) {
             for (int a = (int) Math.round(this.getBoundingBox().minX); a <= (int) Math.round(this.getBoundingBox().maxX); a++) {
                 for (int b = (int) Math.round(this.getBoundingBox().minY) - 1; (b <= (int) Math.round(this.getBoundingBox().maxY) + 1) && (b <= 127); b++) {
                     for (int c = (int) Math.round(this.getBoundingBox().minZ); c <= (int) Math.round(this.getBoundingBox().maxZ); c++) {
