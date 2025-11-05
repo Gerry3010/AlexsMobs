@@ -5,6 +5,7 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.0.154'
 }
 repositories{
+    mavenLocal()
     maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
@@ -71,8 +72,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation "net.neoforged:neoforge:21.0.167"
-    // TODO: Update Citadel dependency to 1.21 version when available
-    // implementation "curse.maven:citadel-331936:5633260"
+    // Local Citadel dependency from citadel/ subdirectory
+    implementation "com.github.alexthe666.citadel:citadel-1.21.1:2.7.0"
     // compileOnly("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")
     // compileOnly("mezz.jei:jei-${jei_mc_version}-neoforge-api:${jei_version}")
     // runtimeOnly("mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}")
