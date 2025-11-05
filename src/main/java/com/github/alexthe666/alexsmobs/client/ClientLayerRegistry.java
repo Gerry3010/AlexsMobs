@@ -1,4 +1,5 @@
 package com.github.alexthe666.alexsmobs.client;
+import net.minecraft.core.registries.Registries;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.client.render.layer.LayerRainbow;
@@ -7,11 +8,11 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class ClientLayerRegistry {
     @OnlyIn(Dist.CLIENT)
     public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
         List<EntityType<? extends LivingEntity>> entityTypes = ImmutableList.copyOf(
-                ForgeRegistries.ENTITY_TYPES.getValues().stream()
+                Registries.ENTITY_TYPE.getValues().stream()
                         .filter(DefaultAttributes::hasSupplier)
                         .map(entityType -> (EntityType<? extends LivingEntity>) entityType)
                         .collect(Collectors.toList()));
@@ -41,7 +42,7 @@ public class ClientLayerRegistry {
             try{
                 renderer = event.getRenderer(entityType);
             }catch (Exception e){
-                AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + ForgeRegistries.ENTITY_TYPES.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
+                AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + Registries.ENTITY_TYPE.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
             }
             if(renderer != null){
                 renderer.addLayer(new LayerRainbow(renderer));

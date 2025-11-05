@@ -1,6 +1,6 @@
 package com.github.alexthe666.alexsmobs.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 public final class ConfigHolder {
