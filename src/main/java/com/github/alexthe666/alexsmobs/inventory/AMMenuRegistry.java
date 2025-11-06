@@ -12,6 +12,6 @@ public class AMMenuRegistry {
 
     public static final DeferredRegister<MenuType<?>> DEF_REG = DeferredRegister.create(Registries.MENU, AlexsMobs.MODID);
 
-    public static final DeferredHolder<MenuType<MenuTransmutationTable>> TRANSMUTATION_TABLE = DEF_REG.register("transmutation_table", () -> new MenuType<MenuTransmutationTable>(MenuTransmutationTable::new, FeatureFlags.DEFAULT_FLAGS));
+    public static final DeferredHolder<MenuType<?>, MenuType<MenuTransmutationTable>> TRANSMUTATION_TABLE = DEF_REG.register("transmutation_table", () -> new MenuType<>(MenuTransmutationTable::new, FeatureFlags.DEFAULT_FLAGS));
 
 }
