@@ -61,7 +61,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkHooks;
+// NetworkHooks removed in 1.21
 
 import javax.annotation.Nullable;
 import java.util.Map;

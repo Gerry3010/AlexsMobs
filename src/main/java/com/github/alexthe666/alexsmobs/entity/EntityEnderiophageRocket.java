@@ -51,15 +51,6 @@ public class EntityEnderiophageRocket extends FireworkRocketEntity {
         this.entityData.set(DATA_ATTACHED_TO_TARGET, OptionalInt.of(p_i47367_3_.getId()));
     }
 
-    public EntityEnderiophageRocket(PlayMessages.SpawnEntity spawnEntity, Level world) {
-        this(AMEntityRegistry.ENDERIOPHAGE_ROCKET.get(), world);
-    }
-
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
-    }
-
     public void tick() {
         super.tick();
         ++this.phageAge;
