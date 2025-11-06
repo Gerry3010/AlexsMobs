@@ -4,7 +4,8 @@
 > This repository is currently being ported to NeoForge 1.21 with AI assistance.  
 > Please be aware that (huge) portions of the code will be AI-generated during this migration process.  
 > After it compiles, I will take over and fix Runtime and In-Game-Logic errors myself, as much as I can in my free-time.  
-> **Note:** Even if the port is successful, there is no guarantee that this project will be actively maintained.
+> **Note:** Even if the port is successful, there is no guarantee that this project will be actively maintained.  
+> Hopefully the AlexsMobs author/contributors are going to port and maintain it themselves.  
 
 Minecraft mod that adds 80+ new creatures to the game.
 
