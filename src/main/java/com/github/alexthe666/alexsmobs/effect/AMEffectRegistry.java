@@ -9,7 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.brewing.BrewingRecipeRegistry;
@@ -58,11 +58,11 @@ public class AMEffectRegistry {
     public static final DeferredHolder<Potion, Potion> LONG_CLINGING_POTION = POTION_DEF_REG.register("long_clinging", ()-> new Potion(new MobEffectInstance(CLINGING.get(), 9600)));
 
     public static ItemStack createPotion(DeferredHolder<Potion, Potion> potion){
-        return  PotionUtils.setPotion(new ItemStack(Items.POTION), potion.get());
+        return  PotionContents.createItemStack(Items.POTION, potion.get());
     }
 
     public static ItemStack createPotion(Potion potion){
-        return  PotionUtils.setPotion(new ItemStack(Items.POTION), potion);
+        return  PotionContents.createItemStack(Items.POTION, potion);
     }
 
     public static void init(){
