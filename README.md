@@ -2,7 +2,8 @@
 
 > **ℹ️ AI-Assisted Port Notice**  
 > This repository is currently being ported to NeoForge 1.21 with AI assistance.  
-> Please be aware that portions of the code will be AI-generated during this migration process.  
+> Please be aware that (huge) portions of the code will be AI-generated during this migration process.
+> After it compiles, I will take over and fix Runtime and In-Game-Logic errors myself, as much as I can in my free-time.  
 > **Note:** Even if the port is successful, there is no guarantee that this project will be actively maintained.
 
 Minecraft mod that adds 80+ new creatures to the game.
