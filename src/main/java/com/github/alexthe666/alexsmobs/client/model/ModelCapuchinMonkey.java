@@ -253,14 +253,14 @@ public class ModelCapuchinMonkey extends AdvancedEntityModel<EntityCapuchinMonke
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 			matrixStackIn.translate(0.0D, 1.5D, 0.125D);
 			parts().forEach((p_228292_8_) -> {
-				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, net.minecraft.util.FastColor.ARGB32.colorFromFloat(alpha, red, green, blue));
 			});
 			matrixStackIn.popPose();
 			head.setScale(1, 1, 1);
 		} else {
 			matrixStackIn.pushPose();
 			parts().forEach((p_228290_8_) -> {
-				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, net.minecraft.util.FastColor.ARGB32.colorFromFloat(alpha, red, green, blue));
 			});
 			matrixStackIn.popPose();
 		}

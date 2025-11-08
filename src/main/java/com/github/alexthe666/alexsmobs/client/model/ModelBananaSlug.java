@@ -102,13 +102,13 @@ public class ModelBananaSlug extends AdvancedEntityModel<EntityBananaSlug> {
             matrixStackIn.scale(0.65F, 0.65F, 0.65F);
             matrixStackIn.translate(0.0D, 0.8D, 0.125D);
             parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, net.minecraft.util.FastColor.ARGB32.colorFromFloat(alpha, red, green, blue));
             });
             matrixStackIn.popPose();
         } else {
             matrixStackIn.pushPose();
             parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, net.minecraft.util.FastColor.ARGB32.colorFromFloat(alpha, red, green, blue));
             });
             matrixStackIn.popPose();
         }
