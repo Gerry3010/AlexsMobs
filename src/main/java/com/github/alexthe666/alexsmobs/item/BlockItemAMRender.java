@@ -7,7 +7,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class BlockItemAMRender extends AMBlockItem {
 
-    public BlockItemAMRender(RegistryObject<Block> blockSupplier, Properties props) {
+    public BlockItemAMRender(DeferredHolder<Block, ? extends Block> blockSupplier, Properties props) {
         super(blockSupplier, props);
     }
 

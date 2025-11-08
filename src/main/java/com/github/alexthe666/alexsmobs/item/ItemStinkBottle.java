@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ItemStinkBottle extends AMBlockItem {
 
-    public ItemStinkBottle(RegistryObject<Block> blockSupplier, Item.Properties props) {
+    public ItemStinkBottle(DeferredHolder<Block, ? extends Block> blockSupplier, Item.Properties props) {
         super(blockSupplier, props);
     }
 

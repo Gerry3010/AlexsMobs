@@ -7,7 +7,7 @@ import com.github.alexthe666.alexsmobs.entity.*;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import com.github.alexthe666.citadel.server.block.LecternBooks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.Registries;
@@ -336,7 +336,7 @@ public class AMItemRegistry {
     }
 
     public static void initDispenser(){
-        DispenserBlock.registerBehavior(SHARK_TOOTH_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(SHARK_TOOTH_ARROW.get(), new ProjectileDispenseBehavior() {
             /**
              * Return the projectile entity spawned by this dispense behavior.
              */
@@ -346,26 +346,26 @@ public class AMItemRegistry {
                 return entityarrow;
             }
         });
-        DispenserBlock.registerBehavior(ANCIENT_DART.get(), new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(ANCIENT_DART.get(), new ProjectileDispenseBehavior() {
             protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
                 EntityTossedItem tossedItem = new EntityTossedItem(worldIn, position.x(), position.y(), position.z());
                 tossedItem.setDart(true);
                 return tossedItem;
             }
         });
-        DispenserBlock.registerBehavior(COCKROACH_OOTHECA.get(), new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(COCKROACH_OOTHECA.get(), new ProjectileDispenseBehavior() {
             protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
                 EntityCockroachEgg entityarrow = new EntityCockroachEgg(worldIn, position.x(), position.y(), position.z());
                 return entityarrow;
             }
         });
-        DispenserBlock.registerBehavior(EMU_EGG.get(), new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(EMU_EGG.get(), new ProjectileDispenseBehavior() {
             protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
                 EntityEmuEgg entityarrow = new EntityEmuEgg(worldIn, position.x(), position.y(), position.z());
                 return entityarrow;
             }
         });
-        DispenserBlock.registerBehavior(ENDERIOPHAGE_ROCKET.get(), new AbstractProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(ENDERIOPHAGE_ROCKET.get(), new ProjectileDispenseBehavior() {
             protected Projectile getProjectile(Level worldIn, Position position, ItemStack stackIn) {
                 EntityEnderiophageRocket entityarrow = new EntityEnderiophageRocket(worldIn, position.x(), position.y(), position.z(), stackIn);
                 return entityarrow;

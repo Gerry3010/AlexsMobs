@@ -21,9 +21,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class AMBlockItem extends BlockItem implements CustomTabBehavior {
 
-    private final RegistryObject<Block> blockSupplier;
+    private final DeferredHolder<Block, ? extends Block> blockSupplier;
 
-    public AMBlockItem(RegistryObject<Block> blockSupplier, Item.Properties props) {
+    public AMBlockItem(DeferredHolder<Block, ? extends Block> blockSupplier, Item.Properties props) {
         super((Block)null, props);
         this.blockSupplier = blockSupplier;
     }
