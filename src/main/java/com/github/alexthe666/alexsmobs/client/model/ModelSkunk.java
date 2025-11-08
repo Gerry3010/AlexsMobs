@@ -149,7 +149,7 @@ public class ModelSkunk extends AdvancedEntityModel<EntitySkunk> {
         AdvancedModelBox.rotateAngleZ = z;
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             this.head.setScale(1.5F, 1.5F, 1.5F);
             matrixStackIn.pushPose();

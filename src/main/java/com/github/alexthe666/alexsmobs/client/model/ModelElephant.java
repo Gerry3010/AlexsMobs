@@ -290,7 +290,7 @@ public class ModelElephant extends AdvancedEntityModel<EntityElephant> {
         animator.resetKeyframe(5);
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             float f = 1.5F;
             float f2 = 0.75F;

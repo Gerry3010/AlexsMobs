@@ -148,7 +148,7 @@ public class ModelBlueJay extends AdvancedEntityModel<EntityBlueJay> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer buffer, int packedLight, int packedOverlay, int color){
         if (this.young) {
             float f = 1.35F;
             head.setScale(f, f, f);

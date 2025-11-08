@@ -161,7 +161,7 @@ public class ModelSeagull extends AdvancedEntityModel<EntitySeagull> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer buffer, int packedLight, int packedOverlay, int color){
 		if (this.young) {
 			float f = 1.45F;
 			head.setScale(f, f, f);

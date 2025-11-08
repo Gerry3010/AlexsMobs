@@ -169,7 +169,7 @@ public class ModelGorilla extends AdvancedEntityModel<EntityGorilla> {
 		animator.resetKeyframe(6);
 	}
 
-	public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
 		if (this.young) {
 			float f = 1.35F;
 			head.setScale(f, f, f);

@@ -112,7 +112,7 @@ public class ModelTusklin extends AdvancedEntityModel<EntityTusklin> {
         animator = ModelAnimator.create();
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             float f = 1.6F;
             float f1 = 2.2F;

@@ -96,7 +96,7 @@ public class ModelBananaSlug extends AdvancedEntityModel<EntityBananaSlug> {
         goo.setScale(1, 0, (1 + limbSwingAmount));
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             matrixStackIn.pushPose();
             matrixStackIn.scale(0.65F, 0.65F, 0.65F);

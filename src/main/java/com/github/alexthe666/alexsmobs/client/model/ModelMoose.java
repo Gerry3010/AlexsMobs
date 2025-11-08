@@ -211,7 +211,7 @@ public class ModelMoose extends AdvancedEntityModel<EntityMoose> {
         }
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             float f = 1.35F;
             float feet = 1.45F;

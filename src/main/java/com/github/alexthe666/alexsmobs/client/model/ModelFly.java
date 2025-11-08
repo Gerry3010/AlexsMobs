@@ -51,7 +51,7 @@ public class ModelFly extends AdvancedEntityModel<EntityFly> {
         mouth.setTextureOffset(15, 16).addBox(0.0F, 0.0F, -1.0F, 0.0F, 4.0F, 2.0F, 0.0F, false);        this.updateDefaultPose();
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
         if (this.young) {
             matrixStackIn.pushPose();
             matrixStackIn.scale(0.65F, 0.65F, 0.65F);
