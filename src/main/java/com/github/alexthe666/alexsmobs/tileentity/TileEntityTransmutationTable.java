@@ -68,7 +68,7 @@ public class TileEntityTransmutationTable  extends BlockEntity {
                 CompoundTag compoundtag = list.getCompound(i);
                 UUID uuid = compoundtag.getUUID("UUID");
                 if(uuid != null){
-                    playerToData.put(uuid, TransmutationData.fromNBT(compoundtag.getCompound("TransmutationData")));
+                    playerToData.put(uuid, TransmutationData.fromNBT(compoundtag.getCompound("TransmutationData"), registries));
                 }
             }
         }
@@ -86,7 +86,7 @@ public class TileEntityTransmutationTable  extends BlockEntity {
         for(Map.Entry<UUID, TransmutationData> entry : playerToData.entrySet()){
             CompoundTag innerTag = new CompoundTag();
             innerTag.putUUID("UUID", entry.getKey());
-            innerTag.put("TransmutationData", entry.getValue().saveAsNBT());
+            innerTag.put("TransmutationData", entry.getValue().saveAsNBT(registries));
             list.add(innerTag);
         }
         tag.put("PlayerTransmutationData", list);

@@ -69,7 +69,7 @@ public class BlockLeafcutterAnthill extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide && player.isCreative() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof TileEntityLeafcutterAnthill) {
@@ -77,22 +77,20 @@ public class BlockLeafcutterAnthill extends BaseEntityBlock {
                 ItemStack itemstack = new ItemStack(this);
                 boolean flag = !anthivetileentity.hasNoAnts();
                 if (!flag) {
-                    return;
+                    return super.playerWillDestroy(worldIn, pos, state, player);
                 }
                 if (flag) {
                     CompoundTag compoundnbt = new CompoundTag();
                     compoundnbt.put("Ants", anthivetileentity.getAnts());
-                    itemstack.addTagElement("BlockEntityTag", compoundnbt);
+                    itemstack.set(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.item.component.CustomData.of(compoundnbt));
                 }
-                CompoundTag compoundnbt1 = new CompoundTag();
-                itemstack.addTagElement("BlockStateTag", compoundnbt1);
                 ItemEntity itementity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemstack);
                 itementity.setDefaultPickUpDelay();
                 worldIn.addFreshEntity(itementity);
             }
         }
 
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
@@ -113,7 +111,7 @@ public class BlockLeafcutterAnthill extends BaseEntityBlock {
         super.playerDestroy(worldIn, player, pos, state, te, stack);
         if (!worldIn.isClientSide && te instanceof TileEntityLeafcutterAnthill) {
             TileEntityLeafcutterAnthill beehivetileentity = (TileEntityLeafcutterAnthill) te;
-            if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(worldIn.holderOrThrow(Enchantments.SILK_TOUCH), stack) == 0) {
                 beehivetileentity.angerAnts(player, state, BeehiveBlockEntity.BeeReleaseStatus.EMERGENCY);
                 worldIn.updateNeighbourForOutputSignal(pos, this);
                 this.angerNearbyAnts(worldIn, pos);
