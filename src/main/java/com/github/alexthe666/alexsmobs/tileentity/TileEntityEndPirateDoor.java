@@ -32,7 +32,7 @@ public class TileEntityEndPirateDoor extends BlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     public net.minecraft.world.phys.AABB getRenderBoundingBox() {
-        return new net.minecraft.world.phys.AABB(worldPosition, worldPosition.offset(1, 3, 1));
+        return new net.minecraft.world.phys.AABB(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), worldPosition.getX() + 1, worldPosition.getY() + 3, worldPosition.getZ() + 1);
     }
 
     public static void commonTick(Level level, BlockPos pos, BlockState state, TileEntityEndPirateDoor entity) {

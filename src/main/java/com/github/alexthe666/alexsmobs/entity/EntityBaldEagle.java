@@ -373,12 +373,12 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                         itemstack.shrink(1);
                     }
                     this.gameEvent(GameEvent.ENTITY_INTERACT);
-                    this.playSound(SoundEvents.ARMOR_EQUIP_LEATHER, this.getSoundVolume(), this.getVoicePitch());
+                    this.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), this.getSoundVolume(), this.getVoicePitch());
                     return InteractionResult.SUCCESS;
                 }
             } else if (itemstack.is(Tags.Items.SHEARS) && this.hasCap()) {
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
-                this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 if (!this.level().isClientSide) {
                     if (player instanceof ServerPlayer) {
                         itemstack.hurt(1, random, (ServerPlayer) player);
