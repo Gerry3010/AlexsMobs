@@ -165,9 +165,9 @@ public class EntityShoebill extends Animal implements IAnimatedEntity, ITargetsD
     public void tick() {
         super.tick();
         if(this.isInWater()){
-            this.setMaxUpStep(1.2F);
+            this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(1.2F);
         }else{
-            this.setMaxUpStep(0.6F);
+            this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(0.6F);
         }
         prevFlyProgress = flyProgress;
 

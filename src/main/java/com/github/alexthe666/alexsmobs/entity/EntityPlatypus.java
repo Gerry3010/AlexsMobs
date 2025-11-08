@@ -377,9 +377,9 @@ public class EntityPlatypus extends Animal implements ISemiAquatic, ITargetsDrop
             spawnGroundEffects();
         }
         if (inWaterProgress > 0) {
-            this.setMaxUpStep(1);
+            this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(1);
         } else {
-            this.setMaxUpStep(0.6F);
+            this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(0.6F);
         }
         if (!this.level().isClientSide) {
             if (isInWater()) {

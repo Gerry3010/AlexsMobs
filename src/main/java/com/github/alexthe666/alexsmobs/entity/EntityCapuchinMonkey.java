@@ -218,7 +218,7 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
             maxSitTime = 300 + random.nextInt(250);
             this.setOrderedToSit(true);
         }
-        this.setMaxUpStep(2);
+        this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(2);
         if (!forcedSit && this.isSitting() && (this.getDartTarget() != null || this.getCommand() == 1)) {
             this.setOrderedToSit(false);
         }

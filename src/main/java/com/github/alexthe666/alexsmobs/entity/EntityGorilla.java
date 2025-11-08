@@ -93,7 +93,7 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
         super(type, worldIn);
         this.setPathfindingMalus(PathType.WATER, -1.0F);
         this.setPathfindingMalus(PathType.LEAVES, 0.0F);
-        this.setMaxUpStep(1.1F);
+        this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(1.1F);
     }
 
     protected PathNavigation createNavigation(Level worldIn) {

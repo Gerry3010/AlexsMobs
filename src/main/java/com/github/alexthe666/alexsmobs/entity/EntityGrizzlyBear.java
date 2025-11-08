@@ -338,7 +338,7 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
         if(player.zza != 0 || player.xxa != 0){
             this.setRot(player.getYRot(), player.getXRot() * 0.25F);
             this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
-            this.setMaxUpStep(1);
+            this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(1);
             this.getNavigation().stop();
             this.setTarget(null);
             this.setSprinting(true);

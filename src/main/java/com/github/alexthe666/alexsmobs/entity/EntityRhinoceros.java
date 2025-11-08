@@ -79,7 +79,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
 
     protected EntityRhinoceros(EntityType type, Level level) {
         super(type, level);
-        this.setMaxUpStep(1.1F);
+        this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(1.1F);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

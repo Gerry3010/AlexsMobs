@@ -60,7 +60,7 @@ public class EntitySnowLeopard extends Animal implements IAnimatedEntity, ITarge
 
     protected EntitySnowLeopard(EntityType type, Level worldIn) {
         super(type, worldIn);
-        this.setMaxUpStep(2F);
+        this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(2F);
     }
 
     protected PathNavigation createNavigation(Level worldIn) {
