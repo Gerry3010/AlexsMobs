@@ -14,7 +14,7 @@ Minecraft mod that adds 80+ new creatures to the game.
 ## 🚧 1.21 Port Progress
 
 **Target:** Minecraft 1.21 with NeoForge 21.0.167  
-**Current Status:** ⚠️ Work in Progress - ~55 non-JEI errors remaining (~96% complete)
+**Current Status:** ⚠️ Work in Progress - ~45 non-JEI errors remaining (~97% complete)
 
 ### ✅ Completed
 
@@ -72,7 +72,7 @@ Minecraft mod that adds 80+ new creatures to the game.
 
 **Category Breakdown:**
 - 🟢 ~40 JEI integration errors (optional compatibility, can be disabled or updated separately)
-- 🟠 ~15 Core remaining errors (network messages, event handlers, armor material, misc symbols)
+- 🟠 ~5 Core remaining errors (network messages, advancement trigger, misc symbols)
 
 **Priority 1: Enchantment System** ✅ **COMPLETED!**
 - [x] ~~Redesign enchantment system~~ ✅ Fully implemented with 1.21 data-driven system!
@@ -93,13 +93,18 @@ Minecraft mod that adds 80+ new creatures to the game.
 - [x] ~~Fix AbstractProjectileDispenseBehavior~~ ✅ Changed to ProjectileDispenseBehavior
 - [x] ~~Fix ClientTickEvent package~~ ✅ Changed to EntityTickEvent.Post with LocalPlayer check
 - [x] ~~Fix ItemStraddleboard DyeableLeatherItem~~ ✅ Migrated to component-based DyedItemColor API
-- [ ] Fix event class errors (ServerEvents.java lines 285, 328, 488, 615, 740)
-  - MobSpawnEvent.AllowDespawn, LootingLevelEvent, MobSpawnEvent.FinalizeSpawn, LivingEvent.LivingTickEvent, LivingAttackEvent
+- [x] ~~Fix event class errors (ServerEvents.java)~~ ✅ All fixed!
+  - ✅ MobDespawnEvent (was MobSpawnEvent.AllowDespawn)
+  - ✅ FinalizeSpawnEvent (was MobSpawnEvent.FinalizeSpawn)
+  - ✅ EntityTickEvent.Post (was LivingEvent.LivingTickEvent)
+  - ✅ LivingIncomingDamageEvent (was LivingAttackEvent)
+  - ⚠️ LootingLevelEvent commented out (removed in 1.21 - needs alternative implementation)
+- [x] ~~ArmorMaterial system redesign~~ ✅ Migrated to Holder<ArmorMaterial> system!
+  - Converted AMArmorMaterial to wrap ArmorMaterial record
+  - Updated all armor items to use holder-based access
+  - All 12 armor materials now compile without errors
 - [ ] Fix NetworkEvent references in message classes (~20 files, ~40 errors)
   - Update to 1.21 NeoForge networking API
-- [ ] ArmorMaterial system redesign (1.21 uses Holder<ArmorMaterial> with registry)
-  - Affects: All armor items (10+ armor materials defined)
-  - Need to create data-driven armor material definitions
 - [ ] Fix AMAdvancementTrigger symbol error
 
 **Priority 3: Optional JEI Integration (40 errors)**
@@ -224,10 +229,10 @@ cd ..
 
 ### Known Issues
 
-- [ ] ~55 non-JEI compilation errors remaining (40 JEI optional, ~15 core)
-- [ ] ArmorMaterial system requires complete redesign for 1.21 (now data-driven with registry)
-- [ ] Network message system needs update to new NeoForge 1.21 API (~20 files)
-- [ ] Event handler API changes (spawn events, looting event, tick events)
+- [ ] ~45 non-JEI compilation errors remaining (40 JEI optional, ~5 core)
+- [ ] Network message system needs update to new NeoForge 1.21 API (~20 files, ~40 errors)
+- [ ] LootingLevelEvent functionality needs reimplementation (event removed in 1.21)
+- [ ] AMAdvancementTrigger symbol error
 - [ ] Not yet tested in-game
 - [ ] Citadel dependency requires manual build
 - [ ] JEI integration needs update or temporary removal
@@ -244,7 +249,7 @@ cd ..
 - ✅ Fixed event bus subscription (FORGE → GAME)
 - ✅ Removed obsolete EnchantmentCategory usage
 
-**Progress:** Reduced from ~100 errors to ~55 non-JEI errors (96% complete)
+**Progress:** Reduced from ~100 errors to ~45 non-JEI errors (97% complete)
 
 ### Recent Progress (Session 3 - 2025-01-08)
 
@@ -255,8 +260,11 @@ cd ..
 - ✅ Fixed DyeableLeatherItem interface in ItemStraddleboard
 - ✅ Fixed ClientTickEvent to EntityTickEvent.Post
 - ✅ Fixed NeoNeoForgeRegistries typo
+- ✅ Fixed all ServerEvents event classes (MobDespawnEvent, FinalizeSpawnEvent, EntityTickEvent.Post, LivingIncomingDamageEvent)
+- ✅ Migrated ArmorMaterial system to Holder-based approach (12 materials, 3 files modified)
+- ⚠️ Commented out LootingLevelEvent (removed in 1.21)
 
-**Current Focus:** Event handler API updates and network message system
+**Current Focus:** Network message system (NetworkEvent API migration)
 
 ### Migration Strategy
 
