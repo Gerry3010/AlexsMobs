@@ -1,86 +1,76 @@
 package com.github.alexthe666.alexsmobs.item;
 
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
+import com.github.alexthe666.alexsmobs.AlexsMobs;
 
-public class AMArmorMaterial implements ArmorMaterial {
+import java.util.EnumMap;
+import java.util.List;
+import java.util.function.Supplier;
+
+// In 1.21, ArmorMaterial is a record, not an interface
+// This class now wraps the creation and access of ArmorMaterial holders
+public class AMArmorMaterial {
 
     protected static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;
-    private final int durability;
-    private final int[] damageReduction;
-    private final int encantability;
-    private final SoundEvent sound;
-    private final float toughness;
-    private Ingredient ingredient = null;
-    public float knockbackResistance = 0.0F;
+    private final Holder<ArmorMaterial> holder;
+    private Supplier<Ingredient> repairIngredient = () -> Ingredient.EMPTY;
 
     public AMArmorMaterial(String name, int durability, int[] damageReduction, int encantability, SoundEvent sound, float toughness) {
-        this.name = name;
-        this.durability = durability;
-        this.damageReduction = damageReduction;
-        this.encantability = encantability;
-        this.sound = sound;
-        this.toughness = toughness;
-        this.knockbackResistance = 0;
+        this(name, durability, damageReduction, encantability, sound, toughness, 0.0F);
     }
 
     public AMArmorMaterial(String name, int durability, int[] damageReduction, int encantability, SoundEvent sound, float toughness, float knockbackResist) {
         this.name = name;
-        this.durability = durability;
-        this.damageReduction = damageReduction;
-        this.encantability = encantability;
-        this.sound = sound;
-        this.toughness = toughness;
-        this.knockbackResistance = knockbackResist;
+        
+        // Create defense map
+        EnumMap<ArmorItem.Type, Integer> defenseMap = new EnumMap<>(ArmorItem.Type.class);
+        defenseMap.put(ArmorItem.Type.BOOTS, damageReduction[3]);
+        defenseMap.put(ArmorItem.Type.LEGGINGS, damageReduction[2]);
+        defenseMap.put(ArmorItem.Type.CHESTPLATE, damageReduction[1]);
+        defenseMap.put(ArmorItem.Type.HELMET, damageReduction[0]);
+        defenseMap.put(ArmorItem.Type.BODY, damageReduction[1]); // Use chestplate value for body
+        
+        // Register the armor material
+        ResourceLocation id = new ResourceLocation(AlexsMobs.MODID, name);
+        ArmorMaterial material = new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, MAX_DAMAGE_ARRAY[3] * durability);
+                map.put(ArmorItem.Type.LEGGINGS, MAX_DAMAGE_ARRAY[2] * durability);
+                map.put(ArmorItem.Type.CHESTPLATE, MAX_DAMAGE_ARRAY[1] * durability);
+                map.put(ArmorItem.Type.HELMET, MAX_DAMAGE_ARRAY[0] * durability);
+                map.put(ArmorItem.Type.BODY, MAX_DAMAGE_ARRAY[1] * durability);
+            }),
+            encantability,
+            Holder.direct(sound),
+            () -> this.repairIngredient.get(),
+            List.of(new ArmorMaterial.Layer(id)),
+            toughness,
+            knockbackResist
+        );
+        
+        this.holder = Registry.registerForHolder(BuiltInRegistries.ARMOR_MATERIAL, id, material);
     }
 
 
-    @Override
-    public int getDurabilityForType(ArmorItem.Type type) {
-        return MAX_DAMAGE_ARRAY[type.ordinal()] * this.durability;
+    public Holder<ArmorMaterial> getHolder() {
+        return holder;
     }
-
-    @Override
-    public int getDefenseForType(ArmorItem.Type type) {
-        return this.damageReduction[type.ordinal()];
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return this.encantability;
-    }
-
-    @Override
-    public SoundEvent getEquipSound() {
-        return this.sound;
-    }
-
-    @Override
-    public Ingredient getRepairIngredient() {
-        return this.ingredient == null ? Ingredient.EMPTY : this.ingredient;
-    }
-
-    public void setRepairMaterial(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
-
-
-    @Override
+    
     public String getName() {
         return name;
     }
 
-    @Override
-    public float getToughness() {
-        return toughness;
-    }
-
-    @Override
-    public float getKnockbackResistance() {
-        return knockbackResistance;
+    public void setRepairMaterial(Ingredient ingredient) {
+        this.repairIngredient = () -> ingredient;
     }
 
 }

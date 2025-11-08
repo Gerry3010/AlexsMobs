@@ -30,7 +30,7 @@ public class ItemModArmor extends ArmorItem {
     private Multimap<Attribute, AttributeModifier> attributeMapKimono;
 
     public ItemModArmor(AMArmorMaterial armorMaterial, ArmorItem.Type slot) {
-        super(armorMaterial, slot, new Item.Properties());
+        super(armorMaterial.getHolder(), slot, new Item.Properties());
     }
 
     @Override
@@ -77,11 +77,12 @@ public class ItemModArmor extends ArmorItem {
     private void buildCrocAttributes(AMArmorMaterial materialIn) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIERS[type.ordinal()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", materialIn.getDefenseForType(this.type), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", materialIn.getToughness(), AttributeModifier.Operation.ADDITION));
+        ArmorMaterial mat = materialIn.getHolder().value();
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", mat.getDefense(this.type), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", mat.toughness(), AttributeModifier.Operation.ADDITION));
         builder.put(NeoForgeMod.SWIM_SPEED.get(), new AttributeModifier(uuid, "Swim speed", 1, AttributeModifier.Operation.ADDITION));
-        if (this.knockbackResistance > 0) {
-            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", this.knockbackResistance, AttributeModifier.Operation.ADDITION));
+        if (mat.knockbackResistance() > 0) {
+            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", mat.knockbackResistance(), AttributeModifier.Operation.ADDITION));
         }
         attributeMapCroc = builder.build();
     }
@@ -89,8 +90,9 @@ public class ItemModArmor extends ArmorItem {
     private void buildFlyingFishAttributes(AMArmorMaterial materialIn) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIERS[type.ordinal()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", materialIn.getDefenseForType(this.type), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", materialIn.getToughness(), AttributeModifier.Operation.ADDITION));
+        ArmorMaterial mat = materialIn.getHolder().value();
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", mat.getDefense(this.type), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", mat.toughness(), AttributeModifier.Operation.ADDITION));
         builder.put(NeoForgeMod.SWIM_SPEED.get(), new AttributeModifier(uuid, "Swim speed", 0.5, AttributeModifier.Operation.ADDITION));
         attributeMapFlyingFish = builder.build();
     }
@@ -98,11 +100,12 @@ public class ItemModArmor extends ArmorItem {
     private void buildMooseAttributes(AMArmorMaterial materialIn) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIERS[type.ordinal()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", materialIn.getDefenseForType(this.type), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", materialIn.getToughness(), AttributeModifier.Operation.ADDITION));
+        ArmorMaterial mat = materialIn.getHolder().value();
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", mat.getDefense(this.type), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", mat.toughness(), AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(uuid, "Knockback", 2, AttributeModifier.Operation.ADDITION));
-        if (this.knockbackResistance > 0) {
-            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", this.knockbackResistance, AttributeModifier.Operation.ADDITION));
+        if (mat.knockbackResistance() > 0) {
+            builder.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(uuid, "Armor knockback resistance", mat.knockbackResistance(), AttributeModifier.Operation.ADDITION));
         }
         attributeMapMoose = builder.build();
     }
@@ -110,8 +113,9 @@ public class ItemModArmor extends ArmorItem {
     private void buildKimonoAttributes(AMArmorMaterial materialIn) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         UUID uuid = ARMOR_MODIFIERS[type.ordinal()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", materialIn.getDefenseForType(this.type), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", materialIn.getToughness(), AttributeModifier.Operation.ADDITION));
+        ArmorMaterial mat = materialIn.getHolder().value();
+        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", mat.getDefense(this.type), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", mat.toughness(), AttributeModifier.Operation.ADDITION));
         builder.put(NeoForgeMod.BLOCK_REACH.get(), new AttributeModifier(uuid, "Block Reach distance", 2, AttributeModifier.Operation.ADDITION));
         builder.put(NeoForgeMod.ENTITY_REACH.get(), new AttributeModifier(uuid, "Entity Reach distance", 2, AttributeModifier.Operation.ADDITION));
         attributeMapKimono = builder.build();
