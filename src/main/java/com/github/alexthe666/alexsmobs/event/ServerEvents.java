@@ -77,6 +77,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.entity.EntityEvent;
 import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
@@ -111,7 +112,7 @@ public class ServerEvents {
 
     @SubscribeEvent
     public static void onServerTick(LevelTickEvent.Pre tick) {
-        if (!tick.level.isClientSide && tick.level instanceof ServerLevel serverWorld) {
+        if (!tick.getLevel().isClientSide && tick.getLevel() instanceof ServerLevel serverWorld) {
             BEACHED_CACHALOT_WHALE_SPAWNER_MAP.computeIfAbsent(serverWorld,
                 k -> new BeachedCachalotWhaleSpawner(serverWorld));
             BeachedCachalotWhaleSpawner spawner = BEACHED_CACHALOT_WHALE_SPAWNER_MAP.get(serverWorld);
@@ -133,7 +134,7 @@ public class ServerEvents {
                 teleportPlayers.clear();
             }
         }
-        AMWorldData data = AMWorldData.get(tick.level);
+        AMWorldData data = AMWorldData.get(tick.getLevel());
         if (data != null) {
             data.tickPupfish();
         }
@@ -282,7 +283,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onEntityDespawnAttempt(MobDespawnEvent.EntityDespawn event) {
+    public void onEntityDespawnAttempt(MobDespawnEvent event) {
         if (event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getEffect(AMEffectRegistry.DEBILITATING_STING.get()) != null && event.getEntity().getEffect(AMEffectRegistry.DEBILITATING_STING.get()).getAmplifier() > 0) {
             event.setResult(Event.Result.DENY);
         }
@@ -324,6 +325,9 @@ public class ServerEvents {
         }
     }
 
+    // TODO: LootingLevelEvent was removed in 1.21 - need to find alternative way to modify looting level
+    // Original functionality: Snow Leopards gave +2 looting level bonus
+    /*
     @SubscribeEvent
     public void onLootLevelEvent(LootingLevelEvent event) {
         DamageSource src = event.getDamageSource();
@@ -334,6 +338,7 @@ public class ServerEvents {
         }
 
     }
+    */
 
     @SubscribeEvent
     public void onUseItem(PlayerInteractEvent.RightClickItem event) {
@@ -612,8 +617,9 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onLivingUpdateEvent(LivingTickEvent event) {
-        final var entity = event.getEntity();
+    public void onLivingUpdateEvent(EntityTickEvent.Post event) {
+        if (!(event.getEntity() instanceof LivingEntity)) return;
+        final var entity = (LivingEntity) event.getEntity();
         if (entity instanceof Player player) {
             if (player.getEyeHeight() < player.getBbHeight() * 0.5D) {
                 player.refreshDimensions();
