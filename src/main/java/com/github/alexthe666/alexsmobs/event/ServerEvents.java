@@ -282,7 +282,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onEntityDespawnAttempt(MobSpawnEvent.AllowDespawn event) {
+    public void onEntityDespawnAttempt(MobDespawnEvent.EntityDespawn event) {
         if (event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getEffect(AMEffectRegistry.DEBILITATING_STING.get()) != null && event.getEntity().getEffect(AMEffectRegistry.DEBILITATING_STING.get()).getAmplifier() > 0) {
             event.setResult(Event.Result.DENY);
         }
@@ -485,7 +485,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onEntityFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
+    public void onEntityFinalizeSpawn(FinalizeSpawnEvent event) {
         final var entity = event.getEntity();
         if (entity instanceof WanderingTrader trader && AMConfig.elephantTraderSpawnChance > 0) {
             Biome biome = event.getLevel().getBiome(entity.blockPosition()).value();
@@ -612,7 +612,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onLivingUpdateEvent(LivingEvent.LivingTickEvent event) {
+    public void onLivingUpdateEvent(LivingTickEvent event) {
         final var entity = event.getEntity();
         if (entity instanceof Player player) {
             if (player.getEyeHeight() < player.getBbHeight() * 0.5D) {
@@ -737,7 +737,7 @@ public class ServerEvents {
     }
 
     @SubscribeEvent
-    public void onLivingAttack(LivingAttackEvent event) {
+    public void onLivingAttack(LivingIncomingDamageEvent event) {
         if (!event.getEntity().getUseItem().isEmpty() && event.getSource() != null && event.getSource().getEntity() != null) {
             if (event.getEntity().getUseItem().getItem() == AMItemRegistry.SHIELD_OF_THE_DEEP.get()) {
                 if (event.getSource().getEntity() instanceof LivingEntity living) {
