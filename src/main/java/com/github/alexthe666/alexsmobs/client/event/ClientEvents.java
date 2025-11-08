@@ -422,7 +422,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public void clientTick(net.neoforged.neoforge.event.tick.ClientTickEvent.Post event) {
+    public void clientTick(net.neoforged.neoforge.event.ClientTickEvent.Post event) {
         AMItemstackRenderer.incrementTick();
     }
 
