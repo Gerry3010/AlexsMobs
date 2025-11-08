@@ -745,7 +745,7 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                 return true;
             }
         }
-        return !this.isAlive() || this.isInsidePortal || launchTime > 12000 || this.portalTime > 0 || this.isRemoved();
+        return !this.isAlive() || launchTime > 12000 || this.isRemoved();
     }
 
     public void remove(RemovalReason reason) {

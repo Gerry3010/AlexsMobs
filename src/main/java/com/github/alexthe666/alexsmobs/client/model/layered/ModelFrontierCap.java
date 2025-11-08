@@ -35,7 +35,7 @@ public class ModelFrontierCap extends HumanoidModel {
 
     public ModelFrontierCap withAnimations(LivingEntity entity){
         if(entity != null){
-            float partialTick = Minecraft.getInstance().getFrameTime();
+            float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
             float limbSwingAmount = entity.walkAnimation.speed(partialTick);
             float limbSwing = entity.walkAnimation.position() + partialTick;
             tail.xRot = 0.1956514098143546F + limbSwingAmount * Maths.rad(80) + Mth.cos(limbSwing * 0.3F) * 0.2F * limbSwingAmount;
