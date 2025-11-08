@@ -1,5 +1,6 @@
 package com.github.alexthe666.alexsmobs.block;
 
+import com.mojang.serialization.MapCodec;
 import com.github.alexthe666.alexsmobs.tileentity.AMTileEntityRegistry;
 import com.github.alexthe666.alexsmobs.tileentity.TileEntityEndPirateDoor;
 import net.minecraft.core.BlockPos;
@@ -33,6 +34,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockEndPirateDoor extends BaseEntityBlock {
+
+    public static final MapCodec<BlockEndPirateDoor> CODEC = simpleCodec(BlockEndPirateDoor::new);
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
 
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty OPEN = BooleanProperty.create("open");

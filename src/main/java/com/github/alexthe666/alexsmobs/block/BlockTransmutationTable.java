@@ -6,6 +6,7 @@ import com.github.alexthe666.alexsmobs.inventory.MenuTransmutationTable;
 import com.github.alexthe666.alexsmobs.message.MessageUpdateTransmutablesToDisplay;
 import com.github.alexthe666.alexsmobs.tileentity.AMTileEntityRegistry;
 import com.github.alexthe666.alexsmobs.tileentity.TileEntityTransmutationTable;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -38,8 +39,14 @@ import javax.annotation.Nullable;
 
 public class BlockTransmutationTable extends BaseEntityBlock implements AMSpecialRenderBlock {
 
+    public static final MapCodec<BlockTransmutationTable> CODEC = simpleCodec(BlockTransmutationTable::new);
     private static final Component CONTAINER_TITLE = Component.translatable("alexsmobs.container.transmutation_table");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
     private static final VoxelShape BASE_AABB = Block.box(1, 0, 1, 15, 5, 15);
     private static final VoxelShape ARMS_NS = Block.box(1, 5, 5.5F, 15, 16, 10.5F);
     private static final VoxelShape ARMS_EW = Block.box(5.5F, 5, 1, 10.5F, 16, 15);

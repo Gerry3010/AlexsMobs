@@ -6,6 +6,7 @@ import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMAdvancementTriggerRegistry;
 import com.github.alexthe666.alexsmobs.tileentity.AMTileEntityRegistry;
 import com.github.alexthe666.alexsmobs.tileentity.TileEntityLeafcutterAnthill;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -37,8 +38,15 @@ import java.util.List;
 
 public class BlockLeafcutterAnthill extends BaseEntityBlock {
 
+    public static final MapCodec<BlockLeafcutterAnthill> CODEC = simpleCodec(BlockLeafcutterAnthill::new);
+
     public BlockLeafcutterAnthill() {
         super(BlockBehaviour.Properties.of().sound(SoundType.GRAVEL).strength(0.75F));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {

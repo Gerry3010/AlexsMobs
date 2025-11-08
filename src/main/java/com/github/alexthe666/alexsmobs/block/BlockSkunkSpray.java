@@ -2,6 +2,7 @@ package com.github.alexthe666.alexsmobs.block;
 
 import com.github.alexthe666.alexsmobs.client.particle.AMParticleRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,8 +34,14 @@ import java.util.ArrayList;
 
 public class BlockSkunkSpray extends MultifaceBlock implements SimpleWaterloggedBlock {
 
+    public static final MapCodec<BlockSkunkSpray> CODEC = simpleCodec(BlockSkunkSpray::new);
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    @Override
+    public MapCodec<? extends MultifaceBlock> codec() {
+        return CODEC;
+    }
 
     public BlockSkunkSpray() {
         super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).noOcclusion().randomTicks().noCollission().instabreak().sound(SoundType.FROGSPAWN));
