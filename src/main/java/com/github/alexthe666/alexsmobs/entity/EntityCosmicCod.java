@@ -253,11 +253,6 @@ public class EntityCosmicCod extends Mob implements Bucketable {
     public boolean isNoGravity() {
         return true;
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean isPushedByWater() {
         return false;
     }

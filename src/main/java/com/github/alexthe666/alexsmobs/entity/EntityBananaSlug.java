@@ -109,11 +109,6 @@ public class EntityBananaSlug extends Animal {
     protected void onInsideBlock(BlockState state) {
 
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     @javax.annotation.Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setVariant(random.nextInt(4));

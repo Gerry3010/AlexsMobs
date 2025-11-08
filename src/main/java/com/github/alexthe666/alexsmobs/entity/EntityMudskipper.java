@@ -113,11 +113,6 @@ public class EntityMudskipper extends TamableAnimal implements IFollower, ISemiA
         BlockPos pos = AMBlockPos.fromCoords(this.getX(), this.getEyeY(), this.getZ());
         return !worldIn.getBlockState(pos).isSuffocating(worldIn, pos);
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));

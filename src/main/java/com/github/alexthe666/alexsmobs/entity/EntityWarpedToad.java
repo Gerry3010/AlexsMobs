@@ -107,11 +107,6 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
     protected SoundEvent getDeathSound() {
         return AMSoundRegistry.WARPED_TOAD_HURT.get();
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
         return AMEntityRegistry.rollSpawn(AMConfig.warpedToadSpawnRolls, this.getRandom(), spawnReasonIn);
     }

@@ -304,11 +304,6 @@ public class EntityBoneSerpent extends Monster {
             }
         }
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     static class BoneSerpentMoveController extends MoveControl {
         private final EntityBoneSerpent dolphin;
 

@@ -362,11 +362,6 @@ public class EntityCaiman extends TamableAnimal implements ISemiAquatic,IFollowe
         float f2 = Math.min(f1 * 8.0F, 1.0F);
         this.walkAnimation.update(f2, 0.4F);
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     @Override
     public boolean shouldEnterWater() {
         return !shouldLeaveWater() && swimTimer <= -1000 || bellowCooldown == 0;

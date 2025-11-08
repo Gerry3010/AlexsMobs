@@ -529,11 +529,6 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     public int getHeadRotSpeed() {
         return 4;
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean isPushedByFluid() {
         return false;
     }

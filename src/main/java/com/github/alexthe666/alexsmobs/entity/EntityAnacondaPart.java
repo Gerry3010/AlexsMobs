@@ -215,11 +215,6 @@ public class EntityAnacondaPart extends LivingEntity implements IHurtableMultipa
             });
         }
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean isPushedByFluid() {
         return false;
     }

@@ -453,11 +453,6 @@ public class EntityMimicOctopus extends TamableAnimal implements ISemiAquatic, I
         float f2 = Math.min(f1 * (groundProgress < 2.5F ? 4.0F : 8.0F), 1.0F);
         this.walkAnimation.update(f2, 0.4F);
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     private void switchNavigator(boolean onLand) {
         if (onLand) {
             this.moveControl = new MoveControl(this);

@@ -236,11 +236,6 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
         }
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     @Override
     public int getAnimationTick() {
         return animationTick;

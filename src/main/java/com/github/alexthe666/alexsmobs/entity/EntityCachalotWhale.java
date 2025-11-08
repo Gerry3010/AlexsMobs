@@ -844,10 +844,6 @@ public class EntityCachalotWhale extends Animal {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
-    public boolean canBreatheUnderwater() {
-        return false;
-    }
-
     public void baseTick() {
         int i = this.getAirSupply();
         super.baseTick();

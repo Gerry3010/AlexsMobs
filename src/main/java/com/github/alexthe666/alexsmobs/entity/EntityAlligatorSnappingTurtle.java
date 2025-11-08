@@ -337,11 +337,6 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
         return 10;
     }
 
-    @Override
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
         return worldIn.getFluidState(pos.below()).isEmpty() && worldIn.getFluidState(pos).is(FluidTags.WATER) ? 10.0F : super.getWalkTargetValue(pos, worldIn);
     }

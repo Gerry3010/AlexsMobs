@@ -406,11 +406,6 @@ public class EntityGiantSquid extends WaterAnimal {
             super.travel(travelVector);
         }
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean isPushedByFluid() {
         return false;
     }

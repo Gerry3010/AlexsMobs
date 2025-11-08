@@ -240,11 +240,6 @@ public class EntityAnaconda extends Animal implements ISemiAquatic {
         }
         return null;
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public boolean isPushedByFluid() {
         return false;
     }

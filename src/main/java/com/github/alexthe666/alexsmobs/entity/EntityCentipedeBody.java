@@ -293,11 +293,6 @@ public class EntityCentipedeBody extends Mob implements IHurtableMultipart {
             });
         }
     }
-
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
-
     public float getBackOffset() {
         return 0.5F;
     }
