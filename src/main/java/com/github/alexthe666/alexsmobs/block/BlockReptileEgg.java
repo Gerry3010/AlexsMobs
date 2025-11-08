@@ -130,7 +130,7 @@ public class BlockReptileEgg extends Block {
                         Player closest = worldIn.getNearestPlayer(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, 20, EntitySelector.NO_SPECTATORS);
                         if (closest != null) {
                             if(fromType instanceof TamableAnimal tamableAnimal){
-                                tamableAnimal.setTame(true);
+                                tamableAnimal.setTame(true, true);
                                 tamableAnimal.setOrderedToSit(true);
                                 tamableAnimal.tame(closest);
                             }

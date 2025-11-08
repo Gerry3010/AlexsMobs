@@ -74,7 +74,7 @@ public class BlockHummingbirdFeeder extends Block {
 
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         int contents = state.getValue(CONTENTS);
-        ItemStack waterBottle = AMEffectRegistry.createPotion(Potions.WATER);
+        ItemStack waterBottle = AMEffectRegistry.createPotion(Potions.WATER.value());
         ItemStack itemStack = player.getItemInHand(handIn);
         int setContent = -1;
         if(contents == 0){
