@@ -1,6 +1,7 @@
 package com.github.alexthe666.alexsmobs.block;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
+import com.mojang.serialization.MapCodec;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMBlockItem;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
@@ -38,8 +39,28 @@ public class AMBlockRegistry {
     public static final DeferredHolder<Block, Block> RAINBOW_GLASS = registerBlockAndItem("rainbow_glass", () -> new BlockRainbowGlass());
     public static final DeferredHolder<Block, Block> BISON_FUR_BLOCK = registerBlockAndItem("bison_fur_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.6F, 1.0F).sound(SoundType.WOOL)));
     public static final DeferredHolder<Block, Block> BISON_CARPET = registerBlockAndItem("bison_carpet", () -> new BlockBisonCarpet());
-    public static final DeferredHolder<Block, Block> SAND_CIRCLE = registerBlockAndItem("sand_circle", () -> new FallingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)), new Item.Properties(), false);
-    public static final DeferredHolder<Block, Block> RED_SAND_CIRCLE = registerBlockAndItem("red_sand_circle", () -> new FallingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SAND)), new Item.Properties(), false);
+    public static final DeferredHolder<Block, Block> SAND_CIRCLE = registerBlockAndItem("sand_circle", () -> new FallingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)) {
+        @Override
+        protected MapCodec<? extends FallingBlock> codec() {
+            return simpleCodec(props -> new FallingBlock(props) {
+                @Override
+                protected MapCodec<? extends FallingBlock> codec() {
+                    return null; // Simple falling block
+                }
+            });
+        }
+    }, new Item.Properties(), false);
+    public static final DeferredHolder<Block, Block> RED_SAND_CIRCLE = registerBlockAndItem("red_sand_circle", () -> new FallingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SAND)) {
+        @Override
+        protected MapCodec<? extends FallingBlock> codec() {
+            return simpleCodec(props -> new FallingBlock(props) {
+                @Override
+                protected MapCodec<? extends FallingBlock> codec() {
+                    return null; // Simple falling block
+                }
+            });
+        }
+    }, new Item.Properties(), false);
     public static final DeferredHolder<Block, Block> ENDER_RESIDUE = registerBlockAndItem("ender_residue", () -> new BlockEnderResidue());
     public static final DeferredHolder<Block, Block> TRANSMUTATION_TABLE = registerBlockAndItem("transmutation_table", () -> new BlockTransmutationTable(), new Item.Properties().rarity(Rarity.EPIC).fireResistant(), true);
     public static final DeferredHolder<Block, Block> SCULK_BOOMER = registerBlockAndItem("sculk_boomer", () -> new BlockSculkBoomer());
