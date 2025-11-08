@@ -87,7 +87,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
         builder.define(TIME_SINCE_HIT, 0);
         builder.define(ITEMSTACK, new ItemStack(AMItemRegistry.STRADDLEBOARD.get()));
         builder.define(DEFAULT_COLOR, true);
