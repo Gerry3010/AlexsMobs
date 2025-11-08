@@ -23,7 +23,7 @@ public class TransmutationData {
 
     public double getWeight(ItemStack stack){
         for(Object2DoubleMap.Entry<ItemStack> entry : itemstackData.object2DoubleEntrySet()){
-            if(ItemStack.isSameItemComponents(stack, entry.getKey())){
+            if(ItemStack.matches(stack, entry.getKey())){
                 return entry.getDoubleValue();
             }
         }
@@ -41,7 +41,7 @@ public class TransmutationData {
     public void putWeight(ItemStack stack, double newWeight){
         ItemStack replace = stack;
         for(ItemStack entry : itemstackData.keySet()){
-            if(ItemStack.isSameItemComponents(stack, entry)){
+            if(ItemStack.matches(stack, entry)){
                 replace = entry;
                 break;
             }

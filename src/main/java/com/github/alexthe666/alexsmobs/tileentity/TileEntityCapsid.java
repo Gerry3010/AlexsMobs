@@ -192,7 +192,7 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
 
     @Override
     public void setItem(int index, ItemStack stack) {
-        boolean flag = !stack.isEmpty() && ItemStack.isSameItemComponents(stack, this.stacks.get(index));
+        boolean flag = !stack.isEmpty() && ItemStack.matches(stack, this.stacks.get(index));
         this.stacks.set(index, stack);
         if (!stack.isEmpty() && stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

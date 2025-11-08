@@ -30,7 +30,7 @@ public class ProperBrewingRecipe extends BrewingRecipe {
                 return stack.isEmpty();
             } else {
                 for (ItemStack itemstack : matchingStacks) {
-                    if (ItemStack.isSameItem(stack, itemstack) && ItemStack.isSameItemComponents(itemstack, stack)) {
+                    if (ItemStack.isSameItem(stack, itemstack) && ItemStack.matches(itemstack, stack)) {
                         return true;
                     }
                 }
