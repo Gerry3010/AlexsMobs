@@ -9,8 +9,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class AMRecipeRegistry {
     public static final DeferredRegister<RecipeSerializer<?>> DEF_REG = DeferredRegister.create(Registries.RECIPE_SERIALIZER, AlexsMobs.MODID);
-    public static final DeferredHolder<RecipeSerializer<?>> MIMICREAM_RECIPE = DEF_REG.register("mimicream_repair", () -> new SimpleCraftingRecipeSerializer<>(RecipeMimicreamRepair::new));
-    public static final DeferredHolder<RecipeSerializer<?>> BISON_UPGRADE = DEF_REG.register("bison_upgrade", () -> new SimpleCraftingRecipeSerializer<>(RecipeBisonUpgrade::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> MIMICREAM_RECIPE = DEF_REG.register("mimicream_repair", () -> new SimpleCraftingRecipeSerializer<>(RecipeMimicreamRepair::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> BISON_UPGRADE = DEF_REG.register("bison_upgrade", () -> new SimpleCraftingRecipeSerializer<>(RecipeBisonUpgrade::new));
 
     public static void init(){
     }

@@ -17,7 +17,7 @@ public class AMCreativeTabRegistry {
 
     public static final DeferredRegister<CreativeModeTab> DEF_REG = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AlexsMobs.MODID);
 
-    public static final DeferredHolder<CreativeModeTab> TAB = DEF_REG.register(AlexsMobs.MODID, () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = DEF_REG.register(AlexsMobs.MODID, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + AlexsMobs.MODID))
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .icon(() -> new ItemStack(AMItemRegistry.TAB_ICON.get()))
