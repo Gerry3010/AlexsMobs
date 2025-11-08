@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class MenuTransmutationTable extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
@@ -41,8 +42,8 @@ public class MenuTransmutationTable extends AbstractContainerMenu {
         this.access = access;
         this.addSlot(transmuteSlot = new Slot(this.container, 0, 83, 83) {
             public boolean mayPlace(ItemStack stack) {
-                ResourceLocation name = ForgeRegistries.ITEMS.getKey(stack.getItem());
-                return stack.getMaxStackSize() > 1 && (name == null || !AMConfig.transmutationBlacklist.contains(name.toString()));
+                ResourceLocation name = BuiltInRegistries.ITEM.getKey(stack.getItem());
+                return stack.getMaxStackSize() > 1 && (name == null || !AMConfig.transmutingBlacklist.contains(name.toString()));
             }
         });
         for (int i = 0; i < 3; ++i) {

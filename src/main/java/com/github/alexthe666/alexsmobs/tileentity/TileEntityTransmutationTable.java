@@ -7,6 +7,7 @@ import com.github.alexthe666.alexsmobs.misc.AMAdvancementTriggerRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import com.github.alexthe666.alexsmobs.misc.TransmutationData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
@@ -58,28 +59,9 @@ public class TileEntityTransmutationTable  extends BlockEntity {
     }
 
 
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
         totalTransmuteCount = tag.getInt("TotalCount");
-        ListTag list = new ListTag();
-        for(Map.Entry<UUID, TransmutationData> entry : playerToData.entrySet()){
-            CompoundTag innerTag = new CompoundTag();
-            innerTag.putUUID("UUID", entry.getKey());
-            innerTag.put("TransmutationData", entry.getValue().saveAsNBT());
-            list.add(innerTag);
-        }
-        tag.put("PlayerTransmutationData", list);
-        for(int i = 0; i < 3; i++){
-            if(tag.contains("Possibility" + i)){
-                possiblities[i] = ItemStack.of(tag.getCompound("Possiblity" + i));
-            }
-        }
-
-    }
-
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        tag.putInt("TotalCount", totalTransmuteCount);
         ListTag list = tag.getList("PlayerTransmutationData", 10);
         if(!list.isEmpty()){
             for(int i = 0; i < list.size(); ++i) {
@@ -91,8 +73,26 @@ public class TileEntityTransmutationTable  extends BlockEntity {
             }
         }
         for(int i = 0; i < 3; i++){
+            if(tag.contains("Possiblity" + i)){
+                possiblities[i] = ItemStack.parse(registries, tag.getCompound("Possiblity" + i)).orElse(ItemStack.EMPTY);
+            }
+        }
+    }
+
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putInt("TotalCount", totalTransmuteCount);
+        ListTag list = new ListTag();
+        for(Map.Entry<UUID, TransmutationData> entry : playerToData.entrySet()){
+            CompoundTag innerTag = new CompoundTag();
+            innerTag.putUUID("UUID", entry.getKey());
+            innerTag.put("TransmutationData", entry.getValue().saveAsNBT());
+            list.add(innerTag);
+        }
+        tag.put("PlayerTransmutationData", list);
+        for(int i = 0; i < 3; i++){
             if(possiblities[i] != null && !possiblities[i].isEmpty()){
-                tag.put("Possiblity" + i, possiblities[i].serializeNBT());
+                tag.put("Possiblity" + i, possiblities[i].save(registries));
             }
         }
     }
