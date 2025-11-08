@@ -35,6 +35,13 @@ import java.util.Locale;
 
 public class BlockEndPirateAnchor extends BaseEntityBlock implements AMSpecialRenderBlock {
 
+    public static final MapCodec<BlockEndPirateAnchor> CODEC = simpleCodec(props -> new BlockEndPirateAnchor());
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     public static final BooleanProperty EASTORWEST = BooleanProperty.create("eastorwest");
     public static final EnumProperty<BlockEndPirateAnchor.PieceType> PIECE = EnumProperty.create("piece", BlockEndPirateAnchor.PieceType.class);
     protected static final VoxelShape FULL_AABB_EW = Block.box(0.0D, 0.0D, 4D, 16.0D, 16.0D, 12.0D);

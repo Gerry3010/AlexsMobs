@@ -72,7 +72,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
 
-    private static final ResourceLocation ROCKY_CHESTPLATE_TEXTURE = new ResourceLocation("alexsmobs:textures/armor/rocky_chestplate.png");
+    private static final ResourceLocation ROCKY_CHESTPLATE_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/armor/rocky_chestplate.png");
     private static final ModelRockyChestplateRolling ROCKY_CHESTPLATE_MODEL = new ModelRockyChestplateRolling();
 
     private boolean previousLavaVision = false;
@@ -86,7 +86,6 @@ public class ClientEvents {
             Entity entity = event.getEntityIn().level().getEntity(AlexsMobs.PROXY.getSingingBlueJayId());
             if(entity instanceof EntityBlueJay jay && jay.isAlive() && jay.isMakingMonstersBlue()){
                 event.setColor(0X4B95FE);
-                event.setResult(Event.Result.ALLOW);
             }
         }
         if (event.getEntityIn() instanceof ItemEntity && ((ItemEntity) event.getEntityIn()).getItem().is(AMTagRegistry.VOID_WORM_DROPS)){
@@ -98,7 +97,7 @@ public class ClientEvents {
             float endR = (float) (toColor >> 16 & 255) / 255.0F;
             float endG = (float) (toColor >> 8 & 255) / 255.0F;
             float endB = (float) (toColor & 255) / 255.0F;
-            float f = (float) (Math.cos(0.4F * (event.getEntityIn().tickCount + Minecraft.getInstance().getFrameTime())) + 1.0F) * 0.5F;
+            float f = (float) (Math.cos(0.4F * (event.getEntityIn().tickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false))) + 1.0F) * 0.5F;
             float r = (endR - startR) * f + startR;
             float g = (endG - startG) * f + startG;
             float b = (endB - startB) * f + startB;
@@ -106,22 +105,20 @@ public class ClientEvents {
                     ((((int) (g * 255)) & 0xFF) << 8) |
                     ((((int) (b * 255)) & 0xFF) << 0);
             event.setColor(j);
-            event.setResult(Event.Result.ALLOW);
         }
     }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onGetStarBrightness(EventGetStarBrightness event) {
-        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN.get())) {
-            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN.get()) != null) {
-                MobEffectInstance instance = Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN.get());
+        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN)) {
+            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN) != null) {
+                MobEffectInstance instance = Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN);
                 EffectPowerDown powerDown = (EffectPowerDown) instance.getEffect();
                 int duration = instance.getDuration();
-                float partialTicks = Minecraft.getInstance().getFrameTime();
+                float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
                 float f = (Math.min(powerDown.getActiveTime(), duration) + partialTicks) * 0.1F;
                 event.setBrightness(0);
-                event.setResult(Event.Result.ALLOW);
             }
 
         }
@@ -130,8 +127,8 @@ public class ClientEvents {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void onFogColor(ViewportEvent.ComputeFogColor event) {
-        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN.get())) {
-            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN.get()) != null) {
+        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN)) {
+            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN) != null) {
                 event.setBlue(0);
                 event.setRed(0);
                 event.setGreen(0);
@@ -144,18 +141,18 @@ public class ClientEvents {
     @OnlyIn(Dist.CLIENT)
     public void onFogDensity(ViewportEvent.RenderFog event) {
         FogType fogType = event.getCamera().getFluidInCamera();
-        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.LAVA_VISION.get()) && fogType == FogType.LAVA) {
+        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.LAVA_VISION) && fogType == FogType.LAVA) {
             event.setNearPlaneDistance(-8.0F);
             event.setFarPlaneDistance(50.0F);
             event.setCanceled(true);
         }
-        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN.get()) && fogType == FogType.NONE) {
-            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN.get()) != null) {
+        if (Minecraft.getInstance().player.hasEffect(AMEffectRegistry.POWER_DOWN) && fogType == FogType.NONE) {
+            if (Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN) != null) {
                 float initEnd = event.getFarPlaneDistance();
-                MobEffectInstance instance = Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN.get());
+                MobEffectInstance instance = Minecraft.getInstance().player.getEffect(AMEffectRegistry.POWER_DOWN);
                 EffectPowerDown powerDown = (EffectPowerDown) instance.getEffect();
                 int duration = instance.getDuration();
-                float partialTicks = Minecraft.getInstance().getFrameTime();
+                float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
                 float f = Math.min(20, (Math.min(powerDown.getActiveTime() + partialTicks, duration + partialTicks))) * 0.05F;
                 event.setNearPlaneDistance(-8.0F);
                 float f1 = 8.0F + (1 - f) * Math.max(0, initEnd - 8.0F);
@@ -176,7 +173,7 @@ public class ClientEvents {
             float limbSwingAmount = event.getEntity().walkAnimation.speed(event.getPackedLight());
             float yRot = event.getEntity().yBodyRotO + (event.getEntity().yBodyRot - event.getEntity().yBodyRotO) * event.getPartialTick();
             float roll = event.getEntity().walkDistO + (event.getEntity().walkDist - event.getEntity().walkDistO) * event.getPartialTick();
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(event.getMultiBufferSource(), RenderType.armorCutoutNoCull(ROCKY_CHESTPLATE_TEXTURE), false, event.getEntity().getItemBySlot(EquipmentSlot.CHEST).hasFoil());
+            VertexConsumer vertexconsumer = ItemRenderer.getFoilBuffer(event.getMultiBufferSource(), RenderType.armorCutoutNoCull(ROCKY_CHESTPLATE_TEXTURE), event.getEntity().getItemBySlot(EquipmentSlot.CHEST).hasFoil());
             event.getPoseStack().translate(0.0D, event.getEntity().getBbHeight() - event.getEntity().getBbHeight() * 0.5F, 0.0D);
             event.getPoseStack().mulPose(Axis.YN.rotationDegrees(180F + yRot));
             event.getPoseStack().mulPose(Axis.ZP.rotationDegrees(180.0F));
@@ -189,12 +186,12 @@ public class ClientEvents {
         }
         if (event.getEntity() instanceof WanderingTrader && event.getEntity().getType() == EntityType.WANDERING_TRADER) {
             if (event.getEntity().getVehicle() instanceof EntityElephant) {
-                if (!(event.getRenderer().model instanceof ModelWanderingVillagerRider)) {
-                    event.getRenderer().model = new ModelWanderingVillagerRider(Minecraft.getInstance().getEntityModels().bakeLayer(AMModelLayers.SITTING_WANDERING_VILLAGER));
+                if (!(event.getRenderer().getModel() instanceof ModelWanderingVillagerRider)) {
+                    // Note: Cannot directly set model in 1.21 - may need alternative approach
                 }
             }
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING) && event.getEntity().getType().getCategory() == net.minecraft.world.entity.MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
             event.getPoseStack().pushPose();
             event.getPoseStack().translate(0.0D, event.getEntity().getBbHeight() + 0.1F, 0.0D);
             event.getPoseStack().mulPose(Axis.ZP.rotationDegrees(180.0F));
@@ -203,7 +200,7 @@ public class ClientEvents {
             event.getEntity().yHeadRotO = -event.getEntity().yHeadRotO;
             event.getEntity().yHeadRot = -event.getEntity().yHeadRot;
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU.get())) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU)) {
             event.getPoseStack().pushPose();
             event.getPoseStack().mulPose(Axis.YP.rotationDegrees((float) (Math.cos((double) event.getEntity().tickCount * 7F) * Math.PI * (double) 1.2F)));
             float vibrate = 0.05F;
@@ -217,10 +214,10 @@ public class ClientEvents {
         if (RockyChestplateUtil.isRockyRolling(event.getEntity())) {
             return;
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU.get())) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU)) {
             event.getPoseStack().popPose();
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
+        if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING) && event.getEntity().getType().getCategory() == net.minecraft.world.entity.MobCategory.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
             event.getPoseStack().popPose();
             event.getEntity().yBodyRotO = -event.getEntity().yBodyRotO;
             event.getEntity().yBodyRot = -event.getEntity().yBodyRot;
@@ -245,7 +242,7 @@ public class ClientEvents {
     @OnlyIn(Dist.CLIENT)
     public void onPoseHand(EventPosePlayerHand event) {
         LivingEntity player = (LivingEntity) event.getEntityIn();
-        float f = Minecraft.getInstance().getFrameTime();
+        float f = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         boolean leftHand = false;
         boolean usingLasso = player.isUsingItem() && player.getUseItem().is(AMItemRegistry.VINE_LASSO.get());
         if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() == AMItemRegistry.VINE_LASSO.get()) {
@@ -255,12 +252,10 @@ public class ClientEvents {
         }
         if (leftHand && event.isLeftHand() && usingLasso) {
             //float swing = (float) Math.sin(player.tickCount + f) * 0.5F;
-            event.setResult(Event.Result.ALLOW);
             event.getModel().leftArm.xRot = Maths.rad(-120F) + Mth.sin(player.tickCount + f) * 0.5F;
             event.getModel().leftArm.yRot = Maths.rad(-20F) + Mth.cos(player.tickCount + f) * 0.5F;
         }
         if (!leftHand && !event.isLeftHand() && usingLasso) {
-            event.setResult(Event.Result.ALLOW);
             event.getModel().rightArm.xRot = Maths.rad(-120F) + Mth.sin(player.tickCount + f) * 0.5F;
             event.getModel().rightArm.yRot = Maths.rad(20F) - Mth.cos(player.tickCount + f) * 0.5F;
         }

@@ -50,7 +50,7 @@ import java.util.List;
 
 public class BlockTerrapinEgg extends BaseEntityBlock {
 
-    public static final MapCodec<BlockTerrapinEgg> CODEC = simpleCodec(BlockTerrapinEgg::new);
+    public static final MapCodec<BlockTerrapinEgg> CODEC = simpleCodec(props -> new BlockTerrapinEgg());
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {

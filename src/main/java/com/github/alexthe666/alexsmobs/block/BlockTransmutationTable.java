@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 
 public class BlockTransmutationTable extends BaseEntityBlock implements AMSpecialRenderBlock {
 
-    public static final MapCodec<BlockTransmutationTable> CODEC = simpleCodec(BlockTransmutationTable::new);
+    public static final MapCodec<BlockTransmutationTable> CODEC = simpleCodec(props -> new BlockTransmutationTable());
     private static final Component CONTAINER_TITLE = Component.translatable("alexsmobs.container.transmutation_table");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 

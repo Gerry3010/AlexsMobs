@@ -30,6 +30,13 @@ import javax.annotation.Nullable;
 
 public class BlockEndPirateShipWheel extends BaseEntityBlock implements AMSpecialRenderBlock{
 
+    public static final MapCodec<BlockEndPirateShipWheel> CODEC = simpleCodec(props -> new BlockEndPirateShipWheel());
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final VoxelShape SOUTH_AABB = Block.box(-2, -2, 0, 18, 18, 3);
     private static final VoxelShape NORTH_AABB = Block.box(-2, -2, 13, 18, 18, 16);

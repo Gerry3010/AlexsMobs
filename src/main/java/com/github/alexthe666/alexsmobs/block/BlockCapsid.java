@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class BlockCapsid extends BaseEntityBlock {
 
-    public static final MapCodec<BlockCapsid> CODEC = simpleCodec(BlockCapsid::new);
+    public static final MapCodec<BlockCapsid> CODEC = simpleCodec(props -> new BlockCapsid());
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalDirectionalBlock.FACING;
 
     @Override

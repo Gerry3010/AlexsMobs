@@ -27,6 +27,13 @@ import javax.annotation.Nullable;
 
 public class BlockVoidWormBeak extends BaseEntityBlock {
 
+    public static final MapCodec<BlockVoidWormBeak> CODEC = simpleCodec(props -> new BlockVoidWormBeak());
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final VoxelShape AABB = Block.box(0, 4, 0, 16, 12, 16);

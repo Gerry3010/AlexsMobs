@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockSculkBoomer extends BaseEntityBlock {
-    public static final MapCodec<BlockSculkBoomer> CODEC = simpleCodec(BlockSculkBoomer::new);
+    public static final MapCodec<BlockSculkBoomer> CODEC = simpleCodec(props -> new BlockSculkBoomer());
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 

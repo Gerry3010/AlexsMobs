@@ -38,7 +38,7 @@ import java.util.List;
 
 public class BlockLeafcutterAnthill extends BaseEntityBlock {
 
-    public static final MapCodec<BlockLeafcutterAnthill> CODEC = simpleCodec(BlockLeafcutterAnthill::new);
+    public static final MapCodec<BlockLeafcutterAnthill> CODEC = simpleCodec(props -> new BlockLeafcutterAnthill());
 
     public BlockLeafcutterAnthill() {
         super(BlockBehaviour.Properties.of().sound(SoundType.GRAVEL).strength(0.75F));

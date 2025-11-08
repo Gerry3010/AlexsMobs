@@ -27,7 +27,7 @@ import java.util.Random;
 
 public class BlockEndPirateFlag extends BaseEntityBlock {
 
-    public static final MapCodec<BlockEndPirateFlag> CODEC = simpleCodec(BlockEndPirateFlag::new);
+    public static final MapCodec<BlockEndPirateFlag> CODEC = simpleCodec(props -> new BlockEndPirateFlag());
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {

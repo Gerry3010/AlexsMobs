@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 public class BlockSkunkSpray extends MultifaceBlock implements SimpleWaterloggedBlock {
 
-    public static final MapCodec<BlockSkunkSpray> CODEC = simpleCodec(BlockSkunkSpray::new);
+    public static final MapCodec<BlockSkunkSpray> CODEC = simpleCodec(props -> new BlockSkunkSpray());
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 

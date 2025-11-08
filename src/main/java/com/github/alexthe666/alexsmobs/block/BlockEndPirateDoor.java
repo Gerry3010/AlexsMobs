@@ -35,7 +35,7 @@ import java.util.List;
 
 public class BlockEndPirateDoor extends BaseEntityBlock {
 
-    public static final MapCodec<BlockEndPirateDoor> CODEC = simpleCodec(BlockEndPirateDoor::new);
+    public static final MapCodec<BlockEndPirateDoor> CODEC = simpleCodec(props -> new BlockEndPirateDoor());
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
