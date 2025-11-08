@@ -21,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -376,12 +377,12 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                     this.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), this.getSoundVolume(), this.getVoicePitch());
                     return InteractionResult.SUCCESS;
                 }
-            } else if (itemstack.is(Tags.Items.SHEARS) && this.hasCap()) {
+            } else if (itemstack.getItem() == Items.SHEARS && this.hasCap()) {
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
-                this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 if (!this.level().isClientSide) {
                     if (player instanceof ServerPlayer) {
-                        itemstack.hurt(1, random, (ServerPlayer) player);
+                        itemstack.hurtAndBreak(1, (ServerPlayer) player, LivingEntity.getSlotForHand(hand));
                     }
                 }
                 this.spawnAtLocation(AMItemRegistry.FALCONRY_HOOD.get());
