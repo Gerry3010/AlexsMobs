@@ -236,10 +236,9 @@ cd ..
 
 ### Known Issues
 
-- [ ] ~10 core compilation errors remaining (99% complete)
-  - ~8 AMSoundRegistry DeferredHolder type parameter errors
-  - ~2 AMAdvancementTrigger symbol errors
-- [ ] ~90 optional JEI integration errors (can be disabled)
+- [ ] ~100 total compilation errors remaining
+  - ~90 optional JEI integration errors (can be disabled)
+  - ~10 remaining core errors (enchantment holders, method signatures)
 - [ ] LootingLevelEvent functionality needs reimplementation (event removed in 1.21)
 - [ ] Not yet tested in-game
 - [ ] Citadel dependency requires manual build
@@ -290,7 +289,29 @@ cd ..
     MessageUpdateTransmutablesToDisplay
   - All ~40 network message errors resolved!
 
-**Current Focus:** Remaining symbol errors (AMSoundRegistry, AMAdvancementTrigger)
+### Recent Progress (Session 3 Final - 2025-01-08)
+
+**Fixed:**
+- ✅ **AMSoundRegistry - Fixed all DeferredHolder declarations**
+  - Changed from `DeferredHolder<SoundEvent>` to `DeferredHolder<SoundEvent, SoundEvent>`
+  - Fixed 200+ sound event registrations
+  
+- ✅ **AMAdvancementTrigger - Migrated to Codec-based system**
+  - Removed JSON serialization (createInstance, serializeToJson)
+  - Added Codec with RecordCodecBuilder for data-driven advancement triggers
+  - Changed to record-based TriggerInstance
+  - Now implements SimpleInstance interface
+  
+- ✅ **Block Entity Codecs - Added codec() to 12 blocks**
+  - All BaseEntityBlock subclasses now have MapCodec<T> CODEC fields
+  - Added codec() method implementation to all affected blocks
+  - Fixed: BlockLeafcutterAnthill, BlockCapsid, BlockSculkBoomer, BlockTransmutationTable,
+    BlockVoidWormBeak, BlockEndPirateAnchor, BlockEndPirateAnchorWinch, BlockEndPirateDoor,
+    BlockEndPirateFlag, BlockEndPirateShipWheel, BlockTerrapinEgg
+  - Fixed BlockSkunkSpray (MultifaceBlock subclass)
+  - Required for 1.21's data-driven block registration system
+
+**Current Focus:** Remaining errors (enchantment holders, method signatures, misc API changes)
 
 ### Migration Strategy
 
