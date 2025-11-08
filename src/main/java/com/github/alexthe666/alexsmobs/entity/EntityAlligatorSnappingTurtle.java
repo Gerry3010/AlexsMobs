@@ -137,14 +137,14 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CLIMBING, (byte) 0);
-        this.entityData.define(MOSS, 0);
-        this.entityData.define(TURTLE_SCALE, 1F);
-        this.entityData.define(WAITING, false);
-        this.entityData.define(ATTACK_TARGET_FLAG, false);
-        this.entityData.define(LUNGE_FLAG, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CLIMBING, (byte) 0);
+        builder.define(MOSS, 0);
+        builder.define(TURTLE_SCALE, 1F);
+        builder.define(WAITING, false);
+        builder.define(ATTACK_TARGET_FLAG, false);
+        builder.define(LUNGE_FLAG, false);
     }
 
     public void tick() {

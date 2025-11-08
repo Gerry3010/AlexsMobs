@@ -134,12 +134,12 @@ public class EntityAnteater extends Animal implements NeutralMob, IAnimatedEntit
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STANDING, Boolean.FALSE);
-        this.entityData.define(ANT_ON_TONGUE, Boolean.FALSE);
-        this.entityData.define(LEANING_DOWN, Boolean.FALSE);
-        this.entityData.define(ANGER_TIME, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STANDING, Boolean.FALSE);
+        builder.define(ANT_ON_TONGUE, Boolean.FALSE);
+        builder.define(LEANING_DOWN, Boolean.FALSE);
+        builder.define(ANGER_TIME, 0);
     }
 
     public int getRemainingPersistentAngerTime() {
