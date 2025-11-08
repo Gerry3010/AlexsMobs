@@ -1,0 +1,21 @@
+{
+  "description": {
+    "translate": "enchantment.alexsmobs.lavawax"
+  },
+  "supported_items": "#alexsmobs:straddleboard_enchantable",
+  "weight": 5,
+  "max_level": 1,
+  "min_cost": {
+    "base": 6,
+    "per_level_above_first": 6
+  },
+  "max_cost": {
+    "base": 16,
+    "per_level_above_first": 6
+  },
+  "anvil_cost": 2,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {}
+}

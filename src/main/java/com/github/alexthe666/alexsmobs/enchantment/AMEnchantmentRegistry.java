@@ -1,10 +1,10 @@
 package com.github.alexthe666.alexsmobs.enchantment;
-import net.minecraft.core.registries.Registries;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 /**
  * Enchantment Registry for Alex's Mobs
@@ -28,21 +28,29 @@ import net.neoforged.neoforge.registries.DeferredHolder;
  */
 public class AMEnchantmentRegistry {
 
-    public static final DeferredRegister<Enchantment> DEF_REG = DeferredRegister.create(Registries.ENCHANTMENT, AlexsMobs.MODID);
-
-    // Note: These registrations are placeholders. Actual enchantment definitions must be in data files.
-    // The following commented code shows the old 1.20.1 style registration:
-    /*
-    public static final DeferredHolder<Enchantment, Enchantment> STRADDLE_JUMP = DEF_REG.register("straddle_jump", 
-        () -> new StraddleJumpEnchantment(Enchantment.Rarity.COMMON, STRADDLEBOARD, EquipmentSlot.MAINHAND));
-    public static final DeferredHolder<Enchantment, Enchantment> STRADDLE_LAVAWAX = DEF_REG.register("lavawax", 
-        () -> new StraddleEnchantment(Enchantment.Rarity.UNCOMMON, STRADDLEBOARD, EquipmentSlot.MAINHAND));
-    public static final DeferredHolder<Enchantment, Enchantment> STRADDLE_SERPENTFRIEND = DEF_REG.register("serpentfriend", 
-        () -> new StraddleEnchantment(Enchantment.Rarity.RARE, STRADDLEBOARD, EquipmentSlot.MAINHAND));
-    public static final DeferredHolder<Enchantment, Enchantment> STRADDLE_BOARDRETURN = DEF_REG.register("board_return", 
-        () -> new StraddleEnchantment(Enchantment.Rarity.UNCOMMON, STRADDLEBOARD, EquipmentSlot.MAINHAND));
-    */
+    // In 1.21, enchantments are data-driven and defined in JSON files at data/alexsmobs/enchantment/
+    // We use ResourceKeys to reference them in code for EnchantmentHelper lookups
     
-    // TODO: Uncomment and implement once data files are created
-    // For now, enchantments are disabled to allow compilation
+    // Straddleboard enchantments - properties defined in data/alexsmobs/enchantment/*.json
+    // Custom behaviors are implemented in EntityStraddleboard and event handlers
+    
+    public static final ResourceKey<Enchantment> STRADDLE_JUMP = ResourceKey.create(
+        Registries.ENCHANTMENT, 
+        new ResourceLocation(AlexsMobs.MODID, "straddle_jump")
+    );
+    
+    public static final ResourceKey<Enchantment> LAVAWAX = ResourceKey.create(
+        Registries.ENCHANTMENT, 
+        new ResourceLocation(AlexsMobs.MODID, "lavawax")
+    );
+    
+    public static final ResourceKey<Enchantment> SERPENTFRIEND = ResourceKey.create(
+        Registries.ENCHANTMENT, 
+        new ResourceLocation(AlexsMobs.MODID, "serpentfriend")
+    );
+    
+    public static final ResourceKey<Enchantment> BOARD_RETURN = ResourceKey.create(
+        Registries.ENCHANTMENT, 
+        new ResourceLocation(AlexsMobs.MODID, "board_return")
+    );
 }

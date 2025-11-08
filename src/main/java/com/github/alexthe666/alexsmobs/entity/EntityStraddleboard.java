@@ -5,6 +5,8 @@ import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -204,12 +206,12 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
             if (this.removeIn <= 0 && !this.level().isClientSide) {
                 this.removeIn = 0;
                 boolean drop;
-                // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
-                // if(this.getEnchant(AMEnchantmentRegistry.STRADDLE_BOARDRETURN.get()) > 0){
-                //     drop = returnToPlayer != null && !returnToPlayer.addItem(this.getItemBoard());
-                // }else{
+                // Check for Board Return enchantment
+                if(this.getEnchantLevel(AMEnchantmentRegistry.BOARD_RETURN) > 0){
+                    drop = returnToPlayer != null && !returnToPlayer.addItem(this.getItemBoard());
+                }else{
                     drop = true;
-                // }
+                }
                 if(drop){
                     spawnAtLocation(this.getItemStack().copy());
                 }
@@ -244,10 +246,10 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
                 returnToPlayer = player;
                 rideForTicks++;
                 if (this.tickCount % 50 == 0) {
-                    // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
-                    // if (getEnchant(AMEnchantmentRegistry.STRADDLE_LAVAWAX.get()) > 0) {
-                    //     player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, true, false));
-                    // }
+                    // Lavawax enchantment - provides fire resistance while riding
+                    if (getEnchantLevel(AMEnchantmentRegistry.LAVAWAX) > 0) {
+                        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, true, false));
+                    }
                 }
                 if (player.getRemainingFireTicks() > 0 && extinguishTimer == 0) {
                     player.clearFire();
@@ -460,19 +462,22 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     public void handleStartJump(int i) {
         this.hasImpulse = true;
         if(canJump()){
-            // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
-            float f = 0.075F; // + getEnchant(AMEnchantmentRegistry.STRADDLE_JUMP.get()) * 0.05F;
+            // Straddle Jump enchantment - increases jump height
+            float f = 0.075F + getEnchantLevel(AMEnchantmentRegistry.STRADDLE_JUMP) * 0.05F;
             jumpFor = 5 + (int)(i * f);
         }
     }
 
-    private int getEnchant(Enchantment enchantment) {
-        return EnchantmentHelper.getItemEnchantmentLevel(enchantment, this.getItemBoard());
+    private int getEnchantLevel(ResourceKey<Enchantment> enchantment) {
+        return EnchantmentHelper.getItemEnchantmentLevel(
+            this.level().holderLookup(Registries.ENCHANTMENT).getOrThrow(enchantment).value(),
+            this.getItemBoard()
+        );
     }
 
     public boolean shouldSerpentFriend() {
-        // TODO: Re-enable when enchantments are migrated to 1.21 data-driven system
-        return false; // getEnchant(AMEnchantmentRegistry.STRADDLE_SERPENTFRIEND.get()) > 0;
+        // Serpent Friend enchantment - makes Bone Serpents neutral to rider
+        return getEnchantLevel(AMEnchantmentRegistry.SERPENTFRIEND) > 0;
     }
 
     public Vec3 getDismountLocationForPassenger(LivingEntity entity) {
