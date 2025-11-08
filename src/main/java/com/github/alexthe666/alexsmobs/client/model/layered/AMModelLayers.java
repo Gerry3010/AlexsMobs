@@ -48,7 +48,7 @@ public class AMModelLayers {
     }
 
     private static ModelLayerLocation createLocation(String model, String layer) {
-        return new ModelLayerLocation(new ResourceLocation("alexsmobs", model), layer);
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("alexsmobs", model), layer);
     }
 
 

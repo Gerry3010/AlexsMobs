@@ -28,9 +28,9 @@ import java.util.*;
 
 public class TileEntityTransmutationTable  extends BlockEntity {
 
-    private static final ResourceLocation COMMON_ITEMS = new ResourceLocation("alexsmobs", "gameplay/transmutation_table_common");
-    private static final ResourceLocation UNCOMMON_ITEMS = new ResourceLocation("alexsmobs", "gameplay/transmutation_table_uncommon");
-    private static final ResourceLocation RARE_ITEMS = new ResourceLocation("alexsmobs", "gameplay/transmutation_table_rare");
+    private static final ResourceLocation COMMON_ITEMS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/transmutation_table_common");
+    private static final ResourceLocation UNCOMMON_ITEMS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/transmutation_table_uncommon");
+    private static final ResourceLocation RARE_ITEMS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/transmutation_table_rare");
     public int ticksExisted;
     private int totalTransmuteCount = 0;
     private final Map<UUID, TransmutationData> playerToData = new HashMap<>();
