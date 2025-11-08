@@ -254,12 +254,12 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SILVERBACK, false);
-        this.entityData.define(STANDING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(EATING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SILVERBACK, false);
+        builder.define(STANDING, false);
+        builder.define(SITTING, false);
+        builder.define(EATING, false);
     }
 
     public boolean isSilverback() {

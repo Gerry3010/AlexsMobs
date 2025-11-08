@@ -183,13 +183,13 @@ public class EntityAnaconda extends Animal implements ISemiAquatic {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CHILD_UUID, Optional.empty());
-        this.entityData.define(CHILD_ID, -1);
-        this.entityData.define(STRANGLING, false);
-        this.entityData.define(YELLOW, false);
-        this.entityData.define(SHEDTIME, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CHILD_UUID, Optional.empty());
+        builder.define(CHILD_ID, -1);
+        builder.define(STRANGLING, false);
+        builder.define(YELLOW, false);
+        builder.define(SHEDTIME, 0);
     }
 
     @Nullable

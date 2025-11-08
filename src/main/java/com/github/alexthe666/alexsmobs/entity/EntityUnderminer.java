@@ -119,14 +119,14 @@ public class EntityUnderminer extends PathfinderMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DWARF, true);
-        this.entityData.define(HIDING, false);
-        this.entityData.define(VISUALLY_MINING, false);
-        this.entityData.define(TARGETED_BLOCK_POS, Optional.empty());
-        this.entityData.define(MINING_PROGRESS, 0.0F);
-        this.entityData.define(VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DWARF, true);
+        builder.define(HIDING, false);
+        builder.define(VISUALLY_MINING, false);
+        builder.define(TARGETED_BLOCK_POS, Optional.empty());
+        builder.define(MINING_PROGRESS, 0.0F);
+        builder.define(VARIANT, 0);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

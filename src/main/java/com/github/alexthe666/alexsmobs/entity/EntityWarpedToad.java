@@ -316,13 +316,13 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(TONGUE_LENGTH, 1F);
-        this.entityData.define(TONGUE_OUT, false);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(JUMP_ACTIVE, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TONGUE_LENGTH, 1F);
+        builder.define(TONGUE_OUT, false);
+        builder.define(COMMAND, 0);
+        builder.define(SITTING, false);
+        builder.define(JUMP_ACTIVE, false);
     }
 
     public int getCommand() {

@@ -199,15 +199,15 @@ public class EntityToucan extends Animal implements ITargetsDroppedItems {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SAPLING_STATE, Optional.empty());
-        this.entityData.define(FLYING, false);
-        this.entityData.define(PECK_TICK, 0);
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(GOLDEN_TIME, 0);
-        this.entityData.define(SAPLING_TIME, 0);
-        this.entityData.define(ENCHANTED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SAPLING_STATE, Optional.empty());
+        builder.define(FLYING, false);
+        builder.define(PECK_TICK, 0);
+        builder.define(VARIANT, 0);
+        builder.define(GOLDEN_TIME, 0);
+        builder.define(SAPLING_TIME, 0);
+        builder.define(ENCHANTED, false);
     }
 
     @Override

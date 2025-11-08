@@ -217,17 +217,17 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
     public boolean isInvulnerableTo(DamageSource source) {
         return source.is(DamageTypes.DROWN) || source.is(DamageTypes.IN_WALL)  || super.isInvulnerableTo(source);
     }
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(RIGHT_EYE_PITCH, 0F);
-        this.entityData.define(RIGHT_EYE_YAW, 0F);
-        this.entityData.define(LEFT_EYE_PITCH, 0F);
-        this.entityData.define(LEFT_EYE_YAW, 0F);
-        this.entityData.define(PUNCH_TICK, 0);
-        this.entityData.define(COMMAND, Integer.valueOf(0));
-        this.entityData.define(VARIANT, Integer.valueOf(0));
-        this.entityData.define(SITTING, false);
-        this.entityData.define(MOISTNESS, Integer.valueOf(60000));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(RIGHT_EYE_PITCH, 0F);
+        builder.define(RIGHT_EYE_YAW, 0F);
+        builder.define(LEFT_EYE_PITCH, 0F);
+        builder.define(LEFT_EYE_YAW, 0F);
+        builder.define(PUNCH_TICK, 0);
+        builder.define(COMMAND, Integer.valueOf(0));
+        builder.define(VARIANT, Integer.valueOf(0));
+        builder.define(SITTING, false);
+        builder.define(MOISTNESS, Integer.valueOf(60000));
     }
 
     public boolean isFood(ItemStack stack) {

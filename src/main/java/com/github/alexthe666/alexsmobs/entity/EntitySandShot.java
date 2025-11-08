@@ -139,8 +139,9 @@ public class EntitySandShot extends Entity {
         }
     }
 
-    protected void defineSynchedData() {
-        this.entityData.define(VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, 0);
     }
 
     public void setShooter(@Nullable Entity entityIn) {

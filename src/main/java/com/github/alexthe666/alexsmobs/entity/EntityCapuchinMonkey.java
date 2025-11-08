@@ -376,13 +376,13 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
 
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(DART_TARGET, -1);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(DART, false);
-        this.entityData.define(VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(COMMAND, 0);
+        builder.define(DART_TARGET, -1);
+        builder.define(SITTING, false);
+        builder.define(DART, false);
+        builder.define(VARIANT, 0);
     }
 
     public boolean hasDart() {

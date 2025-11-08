@@ -746,20 +746,20 @@ public class EntityMimicOctopus extends TamableAnimal implements ISemiAquatic, I
         return !this.isTame() && !this.fromBucket();
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(MIMIC_ORDINAL, 0);
-        this.entityData.define(PREV_MIMIC_ORDINAL, -1);
-        this.entityData.define(MOISTNESS, 60000);
-        this.entityData.define(MIMICKED_BLOCK, Optional.empty());
-        this.entityData.define(PREV_MIMICKED_BLOCK, Optional.empty());
-        this.entityData.define(SITTING, false);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(LAST_SCARED_MOB_ID, -1);
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(UPGRADED, false);
-        this.entityData.define(STOP_CHANGE, false);
-        this.entityData.define(UPGRADED_LASER_ENTITY_ID, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(MIMIC_ORDINAL, 0);
+        builder.define(PREV_MIMIC_ORDINAL, -1);
+        builder.define(MOISTNESS, 60000);
+        builder.define(MIMICKED_BLOCK, Optional.empty());
+        builder.define(PREV_MIMICKED_BLOCK, Optional.empty());
+        builder.define(SITTING, false);
+        builder.define(COMMAND, 0);
+        builder.define(LAST_SCARED_MOB_ID, -1);
+        builder.define(FROM_BUCKET, false);
+        builder.define(UPGRADED, false);
+        builder.define(STOP_CHANGE, false);
+        builder.define(UPGRADED_LASER_ENTITY_ID, -1);
     }
 
     public MimicState getMimicState() {

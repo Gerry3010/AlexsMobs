@@ -57,7 +57,8 @@ public abstract class EntityMobProjectile extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
 
     }
 

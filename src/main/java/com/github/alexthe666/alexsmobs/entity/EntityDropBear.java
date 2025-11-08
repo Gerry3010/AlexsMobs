@@ -245,9 +245,9 @@ public class EntityDropBear extends Monster implements IAnimatedEntity {
         }
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(UPSIDE_DOWN, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(UPSIDE_DOWN, false);
     }
 
     public boolean isUpsideDown() {

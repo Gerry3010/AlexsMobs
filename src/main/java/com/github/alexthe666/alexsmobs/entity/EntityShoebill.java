@@ -126,9 +126,9 @@ public class EntityShoebill extends Animal implements IAnimatedEntity, ITargetsD
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
     }
 
     protected void registerGoals() {

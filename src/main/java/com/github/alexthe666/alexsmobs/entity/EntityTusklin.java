@@ -267,8 +267,8 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
         return stack.is(AMTagRegistry.TUSKLIN_BREEDABLES);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
         this.getEntityData().define(SADDLED, false);
         this.getEntityData().define(PASSIVETICKS, 0);
     }

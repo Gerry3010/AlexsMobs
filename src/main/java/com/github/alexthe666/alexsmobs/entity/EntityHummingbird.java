@@ -198,12 +198,12 @@ public class EntityHummingbird extends Animal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(CROPS_POLLINATED, 0);
-        this.entityData.define(FEEDER_POS, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(VARIANT, 0);
+        builder.define(CROPS_POLLINATED, 0);
+        builder.define(FEEDER_POS, Optional.empty());
     }
 
     @Nullable

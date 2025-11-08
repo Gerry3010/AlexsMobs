@@ -115,15 +115,15 @@ public class EntityPotoo extends Animal implements IFalconry {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(PERCHING, false);
-        this.entityData.define(PERCH_POS, Optional.empty());
-        this.entityData.define(PERCH_DIRECTION, Direction.NORTH);
-        this.entityData.define(SLEEPING, false);
-        this.entityData.define(MOUTH_TICK, 0);
-        this.entityData.define(TEMP_BRIGHTNESS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(PERCHING, false);
+        builder.define(PERCH_POS, Optional.empty());
+        builder.define(PERCH_DIRECTION, Direction.NORTH);
+        builder.define(SLEEPING, false);
+        builder.define(MOUTH_TICK, 0);
+        builder.define(TEMP_BRIGHTNESS, 0);
     }
 
     public boolean isSleeping() {

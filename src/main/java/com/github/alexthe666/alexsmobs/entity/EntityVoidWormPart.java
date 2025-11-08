@@ -147,16 +147,16 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PARENT_UUID, Optional.empty());
-        this.entityData.define(CHILD_UUID, Optional.empty());
-        this.entityData.define(TAIL, false);
-        this.entityData.define(BODYINDEX, 0);
-        this.entityData.define(WORM_SCALE, 1F);
-        this.entityData.define(WORM_YAW, 0F);
-        this.entityData.define(WORM_ANGLE, 0F);
-        this.entityData.define(PORTAL_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PARENT_UUID, Optional.empty());
+        builder.define(CHILD_UUID, Optional.empty());
+        builder.define(TAIL, false);
+        builder.define(BODYINDEX, 0);
+        builder.define(WORM_SCALE, 1F);
+        builder.define(WORM_YAW, 0F);
+        builder.define(WORM_ANGLE, 0F);
+        builder.define(PORTAL_TICKS, 0);
     }
 
     @Nullable

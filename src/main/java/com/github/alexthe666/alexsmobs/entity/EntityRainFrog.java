@@ -159,14 +159,14 @@ public class EntityRainFrog extends Animal implements ITargetsDroppedItems,IDanc
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(STANCE_TIME, 0);
-        this.entityData.define(ATTACK_TIME, 0);
-        this.entityData.define(DANCE_TIME, 0);
-        this.entityData.define(BURROWED, false);
-        this.entityData.define(DISTURBED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, 0);
+        builder.define(STANCE_TIME, 0);
+        builder.define(ATTACK_TIME, 0);
+        builder.define(DANCE_TIME, 0);
+        builder.define(BURROWED, false);
+        builder.define(DISTURBED, false);
     }
 
     public void tick() {

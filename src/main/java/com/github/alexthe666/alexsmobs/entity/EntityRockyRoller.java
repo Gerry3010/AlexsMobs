@@ -98,10 +98,10 @@ public class EntityRockyRoller extends Monster implements ICustomCollisions {
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(ANGRY, false);
-        this.entityData.define(ROLLING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ANGRY, false);
+        builder.define(ROLLING, false);
     }
 
     protected SoundEvent getAmbientSound() {

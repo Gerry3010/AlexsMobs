@@ -104,12 +104,12 @@ public class EntityBlobfish extends WaterAnimal implements FlyingAnimal, Bucketa
         return 4;
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(BLOBFISH_SCALE, 1.0F);
-        this.entityData.define(DEPRESSURIZED, false);
-        this.entityData.define(SLIMED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FROM_BUCKET, false);
+        builder.define(BLOBFISH_SCALE, 1.0F);
+        builder.define(DEPRESSURIZED, false);
+        builder.define(SLIMED, false);
     }
 
     public EntityDimensions getDimensions(Pose poseIn) {

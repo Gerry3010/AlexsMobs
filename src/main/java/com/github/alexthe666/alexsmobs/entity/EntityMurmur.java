@@ -92,10 +92,10 @@ public class EntityMurmur extends Monster implements ISemiAquatic {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(HEAD_UUID, Optional.empty());
-        this.entityData.define(HEAD_ID, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HEAD_UUID, Optional.empty());
+        builder.define(HEAD_ID, -1);
     }
 
     @Nullable

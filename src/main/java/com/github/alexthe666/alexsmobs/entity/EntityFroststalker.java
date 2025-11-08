@@ -191,13 +191,13 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(TURN_ANGLE, 0F);
-        this.entityData.define(SPIKES, true);
-        this.entityData.define(BIPEDAL, false);
-        this.entityData.define(SPIKE_SHAKING, false);
-        this.entityData.define(TACKLING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TURN_ANGLE, 0F);
+        builder.define(SPIKES, true);
+        builder.define(BIPEDAL, false);
+        builder.define(SPIKE_SHAKING, false);
+        builder.define(TACKLING, false);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

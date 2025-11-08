@@ -142,13 +142,13 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
         return false;
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(PUPFISH_SCALE, 1.0F);
-        this.entityData.define(FEEDING_TIME, 0);
-        this.entityData.define(BABY_AGE, 0);
-        this.entityData.define(FEEDING_POS, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FROM_BUCKET, false);
+        builder.define(PUPFISH_SCALE, 1.0F);
+        builder.define(FEEDING_TIME, 0);
+        builder.define(BABY_AGE, 0);
+        builder.define(FEEDING_POS, Optional.empty());
     }
 
     public void tick() {

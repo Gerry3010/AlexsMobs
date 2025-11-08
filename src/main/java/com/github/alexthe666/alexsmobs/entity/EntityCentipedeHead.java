@@ -109,11 +109,11 @@ public class EntityCentipedeHead extends Monster {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CHILD_UUID, Optional.empty());
-        this.entityData.define(CHILD_ID, -1);
-        this.entityData.define(SEGMENT_COUNT, 5);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CHILD_UUID, Optional.empty());
+        builder.define(CHILD_ID, -1);
+        builder.define(SEGMENT_COUNT, 5);
     }
 
     public boolean doHurtTarget(Entity entityIn) {

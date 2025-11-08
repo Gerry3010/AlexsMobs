@@ -129,10 +129,10 @@ public class EntityWarpedMosco extends Monster implements IAnimatedEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(HAND_SIDE, true);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(HAND_SIDE, true);
     }
 
     public boolean causeFallDamage(float distance, float damageMultiplier) {

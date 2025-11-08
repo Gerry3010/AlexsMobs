@@ -81,9 +81,9 @@ public class EntitySpectre extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CARDINAL_ORDINAL, Integer.valueOf(Direction.NORTH.get3DDataValue()));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CARDINAL_ORDINAL, Integer.valueOf(Direction.NORTH.get3DDataValue()));
     }
 
     public int getCardinalInt() {

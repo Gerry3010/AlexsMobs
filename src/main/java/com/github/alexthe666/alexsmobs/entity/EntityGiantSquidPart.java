@@ -97,7 +97,8 @@ public class EntityGiantSquidPart extends PartEntity<EntityGiantSquid> implement
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
 
     }
 

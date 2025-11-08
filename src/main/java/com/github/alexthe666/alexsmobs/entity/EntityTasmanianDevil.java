@@ -128,10 +128,10 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BASKING, false);
-        this.entityData.define(SITTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BASKING, false);
+        builder.define(SITTING, false);
     }
 
 

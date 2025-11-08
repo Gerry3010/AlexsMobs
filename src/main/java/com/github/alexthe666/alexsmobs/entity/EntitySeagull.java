@@ -196,13 +196,13 @@ public class EntitySeagull extends Animal implements ITargetsDroppedItems {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(ATTACK_TICK, 0);
-        this.entityData.define(TREASURE_POS, Optional.empty());
-        this.entityData.define(FLIGHT_LOOK_YAW, 0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(SITTING, false);
+        builder.define(ATTACK_TICK, 0);
+        builder.define(TREASURE_POS, Optional.empty());
+        builder.define(FLIGHT_LOOK_YAW, 0F);
     }
 
     public boolean isFlying() {

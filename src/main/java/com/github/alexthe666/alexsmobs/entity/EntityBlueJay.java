@@ -147,16 +147,16 @@ public class EntityBlueJay extends Animal implements ITargetsDroppedItems{
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(ATTACK_TICK, 0);
-        this.entityData.define(FEED_TIME, 0);
-        this.entityData.define(SING_TIME, 0);
-        this.entityData.define(CREST_TARGET, 0F);
-        this.entityData.define(BLUE_VISUAL_FLAG, false);
-        this.entityData.define(RACCOON_UUID, Optional.empty());
-        this.entityData.define(LAST_FEEDER_UUID, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(ATTACK_TICK, 0);
+        builder.define(FEED_TIME, 0);
+        builder.define(SING_TIME, 0);
+        builder.define(CREST_TARGET, 0F);
+        builder.define(BLUE_VISUAL_FLAG, false);
+        builder.define(RACCOON_UUID, Optional.empty());
+        builder.define(LAST_FEEDER_UUID, Optional.empty());
     }
 
     private void switchNavigator(boolean onLand) {

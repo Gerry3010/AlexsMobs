@@ -404,15 +404,15 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(MUSHROOM_STATE, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(MUSHROOM_STATE, Optional.empty());
         this.getEntityData().define(TARGETED_BLOCK_POS, Optional.empty());
-        this.entityData.define(ALT_ORDER_MUSHROOMS, false);
-        this.entityData.define(REVERTING, false);
-        this.entityData.define(EXPLOSION_DISABLED, false);
-        this.entityData.define(MUSHROOM_COUNT, 0);
-        this.entityData.define(SACK_SWELL, 0);
+        builder.define(ALT_ORDER_MUSHROOMS, false);
+        builder.define(REVERTING, false);
+        builder.define(EXPLOSION_DISABLED, false);
+        builder.define(MUSHROOM_COUNT, 0);
+        builder.define(SACK_SWELL, 0);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

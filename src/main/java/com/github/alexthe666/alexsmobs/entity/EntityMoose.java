@@ -152,13 +152,13 @@ public class EntityMoose extends Animal implements IAnimatedEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(ANTLERED, true);
-        this.entityData.define(JOSTLING, false);
-        this.entityData.define(SNOWY, false);
-        this.entityData.define(JOSTLE_ANGLE, 0F);
-        this.entityData.define(JOSTLER_UUID, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ANTLERED, true);
+        builder.define(JOSTLING, false);
+        builder.define(SNOWY, false);
+        builder.define(JOSTLE_ANGLE, 0F);
+        builder.define(JOSTLER_UUID, Optional.empty());
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {

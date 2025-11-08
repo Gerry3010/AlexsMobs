@@ -153,12 +153,12 @@ public class EntityStradpole extends WaterAnimal implements Bucketable {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PARENT_UUID, Optional.empty());
-        this.entityData.define(DESPAWN_SOON, false);
-        this.entityData.define(LAUNCHED, false);
-        this.entityData.define(FROM_BUCKET, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PARENT_UUID, Optional.empty());
+        builder.define(DESPAWN_SOON, false);
+        builder.define(LAUNCHED, false);
+        builder.define(FROM_BUCKET, false);
     }
 
     @Override

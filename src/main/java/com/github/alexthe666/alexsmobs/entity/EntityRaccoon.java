@@ -510,15 +510,15 @@ public class EntityRaccoon extends TamableAnimal implements IAnimatedEntity, IFo
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STANDING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(BEGGING, false);
-        this.entityData.define(WASHING, false);
-        this.entityData.define(CARPET_COLOR, -1);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(WASH_POS, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STANDING, false);
+        builder.define(SITTING, false);
+        builder.define(BEGGING, false);
+        builder.define(WASHING, false);
+        builder.define(CARPET_COLOR, -1);
+        builder.define(COMMAND, 0);
+        builder.define(WASH_POS, Optional.empty());
     }
 
 

@@ -142,14 +142,14 @@ public class EntitySugarGlider extends TamableAnimal implements IFollower {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CLIMBING, (byte) 0);
-        this.entityData.define(ATTACHED_FACE, Direction.DOWN);
-        this.entityData.define(GLIDING, false);
-        this.entityData.define(FORAGING_TIME, 0);
-        this.entityData.define(COMMAND, Integer.valueOf(0));
-        this.entityData.define(SITTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CLIMBING, (byte) 0);
+        builder.define(ATTACHED_FACE, Direction.DOWN);
+        builder.define(GLIDING, false);
+        builder.define(FORAGING_TIME, 0);
+        builder.define(COMMAND, Integer.valueOf(0));
+        builder.define(SITTING, false);
     }
 
     private void switchNavigator(boolean onGround) {

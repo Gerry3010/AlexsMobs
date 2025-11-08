@@ -154,16 +154,16 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLUTTER_PITCH, 0F);
-        this.entityData.define(FLYING, false);
-        this.entityData.define(POTTED, false);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(TENTACLING, false);
-        this.entityData.define(SHOOTING, false);
-        this.entityData.define(SHAKING_HEAD_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLUTTER_PITCH, 0F);
+        builder.define(FLYING, false);
+        builder.define(POTTED, false);
+        builder.define(COMMAND, 0);
+        builder.define(SITTING, false);
+        builder.define(TENTACLING, false);
+        builder.define(SHOOTING, false);
+        builder.define(SHAKING_HEAD_TICKS, 0);
     }
 
     public int getCommand() {

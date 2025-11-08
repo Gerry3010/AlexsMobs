@@ -263,14 +263,14 @@ public class EntityPlatypus extends Animal implements ISemiAquatic, ITargetsDrop
         }
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DIGGING, false);
-        this.entityData.define(SENSING, false);
-        this.entityData.define(SENSING_VISUAL, false);
-        this.entityData.define(FEDORA, false);
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(HAS_EGG, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DIGGING, false);
+        builder.define(SENSING, false);
+        builder.define(SENSING_VISUAL, false);
+        builder.define(FEDORA, false);
+        builder.define(FROM_BUCKET, false);
+        builder.define(HAS_EGG, false);
     }
 
     protected void dropEquipment() {

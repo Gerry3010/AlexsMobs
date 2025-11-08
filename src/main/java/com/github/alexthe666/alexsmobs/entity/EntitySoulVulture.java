@@ -143,12 +143,12 @@ public class EntitySoulVulture extends Monster implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(TACKLING, false);
-        this.entityData.define(PERCH_POS, Optional.empty());
-        this.entityData.define(SOUL_LEVEL, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(TACKLING, false);
+        builder.define(PERCH_POS, Optional.empty());
+        builder.define(SOUL_LEVEL, 0);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

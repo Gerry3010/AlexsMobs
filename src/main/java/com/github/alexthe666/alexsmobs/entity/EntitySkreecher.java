@@ -122,12 +122,12 @@ public class EntitySkreecher extends Monster {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 2D).add(Attributes.ATTACK_DAMAGE, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.2F).add(Attributes.FOLLOW_RANGE, 64F);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DIST_TO_CEILING, 0F);
-        this.entityData.define(CLINGING, false);
-        this.entityData.define(JUMPING_UP, false);
-        this.entityData.define(CLAPPING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DIST_TO_CEILING, 0F);
+        builder.define(CLINGING, false);
+        builder.define(JUMPING_UP, false);
+        builder.define(CLAPPING, false);
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

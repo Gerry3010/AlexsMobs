@@ -159,14 +159,14 @@ public class EntityFarseer extends Monster implements IAnimatedEntity {
         return !AMConfig.restrictFarseerSpawns || iServerWorld.getWorldBorder().getDistanceToBorder(pos.getX(), pos.getZ()) < AMConfig.farseerBorderSpawnDistance;
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(HAS_EMERGED, false);
-        this.entityData.define(MELEEING, false);
-        this.entityData.define(ANGRY, false);
-        this.entityData.define(LASER_ENTITY_ID, -1);
-        this.entityData.define(LASER_ATTACK_LVL, 0);
-        this.entityData.define(LASER_DISTANCE, 0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HAS_EMERGED, false);
+        builder.define(MELEEING, false);
+        builder.define(ANGRY, false);
+        builder.define(LASER_ENTITY_ID, -1);
+        builder.define(LASER_ATTACK_LVL, 0);
+        builder.define(LASER_DISTANCE, 0F);
     }
 
     public boolean isAngry() {

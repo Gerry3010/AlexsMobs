@@ -84,12 +84,12 @@ public class EntityCosmaw extends TamableAnimal implements ITargetsDroppedItems,
         return !worldIn.getBlockState(pos.below()).isAir();
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(COSMAW_PITCH, 0.0F);
-        this.entityData.define(ATTACK_TICK, 0);
-        this.entityData.define(COMMAND, Integer.valueOf(0));
-        this.entityData.define(SITTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(COSMAW_PITCH, 0.0F);
+        builder.define(ATTACK_TICK, 0);
+        builder.define(COMMAND, Integer.valueOf(0));
+        builder.define(SITTING, false);
 
     }
 

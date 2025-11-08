@@ -255,18 +255,18 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(TURTLE_TYPE, 0);
-        this.entityData.define(SHELL_TYPE, 0);
-        this.entityData.define(SKIN_TYPE, 0);
-        this.entityData.define(SHELL_COLOR, 0);
-        this.entityData.define(SKIN_COLOR, 0);
-        this.entityData.define(TURTLE_COLOR, 0);
-        this.entityData.define(RETREATED, false);
-        this.entityData.define(SPINNING, false);
-        this.entityData.define(HAS_EGG, false);
-        this.entityData.define(FROM_BUCKET, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TURTLE_TYPE, 0);
+        builder.define(SHELL_TYPE, 0);
+        builder.define(SKIN_TYPE, 0);
+        builder.define(SHELL_COLOR, 0);
+        builder.define(SKIN_COLOR, 0);
+        builder.define(TURTLE_COLOR, 0);
+        builder.define(RETREATED, false);
+        builder.define(SPINNING, false);
+        builder.define(HAS_EGG, false);
+        builder.define(FROM_BUCKET, false);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

@@ -485,15 +485,15 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(OBSIDIAN, false);
-        this.entityData.define(HAS_BODY_GEAR, false);
-        this.entityData.define(HAS_HEAD_GEAR, false);
-        this.entityData.define(HEAD_HEIGHT, 0F);
-        this.entityData.define(HEAD_YROT, 0F);
-        this.entityData.define(CHILL_TIME, 0);
-        this.entityData.define(ATTACK_TICK, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(OBSIDIAN, false);
+        builder.define(HAS_BODY_GEAR, false);
+        builder.define(HAS_HEAD_GEAR, false);
+        builder.define(HEAD_HEIGHT, 0F);
+        builder.define(HEAD_YROT, 0F);
+        builder.define(CHILL_TIME, 0);
+        builder.define(ATTACK_TICK, 0);
     }
 
     public void travel(Vec3 travelVector) {

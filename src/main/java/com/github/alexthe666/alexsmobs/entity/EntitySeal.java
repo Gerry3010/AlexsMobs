@@ -151,14 +151,14 @@ public class EntitySeal extends Animal implements ISemiAquatic, IHerdPanic, ITar
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SWIM_ANGLE, 0F);
-        this.entityData.define(BASKING, false);
-        this.entityData.define(DIGGING, false);
-        this.entityData.define(ARCTIC, false);
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(BOB_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SWIM_ANGLE, 0F);
+        builder.define(BASKING, false);
+        builder.define(DIGGING, false);
+        builder.define(ARCTIC, false);
+        builder.define(VARIANT, 0);
+        builder.define(BOB_TICKS, 0);
     }
 
     public boolean isTearsEasterEgg() {

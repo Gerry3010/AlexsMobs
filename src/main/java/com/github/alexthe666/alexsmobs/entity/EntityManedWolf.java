@@ -99,12 +99,12 @@ public class EntityManedWolf extends Animal implements ITargetsDroppedItems, IDa
         this.targetSelector.addGoal(1, new CreatureAITargetItems(this, false, 30));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(EAR_PITCH, 0F);
-        this.entityData.define(EAR_YAW, 0F);
-        this.entityData.define(SHAKING_TIME, 0);
-        this.entityData.define(DANCING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(EAR_PITCH, 0F);
+        builder.define(EAR_YAW, 0F);
+        builder.define(SHAKING_TIME, 0);
+        builder.define(DANCING, false);
     }
 
     public float getEarYaw() {

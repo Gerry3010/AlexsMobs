@@ -137,10 +137,10 @@ public class EntityGuster extends Monster {
         return this.entityData.get(LIFT_ENTITY) != 0;
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(LIFT_ENTITY, 0);
-        this.entityData.define(VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LIFT_ENTITY, 0);
+        builder.define(VARIANT, 0);
     }
 
 

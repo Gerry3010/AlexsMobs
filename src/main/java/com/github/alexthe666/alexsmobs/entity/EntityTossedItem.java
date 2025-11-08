@@ -41,9 +41,9 @@ public class EntityTossedItem extends ThrowableItemProjectile {
 
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DART, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DART, false);
     }
 
     public boolean isDart() {

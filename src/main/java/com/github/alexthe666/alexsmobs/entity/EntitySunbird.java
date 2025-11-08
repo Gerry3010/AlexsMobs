@@ -78,9 +78,9 @@ public class EntitySunbird extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SCORCHING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SCORCHING, false);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

@@ -86,15 +86,15 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 60.0D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.FOLLOW_RANGE, 32.0D).add(Attributes.MOVEMENT_SPEED, 0.25F).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ATTACK_KNOCKBACK, 2.0D);
     }
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_TRUSTED_ID_0, Optional.empty());
-        this.entityData.define(DATA_TRUSTED_ID_1, Optional.empty());
-        this.entityData.define(APPLIED_POTION, "");
-        this.entityData.define(POTION_LEVEL, 0);
-        this.entityData.define(INFLICTED_COUNT, 0);
-        this.entityData.define(POTION_DURATION, 0);
-        this.entityData.define(ANGRY, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_TRUSTED_ID_0, Optional.empty());
+        builder.define(DATA_TRUSTED_ID_1, Optional.empty());
+        builder.define(APPLIED_POTION, "");
+        builder.define(POTION_LEVEL, 0);
+        builder.define(INFLICTED_COUNT, 0);
+        builder.define(POTION_DURATION, 0);
+        builder.define(ANGRY, false);
     }
 
     protected void registerGoals() {

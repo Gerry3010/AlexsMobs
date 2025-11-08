@@ -57,16 +57,17 @@ public class EntityTendonSegment  extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(CREATOR_ID, Optional.empty());
-        this.entityData.define(FROM_ID, -1);
-        this.entityData.define(TARGET_COUNT, 0);
-        this.entityData.define(CURRENT_TARGET_ID, -1);
-        this.entityData.define(PROGRESS, 0F);
-        this.entityData.define(DAMAGE, 5F);
-        this.entityData.define(RETRACTING, false);
-        this.entityData.define(HAS_CLAW, true);
-        this.entityData.define(HAS_GLINT, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CREATOR_ID, Optional.empty());
+        builder.define(FROM_ID, -1);
+        builder.define(TARGET_COUNT, 0);
+        builder.define(CURRENT_TARGET_ID, -1);
+        builder.define(PROGRESS, 0F);
+        builder.define(DAMAGE, 5F);
+        builder.define(RETRACTING, false);
+        builder.define(HAS_CLAW, true);
+        builder.define(HAS_GLINT, false);
     }
 
     @Override

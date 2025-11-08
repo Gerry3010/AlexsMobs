@@ -106,9 +106,9 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
 
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, Integer.valueOf(0));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, Integer.valueOf(0));
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

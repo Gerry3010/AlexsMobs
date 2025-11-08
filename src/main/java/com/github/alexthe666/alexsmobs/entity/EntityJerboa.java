@@ -77,12 +77,12 @@ public class EntityJerboa extends Animal {
 
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(JUMP_ACTIVE, false);
-        this.entityData.define(BEGGING, false);
-        this.entityData.define(SLEEPING, false);
-        this.entityData.define(BEFRIENDED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(JUMP_ACTIVE, false);
+        builder.define(BEGGING, false);
+        builder.define(SLEEPING, false);
+        builder.define(BEFRIENDED, false);
     }
 
     protected void registerGoals() {

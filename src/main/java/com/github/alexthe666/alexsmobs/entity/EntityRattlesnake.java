@@ -100,10 +100,10 @@ public class EntityRattlesnake extends Animal implements IAnimatedEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CURLED, false);
-        this.entityData.define(RATTLING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CURLED, false);
+        builder.define(RATTLING, false);
     }
 
     public boolean isCurled() {

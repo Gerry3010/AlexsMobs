@@ -150,15 +150,15 @@ public class EntityGiantSquid extends WaterAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SQUID_PITCH, 0F);
-        this.entityData.define(OVERRIDE_BODYROT, false);
-        this.entityData.define(DEPRESSURIZATION, 0F);
-        this.entityData.define(GRABBING, false);
-        this.entityData.define(CAPTURED, false);
-        this.entityData.define(BLUE, false);
-        this.entityData.define(GRAB_ENTITY, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SQUID_PITCH, 0F);
+        builder.define(OVERRIDE_BODYROT, false);
+        builder.define(DEPRESSURIZATION, 0F);
+        builder.define(GRABBING, false);
+        builder.define(CAPTURED, false);
+        builder.define(BLUE, false);
+        builder.define(GRAB_ENTITY, -1);
     }
 
     @Nullable

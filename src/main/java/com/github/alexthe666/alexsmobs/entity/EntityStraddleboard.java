@@ -86,13 +86,14 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         return sizeIn.height;
     }
 
-    protected void defineSynchedData() {
-        this.entityData.define(TIME_SINCE_HIT, 0);
-        this.entityData.define(ITEMSTACK, new ItemStack(AMItemRegistry.STRADDLEBOARD.get()));
-        this.entityData.define(DEFAULT_COLOR, true);
-        this.entityData.define(COLOR, 0);
-        this.entityData.define(BOARD_ROT, 0F);
-        this.entityData.define(REMOVE_SOON, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TIME_SINCE_HIT, 0);
+        builder.define(ITEMSTACK, new ItemStack(AMItemRegistry.STRADDLEBOARD.get()));
+        builder.define(DEFAULT_COLOR, true);
+        builder.define(COLOR, 0);
+        builder.define(BOARD_ROT, 0F);
+        builder.define(REMOVE_SOON, false);
     }
 
     public boolean shouldRiderSit() {

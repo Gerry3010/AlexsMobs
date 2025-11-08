@@ -170,10 +170,11 @@ public class EntityCachalotEcho extends Entity {
         }
     }
 
-    protected void defineSynchedData() {
-        this.entityData.define(RETURNING, false);
-        this.entityData.define(FASTER_ANIM, false);
-        this.entityData.define(GREEN, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(RETURNING, false);
+        builder.define(FASTER_ANIM, false);
+        builder.define(GREEN, false);
     }
 
     public void setShooter(@Nullable Entity entityIn) {

@@ -74,10 +74,10 @@ public class EntityFrilledShark extends WaterAnimal implements IAnimatedEntity, 
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20D).add(Attributes.ARMOR, 0.0D).add(Attributes.ATTACK_DAMAGE, 3.0D).add(Attributes.MOVEMENT_SPEED, 0.2F);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DEPRESSURIZED, false);
-        this.entityData.define(FROM_BUCKET, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DEPRESSURIZED, false);
+        builder.define(FROM_BUCKET, false);
     }
 
     protected void registerGoals() {

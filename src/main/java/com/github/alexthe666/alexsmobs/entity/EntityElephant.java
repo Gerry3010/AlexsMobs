@@ -249,14 +249,14 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(TUSKED, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(STANDING, false);
-        this.entityData.define(CHESTED, false);
-        this.entityData.define(TRADER, false);
-        this.entityData.define(CARPET_COLOR, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(TUSKED, false);
+        builder.define(SITTING, false);
+        builder.define(STANDING, false);
+        builder.define(CHESTED, false);
+        builder.define(TRADER, false);
+        builder.define(CARPET_COLOR, -1);
     }
 
     public void tick() {

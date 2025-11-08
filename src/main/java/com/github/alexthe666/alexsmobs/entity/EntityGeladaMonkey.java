@@ -148,12 +148,12 @@ public class EntityGeladaMonkey extends Animal implements IAnimatedEntity, IHerd
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(LEADER, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(HAS_TARGET, false);
-        this.entityData.define(GRASS_TIME, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LEADER, false);
+        builder.define(SITTING, false);
+        builder.define(HAS_TARGET, false);
+        builder.define(GRASS_TIME, 0);
     }
 
     public boolean isLeader() {

@@ -155,14 +155,14 @@ public class EntityCatfish extends WaterAnimal implements FlyingAnimal, Bucketab
         return new WaterBoundPathNavigation(this, worldIn);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(CATFISH_SIZE, 0);
-        this.entityData.define(SPIT_TIME, 0);
-        this.entityData.define(SWALLOWED_ENTITY_TYPE, "minecraft:pig");
-        this.entityData.define(SWALLOWED_ENTITY_DATA, new CompoundTag());
-        this.entityData.define(HAS_SWALLOWED_ENTITY, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FROM_BUCKET, false);
+        builder.define(CATFISH_SIZE, 0);
+        builder.define(SPIT_TIME, 0);
+        builder.define(SWALLOWED_ENTITY_TYPE, "minecraft:pig");
+        builder.define(SWALLOWED_ENTITY_DATA, new CompoundTag());
+        builder.define(HAS_SWALLOWED_ENTITY, false);
     }
 
     public void tick() {

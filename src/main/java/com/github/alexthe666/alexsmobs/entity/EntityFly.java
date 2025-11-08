@@ -78,9 +78,9 @@ public class EntityFly extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(NO_DESPAWN, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(NO_DESPAWN, false);
     }
 
         public boolean isNoDespawn() {

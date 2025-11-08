@@ -86,7 +86,8 @@ public class EntityLaviathanPart extends PartEntity<EntityLaviathan> {
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
 
     }
 

@@ -143,11 +143,11 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
 
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHEARED, false);
-        this.entityData.define(SNOWY, false);
-        this.entityData.define(CHARGING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SHEARED, false);
+        builder.define(SNOWY, false);
+        builder.define(CHARGING, false);
     }
 
     @Nullable

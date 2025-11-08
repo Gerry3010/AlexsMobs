@@ -117,12 +117,12 @@ public class EntitySnowLeopard extends Animal implements IAnimatedEntity, ITarge
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SITTING, false);
-        this.entityData.define(SLEEPING, false);
-        this.entityData.define(SL_SNEAKING, false);
-        this.entityData.define(TACKLING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SITTING, false);
+        builder.define(SLEEPING, false);
+        builder.define(SL_SNEAKING, false);
+        builder.define(TACKLING, false);
     }
 
     public boolean isSitting() {

@@ -89,9 +89,9 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STRADPOLE_COUNT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STRADPOLE_COUNT, 0);
     }
 
     public int getStradpoleCount() {

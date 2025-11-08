@@ -173,18 +173,18 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLY_ANGLE, 0F);
-        this.entityData.define(NETHER, false);
-        this.entityData.define(FLYING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(DRAGGING, false);
-        this.entityData.define(DIGGING, false);
-        this.entityData.define(SCARED, false);
-        this.entityData.define(ANGRY, false);
-        this.entityData.define(ATTACK_TICK, 0);
-        this.entityData.define(COMMAND, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLY_ANGLE, 0F);
+        builder.define(NETHER, false);
+        builder.define(FLYING, false);
+        builder.define(SITTING, false);
+        builder.define(DRAGGING, false);
+        builder.define(DIGGING, false);
+        builder.define(SCARED, false);
+        builder.define(ANGRY, false);
+        builder.define(ATTACK_TICK, 0);
+        builder.define(COMMAND, 0);
     }
 
     public boolean hurt(DamageSource source, float amount) {

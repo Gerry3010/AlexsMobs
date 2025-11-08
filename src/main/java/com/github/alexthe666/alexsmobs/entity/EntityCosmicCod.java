@@ -90,10 +90,10 @@ public class EntityCosmicCod extends Mob implements Bucketable {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FISH_PITCH, 0F);
-        this.entityData.define(FROM_BUCKET, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FISH_PITCH, 0F);
+        builder.define(FROM_BUCKET, false);
     }
 
     @Override

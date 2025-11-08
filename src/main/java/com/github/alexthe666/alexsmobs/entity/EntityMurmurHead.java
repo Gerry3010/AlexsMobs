@@ -87,12 +87,12 @@ public class EntityMurmurHead extends Monster implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BODY_UUID, Optional.empty());
-        this.entityData.define(BODY_ID, -1);
-        this.entityData.define(PULLED_IN, true);
-        this.entityData.define(ANGRY, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BODY_UUID, Optional.empty());
+        builder.define(BODY_ID, -1);
+        builder.define(PULLED_IN, true);
+        builder.define(ANGRY, false);
     }
 
     private void doSpawnPositioning(EntityMurmur parent){

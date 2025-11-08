@@ -253,15 +253,15 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(HAS_CAP, false);
-        this.entityData.define(TACKLING, false);
-        this.entityData.define(LAUNCHED, false);
-        this.entityData.define(ATTACK_TICK, 0);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(SITTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(HAS_CAP, false);
+        builder.define(TACKLING, false);
+        builder.define(LAUNCHED, false);
+        builder.define(ATTACK_TICK, 0);
+        builder.define(COMMAND, 0);
+        builder.define(SITTING, false);
     }
 
     public boolean isSitting() {

@@ -121,7 +121,8 @@ public class EntityHemolymph extends Entity {
         }
     }
 
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
     }
 
     public void setShooter(@Nullable Entity entityIn) {

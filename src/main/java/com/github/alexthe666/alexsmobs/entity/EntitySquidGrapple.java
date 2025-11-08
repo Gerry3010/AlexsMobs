@@ -96,11 +96,12 @@ public class EntitySquidGrapple extends Entity {
 
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(OWNER_UUID, Optional.empty());
-        this.entityData.define(ATTACHED_FACE, Direction.DOWN);
-        this.entityData.define(ATTACHED_POS, Optional.empty());
-        this.entityData.define(WITHDRAWING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(OWNER_UUID, Optional.empty());
+        builder.define(ATTACHED_FACE, Direction.DOWN);
+        builder.define(ATTACHED_POS, Optional.empty());
+        builder.define(WITHDRAWING, false);
     }
 
     public Entity getOwner() {

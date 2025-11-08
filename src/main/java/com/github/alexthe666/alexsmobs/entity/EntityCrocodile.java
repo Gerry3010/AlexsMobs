@@ -186,14 +186,14 @@ public class EntityCrocodile extends TamableAnimal implements IAnimatedEntity, I
         }
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SITTING, false);
-        this.entityData.define(DESERT, false);
-        this.entityData.define(HAS_EGG, false);
-        this.entityData.define(IS_DIGGING, false);
-        this.entityData.define(CLIMBING, (byte) 0);
-        this.entityData.define(STUN_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SITTING, false);
+        builder.define(DESERT, false);
+        builder.define(HAS_EGG, false);
+        builder.define(IS_DIGGING, false);
+        builder.define(CLIMBING, (byte) 0);
+        builder.define(STUN_TICKS, 0);
     }
 
     public boolean isBesideClimbableBlock() {

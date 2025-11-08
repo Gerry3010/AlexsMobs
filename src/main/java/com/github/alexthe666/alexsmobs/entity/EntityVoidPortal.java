@@ -270,12 +270,13 @@ public class EntityVoidPortal extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(ATTACHED_FACE, Direction.DOWN);
-        this.entityData.define(LIFESPAN, 300);
-        this.entityData.define(SHATTERED, false);
-        this.entityData.define(SISTER_UUID, Optional.empty());
-        this.entityData.define(DESTINATION, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ATTACHED_FACE, Direction.DOWN);
+        builder.define(LIFESPAN, 300);
+        builder.define(SHATTERED, false);
+        builder.define(SISTER_UUID, Optional.empty());
+        builder.define(DESTINATION, Optional.empty());
     }
 
     @Override

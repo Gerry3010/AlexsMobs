@@ -157,8 +157,9 @@ public class EntityVoidWormShot extends Entity {
         }
     }
 
-    protected void defineSynchedData() {
-        this.entityData.define(STOP_HOMING_PROGRESS, 0.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STOP_HOMING_PROGRESS, 0.0F);
     }
 
     public float getStopHomingProgress() {

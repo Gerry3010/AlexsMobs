@@ -77,12 +77,12 @@ public class EntityCombJelly extends WaterAnimal implements Bucketable {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(JELLYPITCH, 0F);
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(JELLY_SCALE, 1.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, 0);
+        builder.define(JELLYPITCH, 0F);
+        builder.define(FROM_BUCKET, false);
+        builder.define(JELLY_SCALE, 1.0F);
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {

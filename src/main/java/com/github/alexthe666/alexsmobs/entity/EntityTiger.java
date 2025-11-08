@@ -137,16 +137,16 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
         this.setWhite(compound.getBoolean("White"));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(WHITE, false);
-        this.entityData.define(RUNNING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(STEALTH_MODE, false);
-        this.entityData.define(HOLDING, false);
-        this.entityData.define(SLEEPING, false);
-        this.entityData.define(ANGER_TIME, 0);
-        this.entityData.define(LAST_SCARED_MOB_ID, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(WHITE, false);
+        builder.define(RUNNING, false);
+        builder.define(SITTING, false);
+        builder.define(STEALTH_MODE, false);
+        builder.define(HOLDING, false);
+        builder.define(SLEEPING, false);
+        builder.define(ANGER_TIME, 0);
+        builder.define(LAST_SCARED_MOB_ID, -1);
     }
 
     protected void registerGoals() {

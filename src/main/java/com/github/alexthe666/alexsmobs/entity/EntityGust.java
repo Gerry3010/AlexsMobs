@@ -148,11 +148,12 @@ public class EntityGust extends Entity {
 
     }
 
-    protected void defineSynchedData() {
-        this.entityData.define(VERTICAL, false);
-        this.entityData.define(X_DIR, 0f);
-        this.entityData.define(Y_DIR, 0F);
-        this.entityData.define(Z_DIR, 0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VERTICAL, false);
+        builder.define(X_DIR, 0f);
+        builder.define(Y_DIR, 0F);
+        builder.define(Z_DIR, 0F);
     }
 
     protected void addAdditionalSaveData(CompoundTag compound) {

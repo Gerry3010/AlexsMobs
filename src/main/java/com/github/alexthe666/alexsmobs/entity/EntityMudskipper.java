@@ -151,15 +151,15 @@ public class EntityMudskipper extends TamableAnimal implements IFollower, ISemiA
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DISPLAYING, false);
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(DISPLAY_ANGLE, 0F);
-        this.entityData.define(DISPLAYER_UUID, Optional.empty());
-        this.entityData.define(MOUTH_TICKS, 0);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(SITTING, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DISPLAYING, false);
+        builder.define(FROM_BUCKET, false);
+        builder.define(DISPLAY_ANGLE, 0F);
+        builder.define(DISPLAYER_UUID, Optional.empty());
+        builder.define(MOUTH_TICKS, 0);
+        builder.define(COMMAND, 0);
+        builder.define(SITTING, false);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

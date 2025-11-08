@@ -211,13 +211,13 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DANCING, false);
-        this.entityData.define(HEADLESS, false);
-        this.entityData.define(MARACAS, false);
-        this.entityData.define(NEAREST_MUSICIAN, Optional.empty());
-        this.entityData.define(BREADED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DANCING, false);
+        builder.define(HEADLESS, false);
+        builder.define(MARACAS, false);
+        builder.define(NEAREST_MUSICIAN, Optional.empty());
+        builder.define(BREADED, false);
     }
 
     public boolean isDancing() {

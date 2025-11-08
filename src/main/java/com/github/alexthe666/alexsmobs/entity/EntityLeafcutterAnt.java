@@ -406,16 +406,16 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CLIMBING, (byte) 0);
-        this.entityData.define(LEAF_HARVESTED_POS, Optional.empty());
-        this.entityData.define(LEAF_HARVESTED_STATE, Optional.empty());
-        this.entityData.define(HAS_LEAF, false);
-        this.entityData.define(QUEEN, false);
-        this.entityData.define(ATTACHED_FACE, Direction.DOWN);
-        this.entityData.define(ANT_SCALE, 1.0F);
-        this.entityData.define(ANGER_TIME, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CLIMBING, (byte) 0);
+        builder.define(LEAF_HARVESTED_POS, Optional.empty());
+        builder.define(LEAF_HARVESTED_STATE, Optional.empty());
+        builder.define(HAS_LEAF, false);
+        builder.define(QUEEN, false);
+        builder.define(ATTACHED_FACE, Direction.DOWN);
+        builder.define(ANT_SCALE, 1.0F);
+        builder.define(ANGER_TIME, 0);
     }
 
     @Nullable

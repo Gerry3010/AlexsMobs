@@ -377,17 +377,17 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STANDING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(FORCED_SIT, false);
-        this.entityData.define(COMMAND, Integer.valueOf(0));
-        this.entityData.define(VISUAL_FLAG, Integer.valueOf(0));
-        this.entityData.define(POUCH_TICK, Integer.valueOf(0));
-        this.entityData.define(CHEST_INDEX, Integer.valueOf(-1));
-        this.entityData.define(HELMET_INDEX, Integer.valueOf(-1));
-        this.entityData.define(SWORD_INDEX, Integer.valueOf(-1));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STANDING, false);
+        builder.define(SITTING, false);
+        builder.define(FORCED_SIT, false);
+        builder.define(COMMAND, Integer.valueOf(0));
+        builder.define(VISUAL_FLAG, Integer.valueOf(0));
+        builder.define(POUCH_TICK, Integer.valueOf(0));
+        builder.define(CHEST_INDEX, Integer.valueOf(-1));
+        builder.define(HELMET_INDEX, Integer.valueOf(-1));
+        builder.define(SWORD_INDEX, Integer.valueOf(-1));
     }
 
     @Override

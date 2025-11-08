@@ -176,13 +176,13 @@ public class EntityEnderiophage extends Animal implements Enemy, FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(PHAGE_PITCH, 0F);
-        this.entityData.define(PHAGE_SCALE, 1F);
-        this.entityData.define(FLYING, false);
-        this.entityData.define(MISSING_EYE, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, 0);
+        builder.define(PHAGE_PITCH, 0F);
+        builder.define(PHAGE_SCALE, 1F);
+        builder.define(FLYING, false);
+        builder.define(MISSING_EYE, false);
     }
 
     public boolean causeFallDamage(float distance, float damageMultiplier) {

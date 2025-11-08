@@ -78,13 +78,13 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
     private boolean hasJostlingSize;
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(JOSTLING, false);
-        this.entityData.define(SADDLED, false);
-        this.entityData.define(JOSTLE_ANGLE, 0F);
-        this.entityData.define(JOSTLER_UUID, Optional.empty());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(COMMAND, 0);
+        builder.define(JOSTLING, false);
+        builder.define(SADDLED, false);
+        builder.define(JOSTLE_ANGLE, 0F);
+        builder.define(JOSTLER_UUID, Optional.empty());
     }
 
     public int getCommand() {

@@ -590,15 +590,15 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STANDING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(HONEYED, false);
-        this.entityData.define(SNOWY, false);
-        this.entityData.define(EATING, false);
-        this.entityData.define(APRIL_FOOLS_MODE, 0);
-        this.entityData.define(COMMAND, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STANDING, false);
+        builder.define(SITTING, false);
+        builder.define(HONEYED, false);
+        builder.define(SNOWY, false);
+        builder.define(EATING, false);
+        builder.define(APRIL_FOOLS_MODE, 0);
+        builder.define(COMMAND, 0);
     }
 
     public boolean isEating() {

@@ -481,16 +481,16 @@ public class EntityVoidWorm extends Monster {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SPLIT_FROM_UUID, Optional.empty());
-        this.entityData.define(CHILD_UUID, Optional.empty());
-        this.entityData.define(SEGMENT_COUNT, 10);
-        this.entityData.define(JAW_TICKS, 0);
-        this.entityData.define(WORM_ANGLE, 0F);
-        this.entityData.define(SPEEDMOD, 1F);
-        this.entityData.define(SPLITTER, false);
-        this.entityData.define(PORTAL_TICKS, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SPLIT_FROM_UUID, Optional.empty());
+        builder.define(CHILD_UUID, Optional.empty());
+        builder.define(SEGMENT_COUNT, 10);
+        builder.define(JAW_TICKS, 0);
+        builder.define(WORM_ANGLE, 0F);
+        builder.define(SPEEDMOD, 1F);
+        builder.define(SPLITTER, false);
+        builder.define(PORTAL_TICKS, 0);
     }
 
 

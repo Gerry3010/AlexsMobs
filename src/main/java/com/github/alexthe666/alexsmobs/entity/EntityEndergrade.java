@@ -89,10 +89,10 @@ public class EntityEndergrade extends Animal implements FlyingAnimal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BITE_TICK, 0);
-        this.entityData.define(SADDLED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BITE_TICK, 0);
+        builder.define(SADDLED, false);
     }
 
     protected void registerGoals() {

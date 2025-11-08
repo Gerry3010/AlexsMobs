@@ -200,16 +200,16 @@ public class EntityCachalotWhale extends Animal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(CHARGING, false);
-        this.entityData.define(SLEEPING, false);
-        this.entityData.define(BEACHED, false);
-        this.entityData.define(ALBINO, false);
-        this.entityData.define(GRABBING, false);
-        this.entityData.define(HOLDING_SQUID_LEFT, false);
-        this.entityData.define(DESPAWN_BEACH, false);
-        this.entityData.define(CAUGHT_ID, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CHARGING, false);
+        builder.define(SLEEPING, false);
+        builder.define(BEACHED, false);
+        builder.define(ALBINO, false);
+        builder.define(GRABBING, false);
+        builder.define(HOLDING_SQUID_LEFT, false);
+        builder.define(DESPAWN_BEACH, false);
+        builder.define(CAUGHT_ID, -1);
     }
 
     public boolean hasCaughtSquid() {

@@ -121,12 +121,12 @@ public class EntityCentipedeBody extends Mob implements IHurtableMultipart {
         this.radius = compound.getFloat("PartRadius");
     }
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(PARENT_UUID, Optional.empty());
-        this.entityData.define(CHILD_UUID, Optional.empty());
-        this.entityData.define(BODYINDEX, 0);
-        this.entityData.define(BODY_XROT, 0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(PARENT_UUID, Optional.empty());
+        builder.define(CHILD_UUID, Optional.empty());
+        builder.define(BODYINDEX, 0);
+        builder.define(BODY_XROT, 0F);
     }
 
     public Entity getParent() {

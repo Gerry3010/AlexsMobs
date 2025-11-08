@@ -80,11 +80,11 @@ public class EntityTriops extends WaterAnimal implements ITargetsDroppedItems, B
         prevTail2Yaw = this.getYRot();
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FROM_BUCKET, false);
-        this.entityData.define(TRIOPS_SCALE, 1F);
-        this.entityData.define(BABY_AGE, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FROM_BUCKET, false);
+        builder.define(TRIOPS_SCALE, 1F);
+        builder.define(BABY_AGE, 0);
     }
 
     protected void registerGoals() {

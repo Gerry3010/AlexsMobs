@@ -79,13 +79,13 @@ public class EntityCaiman extends TamableAnimal implements ISemiAquatic,IFollowe
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(BELLOWING, false);
-        this.entityData.define(SITTING, false);
-        this.entityData.define(HAS_EGG, false);
-        this.entityData.define(HELD_MOB_ID, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(COMMAND, 0);
+        builder.define(BELLOWING, false);
+        builder.define(SITTING, false);
+        builder.define(HAS_EGG, false);
+        builder.define(HELD_MOB_ID, -1);
     }
 
     protected void registerGoals() {

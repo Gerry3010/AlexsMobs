@@ -293,17 +293,17 @@ public class EntityCrimsonMosquito extends Monster {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(FLYING, false);
-        this.entityData.define(SHOOTING, false);
-        this.entityData.define(SICK, false);
-        this.entityData.define(BLOOD_LEVEL, 0);
-        this.entityData.define(SHRINKING, false);
-        this.entityData.define(FROM_FLY, false);
-        this.entityData.define(MOSQUITO_SCALE, 1F);
-        this.entityData.define(LURING_LAVIATHAN, -1);
-        this.entityData.define(FLEEING_ENTITY, -1);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(FLYING, false);
+        builder.define(SHOOTING, false);
+        builder.define(SICK, false);
+        builder.define(BLOOD_LEVEL, 0);
+        builder.define(SHRINKING, false);
+        builder.define(FROM_FLY, false);
+        builder.define(MOSQUITO_SCALE, 1F);
+        builder.define(LURING_LAVIATHAN, -1);
+        builder.define(FLEEING_ENTITY, -1);
     }
 
     public boolean isFlying() {

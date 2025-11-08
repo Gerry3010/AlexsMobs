@@ -103,10 +103,10 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
         this.entityData.set(MOISTNESS, p_211137_1_);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(MOISTNESS, 2400);
-        this.entityData.define(VARIANT, 0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(MOISTNESS, 2400);
+        builder.define(VARIANT, 0);
     }
 
     public int getVariant() {
