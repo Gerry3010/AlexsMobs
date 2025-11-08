@@ -257,7 +257,7 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         float variantChange = this.getRandom().nextFloat();
         if(variantChange <= 0.00001){
             this.setVariant(5);
@@ -272,7 +272,7 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
         }else{
             this.setVariant(0);
         }
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     protected PathNavigation createNavigation(Level worldIn) {

@@ -477,7 +477,7 @@ public class EntityVoidWorm extends Monster {
         this.setSegmentCount(25 + random.nextInt(15));
         this.setXRot(0.0F);
         this.setBaseMaxHealth(AMConfig.voidWormMaxHealth, true);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     @Override

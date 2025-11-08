@@ -556,7 +556,7 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         int i;
         if(reason == MobSpawnType.SPAWN_EGG){
             i = this.getRandom().nextInt(4);
@@ -566,7 +566,7 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
             i = this.getRandom().nextInt(3);
         }
         this.setVariant(i);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     @Nullable

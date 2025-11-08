@@ -222,7 +222,7 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setVariant(this.getRandom().nextFloat() < 0.3F ? 1 : 0);
         if (this.random.nextFloat() < 0.2F) {
             Drowned drowned = EntityType.DROWNED.create(level());
@@ -234,7 +234,7 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
         if(reason == MobSpawnType.STRUCTURE){
             this.restrictTo(this.blockPosition(), 15);
         }
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     public boolean canBreatheUnderwater() {

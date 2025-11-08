@@ -197,7 +197,7 @@ public class EntityGuster extends Monster {
         }
         this.setAirSupply(this.getMaxAirSupply());
         this.setXRot(0.0F);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     private void setLiftedEntity(int p_175463_1_) {

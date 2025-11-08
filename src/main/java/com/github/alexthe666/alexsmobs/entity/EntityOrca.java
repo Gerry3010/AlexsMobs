@@ -369,7 +369,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
         this.setVariant(determineVariant(this.blockPosition()));
         this.setXRot(0.0F);
         this.setMoistness(2400);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     public boolean canBreatheUnderwater() {

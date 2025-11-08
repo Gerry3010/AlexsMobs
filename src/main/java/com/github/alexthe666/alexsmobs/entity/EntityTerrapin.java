@@ -465,7 +465,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
 
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setAirSupply(this.getMaxAirSupply());
         this.setTurtleType(TerrapinTypes.getRandomType(random));
         this.setShellType(random.nextInt(7));
@@ -473,7 +473,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
         this.setTurtleColor(TerrapinTypes.generateRandomColor(random));
         this.setShellColor(TerrapinTypes.generateRandomColor(random));
         this.setSkinColor(TerrapinTypes.generateRandomColor(random));
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     @Override

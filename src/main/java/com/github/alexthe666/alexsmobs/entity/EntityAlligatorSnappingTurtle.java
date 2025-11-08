@@ -254,10 +254,10 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setMoss(random.nextInt(6));
         this.setTurtleScale(0.8F + random.nextFloat() * 0.2F);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     public float getTurtleScale() {
@@ -337,6 +337,7 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
         return 10;
     }
 
+    @Override
     public boolean canBreatheUnderwater() {
         return true;
     }
@@ -387,7 +388,6 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
         return this.isAlive() && this.getMoss() > 0;
     }
 
-    @Override
     public boolean isShearable(@javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos) {
         return readyForShearing();
     }
@@ -407,7 +407,6 @@ public class EntityAlligatorSnappingTurtle extends Animal implements ISemiAquati
     }
 
     @javax.annotation.Nonnull
-    @Override
     public java.util.List<ItemStack> onSheared(@javax.annotation.Nullable Player player, @javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
         world.playSound(null, this, SoundEvents.SHEEP_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.ENTITY_INTERACT);

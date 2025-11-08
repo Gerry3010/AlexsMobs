@@ -390,7 +390,7 @@ public class EntityCatfish extends WaterAnimal implements FlyingAnimal, Bucketab
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setCatfishSize(random.nextFloat() < 0.35F ? 1 : 0);
         if (random.nextFloat() < 0.1F) {
             final Holder<Biome> holder = worldIn.getBiome(this.blockPosition());
@@ -398,7 +398,7 @@ public class EntityCatfish extends WaterAnimal implements FlyingAnimal, Bucketab
                 this.setCatfishSize(2);
             }
         }
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     public void travel(Vec3 travelVector) {

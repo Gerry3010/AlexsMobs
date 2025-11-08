@@ -386,7 +386,7 @@ public class EntityGeladaMonkey extends Animal implements IAnimatedEntity, IHerd
     }
 
     @javax.annotation.Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @javax.annotation.Nullable SpawnGroupData spawnDataIn, @javax.annotation.Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
         if (spawnDataIn instanceof AgeableMob.AgeableMobGroupData) {
             AgeableMob.AgeableMobGroupData pack = (AgeableMob.AgeableMobGroupData) spawnDataIn;
             if (pack.getGroupSize() == 0 || pack.getGroupSize() > 4 && random.nextInt(2) == 0) {
@@ -396,7 +396,7 @@ public class EntityGeladaMonkey extends Animal implements IAnimatedEntity, IHerd
             this.setLeader(this.getRandom().nextInt(4) == 0);
         }
 
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
     }
 
     public boolean canBeGroomed() {
