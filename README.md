@@ -14,7 +14,7 @@ Minecraft mod that adds 80+ new creatures to the game.
 ## 🚧 1.21 Port Progress
 
 **Target:** Minecraft 1.21 with NeoForge 21.0.167  
-**Current Status:** ⚠️ Work in Progress - ~68 core errors remaining (99%+ complete)
+**Current Status:** ⚠️ Work in Progress - ~66 core errors remaining (99%+ complete)
 
 ### ✅ Completed
 
@@ -345,12 +345,67 @@ cd ..
   
 **Progress:** Advanced from ~97% to 99%+ complete. Error count: 100 total (68 core + 32 JEI)
 
+### Recent Progress (Session 4 Continued - 2025-01-08)
+
+**Major API Fixes:**
+- ✅ **ItemStack API Changes**
+  - Fixed ForgeRegistries → BuiltInRegistries (ITEM registry)
+  - Fixed isSameItemSameTags() → matches() for item comparison
+  - Fixed ItemStack.save()/parse() to use HolderLookup.Provider
+  - Updated TransmutationData serialization to accept HolderLookup.Provider
+  - Fixed TileEntityTransmutationTable load/saveAdditional signatures
+  
+- ✅ **Block API Changes**
+  - Fixed BucketPickup.pickupBlock() signature (now requires Player parameter)
+  - Fixed playerWillDestroy() return type (void → BlockState)
+  - Fixed Potions.WATER holder (unwrap with .value())
+  - Fixed TamableAnimal.setTame() signature (now requires two boolean parameters)
+  - Fixed BlockLeafcutterAnthill playerWillDestroy and data components
+  - Migrated addTagElement() → DataComponents.BLOCK_ENTITY_DATA with CustomData
+  - Fixed Enchantments.SILK_TOUCH holder conversion (worldIn.holderOrThrow())
+  
+- ✅ **Entity Attribute System**
+  - Migrated setMaxUpStep() → Attributes.STEP_HEIGHT attribute (26 entities)
+  - Changed from method calls to getAttribute(Attributes.STEP_HEIGHT).setBaseValue()
+  - Added STEP_HEIGHT to bakeAttributes() where needed
+  - Fixed: TameableAIRide, all entity classes using step height
+  
+- ✅ **Entity Spawn System**
+  - Fixed finalizeSpawn() signature - removed CompoundTag dataTag parameter (41 entities)
+  - Updated all finalizeSpawn() method signatures
+  - Updated all super.finalizeSpawn() calls
+  - Entities fixed: Alligator Snapping Turtle, Anteater, Anaconda, Banana Slug, Bison, and 36 more
+  
+- ✅ **Entity Override Methods**
+  - Fixed canBreatheUnderwater() - removed @Override (method is now final in LivingEntity)
+  - Removed @Override from IShearable methods (isShearable, onSheared)
+  - Fixed Entity.canBreatheUnderwater to just implement without override
+
+**JEI Integration:**
+- ✅ **JEI Dependencies Added** - All JEI compilation errors resolved!
+  - JEI repositories and dependencies configured
+  - AlexMobsJEIPlugin.java compiles successfully
+  - CapsidDrawable.java compiles successfully  
+  - CapsidRecipeCategory.java compiles successfully
+  - No JEI errors remaining!
+
+**Current Error Breakdown:** 100 total errors
+- 🟢 ~0 JEI errors (✅ RESOLVED!)
+- 🟠 ~66 core API errors remaining:
+  - Model renderToBuffer() signature mismatches (~10-15 errors)
+  - Entity defineSynchedData() signature issues
+  - Various symbol not found errors (component APIs, etc.)
+  - BlockPos → Vec3 conversions
+  - Enchantment ResourceKey → Holder conversions
+  - TooltipContext conversion
+  - Client operator issues
+
 **Remaining Work:**
-- Model render() signature changes (~10 files)
+- Model render() signature changes (~10-15 files)
+- defineSynchedData() method signature fixes
 - Enchantment Holder conversions (~5 instances)
-- Method signature updates (pickupBlock, setTame, playerWillDestroy)
-- FallingBlock abstract issue (2 instances)
-- Various minor API adaptations
+- TooltipContext API changes
+- Various minor symbol resolution
 
 ### Migration Strategy
 
