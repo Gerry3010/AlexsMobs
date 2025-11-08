@@ -9,10 +9,11 @@ import net.neoforged.neoforge.common.world.ModifiableStructureInfo;
 import net.neoforged.neoforge.common.world.StructureModifier;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class AMMobSpawnStructureModifier implements StructureModifier {
 
-    private static final RegistryObject<Codec<? extends StructureModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(AlexsMobs.MODID, "am_structure_spawns"), NeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
+    private static final DeferredHolder<Codec<? extends StructureModifier>, Codec<? extends StructureModifier>> SERIALIZER = DeferredHolder.create(NeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "am_structure_spawns"));
 
     public AMMobSpawnStructureModifier() {
     }

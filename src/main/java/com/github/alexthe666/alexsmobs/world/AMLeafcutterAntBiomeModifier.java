@@ -12,9 +12,10 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class AMLeafcutterAntBiomeModifier implements BiomeModifier {
-    private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(AlexsMobs.MODID, "am_leafcutter_ant_spawns"), NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
+    private static final DeferredHolder<Codec<? extends BiomeModifier>, Codec<? extends BiomeModifier>> SERIALIZER = DeferredHolder.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "am_leafcutter_ant_spawns"));
     private final HolderSet<PlacedFeature> features;
 
     public AMLeafcutterAntBiomeModifier(HolderSet<PlacedFeature> features) {
