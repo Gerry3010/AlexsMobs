@@ -37,9 +37,9 @@ import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.neoforged.neoforge.network.NetworkDirection;
-import net.neoforged.neoforge.network.NetworkRegistry;
-import net.neoforged.neoforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
@@ -54,24 +54,9 @@ import java.util.Date;
 public class AlexsMobs {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "alexsmobs";
-    public static final SimpleChannel NETWORK_WRAPPER;
-    private static final String PROTOCOL_VERSION = Integer.toString(1);
     public static final CommonProxy PROXY = EffectiveSide.get().isClient() ? new ClientProxy() : new CommonProxy();
-    private static int packetsRegistered;
     private static boolean isAprilFools = false;
     private static boolean isHalloween = false;
-
-    static {
-        NetworkRegistry.ChannelBuilder channel = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("alexsmobs", "main_channel"));
-        String version = PROTOCOL_VERSION;
-        version.getClass();
-        channel = channel.clientAcceptedVersions(version::equals);
-        version = PROTOCOL_VERSION;
-        version.getClass();
-        NETWORK_WRAPPER = channel.serverAcceptedVersions(version::equals).networkProtocolVersion(() -> {
-            return PROTOCOL_VERSION;
-        }).simpleChannel();
-    }
 
     public AlexsMobs() {
         IEventBus modBusEvent = FMLJavaModLoadingContext.get().getModEventBus();
@@ -79,6 +64,7 @@ public class AlexsMobs {
         modBusEvent.addListener(this::setupClient);
         modBusEvent.addListener(this::onModConfigEvent);
         modBusEvent.addListener(this::setupEntityModelLayers);
+        modBusEvent.addListener(this::registerPayloads);
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
         AMBlockRegistry.DEF_REG.register(modBusEvent);
         AMEntityRegistry.DEF_REG.register(modBusEvent);
@@ -137,7 +123,7 @@ public class AlexsMobs {
     }
 
     public static <MSG> void sendMSGToServer(MSG message) {
-        NETWORK_WRAPPER.sendToServer(message);
+        PacketDistributor.sendToServer(message);
     }
 
     public static <MSG> void sendMSGToAll(MSG message) {
@@ -147,29 +133,33 @@ public class AlexsMobs {
     }
 
     public static <MSG> void sendNonLocal(MSG msg, ServerPlayer player) {
-        NETWORK_WRAPPER.sendTo(msg, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+        PacketDistributor.sendToPlayer(player, msg);
+    }
+
+    private void registerPayloads(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
+        registrar.playBidirectional(MessageMosquitoMountPlayer.TYPE, MessageMosquitoMountPlayer.STREAM_CODEC, MessageMosquitoMountPlayer::handle);
+        registrar.playBidirectional(MessageMosquitoDismount.TYPE, MessageMosquitoDismount.STREAM_CODEC, MessageMosquitoDismount::handle);
+        registrar.playBidirectional(MessageHurtMultipart.TYPE, MessageHurtMultipart.STREAM_CODEC, MessageHurtMultipart::handle);
+        registrar.playBidirectional(MessageCrowMountPlayer.TYPE, MessageCrowMountPlayer.STREAM_CODEC, MessageCrowMountPlayer::handle);
+        registrar.playBidirectional(MessageCrowDismount.TYPE, MessageCrowDismount.STREAM_CODEC, MessageCrowDismount::handle);
+        registrar.playBidirectional(MessageMungusBiomeChange.TYPE, MessageMungusBiomeChange.STREAM_CODEC, MessageMungusBiomeChange::handle);
+        registrar.playBidirectional(MessageKangarooInventorySync.TYPE, MessageKangarooInventorySync.STREAM_CODEC, MessageKangarooInventorySync::handle);
+        registrar.playBidirectional(MessageKangarooEat.TYPE, MessageKangarooEat.STREAM_CODEC, MessageKangarooEat::handle);
+        registrar.playBidirectional(MessageUpdateCapsid.TYPE, MessageUpdateCapsid.STREAM_CODEC, MessageUpdateCapsid::handle);
+        registrar.playBidirectional(MessageSwingArm.TYPE, MessageSwingArm.STREAM_CODEC, MessageSwingArm::handle);
+        registrar.playBidirectional(MessageUpdateEagleControls.TYPE, MessageUpdateEagleControls.STREAM_CODEC, MessageUpdateEagleControls::handle);
+        registrar.playBidirectional(MessageSyncEntityPos.TYPE, MessageSyncEntityPos.STREAM_CODEC, MessageSyncEntityPos::handle);
+        registrar.playBidirectional(MessageTarantulaHawkSting.TYPE, MessageTarantulaHawkSting.STREAM_CODEC, MessageTarantulaHawkSting::handle);
+        registrar.playBidirectional(MessageStartDancing.TYPE, MessageStartDancing.STREAM_CODEC, MessageStartDancing::handle);
+        registrar.playBidirectional(MessageInteractMultipart.TYPE, MessageInteractMultipart.STREAM_CODEC, MessageInteractMultipart::handle);
+        registrar.playBidirectional(MessageSendVisualFlagFromServer.TYPE, MessageSendVisualFlagFromServer.STREAM_CODEC, MessageSendVisualFlagFromServer::handle);
+        registrar.playBidirectional(MessageSetPupfishChunkOnClient.TYPE, MessageSetPupfishChunkOnClient.STREAM_CODEC, MessageSetPupfishChunkOnClient::handle);
+        registrar.playBidirectional(MessageUpdateTransmutablesToDisplay.TYPE, MessageUpdateTransmutablesToDisplay.STREAM_CODEC, MessageUpdateTransmutablesToDisplay::handle);
+        registrar.playBidirectional(MessageTransmuteFromMenu.TYPE, MessageTransmuteFromMenu.STREAM_CODEC, MessageTransmuteFromMenu::handle);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageMosquitoMountPlayer.class, MessageMosquitoMountPlayer::write, MessageMosquitoMountPlayer::read, MessageMosquitoMountPlayer.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageMosquitoDismount.class, MessageMosquitoDismount::write, MessageMosquitoDismount::read, MessageMosquitoDismount.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageHurtMultipart.class, MessageHurtMultipart::write, MessageHurtMultipart::read, MessageHurtMultipart.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageCrowMountPlayer.class, MessageCrowMountPlayer::write, MessageCrowMountPlayer::read, MessageCrowMountPlayer.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageCrowDismount.class, MessageCrowDismount::write, MessageCrowDismount::read, MessageCrowDismount.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageMungusBiomeChange.class, MessageMungusBiomeChange::write, MessageMungusBiomeChange::read, MessageMungusBiomeChange.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageKangarooInventorySync.class, MessageKangarooInventorySync::write, MessageKangarooInventorySync::read, MessageKangarooInventorySync.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageKangarooEat.class, MessageKangarooEat::write, MessageKangarooEat::read, MessageKangarooEat.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdateCapsid.class, MessageUpdateCapsid::write, MessageUpdateCapsid::read, MessageUpdateCapsid.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageSwingArm.class, MessageSwingArm::write, MessageSwingArm::read, MessageSwingArm.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdateEagleControls.class, MessageUpdateEagleControls::write, MessageUpdateEagleControls::read, MessageUpdateEagleControls.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageSyncEntityPos.class, MessageSyncEntityPos::write, MessageSyncEntityPos::read, MessageSyncEntityPos.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageTarantulaHawkSting.class, MessageTarantulaHawkSting::write, MessageTarantulaHawkSting::read, MessageTarantulaHawkSting.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageStartDancing.class, MessageStartDancing::write, MessageStartDancing::read, MessageStartDancing.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageInteractMultipart.class, MessageInteractMultipart::write, MessageInteractMultipart::read, MessageInteractMultipart.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageSendVisualFlagFromServer.class, MessageSendVisualFlagFromServer::write, MessageSendVisualFlagFromServer::read, MessageSendVisualFlagFromServer.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageSetPupfishChunkOnClient.class, MessageSetPupfishChunkOnClient::write, MessageSetPupfishChunkOnClient::read, MessageSetPupfishChunkOnClient.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageUpdateTransmutablesToDisplay.class, MessageUpdateTransmutablesToDisplay::write, MessageUpdateTransmutablesToDisplay::read, MessageUpdateTransmutablesToDisplay.Handler::handle);
-        NETWORK_WRAPPER.registerMessage(packetsRegistered++, MessageTransmuteFromMenu.class, MessageTransmuteFromMenu::write, MessageTransmuteFromMenu::read, MessageTransmuteFromMenu.Handler::handle);
         event.enqueueWork(AMItemRegistry::init);
         event.enqueueWork(AMItemRegistry::initDispenser);
         AMAdvancementTriggerRegistry.init();

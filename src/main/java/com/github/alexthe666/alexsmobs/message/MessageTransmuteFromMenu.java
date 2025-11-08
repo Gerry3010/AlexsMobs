@@ -3,51 +3,37 @@ package com.github.alexthe666.alexsmobs.message;
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.inventory.MenuTransmutationTable;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
+public record MessageTransmuteFromMenu(int playerId, int choice) implements CustomPacketPayload {
 
-public class MessageTransmuteFromMenu {
+    public static final CustomPacketPayload.Type<MessageTransmuteFromMenu> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "transmute_from_menu"));
 
-    private int playerId;
-    private int choice;
+    public static final StreamCodec<FriendlyByteBuf, MessageTransmuteFromMenu> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.VAR_INT,
+            MessageTransmuteFromMenu::playerId,
+            ByteBufCodecs.VAR_INT,
+            MessageTransmuteFromMenu::choice,
+            MessageTransmuteFromMenu::new
+    );
 
-    public MessageTransmuteFromMenu(int playerId, int choice) {
-        this.playerId = playerId;
-        this.choice = choice;
+    @Override
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 
-    public MessageTransmuteFromMenu() {
+    public static void handle(MessageTransmuteFromMenu message, IPayloadContext context) {
+        context.enqueueWork(() -> {
+            Player player = context.player();
+            if (player != null && player.getId() == message.playerId && player.containerMenu instanceof MenuTransmutationTable) {
+                MenuTransmutationTable table = (MenuTransmutationTable) player.containerMenu;
+                table.transmute(player, message.choice);
+            }
+        });
     }
-
-    public static MessageTransmuteFromMenu read(FriendlyByteBuf buf) {
-        return new MessageTransmuteFromMenu(buf.readInt(), buf.readInt());
-    }
-
-    public static void write(MessageTransmuteFromMenu message, FriendlyByteBuf buf) {
-        buf.writeInt(message.playerId);
-        buf.writeInt(message.choice);
-    }
-
-    public static class Handler {
-        public Handler() {
-        }
-
-        public static void handle(MessageTransmuteFromMenu message, Supplier<NetworkEvent.Context> context) {
-            context.get().setPacketHandled(true);
-            context.get().enqueueWork(() -> {
-                Player player = context.get().getSender();
-                if (context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT) {
-                    player = AlexsMobs.PROXY.getClientSidePlayer();
-                }
-                if (player.getId() == message.playerId && player.containerMenu instanceof MenuTransmutationTable) {
-                    MenuTransmutationTable table = (MenuTransmutationTable) player.containerMenu;
-                    table.transmute(player, message.choice);
-                }
-            });
-        }
-    }
-
 }

@@ -2,54 +2,37 @@ package com.github.alexthe666.alexsmobs.message;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
+public record MessageSendVisualFlagFromServer(int entityID, int flag) implements CustomPacketPayload {
 
-public class MessageSendVisualFlagFromServer {
+    public static final CustomPacketPayload.Type<MessageSendVisualFlagFromServer> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "send_visual_flag_from_server"));
 
-    public int entityID;
-    public int flag;
+    public static final StreamCodec<FriendlyByteBuf, MessageSendVisualFlagFromServer> STREAM_CODEC = StreamCodec.composite(
+            StreamCodec.INT,
+            MessageSendVisualFlagFromServer::entityID,
+            StreamCodec.INT,
+            MessageSendVisualFlagFromServer::flag,
+            MessageSendVisualFlagFromServer::new
+    );
 
-    public MessageSendVisualFlagFromServer(int entityID, int flag) {
-        this.entityID = entityID;
-        this.flag = flag;
+    @Override
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 
-    public MessageSendVisualFlagFromServer() {
-    }
-
-    public static MessageSendVisualFlagFromServer read(FriendlyByteBuf buf) {
-        return new MessageSendVisualFlagFromServer(buf.readInt(), buf.readInt());
-    }
-
-    public static void write(MessageSendVisualFlagFromServer message, FriendlyByteBuf buf) {
-        buf.writeInt(message.entityID);
-        buf.writeInt(message.flag);
-    }
-
-    public static class Handler {
-        public Handler() {
-        }
-
-        public static void handle(MessageSendVisualFlagFromServer message, Supplier<NetworkEvent.Context> context) {
-            context.get().setPacketHandled(true);
-            context.get().enqueueWork(() -> {
-                Player player = context.get().getSender();
-                if(context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT){
-                    player = AlexsMobs.PROXY.getClientSidePlayer();
-                }
-
-                if (player != null) {
-                    if (player.level() != null) {
-                        Entity entity = player.level().getEntity(message.entityID);
-                        AlexsMobs.PROXY.processVisualFlag(entity, message.flag);
-                    }
-                }
-            });
-        }
+    public static void handle(MessageSendVisualFlagFromServer message, IPayloadContext context) {
+        context.enqueueWork(() -> {
+            Player player = context.player();
+            if (player != null && player.level() != null) {
+                Entity entity = player.level().getEntity(message.entityID);
+                AlexsMobs.PROXY.processVisualFlag(entity, message.flag);
+            }
+        });
     }
 }
