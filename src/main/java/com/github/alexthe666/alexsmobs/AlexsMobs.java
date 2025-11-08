@@ -31,6 +31,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.util.thread.EffectiveSide;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -49,7 +50,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Mod(AlexsMobs.MODID)
-@Mod.EventBusSubscriber(modid = AlexsMobs.MODID)
+@EventBusSubscriber(modid = AlexsMobs.MODID)
 public class AlexsMobs {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "alexsmobs";
@@ -96,11 +97,11 @@ public class AlexsMobs {
         AMLootRegistry.DEF_REG.register(modBusEvent);
         AMBannerRegistry.DEF_REG.register(modBusEvent);
         AMCreativeTabRegistry.DEF_REG.register(modBusEvent);
-        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(NeoNeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
+        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
         biomeModifiers.register(modBusEvent);
         biomeModifiers.register("am_mob_spawns", AMMobSpawnBiomeModifier::makeCodec);
         biomeModifiers.register("am_leafcutter_ant_spawns", AMLeafcutterAntBiomeModifier::makeCodec);
-        final DeferredRegister<Codec<? extends StructureModifier>> structureModifiers = DeferredRegister.create(NeoNeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
+        final DeferredRegister<Codec<? extends StructureModifier>> structureModifiers = DeferredRegister.create(NeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, AlexsMobs.MODID);
         structureModifiers.register(modBusEvent);
         structureModifiers.register("am_structure_spawns", AMMobSpawnStructureModifier::makeCodec);
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.COMMON_SPEC, "alexsmobs.toml");
