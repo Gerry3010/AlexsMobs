@@ -64,6 +64,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -422,8 +423,11 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public void clientTick(net.neoforged.neoforge.event.ClientTickEvent.Post event) {
-        AMItemstackRenderer.incrementTick();
+    public void clientTick(EntityTickEvent.Post event) {
+        // Increment renderer tick for itemstack animations
+        if (event.getEntity() instanceof LocalPlayer) {
+            AMItemstackRenderer.incrementTick();
+        }
     }
 
     @SubscribeEvent
