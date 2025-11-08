@@ -36,7 +36,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -58,8 +58,7 @@ public class AlexsMobs {
     private static boolean isAprilFools = false;
     private static boolean isHalloween = false;
 
-    public AlexsMobs() {
-        IEventBus modBusEvent = FMLJavaModLoadingContext.get().getModEventBus();
+    public AlexsMobs(IEventBus modBusEvent, ModContainer modContainer) {
         modBusEvent.addListener(this::setup);
         modBusEvent.addListener(this::setupClient);
         modBusEvent.addListener(this::onModConfigEvent);

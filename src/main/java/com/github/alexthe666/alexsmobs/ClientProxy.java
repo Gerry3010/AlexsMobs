@@ -38,7 +38,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -46,11 +46,11 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.common.MinecraftForge;
-import net.neoforged.neoforge.eventbus.api.IEventBus;
-import net.neoforged.neoforge.eventbus.api.SubscribeEvent;
+// MinecraftForge not needed in NeoForge 1.21
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.ModLoadingContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +78,7 @@ public class ClientProxy extends CommonProxy {
 
         AlexsMobs.LOGGER.info("loaded in item colorizer");
         if(AMItemRegistry.STRADDLEBOARD.isPresent()){
-            event.register((stack, colorIn) -> colorIn < 1 ? -1 : ((DyeableLeatherItem) stack.getItem()).getColor(stack), AMItemRegistry.STRADDLEBOARD.get());
+            event.register((stack, colorIn) -> colorIn < 1 ? -1 : DyedItemColor.getOrDefault(stack, -1), AMItemRegistry.STRADDLEBOARD.get());
         }else{
             AlexsMobs.LOGGER.warn("Could not add straddleboard item to colorizer...");
         }
@@ -94,7 +94,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void init() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus = ModLoadingContext.get().getActiveContainer().getEventBus();
         bus.addListener(ClientProxy::onBakingCompleted);
         bus.addListener(ClientProxy::onItemColors);
         bus.addListener(ClientProxy::onBlockColors);
@@ -103,7 +103,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void clientInit() {
-        NeoForge.EVENT_BUS.register(new ClientEvents());
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(new ClientEvents());
         initRainbowBuffers();
         ItemRenderer itemRendererIn = Minecraft.getInstance().getItemRenderer();
         EntityRenderers.register(AMEntityRegistry.GRIZZLY_BEAR.get(), RenderGrizzlyBear::new);
