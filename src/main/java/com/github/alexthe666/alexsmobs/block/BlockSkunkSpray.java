@@ -98,7 +98,7 @@ public class BlockSkunkSpray extends MultifaceBlock implements SimpleWaterlogged
                return InteractionResult.SUCCESS;
            }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return InteractionResult.PASS;
     }
 
     public static BlockState removeStinkFace(BlockState state, Direction faceProperty) {

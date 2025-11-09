@@ -83,7 +83,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     }
 
     protected float getEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return sizeIn.height;
+        return sizeIn.height();
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -103,9 +103,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         return canVehicleCollide(this, entity);
     }
 
-    protected Vec3 getRelativePortalPosition(Direction.Axis axis, BlockUtil.FoundRectangle result) {
-        return LivingEntity.resetForwardDirectionOfRelativePortalPosition(super.getRelativePortalPosition(axis, result));
-    }
 
     public double getPassengersRidingOffset() {
         return 0.5D;
@@ -324,7 +321,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         return this.level().getFluidState(underPos).is(FluidTags.LAVA) && !this.level().getFluidState(ourPos).is(FluidTags.LAVA);
     }
 
-    @Override
     public void lerpTo(double x, double y, double z, float yr, float xr, int steps, boolean b) {
         this.lx = x;
         this.ly = y;
@@ -335,7 +331,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         this.setDeltaMovement(this.lxd, this.lyd, this.lzd);
     }
 
-    @Override
     public void lerpMotion(double lerpX, double lerpY, double lerpZ) {
         this.lxd = lerpX;
         this.lyd = lerpY;
@@ -416,9 +411,8 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         return Mth.lerp(partialTicks, this.prevRockingAngle, this.rockingAngle);
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return PacketDistributor.TRACKING_ENTITY_AND_SELF.with(this).getPacket();
     }
 
 
@@ -431,7 +425,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     protected void readAdditionalSaveData(CompoundTag compound) {
         this.setDefaultColor(compound.getBoolean("IsDefColor"));
         if (compound.contains("BoardStack")) {
-            this.setItemStack(ItemStack.of(compound.getCompound("BoardStack")));
+            this.setItemStack(ItemStack.parseOptional(level().registryAccess(), compound.getCompound("BoardStack")).orElse(ItemStack.EMPTY));
         }
         this.setColor(compound.getInt("Color"));
     }
@@ -441,9 +435,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         compound.putBoolean("IsDefColor", this.isDefaultColor());
         compound.putInt("Color", this.getColor());
         if (!this.getItemStack().isEmpty()) {
-            CompoundTag stackTag = new CompoundTag();
-            this.getItemStack().save(stackTag);
-            compound.put("BoardStack", stackTag);
+            compound.put("BoardStack", this.getItemStack().save(level().registryAccess()));
         }
 
     }
@@ -470,7 +462,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
 
     private int getEnchantLevel(ResourceKey<Enchantment> enchantment) {
         return EnchantmentHelper.getItemEnchantmentLevel(
-            this.level().holderLookup(Registries.ENCHANTMENT).getOrThrow(enchantment).value(),
+            this.level().holderLookup(Registries.ENCHANTMENT).getOrThrow(enchantment),
             this.getItemBoard()
         );
     }

@@ -186,7 +186,7 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
             if (!(trampler instanceof LivingEntity)) {
                 return false;
             } else {
-                return trampler instanceof Player || net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent(worldIn, trampler);
+                return trampler instanceof Player || worldIn.getGameRules().getBoolean(net.minecraft.world.level.GameRules.RULE_MOBGRIEFING);
             }
         } else {
             return false;
@@ -197,13 +197,13 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
         ItemStack pickaxe = builder.getOptionalParameter(LootContextParams.TOOL);
         BlockEntity blockentity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         boolean silkTouch = false;
-        if(pickaxe != null){
-            silkTouch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, pickaxe) > 0;
+        if(pickaxe != null && builder.getLevel() != null){
+            silkTouch = EnchantmentHelper.getItemEnchantmentLevel(builder.getLevel().holderLookup(net.minecraft.core.registries.Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH), pickaxe) > 0;
         }
         if (silkTouch && blockentity instanceof TileEntityTerrapinEgg) {
             ItemStack stack = new ItemStack(AMBlockRegistry.TERRAPIN_EGG.get());
             TileEntityTerrapinEgg egg = (TileEntityTerrapinEgg)blockentity;
-            CompoundTag tag = stack.getOrCreateTagElement("BlockEntityTag");
+            CompoundTag tag = stack.getOrCreateTagElement("BlockEntityTag", new CompoundTag());
             CompoundTag parent1 = new CompoundTag();
             CompoundTag parent2 = new CompoundTag();
             boolean flag = false;
@@ -224,8 +224,8 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
         return List.of();
     }
 
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter w, List<Component> list, TooltipFlag flags) {
-        super.appendHoverText(stack, w, list, flags);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flags) {
+        super.appendHoverText(stack, context, list, flags);
         CompoundTag compoundtag = BlockItem.getBlockEntityData(stack);
         if (compoundtag != null && compoundtag.contains("Parent1Data") && compoundtag.contains("Parent2Data")) {
             TerrapinTypes parent1Type = TerrapinTypes.values()[Mth.clamp(compoundtag.getCompound("Parent1Data").getInt("TerrapinType"), 0, TerrapinTypes.values().length - 1)];
