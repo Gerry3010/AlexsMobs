@@ -94,6 +94,10 @@ public class ModelEndergrade extends AdvancedEntityModel<EntityEndergrade> {
 	}
 
 	public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
+		float red = (float)((color >> 16) & 255) / 255.0F;
+		float green = (float)((color >> 8) & 255) / 255.0F;
+		float blue = (float)(color & 255) / 255.0F;
+		float alpha = (float)((color >> 24) & 255) / 255.0F;
 		if (this.young) {
 			float f = 1.75F;
 			head.setScale(f, f, f);
@@ -125,7 +129,7 @@ public class ModelEndergrade extends AdvancedEntityModel<EntityEndergrade> {
 		AdvancedModelBox[] legPartsLeft = new AdvancedModelBox[]{legfrontL, legmidL, legbackL};
 		float walkSpeed = 1.7F;
 		float walkDegree = 0.7F;
-		float partialTick = Minecraft.getInstance().getFrameTime();
+		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(true);
 		float birdPitch = entityIn.prevTartigradePitch + (entityIn.tartigradePitch - entityIn.prevTartigradePitch) * partialTick;
 		float biteProgress= entityIn.prevBiteProgress + (entityIn.biteProgress - entityIn.prevBiteProgress) * partialTick;
 		this.mouth.setScale(1, 1, 1 + biteProgress * 0.4F);
