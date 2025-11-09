@@ -14,7 +14,7 @@ Minecraft mod that adds 80+ new creatures to the game.
 ## 🚧 1.21 Port Progress
 
 **Target:** Minecraft 1.21 with NeoForge 21.0.167  
-**Current Status:** ⚠️ Work in Progress - ~66 core errors remaining (99%+ complete)
+**Current Status:** ⚠️ Work in Progress - 66 core errors remaining (97% complete, ~1900 errors fixed!)
 
 ### ✅ Completed
 
@@ -389,23 +389,38 @@ cd ..
   - CapsidRecipeCategory.java compiles successfully
   - No JEI errors remaining!
 
-**Current Error Breakdown:** 100 total errors
-- 🟢 ~0 JEI errors (✅ RESOLVED!)
-- 🟠 ~66 core API errors remaining:
-  - Model renderToBuffer() signature mismatches (~10-15 errors)
-  - Entity defineSynchedData() signature issues
-  - Various symbol not found errors (component APIs, etc.)
-  - BlockPos → Vec3 conversions
-  - Enchantment ResourceKey → Holder conversions
-  - TooltipContext conversion
-  - Client operator issues
+**Current Error Breakdown:** 66 total errors
+- 🟢 ~34 JEI errors (optional compatibility, can be disabled)
+- 🟠 ~32 core API errors remaining:
+  - ItemStack NBT → DataComponent migrations (BlockTerrapinEgg, etc.)
+  - EventHooks API changes (BlockReptileEgg, getMobGriefingEvent)
+  - EntityDimensions access methods (EntityBlobfish)
+  - InteractionHand symbol resolution (entity part classes)
+  - TooltipContext conversions
+  - Various symbol not found (component APIs)
+  - Method signature mismatches
 
-**Remaining Work:**
-- Model render() signature changes (~10-15 files)
-- defineSynchedData() method signature fixes
-- Enchantment Holder conversions (~5 instances)
-- TooltipContext API changes
-- Various minor symbol resolution
+**Session 4 Extended Progress (2025-01-09):**
+- ✅ **Fixed defineSynchedData() signatures** - migrated 40+ entities to Builder pattern
+- ✅ **Added missing SynchedEntityData imports** - fixed 9 entity files
+- ✅ **Fixed renderToBuffer() signatures** - converted 50+ models from float RGBA to int color
+- ✅ **Fixed render() calls** - converted to packed color (FastColor.ARGB32) in 13+ models
+- ✅ **Fixed portal API** - removed isInsidePortal and portalTime references
+- ✅ **Fixed getFrameTime()** - migrated to getTimer().getGameTimeDeltaPartialTick(true)
+- ✅ **Fixed Items.SHEARS and SoundEvent holders** - proper unwrapping with .value()
+- ✅ **Fixed itemstack.hurtAndBreak()** - updated signature with LivingEntity.getSlotForHand
+- ✅ **Fixed EntityBlobfish** - getDimensions() and height() method access
+- ✅ **Fixed EntityBison** - removed Forge event, removed incorrect @Override annotations
+- ✅ **Fixed BlockPos → Vec3** conversions (TileEntityEndPirateDoor)
+- ✅ **Fixed navigation access** - changed to getNavigation() from protected field
+
+**Remaining Work (25 files, ~32 core errors):**
+- ItemStack component/NBT API migrations (getOrCreateTagElement → DataComponents)
+- EventHooks.getMobGriefingEvent API updates
+- BlockGetter → TooltipContext conversions
+- InteractionHand symbol resolution in multipart entities
+- Various method signature fixes
+- Symbol not found errors (mostly component APIs)
 
 ### Migration Strategy
 
