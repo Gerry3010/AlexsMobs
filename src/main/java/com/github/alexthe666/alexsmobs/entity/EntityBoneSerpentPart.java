@@ -181,7 +181,6 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
         return null;
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }

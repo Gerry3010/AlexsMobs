@@ -174,6 +174,10 @@ public class EntityCachalotWhale extends Animal {
     public void pushEntities() {
     }
 
+    public boolean isFood(ItemStack stack) {
+        return false;
+    }
+
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         return super.mobInteract(player, hand);
     }
@@ -960,7 +964,7 @@ public class EntityCachalotWhale extends Animal {
 
         private boolean canBreatheAt(LevelReader p_205140_1_, BlockPos p_205140_2_) {
             final BlockState lvt_3_1_ = p_205140_1_.getBlockState(p_205140_2_);
-            return (p_205140_1_.getFluidState(p_205140_2_).isEmpty() || lvt_3_1_.is(Blocks.BUBBLE_COLUMN)) && lvt_3_1_.isPathfindable(p_205140_1_, p_205140_2_, PathComputationType.LAND);
+            return (p_205140_1_.getFluidState(p_205140_2_).isEmpty() || lvt_3_1_.is(Blocks.BUBBLE_COLUMN)) && lvt_3_1_.isPathfindable(PathComputationType.LAND);
         }
     }
 }

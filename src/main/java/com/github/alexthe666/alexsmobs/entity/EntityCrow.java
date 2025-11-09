@@ -330,7 +330,7 @@ public class EntityCrow extends TamableAnimal implements ITargetsDroppedItems {
                 this.playSound(SoundEvents.PARROT_EAT, this.getSoundVolume(), this.getVoicePitch());
                 if (seedThrowerID != null && this.getMainHandItem().is(AMTagRegistry.CROW_TAMEABLES) && !this.isTame()) {
                     if (getRandom().nextFloat() < 0.3F) {
-                        this.setTame(true);
+                        this.setTame(true, true);
                         this.setCommand(1);
                         this.setOwnerUUID(this.seedThrowerID);
                         final Player player = level().getPlayerByUUID(seedThrowerID);

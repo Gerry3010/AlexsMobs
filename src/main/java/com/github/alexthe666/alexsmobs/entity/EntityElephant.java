@@ -106,7 +106,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
         map.put(DyeColor.RED, Items.RED_CARPET);
         map.put(DyeColor.BLACK, Items.BLACK_CARPET);
     });
-    private static final ResourceLocation TRADER_LOOT = new ResourceLocation("alexsmobs", "gameplay/trader_elephant_chest");
+    private static final ResourceLocation TRADER_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/trader_elephant_chest");
     public boolean forcedSit = false;
     public float prevSitProgress;
     public float sitProgress;
@@ -316,7 +316,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
                 this.eatItemEffect(this.getMainHandItem());
                 if (this.getMainHandItem().is(AMTagRegistry.ELEPHANT_TAMEABLES) && !this.isTame() && (!isTusked() || isBaby()) && blossomThrowerUUID != null) {
                     if (random.nextInt(3) == 0) {
-                        this.setTame(true);
+                        this.setTame(true, true);
                         this.setOwnerUUID(blossomThrowerUUID);
                         Player player = this.level().getPlayerByUUID(blossomThrowerUUID);
                         if (player != null) {

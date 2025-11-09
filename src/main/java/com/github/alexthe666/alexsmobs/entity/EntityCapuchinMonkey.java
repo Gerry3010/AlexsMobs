@@ -528,7 +528,7 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
         Entity itemThrower = e.getOwner();
         if (e.getItem().is(AMTagRegistry.CAPUCHIN_MONKEY_TAMEABLES) && itemThrower != null && !this.isTame()) {
             if (getRandom().nextInt(5) == 0) {
-                this.setTame(true);
+                this.setTame(true, true);
                 this.setOwnerUUID(itemThrower.getUUID());
                 this.level().broadcastEntityEvent(this, (byte) 7);
             } else {
@@ -538,7 +538,7 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance diff, MobSpawnType spawnType, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance diff, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
         int i;
         if (data instanceof CapuchinGroupData) {
             i = ((CapuchinGroupData)data).variant;
@@ -548,7 +548,7 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
         }
 
         this.setVariant(i);
-        return super.finalizeSpawn(world, diff, spawnType, data, tag);
+        return super.finalizeSpawn(world, diff, spawnType, data);
     }
 
     public static class CapuchinGroupData extends AgeableMobGroupData {
