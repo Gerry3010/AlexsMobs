@@ -466,8 +466,7 @@ public class EntityCapuchinMonkey extends TamableAnimal implements IAnimatedEnti
             }
             if (this.hasDart() && itemstack.is(Tags.Items.SHEARS)) {
                 this.setDart(false);
-                itemstack.hurtAndBreak(1, this, (p_233654_0_) -> {
-                });
+                itemstack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemstack));
                 return InteractionResult.SUCCESS;
             }
             if (player.isShiftKeyDown() && player.getPassengers().isEmpty()) {

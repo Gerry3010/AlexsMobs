@@ -371,11 +371,9 @@ public class EntityCrocodile extends TamableAnimal implements IAnimatedEntity, I
             if (damage >= 3.0F) {
                 int i = 1 + Mth.floor(damage);
                 InteractionHand hand = holder.getUsedItemHand();
-                holder.getUseItem().hurtAndBreak(i, holder, (p_213833_1_) -> {
-                    p_213833_1_.broadcastBreakEvent(hand);
-                    net.neoforged.neoforge.event.EventHooks.onPlayerDestroyItem(holder, holder.getUseItem(), hand);
-                });
-                if (holder.getUseItem().isEmpty()) {
+                ItemStack shield = holder.getUseItem();
+                shield.hurtAndBreak(i, holder, holder.getEquipmentSlotForItem(shield));
+                if (shield.isEmpty()) {
                     if (hand == InteractionHand.MAIN_HAND) {
                         holder.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
                     } else {
@@ -600,7 +598,7 @@ public class EntityCrocodile extends TamableAnimal implements IAnimatedEntity, I
         if (item == Items.NAME_TAG) {
             return super.mobInteract(player, hand);
         }
-        if (isTame() && item.isEdible() && item.getFoodProperties() != null && item.getFoodProperties().isMeat() && this.getHealth() < this.getMaxHealth()) {
+        if (isTame() && item.components().has(net.minecraft.core.component.DataComponents.FOOD) && this.getHealth() < this.getMaxHealth()) {
             this.usePlayerItem(player, hand, itemstack);
             this.heal(10);
             this.gameEvent(GameEvent.EAT);
