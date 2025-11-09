@@ -396,7 +396,6 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
         return new Animation[]{ANIMATION_PREPARE_CHARGE, ANIMATION_ATTACK, ANIMATION_EAT};
     }
 
-    @Override
     public boolean isShearable(@javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos) {
         return this.readyForShearing();
     }
@@ -426,7 +425,6 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
     }
 
     @javax.annotation.Nonnull
-    @Override
     public java.util.List<ItemStack> onSheared(@javax.annotation.Nullable Player player, @javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
         world.playSound(null, this, SoundEvents.SHEEP_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.ENTITY_INTERACT);
