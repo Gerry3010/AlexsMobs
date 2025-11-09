@@ -129,7 +129,7 @@ public class ModelCockroach extends AdvancedEntityModel<EntityCockroach> {
         float flyDegree = 0.5F;
         float walkSpeed = 1.25F;
         float walkDegree = 0.5F;
-        float partialTick = Minecraft.getInstance().getFrameTime();
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
         float danceProgress = entity.prevDanceProgress + (entity.danceProgress - entity.prevDanceProgress) * partialTick;
         progressRotationPrev(abdomen, danceProgress, Maths.rad(-70), 0, 0, 5F);
         progressRotationPrev(left_leg_front, danceProgress, 0, Maths.rad(-10), 0, 5F);
@@ -196,14 +196,14 @@ public class ModelCockroach extends AdvancedEntityModel<EntityCockroach> {
             matrixStackIn.scale(0.65F, 0.65F, 0.65F);
             matrixStackIn.translate(0.0D, 0.815D, 0.125D);
             parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
         } else {
             this.head.setScale(1F, 1F, 1F);
             matrixStackIn.pushPose();
             parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
         }

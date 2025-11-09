@@ -49,8 +49,8 @@ import java.util.UUID;
 
 public class EntityCockroach extends Animal implements Shearable, net.neoforged.neoforge.common.IShearable, ITargetsDroppedItems {
 
-    public static final ResourceLocation MARACA_LOOT = new ResourceLocation("alexsmobs", "entities/cockroach_maracas");
-    public static final ResourceLocation MARACA_HEADLESS_LOOT = new ResourceLocation("alexsmobs", "entities/cockroach_maracas_headless");
+    public static final ResourceLocation MARACA_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/cockroach_maracas");
+    public static final ResourceLocation MARACA_HEADLESS_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/cockroach_maracas_headless");
     protected static final EntityDimensions STAND_SIZE = EntityDimensions.fixed(0.7F, 0.9F);
     private static final EntityDataAccessor<Boolean> DANCING = SynchedEntityData.defineId(EntityCockroach.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HEADLESS = SynchedEntityData.defineId(EntityCockroach.class, EntityDataSerializers.BOOLEAN);
@@ -172,21 +172,28 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
         }
     }
 
-    @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return this.hasMaracas() ? this.isHeadless() ? MARACA_HEADLESS_LOOT : MARACA_LOOT : super.getDefaultLootTable();
+    @Override
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        if (this.hasMaracas()) {
+            if (this.isHeadless()) {
+                return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, MARACA_HEADLESS_LOOT);
+            } else {
+                return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, MARACA_LOOT);
+            }
+        }
+        return super.getDefaultLootTable();
     }
 
     public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
         return 0.5F - Math.max(worldIn.getBrightness(LightLayer.BLOCK, pos), worldIn.getBrightness(LightLayer.SKY, pos));
     }
 
-    public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+    public net.minecraft.world.entity.MobType getMobType() {
+        return net.minecraft.world.entity.MobType.ARTHROPOD;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isDancing() ? STAND_SIZE.scale(this.getScale()) : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isDancing() ? STAND_SIZE.scale(this.getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     @Override
@@ -375,7 +382,6 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
         return this.isAlive() && !this.isBaby() && !isHeadless();
     }
 
-    @Override
     public boolean isShearable(@javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos) {
         return readyForShearing();
     }
@@ -389,7 +395,6 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
     }
 
     @javax.annotation.Nonnull
-    @Override
     public java.util.List<ItemStack> onSheared(@javax.annotation.Nullable Player player, @javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
         world.playSound(null, this, SoundEvents.SHEEP_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.ENTITY_INTERACT);
@@ -405,7 +410,7 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.getItem().isEdible() || stack.is(AMTagRegistry.COCKROACH_BREEDABLES);
+        return (stack.getItem().components().has(net.minecraft.core.component.DataComponents.FOOD) || stack.getItem().components().has(net.minecraft.core.component.DataComponents.CONSUMABLE)) || stack.is(AMTagRegistry.COCKROACH_BREEDABLES);
     }
 
     public void travel(Vec3 vec3d) {
