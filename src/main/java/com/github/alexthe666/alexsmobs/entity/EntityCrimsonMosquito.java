@@ -116,7 +116,7 @@ public class EntityCrimsonMosquito extends Monster {
         this.setMosquitoScale(0.2F);
         this.setFromFly(true);
         for (int j = 0; j < 4; ++j) {
-            this.level().addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0, 0.0D);
+            this.level().addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0.0D, 0.0D);
         }
     }
 
@@ -507,10 +507,10 @@ public class EntityCrimsonMosquito extends Monster {
                 this.entityData.set(SHOOTING, false);
             }
         }
-        if (isFlying()) {
+                if (isFlying()) {
             if (loopSoundTick == 0) {
                 this.gameEvent(GameEvent.ENTITY_ROAR);
-                this.playSound(AMSoundRegistry.MOSQUITO_LOOP.get(), this.getSoundVolume(), this.getVoicePitch());
+                this.playSound(AMSoundRegistry.MOSQUITO_LOOP.value(), this.getSoundVolume(), this.getVoicePitch());
             }
             loopSoundTick++;
             if (loopSoundTick > 100) {
@@ -541,7 +541,7 @@ public class EntityCrimsonMosquito extends Monster {
                     EntityWarpedMosco mosco = AMEntityRegistry.WARPED_MOSCO.get().create(level());
                     mosco.copyPosition(this);
                     if (!this.level().isClientSide) {
-                        mosco.finalizeSpawn((ServerLevelAccessor) level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.CONVERSION, null, null);
+                        mosco.finalizeSpawn((ServerLevelAccessor) level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.CONVERSION, null);
                     }
 
                     if (!this.level().isClientSide) {
@@ -574,15 +574,17 @@ public class EntityCrimsonMosquito extends Monster {
         return false;
     }
 
-    public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+    @Override
+    public MobType getMobType() {
+        return MobType.ARTHROPOD;
     }
 
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isFlying() ? FLIGHT_SIZE : super.getDimensions(poseIn);
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isFlying() ? FLIGHT_SIZE.scale(this.getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     public void travel(Vec3 vec3d) {
@@ -867,7 +869,7 @@ public class EntityCrimsonMosquito extends Monster {
     }
 
     public boolean isNonMungusWarpedTrigger(Entity entity) {
-        final ResourceLocation mobtype = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+        final ResourceLocation mobtype = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
         return mobtype != null && !AMConfig.warpedMoscoMobTriggers.isEmpty() && AMConfig.warpedMoscoMobTriggers.contains(mobtype.toString());
     }
 

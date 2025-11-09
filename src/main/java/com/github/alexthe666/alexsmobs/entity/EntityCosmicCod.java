@@ -25,6 +25,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.monster.Monster;
@@ -131,7 +132,7 @@ public class EntityCosmicCod extends Mob implements Bucketable {
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+        CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
             tag.put("CosmicCodData", platTag);
         });
     }

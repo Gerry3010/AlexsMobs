@@ -188,6 +188,7 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
         return 0.5F - Math.max(worldIn.getBrightness(LightLayer.BLOCK, pos), worldIn.getBrightness(LightLayer.SKY, pos));
     }
 
+    @Override
     public net.minecraft.world.entity.MobType getMobType() {
         return net.minecraft.world.entity.MobType.ARTHROPOD;
     }
@@ -410,7 +411,7 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return (stack.getItem().components().has(net.minecraft.core.component.DataComponents.FOOD) || stack.getItem().components().has(net.minecraft.core.component.DataComponents.CONSUMABLE)) || stack.is(AMTagRegistry.COCKROACH_BREEDABLES);
+        return stack.getItem().components().has(net.minecraft.core.component.DataComponents.FOOD) || stack.getItem().components().has(net.minecraft.core.component.DataComponents.CONSUMABLE) || stack.is(AMTagRegistry.COCKROACH_BREEDABLES);
     }
 
     public void travel(Vec3 vec3d) {
