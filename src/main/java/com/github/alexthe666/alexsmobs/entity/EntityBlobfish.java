@@ -89,7 +89,7 @@ public class EntityBlobfish extends WaterAnimal implements FlyingAnimal, Bucketa
     }
 
     protected float getStandingEyeHeight(Pose p_213348_1_, EntityDimensions p_213348_2_) {
-        return p_213348_2_.height * 0.65F;
+        return p_213348_2_.height() * 0.65F;
     }
 
     public boolean requiresCustomPersistence() {
@@ -112,8 +112,9 @@ public class EntityBlobfish extends WaterAnimal implements FlyingAnimal, Bucketa
         builder.define(SLIMED, false);
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return super.getDimensions(poseIn).scale(this.getBlobfishScale());
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return super.getDefaultDimensions(poseIn).scale(this.getBlobfishScale());
     }
 
     @Override

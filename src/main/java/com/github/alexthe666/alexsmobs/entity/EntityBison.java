@@ -449,11 +449,6 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
     }
 
     private void applyKnockbackFromBuffalo(float strength, double ratioX, double ratioZ) {
-        net.minecraftforge.event.entity.living.LivingKnockBackEvent event = net.minecraftforge.common.ForgeHooks.onLivingKnockBack(this, strength, ratioX, ratioZ);
-        if (event.isCanceled()) return;
-        strength = event.getStrength();
-        ratioX = event.getRatioX();
-        ratioZ = event.getRatioZ();
         if (!(strength <= 0.0F)) {
             this.hasImpulse = true;
             Vec3 vector3d = this.getDeltaMovement();
