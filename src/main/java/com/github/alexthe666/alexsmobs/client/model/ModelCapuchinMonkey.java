@@ -211,7 +211,7 @@ public class ModelCapuchinMonkey extends AdvancedEntityModel<EntityCapuchinMonke
 		float walkSpeed = 0.8F;
 		float walkDegree = 0.7F;
 		float stillProgress = 5F * (1F - limbSwingAmount);
-		float partialTick = Minecraft.getInstance().getFrameTime();
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
 		float sitProgress = entity.isPassenger() ? 0 :entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * partialTick;
 		float rideProgress = entity.isPassenger() && entity.getVehicle() instanceof LivingEntity && entity.isOwnedBy((LivingEntity) entity.getVehicle()) ? 10 : 0;
 		progressPositionPrev(body, rideProgress, 3, 12F, 0, 10F);

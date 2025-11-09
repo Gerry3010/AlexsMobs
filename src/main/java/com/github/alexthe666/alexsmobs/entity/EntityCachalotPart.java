@@ -93,7 +93,6 @@ public class EntityCachalotPart extends PartEntity<EntityCachalotWhale> {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
 
     }
 

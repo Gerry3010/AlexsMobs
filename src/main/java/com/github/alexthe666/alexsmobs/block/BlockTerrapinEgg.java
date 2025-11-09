@@ -204,7 +204,7 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
         if (silkTouch && blockentity instanceof TileEntityTerrapinEgg) {
             ItemStack stack = new ItemStack(AMBlockRegistry.TERRAPIN_EGG.get());
             TileEntityTerrapinEgg egg = (TileEntityTerrapinEgg)blockentity;
-            CompoundTag tag = stack.getOrCreateTagElement("BlockEntityTag", new CompoundTag());
+            CompoundTag tag = stack.getOrDefault(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.level.block.entity.BlockEntityData.EMPTY).copyTag();
             CompoundTag parent1 = new CompoundTag();
             CompoundTag parent2 = new CompoundTag();
             boolean flag = false;
@@ -219,6 +219,7 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
             if(flag){
                 tag.put("Parent1Data", parent1);
                 tag.put("Parent2Data", parent2);
+                stack.set(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.level.block.entity.BlockEntityData.of(tag));
             }
             return List.of(stack);
         }

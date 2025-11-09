@@ -43,7 +43,7 @@ public class MenuTransmutationTable extends AbstractContainerMenu {
         this.addSlot(transmuteSlot = new Slot(this.container, 0, 83, 83) {
             public boolean mayPlace(ItemStack stack) {
                 ResourceLocation name = BuiltInRegistries.ITEM.getKey(stack.getItem());
-                return stack.getMaxStackSize() > 1 && (name != null && !AMConfig.transmutingBlacklist.contains(name.toString()));
+                return stack.getMaxStackSize() > 1 && !AMConfig.transmutingBlacklist.contains(name.toString());
             }
         });
         for (int i = 0; i < 3; ++i) {
