@@ -89,7 +89,7 @@ public class EntityCentipedeHead extends Monster {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.MONSTER;
     }
 
     protected void playStepSound(BlockPos pos, BlockState blockIn) {

@@ -114,7 +114,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.CREATURE;
     }
 
     private void switchNavigator(boolean rightsideUp) {

@@ -223,7 +223,7 @@ public class EntityFly extends Animal implements FlyingAnimal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.AMBIENT;
     }
 
     protected void jumpInLiquid(TagKey<Fluid> fluidTag) {

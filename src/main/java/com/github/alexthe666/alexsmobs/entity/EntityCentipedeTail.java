@@ -11,7 +11,7 @@ public class EntityCentipedeTail extends EntityCentipedeBody {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.MISC;
     }
 
 }

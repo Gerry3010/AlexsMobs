@@ -58,7 +58,7 @@ public class EntityCentipedeBody extends Mob implements IHurtableMultipart {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.MISC;
     }
 
     public boolean isNoGravity() {
