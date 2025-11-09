@@ -204,7 +204,7 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
         if (silkTouch && blockentity instanceof TileEntityTerrapinEgg) {
             ItemStack stack = new ItemStack(AMBlockRegistry.TERRAPIN_EGG.get());
             TileEntityTerrapinEgg egg = (TileEntityTerrapinEgg)blockentity;
-            CompoundTag tag = stack.getOrDefault(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.level.block.entity.BlockEntityData.EMPTY).copyTag();
+            CompoundTag tag = stack.getOrDefault(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
             CompoundTag parent1 = new CompoundTag();
             CompoundTag parent2 = new CompoundTag();
             boolean flag = false;
@@ -219,7 +219,7 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
             if(flag){
                 tag.put("Parent1Data", parent1);
                 tag.put("Parent2Data", parent2);
-                stack.set(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.level.block.entity.BlockEntityData.of(tag));
+                stack.set(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.item.component.CustomData.of(tag));
             }
             return List.of(stack);
         }
@@ -228,7 +228,8 @@ public class BlockTerrapinEgg extends BaseEntityBlock {
 
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flags) {
         super.appendHoverText(stack, context, list, flags);
-        CompoundTag compoundtag = BlockItem.getBlockEntityData(stack);
+        net.minecraft.world.item.component.CustomData customdata = stack.getOrDefault(net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA, net.minecraft.world.item.component.CustomData.EMPTY);
+        CompoundTag compoundtag = customdata.isEmpty() ? null : customdata.copyTag();
         if (compoundtag != null && compoundtag.contains("Parent1Data") && compoundtag.contains("Parent2Data")) {
             TerrapinTypes parent1Type = TerrapinTypes.values()[Mth.clamp(compoundtag.getCompound("Parent1Data").getInt("TerrapinType"), 0, TerrapinTypes.values().length - 1)];
             TerrapinTypes parent2Type = TerrapinTypes.values()[Mth.clamp(compoundtag.getCompound("Parent2Data").getInt("TerrapinType"), 0, TerrapinTypes.values().length - 1)];

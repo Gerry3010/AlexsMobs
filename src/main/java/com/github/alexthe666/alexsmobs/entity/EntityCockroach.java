@@ -189,8 +189,8 @@ public class EntityCockroach extends Animal implements Shearable, net.neoforged.
     }
 
     @Override
-    public net.minecraft.world.entity.MobType getMobType() {
-        return net.minecraft.world.entity.MobType.ARTHROPOD;
+    public MobType getMobType() {
+        return MobType.ARTHROPOD;
     }
 
     public EntityDimensions getDefaultDimensions(Pose poseIn) {
