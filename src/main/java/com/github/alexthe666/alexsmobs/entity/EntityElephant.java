@@ -22,6 +22,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -51,6 +53,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -106,7 +109,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
         map.put(DyeColor.RED, Items.RED_CARPET);
         map.put(DyeColor.BLACK, Items.BLACK_CARPET);
     });
-    private static final ResourceLocation TRADER_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/trader_elephant_chest");
+    private static final ResourceKey<LootTable> TRADER_LOOT = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/trader_elephant_chest"));
     public boolean forcedSit = false;
     public float prevSitProgress;
     public float sitProgress;
@@ -169,7 +172,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
         this.elephantInventory = new SimpleContainer(54){
 
             public boolean stillValid(Player player) {
-                return EntityElephant.this.isAlive() && !EntityElephant.this.isInsidePortal;
+                return EntityElephant.this.isAlive() && !EntityElephant.this.isPassengerOfSameVehicle(player);
             }
         };
         if (animalchest != null) {
@@ -414,7 +417,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
             this.setAnimation(this.getRandom().nextBoolean() ? ANIMATION_TRUMPET_0 : ANIMATION_TRUMPET_1);
         }
         if (this.getAnimation() == ANIMATION_TRUMPET_0 && this.getAnimationTick() == 8 || this.getAnimation() == ANIMATION_TRUMPET_1 && this.getAnimationTick() == 4) {
-            this.gameEvent(GameEvent.ENTITY_ROAR);
+            this.gameEvent(GameEvent.ENTITY_ACTION);
             this.playSound(AMSoundRegistry.ELEPHANT_TRUMPET.get(), this.getSoundVolume(), this.getVoicePitch());
         }
         if (this.isAlive() && charging) {
@@ -482,7 +485,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
 
     private void eatItemEffect(ItemStack heldItemMainhand) {
         this.gameEvent(GameEvent.EAT);
-        this.playSound(SoundEvents.STRIDER_EAT.value(), this.getVoicePitch(), this.getSoundVolume());
+        this.playSound(SoundEvents.STRIDER_EAT, this.getVoicePitch(), this.getSoundVolume());
         for (int i = 0; i < 8 + random.nextInt(3); i++) {
             double d2 = this.random.nextGaussian() * 0.02D;
             double d0 = this.random.nextGaussian() * 0.02D;
@@ -543,25 +546,25 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;
-        } else if (owner && this.getColor() != null && stack.is(Tags.Items.SHEARS)) {
+        } else if (owner && this.getColor() != null && stack.getItem() instanceof ShearsItem) {
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             if (this.getColor() != null) {
                 this.spawnAtLocation(this.getCarpetItemBeingWorn());
             }
             this.setColor(null);
             return InteractionResult.SUCCESS;
-        } else if (owner && !this.isChested() && stack.is(Tags.Items.CHESTS_WOODEN)) {
+        } else if (owner && !this.isChested() && stack.getItem() == Items.CHEST) {
             this.setChested(true);
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.DONKEY_CHEST.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.DONKEY_CHEST, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
-        } else if (owner && isChested() && stack.is(Tags.Items.SHEARS)) {
+        } else if (owner && isChested() && stack.getItem() instanceof ShearsItem) {
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             this.spawnAtLocation(Blocks.CHEST);
             for (int i = 0; i < elephantInventory.getContainerSize(); i++) {
                 this.spawnAtLocation(elephantInventory.getItem(i));
@@ -578,8 +581,9 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
         return type;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isTusked() && !isBaby() ? TUSKED_SIZE : super.getDimensions(poseIn);
+    @Override
+    protected EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isTusked() && !isBaby() ? TUSKED_SIZE : super.getDefaultDimensions(poseIn);
     }
 
     @Override
@@ -663,7 +667,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
                 if (!itemstack.isEmpty()) {
                     CompoundTag CompoundNBT = new CompoundTag();
                     CompoundNBT.putByte("Slot", (byte) i);
-                    itemstack.save(CompoundNBT);
+                    itemstack.save(this.registryAccess(), CompoundNBT);
                     nbttaglist.add(CompoundNBT);
                 }
             }
@@ -680,7 +684,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
 
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.setTame(compound.getBoolean("Tamed"));
+        this.setTame(compound.getBoolean("Tamed"), true);
         this.setTusked(compound.getBoolean("Tusked"));
         this.setStanding(compound.getBoolean("Standing"));
         this.setOrderedToSit(compound.getBoolean("ElephantSitting"));
@@ -695,7 +699,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
             for (int i = 0; i < nbttaglist.size(); ++i) {
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
-                this.elephantInventory.setItem(j, ItemStack.of(CompoundNBT));
+                this.elephantInventory.setItem(j, ItemStack.parse(this.registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         } else {
             ListTag nbttaglist = compound.getList("Items", 10);
@@ -704,7 +708,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
                 this.initElephantInventory();
-                this.elephantInventory.setItem(j, ItemStack.of(CompoundNBT));
+                this.elephantInventory.setItem(j, ItemStack.parse(this.registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         }
         if (compound.contains("DespawnDelay", 99)) {
@@ -851,7 +855,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
 
     public void addElephantLoot(@Nullable Player player, int seed) {
         if (this.level().getServer() != null) {
-            LootTable loottable = this.level().getServer().getLootData().getLootTable(TRADER_LOOT);
+            LootTable loottable = this.level().getServer().reloadableRegistries().getLootTable(TRADER_LOOT);
 
             LootParams.Builder lootcontext$builder = (new LootParams.Builder((ServerLevel) this.level()));
 
@@ -914,7 +918,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
 
-            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + scaleY + passenger.getMyRidingOffset(), this.getZ() + extraZ);
+            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + scaleY, this.getZ() + extraZ);
         }
     }
 
@@ -982,7 +986,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
 
     public void openGUI(Player playerEntity) {
         if (!this.level().isClientSide && (!this.hasPassenger(playerEntity))) {
-            NetworkHooks.openScreen((ServerPlayer) playerEntity, new MenuProvider() {
+            playerEntity.openMenu(new MenuProvider() {
                 @Override
                 public AbstractContainerMenu createMenu(int p_createMenu_1_, Inventory p_createMenu_2_, Player p_createMenu_3_) {
                     return ChestMenu.sixRows(p_createMenu_1_, p_createMenu_2_, elephantInventory);
