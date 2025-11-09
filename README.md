@@ -14,7 +14,7 @@ Minecraft mod that adds 80+ new creatures to the game.
 ## 🚧 1.21 Port Progress
 
 **Target:** Minecraft 1.21 with NeoForge 21.0.167  
-**Current Status:** ⚠️ Work in Progress - 66 core errors remaining (97% complete, ~1900 errors fixed!)
+**Current Status:** ⚠️ Work in Progress - 66 core errors remaining (97% complete, ~1900+ errors fixed!)
 
 ### ✅ Completed
 
@@ -68,12 +68,11 @@ Minecraft mod that adds 80+ new creatures to the game.
 
 ### 🔧 In Progress
 
-#### Compilation Errors (~100 total, ~10 core remaining)
+#### Compilation Errors (66 core + 34 JEI = ~100 total)
 
 **Category Breakdown:**
-- 🟢 ~90 JEI integration errors (optional compatibility, can be disabled or updated separately)
-- 🟠 ~8 AMSoundRegistry errors (DeferredHolder needs 2 type parameters)
-- 🟠 ~2 AMAdvancementTrigger errors
+- 🟢 ~34 JEI integration errors (optional compatibility, can be disabled or updated separately)
+- 🟠 66 core errors spread across ~20 files (entity API migrations, model rendering, etc.)
 
 **Priority 1: Enchantment System** ✅ **COMPLETED!**
 - [x] ~~Redesign enchantment system~~ ✅ Fully implemented with 1.21 data-driven system!
