@@ -24,6 +24,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.monster.Monster;
@@ -127,14 +128,17 @@ public class EntityCosmicCod extends Mob implements Bucketable {
         if (this.hasCustomName()) {
             bucket.setHoverName(this.getCustomName());
         }
+        Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("CosmicCodData", platTag);
+        CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.put("CosmicCodData", platTag);
+        });
     }
 
     @Override
     public void loadFromBucketTag(@Nonnull CompoundTag compound) {
+        Bucketable.loadDefaultDataFromBucketTag(this, compound);
         if (compound.contains("CosmicCodData")) {
             this.readAdditionalSaveData(compound.getCompound("CosmicCodData"));
         }
@@ -308,10 +312,8 @@ public class EntityCosmicCod extends Mob implements Bucketable {
         final boolean flag = blockstate.isAir();
         if (flag && !blockstate.getFluidState().is(FluidTags.WATER)) {
             this.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
-            net.minecraftforge.event.entity.EntityTeleportEvent.EnderEntity event = net.neoforged.neoforge.event.EventHooks.onEnderTeleport(this, x, y, z);
-            if (event.isCanceled()) return false;
             level().broadcastEntityEvent(this, (byte) 46);
-            this.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+            this.teleportTo(x, y, z);
             return true;
         } else {
             return false;

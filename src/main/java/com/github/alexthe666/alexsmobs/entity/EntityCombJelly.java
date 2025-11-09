@@ -20,6 +20,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.monster.Monster;
@@ -249,9 +250,10 @@ public class EntityCombJelly extends WaterAnimal implements Bucketable {
             bucket.setHoverName(this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
-        CompoundTag compoundnbt = bucket.getOrCreateTag();
-        compoundnbt.putFloat("BucketScale", this.getJellyScale());
-        compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.putFloat("BucketScale", this.getJellyScale());
+            tag.putInt("BucketVariantTag", this.getVariant());
+        });
     }
 
     @Override
@@ -301,8 +303,8 @@ public class EntityCombJelly extends WaterAnimal implements Bucketable {
         return f1;
     }
 
-    public MobCategory getMobType() {
-        return MobCategory.WATER;
+    public MobType getMobType() {
+        return MobType.WATER_AMBIENT;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {
