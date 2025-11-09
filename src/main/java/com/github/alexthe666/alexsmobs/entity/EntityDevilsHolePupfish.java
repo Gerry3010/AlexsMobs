@@ -40,6 +40,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -62,7 +64,7 @@ import java.util.function.Predicate;
 
 public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal, Bucketable {
 
-    public static final ResourceLocation PUPFISH_REWARD = new ResourceLocation("alexsmobs", "gameplay/pupfish_reward");
+    public static final ResourceLocation PUPFISH_REWARD = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/pupfish_reward");
     private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(EntityDevilsHolePupfish.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Float> PUPFISH_SCALE = SynchedEntityData.defineId(EntityDevilsHolePupfish.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Integer> FEEDING_TIME = SynchedEntityData.defineId(EntityDevilsHolePupfish.class, EntityDataSerializers.INT);
@@ -207,8 +209,9 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
     }
 
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return super.getDimensions(poseIn).scale(this.getPupfishScale());
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return super.getDefaultDimensions(poseIn).scale(this.getPupfishScale());
     }
 
     public boolean fromBucket() {
@@ -225,9 +228,10 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
             bucket.setHoverName(this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.putFloat("BucketScale", this.getPupfishScale());
-        compound.putFloat("BabyAge", this.getBabyAge());
+        CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.putFloat("BucketScale", this.getPupfishScale());
+            tag.putFloat("BabyAge", this.getBabyAge());
+        });
     }
 
     @Override
@@ -363,7 +367,8 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
     }
 
     private static List<ItemStack> getFoodLoot(EntityDevilsHolePupfish pupfish) {
-        LootTable loottable = pupfish.level().getServer().getLootData().getLootTable(PUPFISH_REWARD);
+        net.minecraft.resources.ResourceKey<LootTable> lootTableKey = net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, PUPFISH_REWARD);
+        LootTable loottable = pupfish.level().getServer().reloadableRegistries().getLootTable(lootTableKey);
         return loottable.getRandomItems((new LootParams.Builder((ServerLevel) pupfish.level())).withParameter(LootContextParams.THIS_ENTITY, pupfish).create(LootContextParamSets.PIGLIN_BARTER));
     }
 
