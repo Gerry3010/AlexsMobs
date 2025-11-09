@@ -92,7 +92,7 @@ public class ModelCrow extends AdvancedEntityModel<EntityCrow> {
 		float walkDegree = 0.78F;
 		float idleSpeed = 0.1F;
 		float idleDegree = 0.1F;
-		float partialTick = Minecraft.getInstance().getFrameTime();
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
 		float flyProgress = entity.prevFlyProgress + (entity.flyProgress - entity.prevFlyProgress) * partialTick;
 		float sitProgress = entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * partialTick;
 		float runProgress = Math.max(0, (limbSwingAmount * 5F) - flyProgress);
