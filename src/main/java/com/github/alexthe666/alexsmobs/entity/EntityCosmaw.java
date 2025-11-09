@@ -201,7 +201,7 @@ public class EntityCosmaw extends TamableAnimal implements ITargetsDroppedItems,
             final float f = this.walkAnimation.position();
             final float f1 = this.walkAnimation.speed();
             final float bob = (float) (Math.sin(f * 0.7F) * (double) f1 * 0.0625F * 1.6F - (f1 * 0.0625F * 1.6F));
-            passenger.setPos(this.getX(), this.getY() - bob + 0.3F - this.getPassengersRidingOffset(), this.getZ());
+            moveFunc.accept(passenger, this.getX(), this.getY() - bob + 0.3F, this.getZ());
         }
     }
 
@@ -254,7 +254,7 @@ public class EntityCosmaw extends TamableAnimal implements ITargetsDroppedItems,
                         EntityCosmicCod fish = (EntityCosmicCod) this.getTarget();
                         CompoundTag fishNbt = new CompoundTag();
                         fish.addAdditionalSaveData(fishNbt);
-                        fishNbt.putString("DeathLootTable", BuiltInLootTables.EMPTY.toString());
+                        fishNbt.putString("DeathLootTable", net.minecraft.world.level.storage.loot.BuiltInLootTables.EMPTY.location().toString());
                         fish.readAdditionalSaveData(fishNbt);
                     }
                     this.getTarget().hurt(this.damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
@@ -275,7 +275,7 @@ public class EntityCosmaw extends TamableAnimal implements ITargetsDroppedItems,
                 this.playSound(SoundEvents.DOLPHIN_EAT, this.getSoundVolume(), this.getVoicePitch());
                 if (this.getMainHandItem().is(AMTagRegistry.COSMAW_TAMEABLES) && fishThrowerID != null && !this.isTame()) {
                     if (getRandom().nextFloat() < 0.3F) {
-                        this.setTame(true);
+                        this.setTame(true, true);
                         this.setCommand(1);
                         this.setOwnerUUID(this.fishThrowerID);
                         Player player = level().getPlayerByUUID(fishThrowerID);

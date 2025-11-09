@@ -63,9 +63,9 @@ import java.util.function.Predicate;
 
 public class EntityCrimsonMosquito extends Monster {
 
-    public static final ResourceLocation FULL_LOOT = new ResourceLocation("alexsmobs", "entities/crimson_mosquito_full");
-    public static final ResourceLocation FROM_FLY_LOOT = new ResourceLocation("alexsmobs", "entities/crimson_mosquito_fly");
-    public static final ResourceLocation FROM_FLY_FULL_LOOT = new ResourceLocation("alexsmobs", "entities/crimson_mosquito_fly_full");
+    public static final ResourceLocation FULL_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/crimson_mosquito_full");
+    public static final ResourceLocation FROM_FLY_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/crimson_mosquito_fly");
+    public static final ResourceLocation FROM_FLY_FULL_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/crimson_mosquito_fly_full");
     protected static final EntityDimensions FLIGHT_SIZE = EntityDimensions.fixed(1.2F, 1.8F);
     private static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(EntityCrimsonMosquito.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> SHOOTING = SynchedEntityData.defineId(EntityCrimsonMosquito.class, EntityDataSerializers.BOOLEAN);
@@ -77,10 +77,10 @@ public class EntityCrimsonMosquito extends Monster {
     private static final EntityDataAccessor<Integer> LURING_LAVIATHAN = SynchedEntityData.defineId(EntityCrimsonMosquito.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> FLEEING_ENTITY = SynchedEntityData.defineId(EntityCrimsonMosquito.class, EntityDataSerializers.INT);
     private static final Predicate<LivingEntity> REPELLENT = (mob) -> {
-        return mob.hasEffect(AMEffectRegistry.MOSQUITO_REPELLENT.get()) || mob instanceof EntityTriops;
+        return mob.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.MOSQUITO_REPELLENT.get())) || mob instanceof EntityTriops;
     };
     private static final Predicate<LivingEntity> NO_REPELLENT = (mob) -> {
-        return !mob.hasEffect(AMEffectRegistry.MOSQUITO_REPELLENT.get());
+        return !mob.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.MOSQUITO_REPELLENT.get()));
     };
     public float prevFlyProgress;
     public float flyProgress;
@@ -116,7 +116,7 @@ public class EntityCrimsonMosquito extends Monster {
         this.setMosquitoScale(0.2F);
         this.setFromFly(true);
         for (int j = 0; j < 4; ++j) {
-            this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0, 0.0D);
+            this.level().addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0, 0.0D);
         }
     }
 
@@ -136,12 +136,12 @@ public class EntityCrimsonMosquito extends Monster {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FOLLOW_RANGE, 32.0D).add(Attributes.ARMOR, 0.0D).add(Attributes.ATTACK_DAMAGE, 5.0D).add(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
-    @Nullable
-    protected ResourceLocation getDefaultLootTable() {
+    @Override
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
         if (this.getBloodLevel() > 0) {
-            return this.isFromFly() ? FROM_FLY_FULL_LOOT : FULL_LOOT;
+            return this.isFromFly() ? net.minecraft.resources.ResourceKey.create(Registries.LOOT_TABLE, FROM_FLY_FULL_LOOT) : net.minecraft.resources.ResourceKey.create(Registries.LOOT_TABLE, FULL_LOOT);
         }
-        return this.isFromFly() ? FROM_FLY_LOOT : super.getDefaultLootTable();
+        return this.isFromFly() ? net.minecraft.resources.ResourceKey.create(Registries.LOOT_TABLE, FROM_FLY_LOOT) : super.getDefaultLootTable();
     }
 
     @Override
