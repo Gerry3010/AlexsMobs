@@ -482,7 +482,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
 
     private void eatItemEffect(ItemStack heldItemMainhand) {
         this.gameEvent(GameEvent.EAT);
-        this.playSound(SoundEvents.STRIDER_EAT, this.getVoicePitch(), this.getSoundVolume());
+        this.playSound(SoundEvents.STRIDER_EAT.value(), this.getVoicePitch(), this.getSoundVolume());
         for (int i = 0; i < 8 + random.nextInt(3); i++) {
             double d2 = this.random.nextGaussian() * 0.02D;
             double d0 = this.random.nextGaussian() * 0.02D;
@@ -534,7 +534,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
                     this.spawnAtLocation(this.getCarpetItemBeingWorn());
                 }
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
-                this.playSound(SoundEvents.LLAMA_SWAG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.playSound(SoundEvents.LLAMA_SWAG.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 if(!this.level().isClientSide && player instanceof ServerPlayer serverPlayer){
                     AMAdvancementTriggerRegistry.ELEPHANT_SWAG.trigger(serverPlayer);
                 }
@@ -545,7 +545,7 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
             return InteractionResult.PASS;
         } else if (owner && this.getColor() != null && stack.is(Tags.Items.SHEARS)) {
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             if (this.getColor() != null) {
                 this.spawnAtLocation(this.getCarpetItemBeingWorn());
             }
@@ -554,14 +554,14 @@ public class EntityElephant extends TamableAnimal implements ITargetsDroppedItem
         } else if (owner && !this.isChested() && stack.is(Tags.Items.CHESTS_WOODEN)) {
             this.setChested(true);
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.DONKEY_CHEST, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.DONKEY_CHEST.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else if (owner && isChested() && stack.is(Tags.Items.SHEARS)) {
             this.gameEvent(GameEvent.ENTITY_INTERACT);
-            this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundEvents.SHEEP_SHEAR.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             this.spawnAtLocation(Blocks.CHEST);
             for (int i = 0; i < elephantInventory.getContainerSize(); i++) {
                 this.spawnAtLocation(elephantInventory.getItem(i));
