@@ -329,8 +329,9 @@ public class EntityTriops extends WaterAnimal implements ITargetsDroppedItems, B
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("TriopsTag", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("TriopsTag", platTag);
+        });
     }
 
     @Override

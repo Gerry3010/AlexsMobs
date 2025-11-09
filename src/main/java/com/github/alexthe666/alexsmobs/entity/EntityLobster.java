@@ -152,8 +152,9 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
             bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
-        CompoundTag compoundnbt = bucket.getOrCreateTag();
-        compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.putInt("BucketVariantTag", this.getVariant());
+        });
     }
 
     @Override

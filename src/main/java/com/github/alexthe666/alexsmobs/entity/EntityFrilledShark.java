@@ -196,8 +196,9 @@ public class EntityFrilledShark extends WaterAnimal implements IAnimatedEntity, 
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("FrilledSharkData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("FrilledSharkData", platTag);
+        });
     }
 
     @Override

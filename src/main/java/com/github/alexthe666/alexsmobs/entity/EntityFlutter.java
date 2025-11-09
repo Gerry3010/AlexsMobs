@@ -600,7 +600,9 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
         ItemStack stack = new ItemStack(AMItemRegistry.POTTED_FLUTTER.get());
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        stack.getOrCreateTag().put("FlutterData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, stack, tag -> {
+            tag.put("FlutterData", platTag);
+        });
         if (this.hasCustomName()) {
             stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }

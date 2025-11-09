@@ -285,8 +285,9 @@ public class EntityFlyingFish extends WaterAnimal implements FlyingAnimal, Bucke
             bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.putInt("Variant", this.getVariant());
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.putInt("Variant", this.getVariant());
+        });
     }
 
     @Override

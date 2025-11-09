@@ -406,8 +406,9 @@ public class EntityMudskipper extends TamableAnimal implements IFollower, ISemiA
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("MudskipperData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("MudskipperData", platTag);
+        });
     }
 
     @Override

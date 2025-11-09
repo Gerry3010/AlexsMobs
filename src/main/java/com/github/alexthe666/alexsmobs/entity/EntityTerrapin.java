@@ -545,8 +545,9 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("TerrapinData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("TerrapinData", platTag);
+        });
     }
 
     @Override

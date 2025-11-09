@@ -122,8 +122,9 @@ public class EntityPlatypus extends Animal implements ISemiAquatic, ITargetsDrop
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("PlatypusData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("PlatypusData", platTag);
+        });
     }
 
     @Override

@@ -225,8 +225,9 @@ public class EntityMimicOctopus extends TamableAnimal implements ISemiAquatic, I
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.put("MimicOctopusData", platTag);
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA, bucket, tag -> {
+            tag.put("MimicOctopusData", platTag);
+        });
     }
 
     @Override
