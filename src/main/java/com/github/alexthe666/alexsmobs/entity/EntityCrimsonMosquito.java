@@ -574,9 +574,8 @@ public class EntityCrimsonMosquito extends Monster {
         return false;
     }
 
-    @Override
-    public MobType getMobType() {
-        return MobType.ARTHROPOD;
+    public MobCategory getMobType() {
+        return MobCategory.ARTHROPOD;
     }
 
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
