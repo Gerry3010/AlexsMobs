@@ -237,7 +237,7 @@ public class EntityBlobfish extends WaterAnimal implements FlyingAnimal, Bucketa
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.BLOBFISH_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -245,12 +245,13 @@ public class EntityBlobfish extends WaterAnimal implements FlyingAnimal, Bucketa
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
-        CompoundTag compound = bucket.getOrCreateTag();
-        compound.putFloat("BucketScale", this.getBlobfishScale());
-        compound.putBoolean("Slimed", this.isSlimed());
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
+            tag.putFloat("BucketScale", this.getBlobfishScale());
+            tag.putBoolean("Slimed", this.isSlimed());
+        });
     }
 
     @Override

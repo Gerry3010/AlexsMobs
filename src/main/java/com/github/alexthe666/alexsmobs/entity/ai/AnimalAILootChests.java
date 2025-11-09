@@ -68,7 +68,7 @@ public class AnimalAILootChests extends MoveToBlockGoal {
             return false;
         }
         if (this.nextStartTick <= 0) {
-            if (!net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent(this.entity.level(), this.entity)) {
+            if (!net.neoforged.neoforge.event.EventHooks.canEntityGrief(this.entity.level(), this.entity)) {
                 return false;
             }
         }

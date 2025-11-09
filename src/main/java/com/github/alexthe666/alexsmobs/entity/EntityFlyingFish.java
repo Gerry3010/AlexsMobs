@@ -274,7 +274,7 @@ public class EntityFlyingFish extends WaterAnimal implements FlyingAnimal, Bucke
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.FLYING_FISH_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -282,7 +282,7 @@ public class EntityFlyingFish extends WaterAnimal implements FlyingAnimal, Bucke
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CompoundTag compound = bucket.getOrCreateTag();

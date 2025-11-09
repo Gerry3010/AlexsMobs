@@ -119,7 +119,7 @@ public class EntityCosmicCod extends Mob implements Bucketable {
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.COSMIC_COD_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -127,7 +127,7 @@ public class EntityCosmicCod extends Mob implements Bucketable {
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CompoundTag platTag = new CompoundTag();

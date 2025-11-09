@@ -533,7 +533,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.TERRAPIN_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -541,7 +541,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);

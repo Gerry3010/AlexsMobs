@@ -184,7 +184,7 @@ public class EntityFrilledShark extends WaterAnimal implements IAnimatedEntity, 
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.FRILLED_SHARK_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -192,7 +192,7 @@ public class EntityFrilledShark extends WaterAnimal implements IAnimatedEntity, 
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         CompoundTag platTag = new CompoundTag();
         this.addAdditionalSaveData(platTag);

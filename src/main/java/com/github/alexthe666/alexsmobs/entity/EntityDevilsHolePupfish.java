@@ -225,7 +225,7 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucket, tag -> {
@@ -250,7 +250,7 @@ public class EntityDevilsHolePupfish extends WaterAnimal implements FlyingAnimal
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.DEVILS_HOLE_PUPFISH_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }

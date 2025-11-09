@@ -269,7 +269,7 @@ public class EntityCachalotWhale extends Animal {
             return;
         }
         boolean flag = false;
-        if (!this.level().isClientSide && this.blockBreakCounter == 0 && net.neoforged.neoforge.event.EventHooks.getMobGriefingEvent(level(), this)) {
+        if (!this.level().isClientSide && this.blockBreakCounter == 0 && net.neoforged.neoforge.event.EventHooks.canEntityGrief(level(), this)) {
             final TagKey<Block> breakables = this.isCharging() && this.getTarget() != null && AMConfig.cachalotDestruction ? AMTagRegistry.CACHALOT_WHALE_BREAKABLES : AMTagRegistry.ORCA_BREAKABLES;
             for (int a = (int) Math.round(this.getBoundingBox().minX); a <= (int) Math.round(this.getBoundingBox().maxX); a++) {
                 for (int b = (int) Math.round(this.getBoundingBox().minY) - 1; (b <= (int) Math.round(this.getBoundingBox().maxY) + 1) && (b <= 127); b++) {

@@ -141,7 +141,7 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
     public ItemStack getBucketItemStack() {
         ItemStack stack = new ItemStack(AMItemRegistry.LOBSTER_BUCKET.get());
         if (this.hasCustomName()) {
-            stack.setHoverName(this.getCustomName());
+            stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         return stack;
     }
@@ -149,7 +149,7 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
     @Override
     public void saveToBucketTag(@Nonnull ItemStack bucket) {
         if (this.hasCustomName()) {
-            bucket.setHoverName(this.getCustomName());
+            bucket.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, this.getCustomName());
         }
         Bucketable.saveDefaultDataToBucketTag(this, bucket);
         CompoundTag compoundnbt = bucket.getOrCreateTag();
