@@ -273,9 +273,10 @@ public class EntityRainFrog extends Animal implements ITargetsDroppedItems,IDanc
     }
 
     @javax.annotation.Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @javax.annotation.Nullable SpawnGroupData spawnDataIn) {
         this.setVariant(random.nextInt(3));
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
+        SpawnGroupData data = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
+        return data;
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {
