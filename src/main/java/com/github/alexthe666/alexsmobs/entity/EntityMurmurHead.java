@@ -160,7 +160,7 @@ public class EntityMurmurHead extends Monster implements FlyingAnimal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     @Nullable
@@ -461,7 +461,7 @@ public class EntityMurmurHead extends Monster implements FlyingAnimal {
                     if(time > 30){
                         if(!EntityMurmurHead.this.isAngry()){
                             EntityMurmurHead.this.playSound(AMSoundRegistry.MURMUR_ANGER.get(), 1.5F * EntityMurmurHead.this.getSoundVolume(), EntityMurmurHead.this.getVoicePitch());
-                            EntityMurmurHead.this.gameEvent(GameEvent.ENTITY_ROAR);
+                            EntityMurmurHead.this.gameEvent(GameEvent.ENTITY_ACTION);
                         }
                         EntityMurmurHead.this.setAngry(true);
                         EntityMurmurHead.this.getNavigation().moveTo(moveTo.x, moveTo.y, moveTo.z, 1.3D);

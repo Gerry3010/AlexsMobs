@@ -25,7 +25,7 @@ public class EffectPowerDown extends MobEffect {
         }
         if(firstDuration == lastDuration){
             entity.playSound(AMSoundRegistry.APRIL_FOOLS_POWER_OUTAGE.get(), 1.5F, 1);
-            entity.gameEvent(GameEvent.ENTITY_ROAR);
+            entity.gameEvent(GameEvent.ENTITY_ACTION);
         }
     }
 

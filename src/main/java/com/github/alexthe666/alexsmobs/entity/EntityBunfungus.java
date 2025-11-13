@@ -136,7 +136,7 @@ public class EntityBunfungus extends PathfinderMob implements IAnimatedEntity {
         });
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (mob) -> {
-            return mob instanceof Enemy && !(mob instanceof Creeper) && !(mob.getMobType() == MobCategory.WATER && mob.isInWaterOrBubble()) && !mob.getType().is(AMTagRegistry.BUNFUNGUS_IGNORES);
+            return mob instanceof Enemy && !(mob instanceof Creeper) && !(mob.getType().getCategory() == MobCategory.WATER_CREATURE && mob.isInWaterOrBubble()) && !mob.getType().is(AMTagRegistry.BUNFUNGUS_IGNORES);
         }));
     }
 

@@ -107,7 +107,7 @@ public class EntityLobster extends WaterAnimal implements ISemiAquatic, Bucketab
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.CREATURE;
     }
 
     public void travel(Vec3 travelVector) {

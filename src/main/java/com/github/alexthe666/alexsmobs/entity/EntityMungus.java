@@ -106,7 +106,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
 
     public static BlockState getMushroomBlockstate(Item item) {
         if (item instanceof BlockItem) {
-            ResourceLocation name = ForgeRegistries.ITEMS.getKey(item);
+            ResourceLocation name = net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(item);
             if (name != null && MUSHROOM_TO_BIOME.containsKey(name.toString())) {
                 return ((BlockItem) item).getBlock().defaultBlockState();
             }
@@ -233,9 +233,9 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
             Holder<Biome> biome = registry.getHolder(Biomes.MUSHROOM_FIELDS).get();
             TagKey<Block> transformMatches = AMTagRegistry.MUNGUS_REPLACE_MUSHROOM;
             if (this.getMushroomState() != null) {
-                String mushroomKey = ForgeRegistries.BLOCKS.getKey(this.getMushroomState().getBlock()).toString();
+                String mushroomKey = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getKey(this.getMushroomState().getBlock()).toString();
                 if (MUSHROOM_TO_BLOCK.containsKey(mushroomKey)) {
-                    Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MUSHROOM_TO_BLOCK.get(mushroomKey)));
+                    Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getValue(new ResourceLocation(MUSHROOM_TO_BLOCK.get(mushroomKey)));
                     if (block != null) {
                         transformState = block.defaultBlockState();
                         if (block == Blocks.WARPED_NYLIUM) {
@@ -286,7 +286,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
         if (state == null) {
             return null;
         }
-        ResourceLocation blockRegName = ForgeRegistries.BLOCKS.getKey(state.getBlock());
+        ResourceLocation blockRegName = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getKey(state.getBlock());
         if (blockRegName != null && MUSHROOM_TO_BIOME.containsKey(blockRegName.toString())) {
             String str = MUSHROOM_TO_BIOME.get(blockRegName.toString());
             Biome biome = registry.getOptional(new ResourceLocation(str)).orElse(null);
@@ -333,7 +333,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
             }
             setChunkBiomes(chunk, container);
             if (!this.level().isClientSide) {
-                //AlexsMobs.sendMSGToAll(new MessageMungusBiomeChange(this.getId(), pos.getX(), pos.getZ(), ForgeRegistries.BIOMES.getKey(biome.value()).toString()));
+                //AlexsMobs.sendMSGToAll(new MessageMungusBiomeChange(this.getId(), pos.getX(), pos.getZ(), net.minecraft.core.registries.BuiltInRegistries.BIOMES.getKey(biome.value()).toString()));
             }
         } else {
             if (biome == null) {
@@ -348,7 +348,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
                     }
                 }
                 setChunkBiomes(chunk, container);
-                ResourceLocation biomeKey = ForgeRegistries.BIOMES.getKey(biome.value());
+                ResourceLocation biomeKey = net.minecraft.core.registries.BuiltInRegistries.BIOMES.getKey(biome.value());
                 if(biomeKey != null){
                     AlexsMobs.sendMSGToAll(new MessageMungusBiomeChange(this.getId(), pos.getX(), pos.getZ(), biomeKey.toString()));
                 }

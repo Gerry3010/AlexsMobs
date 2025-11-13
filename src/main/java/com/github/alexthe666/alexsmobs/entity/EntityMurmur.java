@@ -79,7 +79,7 @@ public class EntityMurmur extends Monster implements ISemiAquatic {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     @Override

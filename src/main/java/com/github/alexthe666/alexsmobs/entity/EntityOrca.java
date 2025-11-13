@@ -383,7 +383,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER;
+        return MobCategory.WATER_CREATURE;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

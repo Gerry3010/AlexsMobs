@@ -231,7 +231,7 @@ public class EntityEndergrade extends Animal implements FlyingAnimal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.CREATURE;
     }
 
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {

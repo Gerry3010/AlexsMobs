@@ -534,7 +534,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER;
+        return MobCategory.WATER_CREATURE;
     }
 
     public void tick() {

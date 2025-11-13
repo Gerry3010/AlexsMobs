@@ -626,7 +626,7 @@ public class EntityCachalotWhale extends Animal {
                         if (echoTimer % 10 == 0) {
                             if (echoTimer % 40 == 0) {
                                 this.playSound(AMSoundRegistry.CACHALOT_WHALE_CLICK.get(), this.getSoundVolume(), this.getVoicePitch());
-                                this.gameEvent(GameEvent.ENTITY_ROAR);
+                                this.gameEvent(GameEvent.ENTITY_ACTION);
                             }
                             final EntityCachalotEcho echo = new EntityCachalotEcho(this.level(), this);
                             final float radius = this.headPart.getBbWidth() * 0.5F;
@@ -859,7 +859,7 @@ public class EntityCachalotWhale extends Animal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER;
+        return MobCategory.WATER_CREATURE;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

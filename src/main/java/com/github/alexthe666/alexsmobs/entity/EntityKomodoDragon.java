@@ -377,7 +377,7 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
                 this.usePlayerItem(player, hand, itemstack);
                 this.setSaddled(true);
                 return InteractionResult.SUCCESS;
-            }else if(itemstack.is(Tags.Items.SHEARS) && this.isSaddled()){
+            }else if(itemstack.is(net.minecraft.tags.ItemTags.SHEARS) && this.isSaddled()){
                 this.setSaddled(false);
                 this.spawnAtLocation(Items.SADDLE);
                 return InteractionResult.SUCCESS;

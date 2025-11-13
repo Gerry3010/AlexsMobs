@@ -102,7 +102,7 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
     }
 
     public void killed(ServerLevel world, LivingEntity entity) {
-        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getMobType() == MobCategory.UNDEAD)){
+        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getMobType() == MobCategory.MONSTER)){
             entity.spawnAtLocation(new ItemStack(Items.BONE));
         }
     }
@@ -199,7 +199,7 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
             }
         }
         if(this.getAnimation() == ANIMATION_HOWL && this.getAnimationTick() == 1){
-            this.gameEvent(GameEvent.ENTITY_ROAR);
+            this.gameEvent(GameEvent.ENTITY_ACTION);
             this.playSound(AMSoundRegistry.TASMANIAN_DEVIL_ROAR.get(), this.getSoundVolume() * 2F, this.getVoicePitch());
         }
         if(this.getAnimation() == ANIMATION_HOWL && this.getAnimationTick() > 3){

@@ -79,7 +79,7 @@ public class EntityWarpedMosco extends Monster implements IAnimatedEntity {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.ARTHROPOD;
+        return MobCategory.CREATURE;
     }
 
     private static Animation getRandomAttack(RandomSource rand) {

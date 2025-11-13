@@ -411,7 +411,7 @@ public class EntityGiantSquid extends WaterAnimal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER;
+        return MobCategory.WATER_CREATURE;
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {

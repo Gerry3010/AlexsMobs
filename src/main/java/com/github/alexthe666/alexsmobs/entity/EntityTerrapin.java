@@ -580,7 +580,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER;
+        return MobCategory.WATER_CREATURE;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

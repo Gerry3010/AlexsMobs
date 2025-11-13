@@ -412,7 +412,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return PacketDistributor.TRACKING_ENTITY_AND_SELF.with(this).getPacket();
+        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
     }
 
 
@@ -425,7 +425,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     protected void readAdditionalSaveData(CompoundTag compound) {
         this.setDefaultColor(compound.getBoolean("IsDefColor"));
         if (compound.contains("BoardStack")) {
-            this.setItemStack(ItemStack.parseOptional(level().registryAccess(), compound.getCompound("BoardStack")).orElse(ItemStack.EMPTY));
+            ItemStack.parse(level().registryAccess(), compound.getCompound("BoardStack")).ifPresent(this::setItemStack);
         }
         this.setColor(compound.getInt("Color"));
     }

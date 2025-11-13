@@ -286,7 +286,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
                 this.entityData.set(TENTACLING, true);
                 if (squishCooldown == 0 && this.isFlying()) {
                     squishCooldown = 10;
-                    this.gameEvent(GameEvent.ENTITY_ROAR);
+                    this.gameEvent(GameEvent.ENTITY_ACTION);
                     this.playSound(AMSoundRegistry.FLUTTER_FLAP.get(), 3F, 1.5F * this.getVoicePitch());
                 }
                 this.randomMotionSpeed = 0.8F;
@@ -393,7 +393,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
         InteractionResult type = super.mobInteract(player, hand);
         if (!isTame() && canEatFlower(itemstack)) {
             this.usePlayerItem(player, hand, itemstack);
-            this.flowersEaten.add(ForgeRegistries.ITEMS.getKey(itemstack.getItem()).toString());
+            this.flowersEaten.add(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(itemstack.getItem()).toString());
             this.gameEvent(GameEvent.ENTITY_INTERACT);
             this.playSound(AMSoundRegistry.FLUTTER_YES.get(), this.getSoundVolume(), this.getVoicePitch());
             if (this.flowersEaten.size() > 3 && getRandom().nextInt(3) == 0 || this.flowersEaten.size() > 6) {
@@ -420,7 +420,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
             if (item == Items.FLOWER_POT && !this.isPotted()) {
                 this.setPotted(true);
                 return InteractionResult.SUCCESS;
-            } else if (itemstack.is(Tags.Items.SHEARS) && this.isPotted()) {
+            } else if (itemstack.is(net.minecraft.tags.ItemTags.SHEARS) && this.isPotted()) {
                 this.setPotted(false);
                 this.spawnAtLocation(Items.FLOWER_POT);
                 return InteractionResult.SUCCESS;
@@ -618,7 +618,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
     }
 
     public boolean hasEatenFlower(ItemStack stack) {
-        return flowersEaten != null && flowersEaten.contains(ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
+        return flowersEaten != null && flowersEaten.contains(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem()).toString());
     }
 
     public boolean canEatFlower(ItemStack stack) {

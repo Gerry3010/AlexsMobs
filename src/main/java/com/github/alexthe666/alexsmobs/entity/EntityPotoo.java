@@ -237,13 +237,13 @@ public class EntityPotoo extends Animal implements IFalconry {
                 if (j > 40) {
                     this.openMouth(30);
                     this.playSound(AMSoundRegistry.POTOO_CALL.get());
-                    this.gameEvent(GameEvent.ENTITY_ROAR);
+                    this.gameEvent(GameEvent.ENTITY_ACTION);
                 }
             } else if (getEyeScale(10, 1.0F) < 7) {
                 if (j > 300 && j % 300 == 0 && random.nextInt(4) == 0) {
                     this.openMouth(30);
                     this.playSound(AMSoundRegistry.POTOO_CALL.get());
-                    this.gameEvent(GameEvent.ENTITY_ROAR);
+                    this.gameEvent(GameEvent.ENTITY_ACTION);
                 }
             }
         }

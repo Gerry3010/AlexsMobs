@@ -601,13 +601,13 @@ public class ServerEvents {
     @SubscribeEvent
     public void onLivingSetTargetEvent(LivingChangeTargetEvent event) {
         if (event.getNewTarget() != null && event.getEntity() instanceof Mob mob) {
-            if (mob.getMobType() == MobCategory.ARTHROPOD) {
+            if (mob.getMobType() == MobCategory.CREATURE) {
                 if (event.getNewTarget().hasEffect(AMEffectRegistry.BUG_PHEROMONES.get()) && event.getEntity().getLastHurtByMob() != event.getNewTarget()) {
                     event.setCanceled(true);
                     return;
                 }
             }
-            if (mob.getMobType() == MobCategory.UNDEAD && !mob.getType().is(AMTagRegistry.IGNORES_KIMONO)) {
+            if (mob.getMobType() == MobCategory.MONSTER && !mob.getType().is(AMTagRegistry.IGNORES_KIMONO)) {
                 if (event.getNewTarget().getItemBySlot(EquipmentSlot.CHEST).is(AMItemRegistry.UNSETTLING_KIMONO.get()) && event.getEntity().getLastHurtByMob() != event.getNewTarget()) {
                     event.setCanceled(true);
                     return;

@@ -48,7 +48,7 @@ public class RecipeMimicreamRepair extends CustomRecipe {
     }
 
     public boolean isBlacklisted(ItemStack stack) {
-        ResourceLocation name = ForgeRegistries.ITEMS.getKey(stack.getItem());
+        ResourceLocation name = net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem());
         return name != null && AMConfig.mimicreamBlacklist.contains(name.toString());
     }
 
@@ -81,7 +81,7 @@ public class RecipeMimicreamRepair extends CustomRecipe {
             }
             ListTag oldNBTList = compoundnbt.getList("Enchantments", 10);
             ListTag newNBTList = new ListTag();
-            ResourceLocation mendingName = ForgeRegistries.ENCHANTMENTS.getKey(Enchantments.MENDING);
+            ResourceLocation mendingName = net.minecraft.core.registries.BuiltInRegistries.ENCHANTMENTS.getKey(Enchantments.MENDING);
             for (int i = 0; i < oldNBTList.size(); ++i) {
                 CompoundTag compoundnbt2 = oldNBTList.getCompound(i);
                 ResourceLocation resourcelocation1 = ResourceLocation.tryParse(compoundnbt2.getString("id"));

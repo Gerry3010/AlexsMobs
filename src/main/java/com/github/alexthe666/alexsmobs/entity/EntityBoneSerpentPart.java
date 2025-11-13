@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -55,7 +56,7 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     public boolean startRiding(Entity entityIn) {
@@ -120,7 +121,7 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
 
     @Override
     public void tick() {
-        isInsidePortal = false;
+        // isInsidePortal removed in 1.21
         if (this.tickCount > 10) {
             Entity parent = getParent();
             refreshDimensions();
@@ -182,7 +183,7 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return new ClientboundAddEntityPacket(this);
     }
 
     public void pushEntities() {
@@ -256,6 +257,6 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
     }
 
     public boolean shouldContinuePersisting() {
-        return isAddedToWorld() || this.isRemoved();
+        return this.isAlive() || this.isRemoved();
     }
 }

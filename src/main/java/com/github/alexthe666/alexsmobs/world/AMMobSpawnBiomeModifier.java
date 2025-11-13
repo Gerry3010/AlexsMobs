@@ -9,10 +9,10 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class AMMobSpawnBiomeModifier implements BiomeModifier {
-    private static final DeferredHolder<Codec<? extends BiomeModifier>, Codec<? extends BiomeModifier>> SERIALIZER = DeferredHolder.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "am_mob_spawns"));
+    private static final DeferredHolder<Codec<? extends BiomeModifier>, Codec<? extends BiomeModifier>> SERIALIZER = DeferredHolder.create(Neonet.minecraft.core.registries.BuiltInRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, ResourceLocation.fromNamespaceAndPath(AlexsMobs.MODID, "am_mob_spawns"));
 
     public AMMobSpawnBiomeModifier() {
     }

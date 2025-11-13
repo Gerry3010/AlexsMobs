@@ -509,7 +509,7 @@ public class EntityCrimsonMosquito extends Monster {
         }
                 if (isFlying()) {
             if (loopSoundTick == 0) {
-                this.gameEvent(GameEvent.ENTITY_ROAR);
+                this.gameEvent(GameEvent.ENTITY_ACTION);
                 this.playSound(AMSoundRegistry.MOSQUITO_LOOP.value(), this.getSoundVolume(), this.getVoicePitch());
             }
             loopSoundTick++;

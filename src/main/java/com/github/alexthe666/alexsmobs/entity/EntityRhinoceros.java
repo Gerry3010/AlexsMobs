@@ -248,7 +248,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
     }
 
     public MobEffect getPotionEffect() {
-        return ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(this.getAppliedPotionId()));
+        return net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECTS.getValue(new ResourceLocation(this.getAppliedPotionId()));
     }
 
     public int getPotionDuration() {
@@ -451,7 +451,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         }else{
             if(potion.getEffects().size() >= 1){
                 MobEffectInstance first = potion.getEffects().get(0);
-                ResourceLocation loc = ForgeRegistries.MOB_EFFECTS.getKey(first.getEffect());
+                ResourceLocation loc = net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECTS.getKey(first.getEffect());
                 if(loc != null){
                     this.setAppliedPotionId(loc.toString());
                     this.setPotionLevel(first.getAmplifier());

@@ -51,7 +51,7 @@ public class CrowAIMelee extends Goal {
                 crow.getMoveControl().setWantedPosition(target.getX(), target.getY() + target.getEyeHeight() / 2F, target.getZ(), 1.3F);
                 if(crow.distanceTo(target) < 2){
                     crow.peck();
-                    if(target.getMobType() == MobCategory.UNDEAD){
+                    if(target.getMobType() == MobCategory.MONSTER){
                         target.hurt(target.damageSources().generic(), 4);
                     }else{
                         target.hurt(target.damageSources().generic(), 1);

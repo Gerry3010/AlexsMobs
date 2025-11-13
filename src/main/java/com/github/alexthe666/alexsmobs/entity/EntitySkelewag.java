@@ -65,7 +65,7 @@ public class EntitySkelewag extends Monster implements IAnimatedEntity {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {

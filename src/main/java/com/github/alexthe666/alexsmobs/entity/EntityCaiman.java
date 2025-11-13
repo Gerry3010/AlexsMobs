@@ -246,7 +246,7 @@ public class EntityCaiman extends TamableAnimal implements ISemiAquatic,IFollowe
                 int particles = 4 + getRandom().nextInt(3);
                 for (int i = 0; i <= particles; i++) {
                     Vec3 particleVec = new Vec3(0, 0, 1.0F).yRot((i / (float) particles) * (Mth.PI) * 2F).add(this.position());
-                    double particleY = this.getBoundingBox().minY + getFluidTypeHeight(NeoForgeMod.WATER_TYPE.get());
+                    double particleY = this.getBoundingBox().minY + this.getFluidHeight(net.neoforged.neoforge.fluids.FluidType.WATER_TYPE);
                     this.level().addParticle(ParticleTypes.SPLASH, particleVec.x, particleY, particleVec.z, 0, 0.3F, 0);
                 }
             }

@@ -133,6 +133,6 @@ public class BiomeConfig {
 	}
 
 	public static boolean test(Pair<String, SpawnBiomeData> spawns, Holder<Biome> biome) {
-		return test(spawns, biome, ForgeRegistries.BIOMES.getKey(biome.value()));
+		return test(spawns, biome, net.minecraft.core.registries.BuiltInRegistries.BIOMES.getKey(biome.value()));
 	}
 }

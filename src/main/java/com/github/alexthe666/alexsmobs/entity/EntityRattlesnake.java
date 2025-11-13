@@ -175,7 +175,7 @@ public class EntityRattlesnake extends Animal implements IAnimatedEntity {
         }
         if(isRattling()){
             if(loopSoundTick == 0){
-                this.gameEvent(GameEvent.ENTITY_ROAR);
+                this.gameEvent(GameEvent.ENTITY_ACTION);
                 this.playSound(AMSoundRegistry.RATTLESNAKE_LOOP.get(), this.getSoundVolume() * 0.5F, this.getVoicePitch());
             }
             loopSoundTick++;

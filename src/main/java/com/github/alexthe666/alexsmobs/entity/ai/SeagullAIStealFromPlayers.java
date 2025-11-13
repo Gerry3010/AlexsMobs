@@ -127,7 +127,7 @@ public class SeagullAIStealFromPlayers extends Goal {
     }
 
     private boolean isBlacklisted(ItemStack stack){
-        ResourceLocation loc = ForgeRegistries.ITEMS.getKey(stack.getItem());
+        ResourceLocation loc = net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem());
         if(loc != null){
             for(String str : AMConfig.seagullStealingBlacklist){
                 if(loc.toString().equals(str)){

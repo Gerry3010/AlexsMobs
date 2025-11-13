@@ -30,19 +30,19 @@ public class EffectDebilitatingSting extends MobEffect {
     }
 
     public void removeAttributeModifiers(LivingEntity entityLivingBaseIn, AttributeMap attributeMapIn, int amplifier) {
-        if (entityLivingBaseIn.getMobType() == MobCategory.ARTHROPOD) {
+        if (entityLivingBaseIn.getMobType() == MobCategory.CREATURE) {
             super.removeAttributeModifiers(entityLivingBaseIn, attributeMapIn, amplifier);
         }
     }
 
     public void addAttributeModifiers(LivingEntity entityLivingBaseIn, AttributeMap attributeMapIn, int amplifier) {
-        if (entityLivingBaseIn.getMobType() == MobCategory.ARTHROPOD) {
+        if (entityLivingBaseIn.getMobType() == MobCategory.CREATURE) {
             super.addAttributeModifiers(entityLivingBaseIn, attributeMapIn, amplifier);
         }
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity.getMobType() != MobCategory.ARTHROPOD) {
+        if (entity.getMobType() != MobCategory.CREATURE) {
             if (entity.getHealth() > entity.getMaxHealth() * 0.5F) {
                 entity.hurt(entity.damageSources().magic(), 1.0F);
             }

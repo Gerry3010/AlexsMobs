@@ -63,7 +63,7 @@ public class EntitySharkToothArrow extends Arrow {
             this.damageShield((Player) living, (float) this.getBaseDamage());
         }
         Entity entity1 = this.getOwner();
-        if(living.getMobType() == MobCategory.WATER || living instanceof Drowned || living.getMobType() != MobCategory.UNDEAD && living.canBreatheUnderwater()){
+        if(living.getMobType() == MobCategory.WATER_CREATURE || living instanceof Drowned || living.getMobType() != MobCategory.MONSTER && living.canBreatheUnderwater()){
             DamageSource damagesource;
             if (entity1 == null) {
                 damagesource = damageSources().arrow(this, this);

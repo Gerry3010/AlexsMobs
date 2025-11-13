@@ -105,7 +105,7 @@ public class EntityFarseer extends Monster implements IAnimatedEntity {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
-        return dimensions.height * 0.7F;
+        return dimensions.height() * 0.7F;
     }
 
     @Override

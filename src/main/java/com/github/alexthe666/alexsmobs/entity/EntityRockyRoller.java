@@ -204,7 +204,7 @@ public class EntityRockyRoller extends Monster implements ICustomCollisions {
             }
         }
         if(flag){
-            this.gameEvent(GameEvent.ENTITY_ROAR);
+            this.gameEvent(GameEvent.ENTITY_ACTION);
             this.playSound(AMSoundRegistry.ROCKY_ROLLER_EARTHQUAKE.get(), this.getSoundVolume(), this.getVoicePitch());
         }
     }

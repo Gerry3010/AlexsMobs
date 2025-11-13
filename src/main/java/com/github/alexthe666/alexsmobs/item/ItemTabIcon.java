@@ -33,7 +33,7 @@ public class ItemTabIcon extends ItemInventoryOnly {
     public static EntityType getEntityType(@Nullable CompoundTag tag) {
         if (tag != null && tag.contains("DisplayEntityType")) {
             String entityType = tag.getString("DisplayEntityType");
-           return ForgeRegistries.ENTITY_TYPES.getValue(ResourceLocation.tryParse(entityType));
+           return net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPES.getValue(ResourceLocation.tryParse(entityType));
         }
         return null;
     }

@@ -37,7 +37,7 @@ public record MessageTarantulaHawkSting(int hawk, int spider) implements CustomP
             if (player != null && player.level() != null) {
                 Entity entity = player.level().getEntity(message.hawk);
                 Entity spider = player.level().getEntity(message.spider);
-                if (entity instanceof EntityTarantulaHawk && spider instanceof LivingEntity && ((LivingEntity) spider).getMobType() == MobCategory.ARTHROPOD) {
+                if (entity instanceof EntityTarantulaHawk && spider instanceof LivingEntity && ((LivingEntity) spider).getMobType() == MobCategory.CREATURE) {
                     ((LivingEntity) spider).addEffect(new MobEffectInstance(AMEffectRegistry.DEBILITATING_STING.get(), EntityTarantulaHawk.STING_DURATION));
                 }
             }

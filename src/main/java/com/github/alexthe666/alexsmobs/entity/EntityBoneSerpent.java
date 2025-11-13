@@ -106,7 +106,7 @@ public class EntityBoneSerpent extends Monster {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
@@ -233,7 +233,7 @@ public class EntityBoneSerpent extends Monster {
 
     public void tick() {
         super.tick();
-        isInsidePortal = false;
+        // isInsidePortal removed in 1.21
         final boolean ground = !this.isInLava() && !this.isInWater() && this.onGround();
         if (jumpCooldown > 0) {
             jumpCooldown--;

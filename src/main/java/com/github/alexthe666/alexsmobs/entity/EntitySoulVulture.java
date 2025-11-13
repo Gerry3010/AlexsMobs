@@ -72,7 +72,7 @@ public class EntitySoulVulture extends Monster implements FlyingAnimal {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.UNDEAD;
+        return MobCategory.MONSTER;
     }
 
     @Nullable
