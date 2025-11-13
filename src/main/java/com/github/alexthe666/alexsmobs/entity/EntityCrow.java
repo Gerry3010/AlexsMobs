@@ -593,7 +593,7 @@ public class EntityCrow extends TamableAnimal implements ITargetsDroppedItems {
     }
 
     private boolean isCrowEdible(ItemStack stack) {
-        return stack.getItem().isEdible() || stack.is(AMTagRegistry.CROW_FOODSTUFFS);
+        return stack.has(net.minecraft.core.component.DataComponents.FOOD) || stack.is(AMTagRegistry.CROW_FOODSTUFFS);
     }
 
     public double getMaxDistToItem() {

@@ -53,7 +53,7 @@ import java.util.stream.Stream;
 
 public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemiAquatic {
 
-    public static final ResourceLocation SPIKED_LOOT = new ResourceLocation("alexsmobs", "entities/froststalker_spikes");
+    public static final ResourceLocation SPIKED_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/froststalker_spikes");
     public static final Animation ANIMATION_BITE = Animation.create(13);
     public static final Animation ANIMATION_SPEAK = Animation.create(11);
     public static final Animation ANIMATION_SLASH_L = Animation.create(12);
@@ -436,19 +436,18 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
         return 0.52F * this.getBlockJumpFactor();
     }
 
-    @Override
-    protected void jumpFromGround() {
+    protected void frostJumpFromGround() {
         double d0 = (double) this.getJumpPower() + this.getJumpBoostPower();
         Vec3 vec3 = this.getDeltaMovement();
         this.setDeltaMovement(vec3.x, d0, vec3.z);
         float f = this.getYRot() * Mth.DEG_TO_RAD;
         this.setDeltaMovement(this.getDeltaMovement().add(-Mth.sin(f) * 0.2F, 0, Mth.cos(f) * 0.2F));
         this.hasImpulse = true;
-        net.minecraftforge.common.ForgeHooks.onLivingJump(this);
+        net.neoforged.neoforge.common.CommonHooks.onLivingJump(this);
     }
 
     public void frostJump() {
-        jumpFromGround();
+        frostJumpFromGround();
     }
 
     @Override

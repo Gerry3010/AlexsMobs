@@ -104,7 +104,7 @@ public class EntityEmu extends Animal implements IAnimatedEntity, IHerdPanic {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.3D, true){
             protected double getAttackReachSqr(LivingEntity attackTarget) {
-                return super.getAttackReachSqr(attackTarget) + 2.5D;
+                return this.mob.distanceToSqr(attackTarget) + 2.5D;
             }
 
             @Override

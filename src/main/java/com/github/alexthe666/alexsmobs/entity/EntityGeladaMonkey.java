@@ -99,7 +99,7 @@ public class EntityGeladaMonkey extends Animal implements IAnimatedEntity, IHerd
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5D, true) {
             protected double getAttackReachSqr(LivingEntity attackTarget) {
-                return super.getAttackReachSqr(attackTarget) + 1.5D;
+                return this.mob.distanceToSqr(attackTarget) + 1.5D;
             }
 
             @Override
