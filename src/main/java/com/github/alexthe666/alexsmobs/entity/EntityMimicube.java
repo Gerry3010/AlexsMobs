@@ -153,7 +153,7 @@ public class EntityMimicube extends Monster implements RangedAttackMob {
     }
 
     protected AbstractArrow fireArrow(ItemStack arrowStack, float distanceFactor) {
-        return ProjectileUtil.getMobArrow(this, arrowStack, distanceFactor);
+        return ProjectileUtil.getMobArrow(this, arrowStack, distanceFactor, new ItemStack(Items.BOW));
     }
 
     public boolean canFireProjectileWeapon(ProjectileWeaponItem p_230280_1_) {
@@ -261,7 +261,7 @@ public class EntityMimicube extends Monster implements RangedAttackMob {
         if(this.isInWater()){
             this.setDeltaMovement(this.getDeltaMovement().add(0, 0.05D, 0));
         }
-        if (this.getOffhandItem().getItem().isEdible() && this.getHealth() < this.getMaxHealth()) {
+        if (this.getOffhandItem().getFoodProperties(this) != null && this.getHealth() < this.getMaxHealth()) {
             if (eatingTicks < 100) {
                 for (int i = 0; i < 3; i++) {
                     double d2 = this.random.nextGaussian() * 0.02D;
@@ -282,7 +282,7 @@ public class EntityMimicube extends Monster implements RangedAttackMob {
                 this.heal(5);
                 eatingTicks = 0;
             }
-        } else if (this.getMainHandItem().getItem().isEdible() && this.getHealth() < this.getMaxHealth()) {
+        } else if (this.getMainHandItem().getFoodProperties(this) != null && this.getHealth() < this.getMaxHealth()) {
             if (eatingTicks < 100) {
                 for (int i = 0; i < 3; i++) {
                     double d2 = this.random.nextGaussian() * 0.02D;
@@ -342,7 +342,7 @@ public class EntityMimicube extends Monster implements RangedAttackMob {
         return AMSoundRegistry.MIMICUBE_JUMP.get();
     }
 
-    protected void jumpFromGround() {
+    public void jumpFromGround() {
         Vec3 vector3d = this.getDeltaMovement();
         this.setDeltaMovement(vector3d.x, this.getJumpPower(), vector3d.z);
         this.hasImpulse = true;

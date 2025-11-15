@@ -54,8 +54,8 @@ public class EntityGuster extends Monster {
     private int liftingTime = 0;
     private int maxLiftTime = 40;
     private int shootingTicks;
-    public static final ResourceLocation RED_LOOT = new ResourceLocation("alexsmobs", "entities/guster_red");
-    public static final ResourceLocation SOUL_LOOT = new ResourceLocation("alexsmobs", "entities/guster_soul");
+    public static final ResourceLocation RED_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/guster_red");
+    public static final ResourceLocation SOUL_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/guster_soul");
 
     protected EntityGuster(EntityType type, Level worldIn) {
         super(type, worldIn);
@@ -84,8 +84,13 @@ public class EntityGuster extends Monster {
     }
 
     @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return this.getVariant() == 2 ? SOUL_LOOT : this.getVariant() == 1 ? RED_LOOT : super.getDefaultLootTable();
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        if (this.getVariant() == 2) {
+            return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, SOUL_LOOT);
+        } else if (this.getVariant() == 1) {
+            return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, RED_LOOT);
+        }
+        return super.getDefaultLootTable();
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {
