@@ -458,7 +458,7 @@ public class ClientEvents {
                     RenderSystem.disableDepthTest();
                     RenderSystem.depthMask(false);
 
-                    float ageInTicks = (float)Minecraft.getInstance().level.getGameTime() + event.getPartialTick();
+                    float ageInTicks = (float) (Minecraft.getInstance().level.getGameTime() + event.getPartialTick());
                     float staticIndexX = (float) Math.sin(ageInTicks * 0.2F) * 2;
                     float staticIndexY = (float) Math.cos(ageInTicks * 0.2F + 3F) * 2;
                     RenderSystem.defaultBlendFunc();
