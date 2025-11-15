@@ -149,9 +149,8 @@ public class EntityFart extends Entity {
         }
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+        return new ClientboundAddEntityPacket(this, 0);
     }
 
     @Override

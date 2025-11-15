@@ -54,9 +54,8 @@ public class EntityGust extends Entity {
         return Mth.lerp(0.2F, p_234614_0_, p_234614_1_);
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this, 0);
     }
 
     public void tick() {
@@ -149,7 +148,7 @@ public class EntityGust extends Entity {
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
+        // Don't call super for Entity - it's abstract
         builder.define(VERTICAL, false);
         builder.define(X_DIR, 0f);
         builder.define(Y_DIR, 0F);

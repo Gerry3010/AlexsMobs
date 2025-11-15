@@ -611,16 +611,16 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
         }
     }
 
-    @Override
     protected void onChangedBlock(BlockPos pos) {
         int i = this.level().holderLookup(net.minecraft.core.registries.Registries.ENCHANTMENT).get(net.minecraft.world.item.enchantment.Enchantments.FROST_WALKER).map(holder -> net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentLevel(holder, this)).orElse(0);
         if (i > 0 || this.hasSpikes()) {
             net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect.FrostWalker.doPostHurt(this, this.level(), pos, i == 0 ? 1 : i);
         }
-        if (this.shouldRemoveSoulSpeed(this.getBlockStateOn())) {
-            this.removeSoulSpeed();
-        }
-        this.tryAddSoulSpeed();
+        // Soul speed methods removed in 1.21
+        // if (this.shouldRemoveSoulSpeed(this.getBlockStateOn())) {
+        //     this.removeSoulSpeed();
+        // }
+        // this.tryAddSoulSpeed();
     }
 
     @Nullable

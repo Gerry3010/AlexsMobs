@@ -54,8 +54,8 @@ public class TileEntityTransmutationTable  extends BlockEntity {
         }else{
             net.minecraft.server.MinecraftServer server = player.level().getServer();
             if (server != null) {
-                net.minecraft.world.level.storage.loot.LootDataManager lootData = server.getLootData();
-                LootTable loottable = lootData.getLootTable(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, loc));
+                net.minecraft.server.ReloadableServerResources resources = server.reloadableRegistries();
+                LootTable loottable = resources.getLootTable(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, loc));
                 List<ItemStack> loots = loottable.getRandomItems((new LootParams.Builder((ServerLevel) player.level())).withParameter(LootContextParams.THIS_ENTITY, player).create(LootContextParamSets.EMPTY));
                 return loots.isEmpty() ? ItemStack.EMPTY : loots.get(0);
             }
