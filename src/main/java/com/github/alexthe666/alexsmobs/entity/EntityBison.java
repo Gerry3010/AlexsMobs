@@ -328,7 +328,7 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
             if (item instanceof ShovelItem && this.isSnowy()) {
                 this.permSnow = false;
                 if (!player.isCreative() && player instanceof ServerPlayer serverPlayer) {
-                    itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(serverPlayer.getEquipmentSlotForItem(itemstack)));
+                    itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(itemstack));
                 }
                 this.setSnowy(false);
                 this.playSound(SoundEvents.SNOW_BREAK, this.getSoundVolume(), this.getVoicePitch());

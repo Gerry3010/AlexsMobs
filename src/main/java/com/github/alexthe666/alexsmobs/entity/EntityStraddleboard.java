@@ -412,7 +412,7 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
+        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this, 0);
     }
 
 

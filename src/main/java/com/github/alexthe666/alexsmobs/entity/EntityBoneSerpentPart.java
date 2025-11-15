@@ -183,7 +183,8 @@ public class EntityBoneSerpentPart extends LivingEntity implements IHurtableMult
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
+        // Multipart entities don't have standard spawn packets in 1.21
+        throw new UnsupportedOperationException("EntityBoneSerpentPart should not create spawn packets - use parent entity");
     }
 
     public void pushEntities() {

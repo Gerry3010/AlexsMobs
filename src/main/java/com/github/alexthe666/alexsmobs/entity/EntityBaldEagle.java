@@ -381,8 +381,8 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
                 this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 if (!this.level().isClientSide) {
-                    if (player instanceof ServerPlayer) {
-                        itemstack.hurtAndBreak(1, (ServerPlayer) player, (ServerPlayer) player.getEquipmentSlotForItem(LivingEntity.getSlotForHand(hand)));
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(itemstack));
                     }
                 }
                 this.spawnAtLocation(AMItemRegistry.FALCONRY_HOOD.get());

@@ -245,8 +245,8 @@ public class EntityCaiman extends TamableAnimal implements ISemiAquatic,IFollowe
             if (this.isInWaterOrBubble() && this.isBellowing()) {
                 int particles = 4 + getRandom().nextInt(3);
                 for (int i = 0; i <= particles; i++) {
-                    Vec3 particleVec = new Vec3(0, 0, 1.0F).yRot((i / (float) particles) * (Mth.PI) * 2F).add(this.position());
-                    double particleY = this.getBoundingBox().minY + this.getFluidHeight(net.neoforged.neoforge.fluids.FluidType.WATER_TYPE);
+                Vec3 particleVec = new Vec3(0, 0, 1.0F).yRot((i / (float) particles) * (Mth.PI) * 2F).add(this.position());
+                    double particleY = this.getBoundingBox().minY + this.getFluidHeight(net.neoforged.neoforge.common.NeoForgeMod.WATER_TYPE.value());
                     this.level().addParticle(ParticleTypes.SPLASH, particleVec.x, particleY, particleVec.z, 0, 0.3F, 0);
                 }
             }
