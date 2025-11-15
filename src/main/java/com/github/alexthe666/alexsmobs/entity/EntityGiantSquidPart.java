@@ -100,8 +100,7 @@ public class EntityGiantSquidPart extends PartEntity<EntityGiantSquid> implement
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-
+        // Empty - PartEntity doesn't need synced data
     }
 
     public void tick(){

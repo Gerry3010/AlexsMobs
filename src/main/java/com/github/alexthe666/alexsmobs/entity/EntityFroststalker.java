@@ -113,8 +113,8 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
     }
 
     @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return this.hasSpikes() ? SPIKED_LOOT : super.getDefaultLootTable();
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        return this.hasSpikes() ? net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, SPIKED_LOOT) : super.getDefaultLootTable();
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {
@@ -615,7 +615,7 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
     protected void onChangedBlock(BlockPos pos) {
         int i = this.level().holderLookup(net.minecraft.core.registries.Registries.ENCHANTMENT).get(net.minecraft.world.item.enchantment.Enchantments.FROST_WALKER).map(holder -> net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentLevel(holder, this)).orElse(0);
         if (i > 0 || this.hasSpikes()) {
-            net.minecraft.world.item.enchantment.FrostWalkerEnchantment.onEntityMoved(this, this.level(), pos, i == 0 ? -1 : i);
+            net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect.FrostWalker.doPostHurt(this, this.level(), pos, i == 0 ? 1 : i);
         }
         if (this.shouldRemoveSoulSpeed(this.getBlockStateOn())) {
             this.removeSoulSpeed();

@@ -495,7 +495,7 @@ public class EntityGiantSquid extends WaterAnimal {
 
     public Vec3 collideWithCustomCollision(Vec3 movement) {
         if (touchingUnloadedChunk() || !this.isInWaterOrBubble()) {
-            return Entity.collideBoundingBox(this, movement);
+            return Entity.collideBoundingBox(this, movement, this.getBoundingBox(), this.level(), List.of());
         } else {
             AABB aabb = this.mantleCollisionPart.getBoundingBox();
             List<VoxelShape> list = this.level().getEntityCollisions(this, aabb.expandTowards(movement));

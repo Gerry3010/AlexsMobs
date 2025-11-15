@@ -107,8 +107,8 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 55.0D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.6F).add(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isStanding() ? STANDING_SIZE.scale(this.getScale()) : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isStanding() ? STANDING_SIZE.scale(this.getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
@@ -148,7 +148,7 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(), this.getZ() + extraZ);
+            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(this), this.getZ() + extraZ);
         }
     }
 
