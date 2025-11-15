@@ -420,7 +420,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
             if (item == Items.FLOWER_POT && !this.isPotted()) {
                 this.setPotted(true);
                 return InteractionResult.SUCCESS;
-            } else if (itemstack.is(net.minecraft.tags.ItemTags.SHEARS) && this.isPotted()) {
+            } else if (itemstack.getItem() == Items.SHEARS && this.isPotted()) {
                 this.setPotted(false);
                 this.spawnAtLocation(Items.FLOWER_POT);
                 return InteractionResult.SUCCESS;

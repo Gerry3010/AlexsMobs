@@ -235,12 +235,15 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
             }
             return InteractionResult.SUCCESS;
         }
-        if (isTame() && this.getHealth() < this.getMaxHealth() && item.isEdible() && item.getFoodProperties() != null && !item.getFoodProperties().isMeat()) {
-            this.usePlayerItem(player, hand, itemstack);
-            this.gameEvent(GameEvent.EAT);
-            this.playSound(SoundEvents.HORSE_EAT, this.getSoundVolume(), this.getVoicePitch());
-            this.heal(item.getFoodProperties().getNutrition());
-            return InteractionResult.SUCCESS;
+        if (isTame() && this.getHealth() < this.getMaxHealth() && itemstack.isEdible()) {
+            net.minecraft.world.food.FoodProperties food = itemstack.getFoodProperties(this);
+            if (food != null && !food.isMeat()) {
+                this.usePlayerItem(player, hand, itemstack);
+                this.gameEvent(GameEvent.EAT);
+                this.playSound(SoundEvents.HORSE_EAT, this.getSoundVolume(), this.getVoicePitch());
+                this.heal(food.nutrition());
+                return InteractionResult.SUCCESS;
+            }
         }
         InteractionResult interactionresult = itemstack.interactLivingEntity(player, this, hand);
         if (interactionresult != InteractionResult.SUCCESS && type != InteractionResult.SUCCESS && isTame() && isOwnedBy(player) && !isFood(itemstack)) {

@@ -232,7 +232,7 @@ public class EntityRaccoon extends TamableAnimal implements IAnimatedEntity, IFo
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;
-        } else if (owner && this.getColor() != null && itemstack.is(net.minecraft.tags.ItemTags.SHEARS)) {
+        } else if (owner && this.getColor() != null && itemstack.getItem() == Items.SHEARS) {
             this.gameEvent(GameEvent.ENTITY_INTERACT);
             this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             if (this.getColor() != null) {
