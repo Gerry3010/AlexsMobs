@@ -90,7 +90,7 @@ public class ModelHummingbird extends AdvancedEntityModel<EntityHummingbird> {
         this.resetToDefaultPose();
         float flySpeed = 1.0F;
         float flyDegree = 0.8F;
-        float partialTick = Minecraft.getInstance().getFrameTime();
+        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
         float flyProgress = entityIn.prevFlyProgress + (entityIn.flyProgress - entityIn.prevFlyProgress) * partialTick;
         float zoomProgress = entityIn.prevMovingProgress + (entityIn.movingProgress - entityIn.prevMovingProgress) * partialTick;
         float sipProgress = entityIn.prevSipProgress + (entityIn.sipProgress - entityIn.prevSipProgress) * partialTick;
@@ -148,14 +148,14 @@ public class ModelHummingbird extends AdvancedEntityModel<EntityHummingbird> {
             matrixStackIn.scale(0.35F, 0.35F, 0.35F);
             matrixStackIn.translate(0.0D, 2.75D, 0.125D);
             parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
             head.setScale(1, 1, 1);
         } else {
             matrixStackIn.pushPose();
             parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
         }

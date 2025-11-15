@@ -93,7 +93,7 @@ public class ModelRainFrog extends AdvancedEntityModel<EntityRainFrog> {
             matrixStackIn.scale(0.5F, 0.5F, 0.5F);
             matrixStackIn.translate(0.0D, 1.5D, 0.125D);
             parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
             right_eye.setScale(1, 1, 1);
@@ -101,7 +101,7 @@ public class ModelRainFrog extends AdvancedEntityModel<EntityRainFrog> {
         } else {
             matrixStackIn.pushPose();
             parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
         }

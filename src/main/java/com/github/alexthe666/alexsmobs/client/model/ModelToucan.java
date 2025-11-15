@@ -131,7 +131,7 @@ public class ModelToucan extends AdvancedEntityModel<EntityToucan> {
         float walkDegree = 0.78F;
         float idleSpeed = 0.1F;
         float idleDegree = 0.1F;
-        float partialTick = Minecraft.getInstance().getFrameTime();
+        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
         float flyProgress = entity.prevFlyProgress + (entity.flyProgress - entity.prevFlyProgress) * partialTick;
         float runProgress = Math.max(0, (limbSwingAmount * 5F) - flyProgress);
         float biteProgress = entity.prevPeckProgress + (entity.peckProgress - entity.prevPeckProgress) * partialTick;

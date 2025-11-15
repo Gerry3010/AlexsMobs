@@ -115,7 +115,7 @@ public class ModelSeagull extends AdvancedEntityModel<EntitySeagull> {
 		float walkDegree = 0.6F;
 		float idleSpeed = 0.1F;
 		float idleDegree = 0.1F;
-		float partialTick = Minecraft.getInstance().getFrameTime();
+		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
 		float flyProgress = entity.prevFlyProgress + (entity.flyProgress - entity.prevFlyProgress) * partialTick;
 		float groundProgress = 5F - flyProgress;
 		float flapAmount = (entity.prevFlapAmount + (entity.flapAmount - entity.prevFlapAmount) * partialTick) * flyProgress * 0.2F;

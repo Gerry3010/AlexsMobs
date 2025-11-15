@@ -138,7 +138,7 @@ public class ModelMantisShrimp extends AdvancedEntityModel<EntityMantisShrimp> {
 			matrixStackIn.scale(0.5F, 0.5F, 0.5F);
 			matrixStackIn.translate(0.0D, 1.5D, 0.125D);
 			parts().forEach((p_228292_8_) -> {
-				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
 			});
 			matrixStackIn.popPose();
 		} else {
@@ -146,7 +146,7 @@ public class ModelMantisShrimp extends AdvancedEntityModel<EntityMantisShrimp> {
 			this.eye_right.setScale(1F, 1F, 1F);
 			matrixStackIn.pushPose();
 			parts().forEach((p_228290_8_) -> {
-				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
 			});
 			matrixStackIn.popPose();
 		}
@@ -161,7 +161,7 @@ public class ModelMantisShrimp extends AdvancedEntityModel<EntityMantisShrimp> {
 		float idleDegree = 0.3f;
 		float walkSpeed = 0.9f;
 		float walkDegree = 0.6F;
-		float partialTick = Minecraft.getInstance().getFrameTime();
+		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
 		float swimProgress = (Math.min(limbSwingAmount, 0.25F) * 4F) * (entity.prevInWaterProgress + (entity.inWaterProgress - entity.prevInWaterProgress) * partialTick);
 		float punchProgress = entity.prevPunchProgress + (entity.punchProgress - entity.prevPunchProgress) * partialTick;
 		float leftEyePitch = entity.prevLeftPitch + (entity.getEyePitch(true) - entity.prevLeftPitch) * partialTick;

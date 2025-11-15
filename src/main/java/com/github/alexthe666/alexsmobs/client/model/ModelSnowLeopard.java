@@ -154,7 +154,7 @@ public class ModelSnowLeopard extends AdvancedEntityModel<EntitySnowLeopard> {
         float idleSpeed = 0.1F;
         float idleDegree = 0.1F;
         float runProgress = 5F * limbSwingAmount;
-        float partialTick = Minecraft.getInstance().getFrameTime();
+        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
         float stalkProgress = entity.prevSneakProgress + (entity.sneakProgress - entity.prevSneakProgress) * partialTick;
         float tackleProgress = entity.prevTackleProgress + (entity.tackleProgress - entity.prevTackleProgress) * partialTick;
         float sitProgress = entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * partialTick;
@@ -250,14 +250,14 @@ public class ModelSnowLeopard extends AdvancedEntityModel<EntitySnowLeopard> {
             matrixStackIn.scale(0.5F, 0.5F, 0.5F);
             matrixStackIn.translate(0.0D, 1.5D, 0D);
             parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
             head.setScale(1, 1, 1);
         } else {
             matrixStackIn.pushPose();
             parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
             });
             matrixStackIn.popPose();
         }

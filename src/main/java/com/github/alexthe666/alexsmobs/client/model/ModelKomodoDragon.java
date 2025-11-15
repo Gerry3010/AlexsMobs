@@ -117,7 +117,7 @@ public class ModelKomodoDragon extends AdvancedEntityModel<EntityKomodoDragon> {
 		float idleDegree = 0.7F;
 		float walkSpeed = 0.5F;
 		float walkDegree = 0.7F;
-		float partialTick = Minecraft.getInstance().getFrameTime();
+		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
 		float sitProgress = entityIn.prevSitProgress + (entityIn.sitProgress - entityIn.prevSitProgress) * partialTick;
 		float jostleProgress = entityIn.prevJostleProgress + (entityIn.jostleProgress - entityIn.prevJostleProgress) * partialTick;
 		float jostleAngle = entityIn.prevJostleAngle + (entityIn.getJostleAngle() - entityIn.prevJostleAngle) * partialTick;
@@ -205,14 +205,14 @@ public class ModelKomodoDragon extends AdvancedEntityModel<EntityKomodoDragon> {
 			matrixStackIn.scale(0.35F, 0.35F, 0.35F);
 			matrixStackIn.translate(0.0D, 2.75D, 0.125D);
 			parts().forEach((p_228292_8_) -> {
-				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
 			});
 			matrixStackIn.popPose();
 			head.setScale(1, 1, 1);
 		} else {
 			matrixStackIn.pushPose();
 			parts().forEach((p_228290_8_) -> {
-				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+				p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
 			});
 			matrixStackIn.popPose();
 		}
