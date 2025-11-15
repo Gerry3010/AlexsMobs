@@ -150,7 +150,7 @@ public class EntityFart extends Entity {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this, 0);
+        return new ClientboundAddEntityPacket(this);
     }
 
     @Override

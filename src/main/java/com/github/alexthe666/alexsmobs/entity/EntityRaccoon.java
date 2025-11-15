@@ -447,7 +447,7 @@ public class EntityRaccoon extends TamableAnimal implements IAnimatedEntity, IFo
     public void postWashItem(ItemStack stack) {
         if (stack.is(AMTagRegistry.RACCOON_TAMEABLES) && eggThrowerUUID != null && !this.isTame()) {
             if (getRandom().nextFloat() < 0.3F) {
-                this.setTame(true);
+                this.setTame(true, true);
                 this.setOwnerUUID(eggThrowerUUID);
                 Player player = level().getPlayerByUUID(eggThrowerUUID);
                 if (player instanceof ServerPlayer) {
