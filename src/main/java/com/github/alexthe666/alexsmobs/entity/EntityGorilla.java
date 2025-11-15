@@ -226,8 +226,8 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
         return gorilla;
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isSilverback() && !isBaby() ? SILVERBACK_SIZE.scale(this.getScale()) : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isSilverback() && !isBaby() ? SILVERBACK_SIZE.scale(this.getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     public void positionRider(Entity passenger, Entity.MoveFunction moveFunc) {
@@ -245,7 +245,7 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(), this.getZ() + extraZ);
+            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(0.0), this.getZ() + extraZ);
         }
     }
 
@@ -391,7 +391,7 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
                     this.heal(4);
                     if (isTameableFood(stack) && bananaThrowerID != null) {
                         if (getRandom().nextFloat() < 0.3F) {
-                            this.setTame(true);
+                            this.setTame(true, true);
                             this.setOwnerUUID(this.bananaThrowerID);
                             Player player = level().getPlayerByUUID(bananaThrowerID);
                             if (player instanceof ServerPlayer) {

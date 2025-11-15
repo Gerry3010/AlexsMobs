@@ -613,9 +613,9 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
 
     @Override
     protected void onChangedBlock(BlockPos pos) {
-        int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, this);
+        int i = this.level().holderLookup(net.minecraft.core.registries.Registries.ENCHANTMENT).get(net.minecraft.world.item.enchantment.Enchantments.FROST_WALKER).map(holder -> net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentLevel(holder, this)).orElse(0);
         if (i > 0 || this.hasSpikes()) {
-            FrostWalkerEnchantment.onEntityMoved(this, this.level(), pos, i == 0 ? -1 : i);
+            net.minecraft.world.item.enchantment.FrostWalkerEnchantment.onEntityMoved(this, this.level(), pos, i == 0 ? -1 : i);
         }
         if (this.shouldRemoveSoulSpeed(this.getBlockStateOn())) {
             this.removeSoulSpeed();
@@ -624,9 +624,9 @@ public class EntityFroststalker extends Animal implements IAnimatedEntity, ISemi
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_27528_, DifficultyInstance p_27529_, MobSpawnType p_27530_, @Nullable SpawnGroupData p_27531_, @Nullable CompoundTag p_27532_) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_27528_, DifficultyInstance p_27529_, MobSpawnType p_27530_, @Nullable SpawnGroupData p_27531_) {
         //do not call super here
-        this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random spawn bonus", this.random.nextGaussian() * 0.05D, AttributeModifier.Operation.MULTIPLY_BASE));
+        this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier(ResourceLocation.withDefaultNamespace("Random spawn bonus"), this.random.nextGaussian() * 0.05D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         if (p_27531_ == null) {
             p_27531_ = new SchoolSpawnGroupData(this);
         } else {

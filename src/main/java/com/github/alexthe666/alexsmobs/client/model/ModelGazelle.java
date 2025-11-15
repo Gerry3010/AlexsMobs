@@ -268,18 +268,20 @@ public class ModelGazelle extends AdvancedEntityModel<EntityGazelle> {
             matrixStackIn.pushPose();
             matrixStackIn.scale(0.5F, 0.5F, 0.5F);
             matrixStackIn.translate(0.0D, 1.5D, 0.125D);
-            parts().forEach((p_228292_8_) -> {
-                p_228292_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-            });
+            int packedColor = net.minecraft.util.FastColor.ARGB32.color(255, 255, 255, 255);
+            for (BasicModelPart part : parts()) {
+                part.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, packedColor);
+            }
             matrixStackIn.popPose();
             head.setScale(1, 1, 1);
             hornL.setScale(1, 1, 1);
             hornR.setScale(1, 1, 1);
         } else {
             matrixStackIn.pushPose();
-            parts().forEach((p_228290_8_) -> {
-                p_228290_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-            });
+            int packedColor = net.minecraft.util.FastColor.ARGB32.color(255, 255, 255, 255);
+            for (BasicModelPart part : parts()) {
+                part.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, packedColor);
+            }
             matrixStackIn.popPose();
         }
 
