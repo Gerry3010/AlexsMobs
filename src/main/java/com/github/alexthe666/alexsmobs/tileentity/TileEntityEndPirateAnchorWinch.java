@@ -135,7 +135,7 @@ public class TileEntityEndPirateAnchorWinch extends BlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     public AABB getRenderBoundingBox() {
-        return INFINITE_EXTENT_AABB;
+        return new AABB(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
     public boolean checkAndBreakAnchor(BlockPos down) {
@@ -241,8 +241,8 @@ public class TileEntityEndPirateAnchorWinch extends BlockEntity {
 
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
+    protected void loadAdditional(CompoundTag compound, net.minecraft.core.HolderLookup.Provider registries) {
+        super.loadAdditional(compound, registries);
         this.pullingUp = compound.getBoolean("PullingUp");
         this.draggingAnchor = compound.getBoolean("DraggingAnchor");
         this.anchorEW = compound.getBoolean("EWAnchor");
@@ -251,8 +251,8 @@ public class TileEntityEndPirateAnchorWinch extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, net.minecraft.core.HolderLookup.Provider registries) {
+        super.saveAdditional(compound, registries);
         compound.putBoolean("PullingUp", pullingUp);
         compound.putBoolean("DraggingAnchor", draggingAnchor);
         compound.putBoolean("EWAnchor", anchorEW);

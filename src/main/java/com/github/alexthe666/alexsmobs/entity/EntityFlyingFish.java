@@ -299,7 +299,7 @@ public class EntityFlyingFish extends WaterAnimal implements FlyingAnimal, Bucke
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance diff, MobSpawnType spawnType, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance diff, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
         int i;
         if (data instanceof FlyingFishGroupData) {
             i = ((FlyingFishGroupData)data).variant;
@@ -309,7 +309,7 @@ public class EntityFlyingFish extends WaterAnimal implements FlyingAnimal, Bucke
         }
 
         this.setVariant(i);
-        return super.finalizeSpawn(world, diff, spawnType, data, tag);
+        return super.finalizeSpawn(world, diff, spawnType, data);
     }
 
     @Override

@@ -168,7 +168,7 @@ public class EntityFly extends Animal implements FlyingAnimal {
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return this.isBaby() ? sizeIn.height * 0.5F : sizeIn.height * 0.5F;
+        return this.isBaby() ? sizeIn.height() * 0.5F : sizeIn.height() * 0.5F;
     }
 
     public boolean causeFallDamage(float distance, float damageMultiplier) {
@@ -195,7 +195,7 @@ public class EntityFly extends Animal implements FlyingAnimal {
                 EntityCrimsonMosquito mosquito = AMEntityRegistry.CRIMSON_MOSQUITO.get().create(level());
                 mosquito.copyPosition(this);
                 if(!this.level().isClientSide){
-                    mosquito.finalizeSpawn((ServerLevelAccessor)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.CONVERSION, null, null);
+                    mosquito.finalizeSpawn((ServerLevelAccessor)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.CONVERSION, null);
                 }
                 level().addFreshEntity(mosquito);
                 mosquito.onSpawnFromFly();

@@ -22,7 +22,7 @@ public class TileEntityEndPirateFlag  extends BlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     public AABB getRenderBoundingBox() {
-        return new AABB(worldPosition.offset(-2, -2, -2), worldPosition.offset(2, 2, 2));
+        return new AABB(worldPosition.offset(-2, -2, -2).getCenter(), worldPosition.offset(2, 2, 2).getCenter());
     }
 
     public void tick() {
