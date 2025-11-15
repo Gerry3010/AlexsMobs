@@ -372,7 +372,7 @@ public class EntityCatfish extends WaterAnimal implements FlyingAnimal, Bucketab
             for (int i = 0; i < nbttaglist.size(); ++i) {
                 final CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 final int j = CompoundNBT.getByte("Slot") & 255;
-                this.catfishInventory.setItem(j, ItemStack.parseOptional(level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
+                this.catfishInventory.setItem(j, ItemStack.parse(level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         }
         this.setSwallowedEntityType(compound.getString("ContainedEntityType"));
