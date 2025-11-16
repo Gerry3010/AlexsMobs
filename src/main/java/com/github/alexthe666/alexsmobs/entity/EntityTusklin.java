@@ -289,7 +289,7 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
         this.setPassiveTicks(p_31795_.getInt("PassiveTicks"));
         CompoundTag compoundtag = p_31795_.getCompound("ShoeItem");
         if (compoundtag != null && !compoundtag.isEmpty()) {
-            ItemStack itemstack = ItemStack.parseOptional(this.level().registryAccess(), compoundtag);
+            ItemStack itemstack = ItemStack.parseOptional(this.level().orElse(ItemStack.EMPTY).registryAccess(), compoundtag);
             if (itemstack.isEmpty()) {
                 AlexsMobs.LOGGER.warn("Unable to load item from: {}", compoundtag);
             }

@@ -316,7 +316,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
             for (int i = 0; i < nbttaglist.size(); ++i) {
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().orElse(ItemStack.EMPTY).registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         } else {
             ListTag nbttaglist = compound.getList("Items", 10);
@@ -325,7 +325,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
                 this.initKangarooInventory();
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().orElse(ItemStack.EMPTY).registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         }
         resetKangarooSlots();

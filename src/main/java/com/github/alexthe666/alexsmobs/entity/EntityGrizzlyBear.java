@@ -289,8 +289,8 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
         }
         if(item instanceof ShovelItem && this.isSnowy() && !this.level().isClientSide){
             this.permSnow = false;
-            if(!player.isCreative()){
-                itemstack.hurt(1, this.getRandom(), player instanceof ServerPlayer ? (ServerPlayer)player : null);
+            if(!player.isCreative() && player instanceof ServerPlayer serverPlayer){
+                itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(itemstack));
             }
             this.setSnowy(false);
             this.gameEvent(GameEvent.ENTITY_INTERACT);
