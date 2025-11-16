@@ -129,7 +129,7 @@ public class ModelEndergrade extends AdvancedEntityModel<EntityEndergrade> {
 		AdvancedModelBox[] legPartsLeft = new AdvancedModelBox[]{legfrontL, legmidL, legbackL};
 		float walkSpeed = 1.7F;
 		float walkDegree = 0.7F;
-		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(true);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
 		float birdPitch = entityIn.prevTartigradePitch + (entityIn.tartigradePitch - entityIn.prevTartigradePitch) * partialTick;
 		float biteProgress= entityIn.prevBiteProgress + (entityIn.biteProgress - entityIn.prevBiteProgress) * partialTick;
 		this.mouth.setScale(1, 1, 1 + biteProgress * 0.4F);

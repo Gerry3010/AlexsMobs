@@ -305,7 +305,7 @@ public class EntityCombJelly extends WaterAnimal implements Bucketable {
     }
 
     public MobCategory getMobType() {
-        return MobCategory.WATER_CREATURE_AMBIENT;
+        return MobCategory.WATER_AMBIENT;
     }
 
     public boolean checkSpawnObstruction(LevelReader worldIn) {

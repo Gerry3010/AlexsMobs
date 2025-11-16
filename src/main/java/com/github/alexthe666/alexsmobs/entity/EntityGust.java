@@ -55,7 +55,7 @@ public class EntityGust extends Entity {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
+        return (Packet<ClientGamePacketListener>) net.neoforged.neoforge.network.PacketDistributor.getEntitySpawningPacket(this);
     }
 
     public void tick() {
