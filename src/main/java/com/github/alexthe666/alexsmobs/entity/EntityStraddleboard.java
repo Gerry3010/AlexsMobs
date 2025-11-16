@@ -411,11 +411,6 @@ public class EntityStraddleboard extends Entity implements PlayerRideableJumping
         return Mth.lerp(partialTicks, this.prevRockingAngle, this.rockingAngle);
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
-    }
-
-
     @Override
     protected Entity.MovementEmission getMovementEmission() {
         return MovementEmission.EVENTS;

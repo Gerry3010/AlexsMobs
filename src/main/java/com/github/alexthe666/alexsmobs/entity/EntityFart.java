@@ -149,10 +149,6 @@ public class EntityFart extends Entity {
         }
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
-    }
-
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         // Empty - no synched data needed

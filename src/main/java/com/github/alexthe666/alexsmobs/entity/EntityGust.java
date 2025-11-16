@@ -54,10 +54,6 @@ public class EntityGust extends Entity {
         return Mth.lerp(0.2F, p_234614_0_, p_234614_1_);
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
-    }
-
     public void tick() {
         super.tick();
         if(this.tickCount > 300){

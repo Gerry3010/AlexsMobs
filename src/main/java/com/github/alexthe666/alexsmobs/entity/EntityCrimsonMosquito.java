@@ -116,7 +116,9 @@ public class EntityCrimsonMosquito extends Monster {
         this.setMosquitoScale(0.2F);
         this.setFromFly(true);
         for (int j = 0; j < 4; ++j) {
-            this.level().addParticle(new net.minecraft.core.particles.ColorParticleOption(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, 0.5F, 0.0F, 0.0F), this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0.0D, 0.0D);
+            // ColorParticleOption takes ParticleType and packed int color (ARGB)
+            int color = 0xFF800000; // Red color
+            this.level().addParticle(new net.minecraft.core.particles.ColorParticleOption(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, color), this.getX() + this.random.nextDouble() / 2.0D, this.getY(0.5D), this.getZ() + this.random.nextDouble() / 2.0D, this.random.nextDouble() * 0.5F + 0.5F, 0.0D, 0.0D);
         }
     }
 
