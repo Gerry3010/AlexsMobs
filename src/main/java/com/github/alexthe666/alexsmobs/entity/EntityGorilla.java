@@ -245,7 +245,7 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(this), this.getZ() + extraZ);
+            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(), this.getZ() + extraZ);
         }
     }
 
