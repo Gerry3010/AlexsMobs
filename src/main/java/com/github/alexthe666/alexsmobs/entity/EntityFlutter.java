@@ -618,7 +618,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
     }
 
     public boolean hasEatenFlower(ItemStack stack) {
-        return flowersEaten != null && flowersEaten.contains(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem()).toString());
+        return flowersEaten != null && flowersEaten.contains(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
     }
 
     public boolean canEatFlower(ItemStack stack) {
