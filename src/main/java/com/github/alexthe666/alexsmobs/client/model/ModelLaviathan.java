@@ -154,7 +154,7 @@ public class ModelLaviathan extends AdvancedEntityModel<EntityLaviathan> {
                                 @Override
     public void setupAnim(EntityLaviathan entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.resetToDefaultPose();
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float hh1 = entity.prevHeadHeight;
         float hh2 = entity.getHeadHeight();
         float rawHeadHeight = (hh1 + (hh2 - hh1) * partialTick) / 3F;

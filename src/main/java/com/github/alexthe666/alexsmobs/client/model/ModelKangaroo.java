@@ -239,7 +239,7 @@ public class ModelKangaroo extends AdvancedEntityModel<EntityKangaroo> {
 	@Override
 	public void setupAnim(EntityKangaroo entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 		animate(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		float jumpRotation = Mth.sin(entity.getJumpCompletion(partialTick) * 3.1415927F);
 		float walkSpeed = 1F;
 		float walkDegree = 0.5F;

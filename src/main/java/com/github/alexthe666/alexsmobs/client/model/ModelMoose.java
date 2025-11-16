@@ -174,7 +174,7 @@ public class ModelMoose extends AdvancedEntityModel<EntityMoose> {
         float idleSpeed = 0.1F;
         float idleDegree = 0.1F;
         float runProgress = 5F * limbSwingAmount;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float jostleProgress = entityIn.prevJostleProgress + (entityIn.jostleProgress - entityIn.prevJostleProgress) * partialTick;
         float jostleAngle = entityIn.prevJostleAngle + (entityIn.getJostleAngle() - entityIn.prevJostleAngle) * partialTick;
         //this.walk(tail, idleSpeed, idleDegree * 2, false, 1F, 0.1F, ageInTicks, 1);

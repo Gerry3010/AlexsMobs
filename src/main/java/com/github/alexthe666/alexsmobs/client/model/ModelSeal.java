@@ -101,7 +101,7 @@ public class ModelSeal extends AdvancedEntityModel<EntitySeal> {
         float walkDegree = 1F;
         float swimSpeed = 0.5F;
         float swimDegree = 0.5F;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float baskProgress = entity.prevBaskProgress + (entity.baskProgress - entity.prevBaskProgress) * partialTick;
         float swimAngle = entity.prevSwimAngle + (entity.getSwimAngle() - entity.prevSwimAngle) * partialTick;
         float diggingProgress = entity.prevDigProgress + (entity.digProgress - entity.prevDigProgress) * partialTick;

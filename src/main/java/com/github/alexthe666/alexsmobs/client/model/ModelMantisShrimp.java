@@ -161,7 +161,7 @@ public class ModelMantisShrimp extends AdvancedEntityModel<EntityMantisShrimp> {
 		float idleDegree = 0.3f;
 		float walkSpeed = 0.9f;
 		float walkDegree = 0.6F;
-		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		float swimProgress = (Math.min(limbSwingAmount, 0.25F) * 4F) * (entity.prevInWaterProgress + (entity.inWaterProgress - entity.prevInWaterProgress) * partialTick);
 		float punchProgress = entity.prevPunchProgress + (entity.punchProgress - entity.prevPunchProgress) * partialTick;
 		float leftEyePitch = entity.prevLeftPitch + (entity.getEyePitch(true) - entity.prevLeftPitch) * partialTick;

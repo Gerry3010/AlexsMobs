@@ -92,7 +92,7 @@ public class ModelPlatypus extends AdvancedEntityModel<EntityPlatypus> {
         float idleDegree = 0.2F;
         float swimSpeed = 1.3F;
         float swimDegree = 1.3F;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float digProgress = entity.prevDigProgress + (entity.digProgress - entity.prevDigProgress) * partialTick;
         float swimProgress = entity.prevInWaterProgress + (entity.inWaterProgress - entity.prevInWaterProgress) * partialTick;
         progressPositionPrev(body, swimProgress, 0, -3.5F, 0, 5f);

@@ -112,7 +112,7 @@ public class ModelRattlesnake extends AdvancedEntityModel<EntityRattlesnake> {
         animate(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         float walkSpeed = 1.0F;
         float walkDegree = 0.4F;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         AdvancedModelBox[] bodyParts = new AdvancedModelBox[]{neck1, neck2, body, tail1, tail2};
         float curlProgress = entity.prevCurlProgress + (entity.curlProgress - entity.prevCurlProgress) * partialTick;
         progressPositionPrev(body, curlProgress, 0, 0, 3, 5F);

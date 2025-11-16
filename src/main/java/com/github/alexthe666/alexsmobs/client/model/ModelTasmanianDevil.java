@@ -120,7 +120,7 @@ public class ModelTasmanianDevil extends AdvancedEntityModel<EntityTasmanianDevi
 		float walkDegree = 0.5F;
 		float idleSpeed = 0.1F;
 		float idleDegree = 0.1F;
-		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		float baskProgress0 = entity.prevBaskProgress + (entity.baskProgress - entity.prevBaskProgress) * partialTick;
 		float sitProgress = entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * partialTick;
 		float baskProgress = Math.max(0, baskProgress0 - sitProgress);

@@ -76,7 +76,7 @@ public class ModelMungus extends AdvancedEntityModel<EntityMungus> {
 		float walkDegree = 0.6F;
 		float idleSpeed = 0.1F;
 		float idleDegree = 0.1F;
-		float swell = Math.min(entity.prevSwellProgress + (entity.swellProgress - entity.prevSwellProgress) * Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false), 10F);
+		float swell = Math.min(entity.prevSwellProgress + (entity.swellProgress - entity.prevSwellProgress) * Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), 10F);
 		float glowyBob = (swell * 0.22F) + 0.95F + (Mth.cos(ageInTicks * (0.1F + swell * 0.2F)) + 1F) * (0.05F + swell * 0.02F);
 		BlockPos targetPos = entity.getBeamTarget();
 		if(targetPos == null) {

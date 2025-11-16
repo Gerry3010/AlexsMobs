@@ -210,7 +210,7 @@ public class ModelGrizzlyBear extends AdvancedEntityModel<EntityGrizzlyBear> {
         float walkDegree = 0.7F;
         float eatSpeed = 0.8F;
         float eatDegree = 0.3F;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float sitProgress = entityIn.prevSitProgress + (entityIn.sitProgress - entityIn.prevSitProgress) * partialTick;
         float standProgress = entityIn.prevStandProgress + (entityIn.standProgress - entityIn.prevStandProgress) * partialTick;
         progressRotationPrev(body, sitProgress, Maths.rad(-80), 0, 0, 10F);

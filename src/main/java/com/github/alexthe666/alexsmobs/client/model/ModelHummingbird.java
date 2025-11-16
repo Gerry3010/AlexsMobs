@@ -90,7 +90,7 @@ public class ModelHummingbird extends AdvancedEntityModel<EntityHummingbird> {
         this.resetToDefaultPose();
         float flySpeed = 1.0F;
         float flyDegree = 0.8F;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float flyProgress = entityIn.prevFlyProgress + (entityIn.flyProgress - entityIn.prevFlyProgress) * partialTick;
         float zoomProgress = entityIn.prevMovingProgress + (entityIn.movingProgress - entityIn.prevMovingProgress) * partialTick;
         float sipProgress = entityIn.prevSipProgress + (entityIn.sipProgress - entityIn.prevSipProgress) * partialTick;

@@ -136,7 +136,7 @@ public class ModelWarpedToad extends AdvancedEntityModel<EntityWarpedToad> {
     @Override
     public void setupAnim(EntityWarpedToad entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.resetToDefaultPose();
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float attackProgress = entity.prevAttackProgress + (entity.attackProgress - entity.prevAttackProgress) * partialTick;
         float walkSpeed = 1.2f;
         float walkDegree = 0.5f;

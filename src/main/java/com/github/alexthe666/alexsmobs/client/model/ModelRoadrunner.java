@@ -130,7 +130,7 @@ public class ModelRoadrunner extends AdvancedEntityModel<EntityRoadrunner> {
         float idleSpeed = 0.1F;
         float idleDegree = 0.4F;
         float runProgress = 5F * limbSwingAmount;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         boolean spinnyLegs = limbSwingAmount > 0.5F && entityIn.isMeep();
         float biteProgress = entityIn.prevAttackProgress + (entityIn.attackProgress - entityIn.prevAttackProgress) * partialTick;
         progressRotationPrev(neck, biteProgress, Maths.rad(55), 0, 0, 5F);
@@ -153,7 +153,7 @@ public class ModelRoadrunner extends AdvancedEntityModel<EntityRoadrunner> {
         this.right_foot.rotateAngleX = -(right_leg.rotateAngleX + right_knee.rotateAngleX + body.rotateAngleX) - (float)(Math.PI/ 2F);
         this.left_leg.rotationPointY += 1.5F * (float) (Math.sin((double) (limbSwing * walkSpeed) + 2) * (double) limbSwingAmount * (double) walkDegree - (double) (limbSwingAmount * walkDegree));
         this.right_leg.rotationPointY += 1.5F * (float) (Math.sin(-(double) (limbSwing * walkSpeed) - 2) * (double) limbSwingAmount * (double) walkDegree - (double) (limbSwingAmount * walkDegree));
-        float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float f = Mth.lerp(partialTicks, entityIn.oFlap, entityIn.wingRotation);
         float f1 = Mth.lerp(partialTicks, entityIn.oFlapSpeed, entityIn.destPos);
         float wingSwing = (Mth.sin(f) + 1.0F) * f1;

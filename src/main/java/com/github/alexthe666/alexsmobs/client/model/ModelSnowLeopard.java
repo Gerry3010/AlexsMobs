@@ -154,7 +154,7 @@ public class ModelSnowLeopard extends AdvancedEntityModel<EntitySnowLeopard> {
         float idleSpeed = 0.1F;
         float idleDegree = 0.1F;
         float runProgress = 5F * limbSwingAmount;
-        float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float stalkProgress = entity.prevSneakProgress + (entity.sneakProgress - entity.prevSneakProgress) * partialTick;
         float tackleProgress = entity.prevTackleProgress + (entity.tackleProgress - entity.prevTackleProgress) * partialTick;
         float sitProgress = entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * partialTick;

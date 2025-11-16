@@ -126,7 +126,7 @@ public class ModelRaccoon extends AdvancedEntityModel<EntityRaccoon> {
     @Override
     public void setupAnim(EntityRaccoon entityRaccoon, float limbSwing, float limbSwingAmount, float ageInTicks, float v3, float v4) {
         this.animate(entityRaccoon, limbSwing, limbSwingAmount, ageInTicks, v3, v4);
-        float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+        float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
         float normalProgress = 5F;
         float walkSpeed = 1F;
         float walkDegree = 0.8F;

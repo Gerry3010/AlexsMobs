@@ -117,7 +117,7 @@ public class ModelKomodoDragon extends AdvancedEntityModel<EntityKomodoDragon> {
 		float idleDegree = 0.7F;
 		float walkSpeed = 0.5F;
 		float walkDegree = 0.7F;
-		float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		float sitProgress = entityIn.prevSitProgress + (entityIn.sitProgress - entityIn.prevSitProgress) * partialTick;
 		float jostleProgress = entityIn.prevJostleProgress + (entityIn.jostleProgress - entityIn.prevJostleProgress) * partialTick;
 		float jostleAngle = entityIn.prevJostleAngle + (entityIn.getJostleAngle() - entityIn.prevJostleAngle) * partialTick;
