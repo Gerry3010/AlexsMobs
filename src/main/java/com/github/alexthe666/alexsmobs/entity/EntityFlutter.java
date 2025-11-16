@@ -393,7 +393,7 @@ public class EntityFlutter extends TamableAnimal implements IFollower, FlyingAni
         InteractionResult type = super.mobInteract(player, hand);
         if (!isTame() && canEatFlower(itemstack)) {
             this.usePlayerItem(player, hand, itemstack);
-            this.flowersEaten.add(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(itemstack.getItem()).toString());
+            this.flowersEaten.add(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(itemstack.getItem()).toString());
             this.gameEvent(GameEvent.ENTITY_INTERACT);
             this.playSound(AMSoundRegistry.FLUTTER_YES.get(), this.getSoundVolume(), this.getVoicePitch());
             if (this.flowersEaten.size() > 3 && getRandom().nextInt(3) == 0 || this.flowersEaten.size() > 6) {

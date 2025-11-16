@@ -192,7 +192,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
             }
 
             public boolean stillValid(Player player) {
-                return EntityKangaroo.this.isAlive() && !EntityKangaroo.this.isInsidePortal;
+                return EntityKangaroo.this.isAlive() && !EntityKangaroo.this.isRemoved();
             }
         };
         kangarooInventory.addListener(this);
@@ -316,7 +316,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
             for (int i = 0; i < nbttaglist.size(); ++i) {
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         } else {
             ListTag nbttaglist = compound.getList("Items", 10);
@@ -325,15 +325,15 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
                 this.initKangarooInventory();
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
             }
         }
         resetKangarooSlots();
     }
 
     public void openGUI(Player playerEntity) {
-        if (!this.level().isClientSide && (!this.hasPassenger(playerEntity))) {
-            NetworkHooks.openScreen((ServerPlayer) playerEntity, new MenuProvider() {
+        if (!this.level().isClientSide && (!this.hasPassenger(playerEntity)) && playerEntity instanceof ServerPlayer serverPlayer) {
+            serverPlayer.openMenu(new MenuProvider() {
                 @Override
                 public AbstractContainerMenu createMenu(int p_createMenu_1_, Inventory p_createMenu_2_, Player p_createMenu_3_) {
                     return new DispenserMenu(p_createMenu_1_, p_createMenu_2_, kangarooInventory);
