@@ -89,8 +89,7 @@ public class EntityLaviathanPart extends PartEntity<EntityLaviathan> {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-
+        // Don't call super - PartEntity's defineSynchedData is abstract
     }
 
     public void tick(){

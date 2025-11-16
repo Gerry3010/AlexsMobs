@@ -67,7 +67,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
 
     public static final Animation ANIMATION_BITE = Animation.create(13);
     protected static final EntityDimensions QUEEN_SIZE = EntityDimensions.fixed(1.25F, 0.98F);
-    public static final ResourceLocation QUEEN_LOOT = new ResourceLocation("alexsmobs", "entities/leafcutter_ant_queen");
+    public static final ResourceLocation QUEEN_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/leafcutter_ant_queen");
     private static final EntityDataAccessor<Optional<BlockPos>> LEAF_HARVESTED_POS = SynchedEntityData.defineId(EntityLeafcutterAnt.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
     private static final EntityDataAccessor<Optional<BlockState>> LEAF_HARVESTED_STATE = SynchedEntityData.defineId(EntityLeafcutterAnt.class, EntityDataSerializers.OPTIONAL_BLOCK_STATE);
     private static final EntityDataAccessor<Boolean> HAS_LEAF = SynchedEntityData.defineId(EntityLeafcutterAnt.class, EntityDataSerializers.BOOLEAN);
@@ -109,8 +109,8 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     }
 
     @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return this.isQueen() ? QUEEN_LOOT : super.getDefaultLootTable();
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        return this.isQueen() ? net.minecraft.resources.ResourceKey.create(Registries.LOOT_TABLE, QUEEN_LOOT) : super.getDefaultLootTable();
     }
 
     public MobCategory getMobType() {
@@ -155,8 +155,8 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
         this.targetSelector.addGoal(2, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isQueen() && !isBaby() ? QUEEN_SIZE : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isQueen() && !isBaby() ? QUEEN_SIZE : super.getDefaultDimensions(poseIn);
     }
 
     public boolean canTrample(BlockState state, BlockPos pos, float fallDistance) {
@@ -165,6 +165,11 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
 
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
+    }
+
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return stack.is(AMTagRegistry.LEAFCUTTER_ANT_FOODSTUFFS);
     }
 
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
@@ -258,7 +263,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     public void tick() {
         this.prevAttachChangeProgress = this.attachChangeProgress;
         super.tick();
-        if (this.isQueen() && this.getBbWidth() < QUEEN_SIZE.width) {
+        if (this.isQueen() && this.getBbWidth() < QUEEN_SIZE.width()) {
             this.refreshDimensions();
         }
         if (attachChangeProgress > 0F) {
