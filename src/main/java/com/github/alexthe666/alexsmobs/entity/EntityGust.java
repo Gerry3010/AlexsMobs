@@ -55,7 +55,7 @@ public class EntityGust extends Entity {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return new net.minecraft.network.protocol.game.ClientboundAddEntityPacket(this);
     }
 
     public void tick() {
