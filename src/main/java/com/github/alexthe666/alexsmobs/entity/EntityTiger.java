@@ -76,7 +76,7 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
     private static final EntityDataAccessor<Integer> LAST_SCARED_MOB_ID = SynchedEntityData.defineId(EntityTiger.class, EntityDataSerializers.INT);
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(40, 80);
     private static final Predicate<LivingEntity> NO_BLESSING_EFFECT = (mob) -> {
-        return !mob.hasEffect(AMEffectRegistry.TIGERS_BLESSING.get());
+        return !mob.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.TIGERS_BLESSING.get()));
     };
     public float prevSitProgress;
     public float sitProgress;
@@ -426,7 +426,7 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
                 this.level().addParticle(AMParticleRegistry.SHOCKED.get(), e.getX(), e.getEyeY() + e.getBbHeight() * 0.15F + (double) (this.random.nextFloat() * e.getBbHeight() * 0.15F), e.getZ(), d0, d1, d2);
             }
         }
-        if(this.getTarget() != null && this.getTarget().hasEffect(AMEffectRegistry.TIGERS_BLESSING.get())){
+        if(this.getTarget() != null && this.getTarget().hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.TIGERS_BLESSING.get()))){
             this.setTarget(null);
             this.setLastHurtByMob(null);
         }
@@ -440,8 +440,8 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
             if (source.getEntity() != null) {
                 if (source.getEntity() instanceof LivingEntity) {
                     LivingEntity hurter = (LivingEntity) source.getEntity();
-                    if (hurter.hasEffect(AMEffectRegistry.TIGERS_BLESSING.get())) {
-                        hurter.removeEffect(AMEffectRegistry.TIGERS_BLESSING.get());
+                    if (hurter.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.TIGERS_BLESSING.get()))) {
+                        hurter.removeEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.TIGERS_BLESSING.get()));
                     }
                 }
             }
@@ -526,7 +526,8 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat() && stack.getItem() != Items.ROTTEN_FLESH;
+        net.minecraft.world.food.FoodProperties food = stack.getFoodProperties(null);
+        return food != null && !food.canAlwaysEat() && stack.getItem() != Items.ROTTEN_FLESH;
     }
 
     public double getMaxDistToItem() {
@@ -537,14 +538,15 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
     public void onGetItem(ItemEntity e) {
         this.dontSitFlag = false;
         ItemStack stack = e.getItem();
-        if (stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat() && stack.getItem() != Items.ROTTEN_FLESH) {
+        net.minecraft.world.food.FoodProperties food = stack.getFoodProperties(null);
+        if (food != null && !food.canAlwaysEat() && stack.getItem() != Items.ROTTEN_FLESH) {
             this.gameEvent(GameEvent.EAT);
             this.playSound(SoundEvents.CAT_EAT, this.getVoicePitch(), this.getSoundVolume());
             this.heal(5);
             Entity thrower = e.getOwner();
             if (thrower != null && random.nextFloat() < getChanceForEffect(stack) && level().getPlayerByUUID(thrower.getUUID()) != null) {
                 Player player = level().getPlayerByUUID(thrower.getUUID());
-                player.addEffect(new MobEffectInstance(AMEffectRegistry.TIGERS_BLESSING.get(), 12000));
+                player.addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.TIGERS_BLESSING.get()), 12000));
                 this.setTarget(null);
                 this.setLastHurtByMob(null);
             }
@@ -625,7 +627,7 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
                     tiger.setRunning(true);
                     if (tiger.entityData.get(LAST_SCARED_MOB_ID) != target.getId()) {
                         tiger.entityData.set(LAST_SCARED_MOB_ID, target.getId());
-                        target.addEffect(new MobEffectInstance(AMEffectRegistry.FEAR.get(), 100, 0, true, false));
+                        target.addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.FEAR.get()), 100, 0, true, false));
                     }
                 }
                 if (dist < 12 && tiger.getAnimation() == NO_ANIMATION && tiger.onGround() && jumpAttemptCooldown == 0 && !tiger.isHolding()) {
