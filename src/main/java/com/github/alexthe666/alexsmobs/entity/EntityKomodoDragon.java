@@ -336,7 +336,7 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            double passengerOffset = passenger instanceof LivingEntity ? ((LivingEntity)passenger).getMyRidingOffset() : 0;
+            double passengerOffset = 0; // getMyRidingOffset() removed in 1.21
             moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passengerOffset, this.getZ() + extraZ);
         }
     }
@@ -433,7 +433,7 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
     @Override
     public boolean canTargetItem(ItemStack stack) {
         FoodProperties foodProperties = stack.getFoodProperties(null);
-        return stack.is(AMTagRegistry.KOMODO_DRAGON_TAMEABLES) || (foodProperties != null && foodProperties.isMeat());
+        return stack.is(AMTagRegistry.KOMODO_DRAGON_TAMEABLES) || (foodProperties != null && !foodProperties.canAlwaysEat());
     }
 
     public boolean isSaddled() {

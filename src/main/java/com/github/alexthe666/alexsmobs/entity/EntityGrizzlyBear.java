@@ -148,7 +148,7 @@ public class EntityGrizzlyBear extends TamableAnimal implements NeutralMob, IAni
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            double passengerOffset = passenger instanceof LivingEntity ? ((LivingEntity)passenger).getMyRidingOffset() : 0;
+            double passengerOffset = 0; // getMyRidingOffset() removed in 1.21
             moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passengerOffset, this.getZ() + extraZ);
         }
     }

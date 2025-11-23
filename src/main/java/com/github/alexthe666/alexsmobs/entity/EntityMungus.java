@@ -106,7 +106,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
 
     public static BlockState getMushroomBlockstate(Item item) {
         if (item instanceof BlockItem) {
-            ResourceLocation name = net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(item);
+            ResourceLocation name = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item);
             if (name != null && MUSHROOM_TO_BIOME.containsKey(name.toString())) {
                 return ((BlockItem) item).getBlock().defaultBlockState();
             }
@@ -233,9 +233,9 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
             Holder<Biome> biome = registry.getHolder(Biomes.MUSHROOM_FIELDS).get();
             TagKey<Block> transformMatches = AMTagRegistry.MUNGUS_REPLACE_MUSHROOM;
             if (this.getMushroomState() != null) {
-                String mushroomKey = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getKey(this.getMushroomState().getBlock()).toString();
+                String mushroomKey = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(this.getMushroomState().getBlock()).toString();
                 if (MUSHROOM_TO_BLOCK.containsKey(mushroomKey)) {
-                    Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getValue(new ResourceLocation(MUSHROOM_TO_BLOCK.get(mushroomKey)));
+                    Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(ResourceLocation.parse(MUSHROOM_TO_BLOCK.get(mushroomKey)));
                     if (block != null) {
                         transformState = block.defaultBlockState();
                         if (block == Blocks.WARPED_NYLIUM) {
@@ -258,7 +258,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
                 transformBiome(center, biome);
             }
             this.gameEvent(GameEvent.EXPLODE);
-            this.playSound(SoundEvents.GENERIC_EXPLODE, this.getSoundVolume(), this.getVoicePitch());
+            this.playSound(SoundEvents.GENERIC_EXPLODE.value(), this.getSoundVolume(), this.getVoicePitch());
             if (!isReverting()) {
                 BlockPos.betweenClosedStream(center.offset(-j, -k, -l), center.offset(j, k, l)).forEach(blockpos -> {
                     if (blockpos.distSqr(center) <= ffDouble) {
@@ -286,10 +286,10 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
         if (state == null) {
             return null;
         }
-        ResourceLocation blockRegName = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getKey(state.getBlock());
+        ResourceLocation blockRegName = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(state.getBlock());
         if (blockRegName != null && MUSHROOM_TO_BIOME.containsKey(blockRegName.toString())) {
             String str = MUSHROOM_TO_BIOME.get(blockRegName.toString());
-            Biome biome = registry.getOptional(new ResourceLocation(str)).orElse(null);
+            Biome biome = registry.getOptional(ResourceLocation.parse(str)).orElse(null);
             ResourceKey<Biome> resourceKey = registry.getResourceKey(biome).orElse(null);
             return registry.getHolder(resourceKey).orElse(null);
         }
@@ -312,13 +312,13 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
         int j = chunk.getSectionIndex(QuartPos.toBlock(l));
         LevelChunkSection section = chunk.getSection(j);
         if(section != null){
-            section.biomes = container;
+            section.setBiomes(container);
         }
     }
 
     private void transformBiome(BlockPos pos, Holder<Biome> biome) {
         LevelChunk chunk = level().getChunkAt(pos);
-        PalettedContainer<Holder<Biome>> container = getChunkBiomes(chunk).recreate();
+        PalettedContainer<Holder<Biome>> container = getChunkBiomes(chunk).copy();
         if (this.entityData.get(REVERTING)) {
             int lvt_4_1_ = chunk.getPos().getMinBlockX() >> 2;
             int yChunk = (int)this.getY() >> 2;
@@ -348,7 +348,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
                     }
                 }
                 setChunkBiomes(chunk, container);
-                ResourceLocation biomeKey = net.minecraft.core.registries.BuiltInRegistries.BIOMES.getKey(biome.value());
+                ResourceLocation biomeKey = net.minecraft.core.registries.BuiltInRegistries.BIOME.getKey(biome.value());
                 if(biomeKey != null){
                     AlexsMobs.sendMSGToAll(new MessageMungusBiomeChange(this.getId(), pos.getX(), pos.getZ(), biomeKey.toString()));
                 }
@@ -407,7 +407,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(MUSHROOM_STATE, Optional.empty());
-        this.getEntityData().define(TARGETED_BLOCK_POS, Optional.empty());
+        builder.define(TARGETED_BLOCK_POS, Optional.empty());
         builder.define(ALT_ORDER_MUSHROOMS, false);
         builder.define(REVERTING, false);
         builder.define(EXPLOSION_DISABLED, false);
@@ -441,7 +441,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
             }
         }
         if (compound.contains("BeamTarget", 10)) {
-            this.setBeamTarget(NbtUtils.readBlockPos(compound.getCompound("BeamTarget")));
+            this.setBeamTarget(NbtUtils.readBlockPos(compound, "BeamTarget").orElse(null));
         }
         this.setMushroomState(blockstate);
         this.setMushroomCount(compound.getInt("MushroomCount"));
@@ -490,7 +490,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
                     if (state.getBlock() instanceof BonemealableBlock) {
                         BonemealableBlock igrowable = (BonemealableBlock) state.getBlock();
                         boolean flag = false;
-                        if (igrowable.isValidBonemealTarget(this.level(), t, state, this.level().isClientSide)) {
+                        if (igrowable.isValidBonemealTarget(this.level(), t, state)) {
                             for (int i = 0; i < 5; i++) {
                                 float r1 = 3F * (random.nextFloat() - 0.5F);
                                 float r2 = 2F * (random.nextFloat() - 0.5F);
@@ -630,8 +630,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
         return this.isAlive() && this.getMushroomState() != null && this.getMushroomCount() > 0;
     }
 
-    @Override
-    public boolean isShearable(@javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos) {
+    public boolean isShearable(ItemStack item, Level world, BlockPos pos) {
         return readyForShearing();
     }
 
@@ -651,7 +650,6 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
     }
 
     @javax.annotation.Nonnull
-    @Override
     public java.util.List<ItemStack> onSheared(@javax.annotation.Nullable Player player, @javax.annotation.Nonnull ItemStack item, Level world, BlockPos pos, int fortune) {
         world.playSound(null, this, SoundEvents.SHEEP_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         if (!world.isClientSide() && this.getMushroomState() != null && this.getMushroomCount() > 0) {
