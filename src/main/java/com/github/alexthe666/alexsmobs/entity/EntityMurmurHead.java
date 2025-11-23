@@ -197,7 +197,6 @@ public class EntityMurmurHead extends Monster implements FlyingAnimal {
         }
     }
 
-    @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
         return dimensions.height() * 0.35F;
     }

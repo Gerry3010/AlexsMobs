@@ -201,8 +201,8 @@ public class EntityRattlesnake extends Animal implements IAnimatedEntity {
     }
 
     public boolean isFood(ItemStack stack) {
-        FoodProperties foodProperties = stack.getFoodProperties(null);
-        return foodProperties != null && foodProperties.isMeat();
+        net.minecraft.world.food.FoodProperties foodProperties = stack.getFoodProperties(null);
+        return foodProperties != null && !foodProperties.canAlwaysEat();
     }
 
     @Nullable

@@ -102,7 +102,7 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
     }
 
     public void killed(ServerLevel world, LivingEntity entity) {
-        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getMobType() == MobCategory.MONSTER)){
+        if(this.getRandom().nextBoolean() && (entity instanceof Animal || entity.getType().getCategory() == MobCategory.MONSTER)){
             entity.spawnAtLocation(new ItemStack(Items.BONE));
         }
     }
@@ -149,7 +149,8 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
     }
 
     public boolean isFood(ItemStack stack) {
-        return stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat() && !stack.is(AMTagRegistry.TASMANIAN_DEVIL_HOWLING_FOODS);
+        net.minecraft.world.food.FoodProperties food = stack.getFoodProperties(null);
+        return food != null && !food.canAlwaysEat() && !stack.is(AMTagRegistry.TASMANIAN_DEVIL_HOWLING_FOODS);
     }
 
     public void tick(){
@@ -293,7 +294,8 @@ public class EntityTasmanianDevil extends Animal implements IAnimatedEntity, ITa
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat() || stack.getItem() == Items.BONE;
+        net.minecraft.world.food.FoodProperties food = stack.getFoodProperties(null);
+        return (food != null && !food.canAlwaysEat()) || stack.getItem() == Items.BONE;
     }
 
     @Override

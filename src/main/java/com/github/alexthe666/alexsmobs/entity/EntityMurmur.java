@@ -82,7 +82,6 @@ public class EntityMurmur extends Monster implements ISemiAquatic {
         return MobCategory.MONSTER;
     }
 
-    @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
         return dimensions.height() * 1.2F;
     }

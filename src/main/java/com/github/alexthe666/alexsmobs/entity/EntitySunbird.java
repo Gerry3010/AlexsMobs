@@ -54,6 +54,11 @@ import java.util.stream.Stream;
 
 public class EntitySunbird extends Animal implements FlyingAnimal {
 
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return false; // Sunbirds don't have breeding mechanics
+    }
+
     public static final Predicate<? super Entity> SCORCH_PRED = new com.google.common.base.Predicate<Entity>() {
         @Override
         public boolean apply(@Nullable Entity e) {
@@ -134,10 +139,10 @@ public class EntitySunbird extends Animal implements FlyingAnimal {
             if (source.getEntity() != null) {
                 if (source.getEntity() instanceof LivingEntity) {
                     LivingEntity hurter = (LivingEntity) source.getEntity();
-                    if (hurter.hasEffect(AMEffectRegistry.SUNBIRD_BLESSING.get())) {
-                        hurter.removeEffect(AMEffectRegistry.SUNBIRD_BLESSING.get());
+                    if (hurter.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_BLESSING.get()))) {
+                        hurter.removeEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_BLESSING.get()));
                     }
-                    hurter.addEffect(new MobEffectInstance(AMEffectRegistry.SUNBIRD_CURSE.get(), 600, 0));
+                    hurter.addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_CURSE.get()), 600, 0));
                 }
             }
             return prev;
@@ -199,8 +204,8 @@ public class EntitySunbird extends Animal implements FlyingAnimal {
                 }
                 List<Player> playerList = this.level().getEntitiesOfClass(Player.class, this.getScorchArea(), Predicates.alwaysTrue());
                 for (Player e : playerList) {
-                    if (!e.hasEffect(AMEffectRegistry.SUNBIRD_BLESSING.get()) && !e.hasEffect(AMEffectRegistry.SUNBIRD_CURSE.get())) {
-                        e.addEffect(new MobEffectInstance(AMEffectRegistry.SUNBIRD_BLESSING.get(), 600, 0));
+                    if (!e.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_BLESSING.get())) && !e.hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_CURSE.get()))) {
+                        e.addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_BLESSING.get()), 600, 0));
                     }
                 }
             }
@@ -246,9 +251,9 @@ public class EntitySunbird extends Animal implements FlyingAnimal {
                 this.setScorching(false);
             }else if(fullScorchTime % 5 == 0){
                 for (Entity e : getScorchingMobs()) {
-                    e.setSecondsOnFire(4);
+                    e.igniteForSeconds(4);
                     if (e instanceof Phantom) {
-                        ((Phantom) e).addEffect(new MobEffectInstance(AMEffectRegistry.SUNBIRD_CURSE.get(), 200, 0));
+                        ((Phantom) e).addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.SUNBIRD_CURSE.get()), 200, 0));
                     }
                 }
             }
