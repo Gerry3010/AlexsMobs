@@ -226,7 +226,7 @@ public class EntityRaccoon extends TamableAnimal implements IAnimatedEntity, IFo
                     this.spawnAtLocation(this.getCarpetItemBeingWorn());
                 }
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
-                this.playSound(SoundEvents.LLAMA_SWAG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.playSound(SoundEvents.LLAMA_SWAG.value(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 itemstack.shrink(1);
                 this.setColor(color);
                 return InteractionResult.SUCCESS;
@@ -321,7 +321,7 @@ public class EntityRaccoon extends TamableAnimal implements IAnimatedEntity, IFo
     }
 
     public static boolean isRaccoonFood(ItemStack stack) {
-        return stack.isEdible() || stack.is(AMTagRegistry.RACCOON_FOODSTUFFS);
+        return stack.getFoodProperties(null) != null || stack.is(AMTagRegistry.RACCOON_FOODSTUFFS);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {

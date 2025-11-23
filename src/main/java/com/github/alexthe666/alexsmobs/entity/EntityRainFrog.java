@@ -299,8 +299,8 @@ public class EntityRainFrog extends Animal implements ITargetsDroppedItems,IDanc
         InteractionResult type = super.mobInteract(player, hand);
         if (item instanceof ShovelItem && (this.isBurrowed() || !this.isDisturbed()) && !this.level().isClientSide) {
             this.ambientSoundTime = 1000;
-            if (!player.isCreative()) {
-                itemstack.hurt(1, this.getRandom(), player instanceof ServerPlayer ? (ServerPlayer) player : null);
+            if (!player.isCreative() && player instanceof ServerPlayer serverPlayer) {
+                itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(itemstack));
             }
             this.setStanceTime(20 + random.nextInt(30));
             this.setBurrowed(false);

@@ -201,7 +201,8 @@ public class EntityRattlesnake extends Animal implements IAnimatedEntity {
     }
 
     public boolean isFood(ItemStack stack) {
-        return stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat();
+        FoodProperties foodProperties = stack.getFoodProperties(null);
+        return foodProperties != null && foodProperties.isMeat();
     }
 
     @Nullable
