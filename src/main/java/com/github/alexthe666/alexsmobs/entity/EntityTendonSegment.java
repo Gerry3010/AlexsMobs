@@ -51,14 +51,12 @@ public class EntityTendonSegment  extends Entity {
         super(type, level);
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
         builder.define(CREATOR_ID, Optional.empty());
         builder.define(FROM_ID, -1);
         builder.define(TARGET_COUNT, 0);
@@ -113,7 +111,7 @@ public class EntityTendonSegment  extends Entity {
                         Entity entity = getCreatorEntity();
                         if(entity instanceof LivingEntity){
                             if(current != creator && current.hurt(damageSources().mobProjectile(this, (LivingEntity)entity), (float) getDamageFor((LivingEntity)creator, (LivingEntity)entity))){
-                                this.doEnchantDamageEffects((LivingEntity) creator, entity);
+                                ((LivingEntity) creator).doEnchantDamageEffects((LivingEntity) creator, current);
                             }
                         }
                     }
@@ -161,21 +159,20 @@ public class EntityTendonSegment  extends Entity {
         ItemStack stack = creator.getItemInHand(InteractionHand.MAIN_HAND).is(AMItemRegistry.TENDON_WHIP.get()) ? creator.getItemInHand(InteractionHand.MAIN_HAND) : creator.getItemInHand(InteractionHand.OFF_HAND);
         double dmg = this.getBaseDamage();
         if(stack.is(AMItemRegistry.TENDON_WHIP.get())){
-            dmg += EnchantmentHelper.getDamageBonus(stack, entity.getMobType());
+            dmg += EnchantmentHelper.getDamageBonus(stack, entity.getType().getCategory());
         }
         return dmg;
     }
 
     private double getDamageForItem(ItemStack itemStack) {
-        Multimap<Attribute, AttributeModifier> map = itemStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
-        if (!map.isEmpty()) {
-            double d = 0;
-            for (AttributeModifier mod : map.get(Attributes.ATTACK_DAMAGE)) {
-                d += mod.getAmount();
+        net.minecraft.world.item.component.ItemAttributeModifiers map = itemStack.getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS, net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
+        double d = 0;
+        for (net.minecraft.world.item.component.ItemAttributeModifiers.Entry entry : map.modifiers()) {
+            if (entry.attribute().equals(Attributes.ATTACK_DAMAGE) && entry.slot().test(EquipmentSlot.MAINHAND)) {
+                d += entry.modifier().amount();
             }
-            return d;
         }
-        return 0;
+        return d;
     }
 
     private boolean hasLineOfSight(Entity entity) {
