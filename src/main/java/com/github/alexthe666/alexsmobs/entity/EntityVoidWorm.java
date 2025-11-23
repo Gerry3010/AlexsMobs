@@ -754,7 +754,8 @@ public class EntityVoidWorm extends Monster {
 
     private boolean wormAttack(Entity entity, DamageSource source, float dmg) {
         dmg *= AMConfig.voidWormDamageModifier;
-        return entity instanceof EnderDragon ? ((EnderDragon) entity).reallyHurt(source, dmg * 0.5F) : entity.hurt(source, dmg);
+        // reallyHurt is protected in EnderDragon, so we just use hurt for all entities
+        return entity.hurt(source, entity instanceof EnderDragon ? dmg * 0.5F : dmg);
     }
 
     public void playHurtSoundWorm(DamageSource source) {

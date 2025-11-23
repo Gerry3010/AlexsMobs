@@ -137,7 +137,7 @@ public class EntityVoidWormShot extends Entity {
             if(b && p_213868_1_.getEntity() instanceof Player){
                 Player player = ((Player)p_213868_1_.getEntity());
                 if(player.getUseItem().canPerformAction(ItemAbilities.SHIELD_BLOCK)){
-                    player.disableShield(true);
+                    player.disableShield();
                 }
             }
         }
@@ -158,7 +158,6 @@ public class EntityVoidWormShot extends Entity {
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
         builder.define(STOP_HOMING_PROGRESS, 0.0F);
     }
 

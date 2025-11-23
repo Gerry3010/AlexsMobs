@@ -68,7 +68,7 @@ public class EntityVoidPortal extends Entity {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) net.neoforged.neoforge.network.PacketDistributor.ENTITY_SPAWNING.toVanillaPacket(this, PacketDistributor.ENTITY_SPAWN_CODEC);
     }
 
     public void tick() {
@@ -269,7 +269,6 @@ public class EntityVoidPortal extends Entity {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
         builder.define(ATTACHED_FACE, Direction.DOWN);
         builder.define(LIFESPAN, 300);
         builder.define(SHATTERED, false);
