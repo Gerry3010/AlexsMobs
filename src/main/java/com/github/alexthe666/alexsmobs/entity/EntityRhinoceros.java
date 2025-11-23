@@ -248,7 +248,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
     }
 
     public MobEffect getPotionEffect() {
-        return net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.getValue(ResourceLocation.parse(this.getAppliedPotionId()));
+        return net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.getValue(net.minecraft.resources.ResourceLocation.parse(this.getAppliedPotionId()));
     }
 
     public int getPotionDuration() {

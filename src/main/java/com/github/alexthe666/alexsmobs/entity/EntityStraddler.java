@@ -143,7 +143,7 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
     private void floatStrider() {
         if (this.isInLava()) {
             CollisionContext lvt_1_1_ = CollisionContext.of(this);
-            double d1 = this.getFluidTypeHeight(NeoForgeMod.LAVA_TYPE.get());
+            double d1 = this.getFluidTypeHeight(NeoForgeMod.LAVA_TYPE.value());
             if(d1 <= 0.5F && d1 > 0){
                 if(this.getDeltaMovement().y < 0){
                     this.setDeltaMovement(this.getDeltaMovement().multiply(1, 0, 1));
@@ -234,7 +234,7 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
         this.checkInsideBlocks();
         if (this.getAnimation() == ANIMATION_LAUNCH && this.isAlive()){
             if(this.getAnimationTick() == 2){
-                this.playSound(SoundEvents.CROSSBOW_LOADING_MIDDLE, 2F, 1F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+                this.playSound(SoundEvents.CROSSBOW_LOADING_MIDDLE.value(), 2F, 1F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
             }
         }
         if (this.getAnimation() == ANIMATION_LAUNCH && this.isAlive() && this.getAnimationTick() == 20 && this.getTarget() != null) {
@@ -247,7 +247,7 @@ public class EntityStraddler extends Monster implements IAnimatedEntity {
             final double d3 = this.getTarget().getZ() - this.getZ();
             final float f3 = Mth.sqrt((float) (d1 * d1 + d2 * d2 + d3 * d3)) * 0.2F;
             this.gameEvent(GameEvent.PROJECTILE_SHOOT);
-            this.playSound(SoundEvents.CROSSBOW_LOADING_END, 2F, 1F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+            this.playSound(SoundEvents.CROSSBOW_LOADING_END.value(), 2F, 1F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
             pole.shoot(d1, d2 + (double)f3, d3, 2F, 0F);
             pole.setYRot(this.getYRot() % 360.0F);
             pole.setXRot(Mth.clamp(this.getYRot(), -90.0F, 90.0F) % 360.0F);

@@ -52,7 +52,7 @@ import java.util.Random;
 
 public class EntitySoulVulture extends Monster implements FlyingAnimal {
 
-    public static final ResourceLocation SOUL_LOOT = new ResourceLocation("alexsmobs", "entities/soul_vulture_heart");
+    public static final ResourceLocation SOUL_LOOT = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/soul_vulture_heart");
     private static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(EntitySoulVulture.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> TACKLING = SynchedEntityData.defineId(EntitySoulVulture.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Optional<BlockPos>> PERCH_POS = SynchedEntityData.defineId(EntitySoulVulture.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
@@ -76,8 +76,8 @@ public class EntitySoulVulture extends Monster implements FlyingAnimal {
     }
 
     @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return hasSoulHeart() ? SOUL_LOOT : super.getDefaultLootTable();
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        return hasSoulHeart() ? net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, SOUL_LOOT) : super.getDefaultLootTable();
     }
 
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {

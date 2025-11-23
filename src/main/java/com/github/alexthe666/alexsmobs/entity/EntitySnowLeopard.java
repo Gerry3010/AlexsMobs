@@ -320,7 +320,8 @@ public class EntitySnowLeopard extends Animal implements IAnimatedEntity, ITarge
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat();
+        net.minecraft.world.food.FoodProperties food = stack.getFoodProperties(null);
+        return food != null && !food.canAlwaysEat();
     }
 
     @Override

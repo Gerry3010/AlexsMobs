@@ -69,7 +69,7 @@ import java.util.stream.Stream;
 
 public class EntitySugarGlider extends TamableAnimal implements IFollower {
 
-    public static final ResourceLocation SUGAR_GLIDER_REWARD = new ResourceLocation("alexsmobs", "gameplay/sugar_glider_reward");
+    public static final ResourceLocation SUGAR_GLIDER_REWARD = ResourceLocation.fromNamespaceAndPath("alexsmobs", "gameplay/sugar_glider_reward");
     public static final Map<Block, Item> LEAF_TO_SAPLING = Util.make(Maps.newHashMap(), (map) -> {
         map.put(Blocks.OAK_LEAVES, Items.OAK_SAPLING);
         map.put(Blocks.BIRCH_LEAVES, Items.BIRCH_SAPLING);
@@ -538,7 +538,7 @@ public class EntitySugarGlider extends TamableAnimal implements IFollower {
     protected PathNavigation createNavigation(Level worldIn) {
         return new WallClimberNavigation(this, worldIn) {
             protected boolean canUpdatePath() {
-                return super.canUpdatePath() || ((EntitySugarGlider) mob).isBesideClimbableBlock() || mob.jumping;
+                return super.canUpdatePath() || ((EntitySugarGlider) mob).isBesideClimbableBlock() || mob.isJumping();
             }
         };
     }

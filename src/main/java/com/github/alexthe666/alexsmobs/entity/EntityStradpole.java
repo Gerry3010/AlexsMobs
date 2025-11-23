@@ -347,10 +347,7 @@ public class EntityStradpole extends WaterAnimal implements Bucketable {
             if (damage >= 3.0F) {
                 int i = 1 + Mth.floor(damage);
                 InteractionHand hand = holder.getUsedItemHand();
-                holder.getUseItem().hurtAndBreak(i, holder, (p_213833_1_) -> {
-                    p_213833_1_.broadcastBreakEvent(hand);
-                    net.neoforged.neoforge.event.EventHooks.onPlayerDestroyItem(holder, holder.getUseItem(), hand);
-                });
+                holder.getUseItem().hurtAndBreak(i, holder, EquipmentSlot.MAINHAND);
                 if (holder.getUseItem().isEmpty()) {
                     if (hand == InteractionHand.MAIN_HAND) {
                         holder.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
@@ -447,7 +444,7 @@ public class EntityStradpole extends WaterAnimal implements Bucketable {
             }
             Vec3 vector3d = LandRandomPos.getPos(this.mob, 7, 3);
 
-            for (int i = 0; vector3d != null && !this.mob.level().getFluidState(AMBlockPos.fromVec3(vector3d)).is(FluidTags.LAVA) && !this.mob.level().getBlockState(AMBlockPos.fromVec3(vector3d)).isPathfindable(this.mob.level(), AMBlockPos.fromVec3(vector3d), PathComputationType.WATER) && i++ < 15; vector3d = LandRandomPos.getPos(this.mob, 10, 7)) {
+            for (int i = 0; vector3d != null && !this.mob.level().getFluidState(AMBlockPos.fromVec3(vector3d)).is(FluidTags.LAVA) && !this.mob.level().getBlockState(AMBlockPos.fromVec3(vector3d)).isPathfindable(PathComputationType.WATER) && i++ < 15; vector3d = LandRandomPos.getPos(this.mob, 10, 7)) {
             }
 
             return vector3d;
