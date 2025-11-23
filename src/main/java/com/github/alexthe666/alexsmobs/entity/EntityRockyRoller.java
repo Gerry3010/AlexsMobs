@@ -328,9 +328,9 @@ public class EntityRockyRoller extends Monster implements ICustomCollisions {
     }
 
     static class RockyRollerNodeEvaluator extends WalkNodeEvaluator {
-        public PathType getPathTypeOfMob(PathfindingContext context, int x, int y, int z, Mob mob) {
+        public PathType getPathType(PathfindingContext context, int x, int y, int z) {
             BlockPos pos = new BlockPos(x, y, z);
-            return context.getBlockState(pos).getBlock() instanceof PointedDripstoneBlock ? PathType.OPEN : super.getPathTypeOfMob(context, x, y, z, mob);
+            return context.getBlockState(pos).getBlock() instanceof PointedDripstoneBlock ? PathType.OPEN : super.getPathType(context, x, y, z);
         }
     }
 

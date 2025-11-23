@@ -570,14 +570,14 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
         return 0.1F;
     }
 
-    protected void jumpFromGround(Vec3 inputVec) {
+    protected void jumpFromGround() {
         if (!this.isSleeping() && !this.isSitting()) {
-            super.jumpFromGround(inputVec);
+            super.jumpFromGround();
         }
     }
 
     static class TigerNodeEvaluator extends WalkNodeEvaluator {
-        protected PathType getPathType(PathfindingContext pathfindingcontext, int x, int y, int z) {
+        public PathType getPathType(PathfindingContext pathfindingcontext, int x, int y, int z) {
             BlockPos pos = new BlockPos(x, y, z);
             BlockState state = pathfindingcontext.getBlockState(pos);
             return state.is(BlockTags.LEAVES) || state.getBlock() == Blocks.BAMBOO ? PathType.OPEN : super.getPathType(pathfindingcontext, x, y, z);
