@@ -348,7 +348,7 @@ public class EntitySeal extends Animal implements ISemiAquatic, IHerdPanic, ITar
         this.setVariant(i);
         this.setAirSupply(this.getMaxAirSupply());
         this.setXRot(0.0F);
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, data, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, data);
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {

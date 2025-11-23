@@ -188,9 +188,7 @@ public class EntitySpectre extends Animal implements FlyingAnimal {
                 this.setDeltaMovement(this.getDeltaMovement().add(Math.copySign(lvt_3_1_ * lvt_3_1_ * 0.4D, lvt_3_1_), Math.copySign(lvt_5_1_ * lvt_5_1_ * 0.4D, lvt_5_1_), Math.copySign(lvt_7_1_ * lvt_7_1_ * 0.4D, lvt_7_1_)));
             }
         }
-        if (this.leashData != null) {
-            this.restoreLeashFromSave();
-        }
+        // leashData and restoreLeashFromSave are handled internally in 1.21
 
         if (this.getLeashHolder() != null) {
             if (!this.isAlive() || !this.getLeashHolder().isAlive()) {

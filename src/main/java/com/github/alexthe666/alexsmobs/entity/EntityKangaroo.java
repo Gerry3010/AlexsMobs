@@ -886,12 +886,12 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
                 map.put(equipmentslottype, itemstack1);
                 if (!itemstack.isEmpty()) {
                     net.minecraft.world.item.component.ItemAttributeModifiers mods = itemstack.getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS, net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
-                    this.getAttributes().removeAttributeModifiers(mods, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE);
+                    mods.forEach(equipmentslottype, (holder, modifier) -> this.getAttribute(holder).removeModifier(modifier.id()));
                 }
 
                 if (!itemstack1.isEmpty()) {
                     net.minecraft.world.item.component.ItemAttributeModifiers mods = itemstack1.getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS, net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
-                    this.getAttributes().addTransientAttributeModifiers(mods);
+                    mods.forEach(equipmentslottype, (holder, modifier) -> this.getAttribute(holder).addTransientModifier(modifier));
                 }
             }
         }

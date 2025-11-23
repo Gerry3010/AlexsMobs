@@ -147,7 +147,7 @@ public class EntityVoidWorm extends Monster {
     }
 
     @Override
-    protected void dropAllDeathLoot(DamageSource source) {
+    protected void dropAllDeathLoot(ServerLevel serverLevel, DamageSource source) {
 
     }
 
@@ -393,26 +393,22 @@ public class EntityVoidWorm extends Monster {
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == (this.isSplitter() ? 20 : 80) && !this.level().isClientSide()) {
+            ServerLevel serverLevel = (ServerLevel) this.level();
             DamageSource source = this.getLastDamageSource() == null ? damageSources().generic() : this.getLastDamageSource();
-            Entity entity = source.getEntity();
-
-            final int i = net.minecraftforge.common.ForgeHooks.getLootingLevel(this, entity, source);
+            
             this.captureDrops(new java.util.ArrayList<>());
 
             final boolean flag = this.lastHurtByPlayerTime > 0;
             if (this.shouldDropLoot() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-                this.dropFromLootTable(source, flag);
-                this.dropCustomDeathLoot(source, i, flag);
+                this.dropAllDeathLoot(serverLevel, source);
             }
             this.dropEquipment();
-            this.dropExperience();
+            this.dropExperience(serverLevel, source.getEntity());
 
             Collection<ItemEntity> drops = captureDrops(null);
 
-            if (!net.minecraftforge.common.ForgeHooks.onLivingDrops(this, source, drops, i, lastHurtByPlayerTime > 0)){
-                if(!drops.isEmpty()){
-                    this.placeDropsSafely(drops);
-                }
+            if(!drops.isEmpty()){
+                this.placeDropsSafely(drops);
             }
             this.level().broadcastEntityEvent(this, (byte)60);
             this.remove(Entity.RemovalReason.KILLED);

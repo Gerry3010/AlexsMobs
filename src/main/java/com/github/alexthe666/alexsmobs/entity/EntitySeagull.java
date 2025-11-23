@@ -401,11 +401,11 @@ public class EntitySeagull extends Animal implements ITargetsDroppedItems {
         for(ItemStack map : player.getHandSlots()){
             if(map.getItem() == Items.FILLED_MAP || map.getItem() == Items.MAP){
                 net.minecraft.world.level.saveddata.maps.MapItemSavedData mapData = net.minecraft.world.item.MapItem.getSavedData(map, this.level());
-                if (mapData != null && mapData.decorations != null) {
-                    for(MapDecoration decoration : mapData.decorations.values()){
+                if (mapData != null) {
+                    for(MapDecoration decoration : mapData.getAllDecorations()){
                         if(decoration.type().value() == MapDecoration.Type.RED_X || decoration.type().value() == MapDecoration.Type.TARGET_X){
-                            int x = decoration.pos().getX();
-                            int z = decoration.pos().getZ();
+                            int x = decoration.x();
+                            int z = decoration.y();
                             if(this.distanceToSqr(x, this.getY(), z) <= 400){
                                 flag = true;
                                 this.setTreasurePos(new BlockPos(x, 0, z));

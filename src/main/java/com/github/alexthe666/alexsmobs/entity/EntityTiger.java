@@ -49,6 +49,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.pathfinder.PathfindingContext;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
@@ -569,15 +570,17 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
         return 0.1F;
     }
 
-    protected void jumpFromGround() {
+    protected void jumpFromGround(Vec3 inputVec) {
         if (!this.isSleeping() && !this.isSitting()) {
-            super.jumpFromGround();
+            super.jumpFromGround(inputVec);
         }
     }
 
     static class TigerNodeEvaluator extends WalkNodeEvaluator {
-        protected PathType evaluateBlockPathType(BlockGetter level, BlockPos pos, PathType typeIn) {
-            return typeIn == PathType.LEAVES || level.getBlockState(pos).getBlock() == Blocks.BAMBOO ? PathType.OPEN : super.evaluateBlockPathType(level, pos, typeIn);
+        protected PathType getPathType(PathfindingContext pathfindingcontext, int x, int y, int z) {
+            BlockPos pos = new BlockPos(x, y, z);
+            BlockState state = pathfindingcontext.getBlockState(pos);
+            return state.is(BlockTags.LEAVES) || state.getBlock() == Blocks.BAMBOO ? PathType.OPEN : super.getPathType(pathfindingcontext, x, y, z);
         }
     }
 
