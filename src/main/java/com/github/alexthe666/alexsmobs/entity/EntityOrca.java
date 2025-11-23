@@ -276,8 +276,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
                     damage *= 2F;
                 }
                 boolean flag = attackTarget.hurt(this.damageSources().mobAttack(this), damage);
-                if (flag && this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
-                    this.doEnchantDamageEffects(serverLevel, this, attackTarget);
+                if (flag) {
                     this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
                 }
             }
@@ -287,8 +286,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
                     damage *= 2F;
                 }
                 boolean flag = attackTarget.hurt(this.damageSources().mobAttack(this), damage);
-                if (flag && this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
-                    this.doEnchantDamageEffects(serverLevel, this, attackTarget);
+                if (flag) {
                     this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
                 }
                 final float yRotRad = this.getYRot() * Mth.DEG_TO_RAD;
@@ -408,8 +406,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
 
     public void onJumpHit(LivingEntity entityIn) {
         boolean flag = entityIn.hurt(this.damageSources().mobAttack(this), (float) ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
-        if (flag && this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
-            this.doEnchantDamageEffects(serverLevel, this, entityIn);
+        if (flag) {
             this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
         }
     }

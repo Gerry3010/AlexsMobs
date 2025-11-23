@@ -67,10 +67,6 @@ public class EntityVoidPortal extends Entity {
         }
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) net.neoforged.neoforge.network.PacketDistributor.ENTITY_SPAWNING.toVanillaPacket(this, PacketDistributor.ENTITY_SPAWN_CODEC);
-    }
-
     public void tick() {
         super.tick();
         if (this.tickCount == 1) {

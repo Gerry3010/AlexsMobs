@@ -106,9 +106,9 @@ public class EntityTendonSegment  extends Entity {
                     if(!hasTouched && progress >= MAX_EXTEND_TIME){
                         hasTouched = true;
                         Entity entity = getCreatorEntity();
-                        if(entity instanceof LivingEntity && this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel){
-                            if(current != creator && current instanceof LivingEntity && current.hurt(damageSources().mobProjectile(this, (LivingEntity)entity), (float) getDamageFor((LivingEntity)creator, (LivingEntity)entity))){
-                                ((LivingEntity) creator).doEnchantDamageEffects(serverLevel, (LivingEntity) creator, (LivingEntity) current);
+                        if(entity instanceof LivingEntity){
+                            if(current != creator && current instanceof LivingEntity){
+                                current.hurt(damageSources().mobProjectile(this, (LivingEntity)entity), (float) getDamageFor((LivingEntity)creator, (LivingEntity)entity));
                             }
                         }
                     }
