@@ -150,7 +150,7 @@ public class EntitySkreecher extends Monster {
         prevClapProgress = clapProgress;
         prevClingProgress = clingProgress;
         prevDistanceToCeiling = this.getDistanceToCeiling();
-        boolean clingVisually = this.isClinging() || this.isJumpingUp() || this.jumping;
+        boolean clingVisually = this.isClinging() || this.isJumpingUp() || this.isJumping();
         if (clingVisually && clingProgress < 5F) {
             clingProgress++;
         }
@@ -242,7 +242,7 @@ public class EntitySkreecher extends Monster {
                         Warden warden = EntityType.WARDEN.create(this.level());
 
                         warden.moveTo(this.getX(), spawnAt.getY() + 1, this.getZ(), this.getYRot(), 0.0F);
-                        warden.finalizeSpawn((ServerLevel)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.TRIGGERED, (SpawnGroupData)null, (CompoundTag)null);
+                        warden.finalizeSpawn((ServerLevel)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.TRIGGERED, (SpawnGroupData)null);
                         warden.setAttackTarget(this);
                         warden.increaseAngerAt(this, 79, false);
                         this.level().addFreshEntity(warden);
@@ -306,8 +306,8 @@ public class EntitySkreecher extends Monster {
     }
 
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isClinging() ? super.getDimensions(poseIn) : GROUND_SIZE.scale(this.getScale());
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isClinging() ? super.getDefaultDimensions(poseIn) : GROUND_SIZE.scale(this.getScale());
     }
 
     public boolean isClinging() {

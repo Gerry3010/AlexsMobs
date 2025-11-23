@@ -199,7 +199,7 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source.getEntity() instanceof LivingEntity && isArthropod((LivingEntity) source.getEntity()) && ((LivingEntity) source.getEntity()).hasEffect(AMEffectRegistry.DEBILITATING_STING.get())) {
+        if (source.getEntity() instanceof LivingEntity && isArthropod((LivingEntity) source.getEntity()) && ((LivingEntity) source.getEntity()).hasEffect(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.DEBILITATING_STING.get()))) {
             return false;
         }
         return super.hurt(source, amount);
@@ -307,8 +307,8 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
         this.entityData.set(DIGGING, Boolean.valueOf(sit));
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isFlying() && !isBaby() ? FLIGHT_SIZE : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isFlying() && !isBaby() ? FLIGHT_SIZE : super.getDefaultDimensions(poseIn);
     }
 
     public void tick() {
@@ -749,8 +749,9 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
         @Override
         public void tick() {
             LivingEntity target = hawk.getTarget();
-            boolean paralized = target != null && isArthropod(target) && !target.noPhysics && target.hasEffect(AMEffectRegistry.DEBILITATING_STING.get());
-            boolean paralizedWithChild = paralized && target.getEffect(AMEffectRegistry.DEBILITATING_STING.get()).getAmplifier() > 0;
+            net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> stingEffect = net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.DEBILITATING_STING.get());
+            boolean paralized = target != null && isArthropod(target) && !target.noPhysics && target.hasEffect(stingEffect);
+            boolean paralizedWithChild = paralized && target.getEffect(stingEffect).getAmplifier() > 0;
             if (sandPos == null || !level().getBlockState(sandPos).is(BlockTags.SAND)) {
                 sandPos = hawk.genSandPos(target.blockPosition());
             }
@@ -803,7 +804,7 @@ public class EntityTarantulaHawk extends TamableAnimal implements IFollower {
                                     target.heal(5);
                                 }
                             }
-                            target.addEffect(new MobEffectInstance(AMEffectRegistry.DEBILITATING_STING.get(), isArthropod(target) ? EntityTarantulaHawk.STING_DURATION : 600, hawk.bredBuryFlag ? 1 : 0));
+                            target.addEffect(new MobEffectInstance(net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(AMEffectRegistry.DEBILITATING_STING.get()), isArthropod(target) ? EntityTarantulaHawk.STING_DURATION : 600, hawk.bredBuryFlag ? 1 : 0));
                             if (!hawk.level().isClientSide && isArthropod(target)) {
                                 AlexsMobs.sendMSGToAll(new MessageTarantulaHawkSting(hawk.getId(), target.getId()));
                             }

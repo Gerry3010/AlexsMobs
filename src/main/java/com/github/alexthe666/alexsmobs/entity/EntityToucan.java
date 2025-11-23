@@ -102,7 +102,7 @@ public class EntityToucan extends Animal implements ITargetsDroppedItems {
                 String[] split = str.split("\\|");
                 if (split.length >= 2) {
                     FEEDING_DATA.put(split[0], split[1]);
-                    FEEDING_STACKS.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation(split[0]))));
+                    FEEDING_STACKS.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.parse(split[0]))));
                 }
             }
         }
@@ -145,7 +145,7 @@ public class EntityToucan extends Animal implements ITargetsDroppedItems {
         ResourceLocation name = net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem());
         if (!stack.isEmpty() && name != null && FEEDING_DATA.containsKey(name.toString())) {
             String str = FEEDING_DATA.get(name.toString());
-            Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getValue(new ResourceLocation(str));
+            Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCKS.getValue(ResourceLocation.parse(str));
             if (block != null) {
                 return block.defaultBlockState();
             }

@@ -201,7 +201,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
                 swimTimer = Math.min(0, swimTimer - 1);
                 List<Player> list = this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(0, 0.15F, 0));
                 for (Player player : list) {
-                    if ((player.jumping || !player.onGround()) && player.getY() > this.getEyeY()) {
+                    if ((player.isJumping() || !player.onGround()) && player.getY() > this.getEyeY()) {
                         if (!hasRetreated()) {
                             this.hideInShellTimer += 40 + random.nextInt(40);
                         } else if (!isSpinning()) {
