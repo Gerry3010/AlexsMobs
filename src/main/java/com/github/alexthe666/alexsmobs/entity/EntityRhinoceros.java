@@ -249,7 +249,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
     }
 
     public MobEffect getPotionEffect() {
-        return net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.getValue(net.minecraft.resources.ResourceLocation.parse(this.getAppliedPotionId()));
+        return net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.get(net.minecraft.resources.ResourceLocation.parse(this.getAppliedPotionId()));
     }
 
     public int getPotionDuration() {
@@ -425,7 +425,8 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         ItemStack itemstack = player.getItemInHand(hand);
         InteractionResult type = super.mobInteract(player, hand);
         if(!isBaby() && (itemstack.getItem() == Items.POTION || itemstack.getItem() == Items.SPLASH_POTION || itemstack.getItem() == Items.LINGERING_POTION)){
-            Potion contained = PotionContents.getPotion(itemstack);
+            PotionContents potionContents = itemstack.getOrDefault(net.minecraft.core.component.DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+            Potion contained = potionContents.potion().isPresent() ? potionContents.potion().get().value() : null;
             if(applyPotion(contained)){
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
                 this.playSound(SoundEvents.DYE_USE);
