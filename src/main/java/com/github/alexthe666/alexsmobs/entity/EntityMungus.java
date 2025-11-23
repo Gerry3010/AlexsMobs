@@ -318,6 +318,10 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
     }
 
     private void transformBiome(BlockPos pos, Holder<Biome> biome) {
+        // TODO: Biome transformation code disabled in 1.21 due to API changes
+        // The PalettedContainer API and chunk section biome manipulation has changed significantly
+        // This feature may need to be reimplemented using reflection or alternative approaches
+        /*
         LevelChunk chunk = level().getChunkAt(pos);
         PalettedContainer<Holder<Biome>> container = getChunkBiomes(chunk).copy();
         if (this.entityData.get(REVERTING)) {
@@ -355,7 +359,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
                 }
             }
         }
-
+        */
     }
 
     public boolean shouldFollowMushroom(ItemStack stack) {
