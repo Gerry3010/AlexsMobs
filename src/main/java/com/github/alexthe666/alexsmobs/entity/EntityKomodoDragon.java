@@ -273,8 +273,8 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
         }
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return isJostling() && !isBaby() ? JOSTLING_SIZE.scale(this.getScale()) : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return isJostling() && !isBaby() ? JOSTLING_SIZE.scale(this.getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     public boolean isAlliedTo(Entity entityIn) {
@@ -336,7 +336,8 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
             float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             double extraX = radius * Mth.sin(Mth.PI + angle);
             double extraZ = radius * Mth.cos(angle);
-            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(this), this.getZ() + extraZ);
+            double passengerOffset = passenger instanceof LivingEntity ? ((LivingEntity)passenger).getMyRidingOffset() : 0;
+            moveFunc.accept(passenger, this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passengerOffset, this.getZ() + extraZ);
         }
     }
 
@@ -431,7 +432,8 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
 
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.is(AMTagRegistry.KOMODO_DRAGON_TAMEABLES) || stack.getItem().getFoodProperties() != null && stack.getItem().getFoodProperties().isMeat();
+        FoodProperties foodProperties = stack.getFoodProperties(null);
+        return stack.is(AMTagRegistry.KOMODO_DRAGON_TAMEABLES) || (foodProperties != null && foodProperties.isMeat());
     }
 
     public boolean isSaddled() {
@@ -489,11 +491,7 @@ public class EntityKomodoDragon extends TamableAnimal implements ITargetsDropped
     }
 
     private void applyKnockbackFromMoose(float strength, double ratioX, double ratioZ) {
-        net.minecraftforge.event.entity.living.LivingKnockBackEvent event = net.minecraftforge.common.ForgeHooks.onLivingKnockBack(this, strength, ratioX, ratioZ);
-        if (event.isCanceled()) return;
-        strength = event.getStrength();
-        ratioX = event.getRatioX();
-        ratioZ = event.getRatioZ();
+        // Note: NeoForge knockback event handling removed - event system changed in 1.21
         if (!(strength <= 0.0F)) {
             this.hasImpulse = true;
             Vec3 vector3d = this.getDeltaMovement();

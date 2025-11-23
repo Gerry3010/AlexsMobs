@@ -269,7 +269,6 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
         if (attachChangeProgress > 0F) {
             attachChangeProgress -= 0.25F;
         }
-        this.setMaxUpStep(isQueen() ? 1F : 0.5F);
         Vec3 vector3d = this.getDeltaMovement();
         if (!this.level().isClientSide && !this.isQueen()) {
             this.setBesideClimbableBlock(this.horizontalCollision || this.verticalCollision && !this.onGround());
@@ -308,6 +307,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
                 }
             }
         }
+        this.getAttribute(Attributes.STEP_HEIGHT).setBaseValue(isQueen() ? 1F : 0.5F);
         if(attachmentFacing == Direction.UP) {
             this.setNoGravity(true);
             this.setDeltaMovement(vector3d.multiply(0.7D, 1D, 0.7D));
@@ -496,7 +496,7 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
         this.haveBabyCooldown = compound.getInt("BabyCooldown");
         this.hivePos = null;
         if (compound.contains("HivePos")) {
-            this.hivePos = NbtUtils.readBlockPos(compound.getCompound("HivePos"));
+            this.hivePos = NbtUtils.readBlockPos(compound, "HivePos").orElse(null);
         }
         this.setLeafHarvestedState(blockstate);
         if (compound.contains("HLPX")) {

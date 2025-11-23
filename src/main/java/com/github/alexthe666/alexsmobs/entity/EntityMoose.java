@@ -332,8 +332,8 @@ public class EntityMoose extends Animal implements IAnimatedEntity {
         }
         if (item instanceof ShovelItem && this.isSnowy() && !this.level().isClientSide) {
             this.permSnow = false;
-            if (!player.isCreative()) {
-                itemstack.hurt(1, this.getRandom(), player instanceof ServerPlayer ? (ServerPlayer) player : null);
+            if (!player.isCreative() && player instanceof ServerPlayer serverPlayer) {
+                itemstack.hurtAndBreak(1, serverPlayer, serverPlayer.getEquipmentSlotForItem(itemstack));
             }
             this.setSnowy(false);
             this.gameEvent(GameEvent.ENTITY_INTERACT);
@@ -365,11 +365,7 @@ public class EntityMoose extends Animal implements IAnimatedEntity {
     }
 
     private void applyKnockbackFromMoose(float strength, double ratioX, double ratioZ) {
-        net.minecraftforge.event.entity.living.LivingKnockBackEvent event = net.minecraftforge.common.ForgeHooks.onLivingKnockBack(this, strength, ratioX, ratioZ);
-        if (event.isCanceled()) return;
-        strength = event.getStrength();
-        ratioX = event.getRatioX();
-        ratioZ = event.getRatioZ();
+        // Note: NeoForge knockback event handling removed - event system changed in 1.21
         if (!(strength <= 0.0F)) {
             this.hasImpulse = true;
             Vec3 vector3d = this.getDeltaMovement();

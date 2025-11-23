@@ -867,9 +867,7 @@ public class EntityMimicOctopus extends TamableAnimal implements ISemiAquatic, I
     }
 
     private void creeperExplode() {
-        Explosion explosion = new Explosion(level(), this,  this.damageSources().mobAttack(this), (ExplosionDamageCalculator)null, this.getX(), this.getY(), this.getZ(), 1 + random.nextFloat(), false, Explosion.BlockInteraction.KEEP);
-        explosion.explode();
-        explosion.finalizeExplosion(true);
+        level().explode(this, this.getX(), this.getY(), this.getZ(), 1 + random.nextFloat(), Level.ExplosionInteraction.NONE);
     }
 
     public enum MimicState {

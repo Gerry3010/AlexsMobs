@@ -434,10 +434,10 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
                     fish.readAdditionalSaveData(fishNbt);
                 }
                 this.getTarget().knockback(1.7F, this.getX() - this.getTarget().getX(), this.getZ() - this.getTarget().getZ());
-                float knockbackResist = (float) Mth.clamp((1.0D - this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0, 1);
+                float knockbackResist = (float) Mth.clamp((1.0D - this.getTarget().getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)), 0, 1);
                 this.getTarget().setDeltaMovement(this.getTarget().getDeltaMovement().add(0, knockbackResist * 0.8F, 0));
                 if (!this.getTarget().isInWater()) {
-                    this.getTarget().setSecondsOnFire(2);
+                    this.getTarget().igniteForSeconds(2);
                 }
                 this.getTarget().hurt(this.damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
             }
@@ -713,7 +713,7 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
         }
 
         private boolean isTeleportFriendlyBlock(BlockPos p_226329_1_) {
-            PathType lvt_2_1_ = WalkNodeEvaluator.getBlockPathTypeStatic(this.world, p_226329_1_.mutable());
+            PathType lvt_2_1_ = WalkNodeEvaluator.getPathTypeWithinMobBB(this.world, p_226329_1_.mutable());
             if (world.getFluidState(p_226329_1_).is(FluidTags.WATER) || !world.getFluidState(p_226329_1_).is(FluidTags.WATER) && world.getFluidState(p_226329_1_.below()).is(FluidTags.WATER)) {
                 return true;
             }
