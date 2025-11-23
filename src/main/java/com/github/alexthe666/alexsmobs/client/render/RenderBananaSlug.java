@@ -18,11 +18,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Pose;
 
 public class RenderBananaSlug extends MobRenderer<EntityBananaSlug, ModelBananaSlug> {
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/banana_slug/banana_slug_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/banana_slug/banana_slug_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/banana_slug/banana_slug_2.png");
-    private static final ResourceLocation TEXTURE_3 = new ResourceLocation("alexsmobs:textures/entity/banana_slug/banana_slug_3.png");
-    private static final ResourceLocation TEXTURE_SLIME = new ResourceLocation("alexsmobs:textures/entity/banana_slug/banana_slug_slime.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/banana_slug/banana_slug_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/banana_slug/banana_slug_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/banana_slug/banana_slug_2.png");
+    private static final ResourceLocation TEXTURE_3 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/banana_slug/banana_slug_3.png");
+    private static final ResourceLocation TEXTURE_SLIME = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/banana_slug/banana_slug_slime.png");
 
     public RenderBananaSlug(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelBananaSlug(), 0.2F);

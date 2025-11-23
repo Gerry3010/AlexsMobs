@@ -24,7 +24,7 @@ public class LayerCockroachMaracas extends RenderLayer<EntityCockroach, ModelCoc
 
     private final ItemStack stack;
     private final ModelSombrero sombrero;
-    private static final ResourceLocation SOMBRERO_TEX = new ResourceLocation("alexsmobs:textures/armor/sombrero.png");
+    private static final ResourceLocation SOMBRERO_TEX = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/armor/sombrero.png");
 
     public LayerCockroachMaracas(RenderCockroach render, EntityRendererProvider.Context renderManagerIn) {
         super(render);

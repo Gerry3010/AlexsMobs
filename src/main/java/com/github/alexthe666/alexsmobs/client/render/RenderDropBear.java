@@ -13,8 +13,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderDropBear extends MobRenderer<EntityDropBear, ModelDropBear> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/dropbear.png");
-    private static final ResourceLocation TEXTURE_EYES = new ResourceLocation("alexsmobs:textures/entity/dropbear_eyes.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/dropbear.png");
+    private static final ResourceLocation TEXTURE_EYES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/dropbear_eyes.png");
 
     public RenderDropBear(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelDropBear(), 0.7F);

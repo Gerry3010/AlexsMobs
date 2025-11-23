@@ -14,8 +14,8 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderEndPirateShipWheel<T extends TileEntityEndPirateShipWheel> implements BlockEntityRenderer<T> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/end_pirate/ship_wheel.png");
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("alexsmobs:textures/entity/end_pirate/ship_wheel_glow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/ship_wheel.png");
+    private static final ResourceLocation TEXTURE_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/ship_wheel_glow.png");
     private static final ModelEndPirateShipWheel WHEEL_MODEL = new ModelEndPirateShipWheel();
 
     public RenderEndPirateShipWheel(Context rendererDispatcherIn) {

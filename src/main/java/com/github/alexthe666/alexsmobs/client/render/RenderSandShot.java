@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.projectile.LlamaSpit;
 
 public class RenderSandShot extends EntityRenderer<EntitySandShot> {
-    private static final ResourceLocation SAND_SHOT = new ResourceLocation("alexsmobs:textures/entity/sand_shot.png");
+    private static final ResourceLocation SAND_SHOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/sand_shot.png");
     private final LlamaSpitModel<LlamaSpit> model;
 
     public RenderSandShot(EntityRendererProvider.Context renderManagerIn) {

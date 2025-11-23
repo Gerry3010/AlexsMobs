@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderEndPirateAnchor<T extends TileEntityEndPirateAnchor> implements BlockEntityRenderer<T> {
 
-    protected static final ResourceLocation TEXTURE_ANCHOR = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor.png");
-    protected static final ResourceLocation TEXTURE_ANCHOR_GLOW = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor_glow.png");
+    protected static final ResourceLocation TEXTURE_ANCHOR = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor.png");
+    protected static final ResourceLocation TEXTURE_ANCHOR_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor_glow.png");
     protected static final ModelEndPirateAnchor ANCHOR_MODEL = new ModelEndPirateAnchor();
 
     public RenderEndPirateAnchor(Context rendererDispatcherIn) {

@@ -26,7 +26,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class RenderTendonSegment extends EntityRenderer<EntityTendonSegment> {
 
-    private static final ResourceLocation CLAW_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/tendon_whip_claw.png");
+    private static final ResourceLocation CLAW_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tendon_whip_claw.png");
     private static final ModelTendonClaw CLAW_MODEL = new ModelTendonClaw();
 
     public RenderTendonSegment(EntityRendererProvider.Context renderManagerIn) {

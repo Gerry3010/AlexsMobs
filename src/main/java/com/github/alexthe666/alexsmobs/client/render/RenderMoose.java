@@ -13,10 +13,10 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderMoose extends MobRenderer<EntityMoose, ModelMoose> {
-    private static final ResourceLocation TEXTURE_ANTLERED = new ResourceLocation("alexsmobs:textures/entity/moose_antlered.png");
-    private static final ResourceLocation TEXTURE_SNOWY_ANTLERED = new ResourceLocation("alexsmobs:textures/entity/moose_snowy_antlered.png");
-    private static final ResourceLocation TEXTURE_SNOWY = new ResourceLocation("alexsmobs:textures/entity/moose_snowy.png");
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/moose.png");
+    private static final ResourceLocation TEXTURE_ANTLERED = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/moose_antlered.png");
+    private static final ResourceLocation TEXTURE_SNOWY_ANTLERED = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/moose_snowy_antlered.png");
+    private static final ResourceLocation TEXTURE_SNOWY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/moose_snowy.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/moose.png");
 
     public RenderMoose(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelMoose(), 0.8F);

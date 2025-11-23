@@ -48,7 +48,7 @@ public abstract class LayerVoidWormGlow<T extends LivingEntity> extends RenderLa
                 }
                 this.layerModel.setupAnim(worm, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
                 VertexConsumer consumer = AMRenderTypes.createMergedVertexConsumer(bufferIn.getBuffer(AMRenderTypes.VOID_WORM_PORTAL_OVERLAY), bufferIn.getBuffer(RenderType.entityCutoutNoCull(texture)));
-                this.layerModel.renderToBuffer(matrixStackIn, consumer, 240, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                this.layerModel.renderToBuffer(matrixStackIn, consumer, 240, OverlayTexture.NO_OVERLAY);
             }else{
                 float f = getAlpha(worm);
                 this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.eyes(texture)), 240, LivingEntityRenderer.getOverlayCoords(worm, 1.0F), 1.0F, 1.0F, 1.0F, f);

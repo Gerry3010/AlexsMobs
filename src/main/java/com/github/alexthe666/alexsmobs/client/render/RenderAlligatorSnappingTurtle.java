@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class RenderAlligatorSnappingTurtle extends MobRenderer<EntityAlligatorSnappingTurtle, ModelAlligatorSnappingTurtle> {
-    private static final ResourceLocation TEXTURE_MOSS = new ResourceLocation("alexsmobs:textures/entity/alligator_snapping_turtle_moss.png");
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/alligator_snapping_turtle.png");
+    private static final ResourceLocation TEXTURE_MOSS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/alligator_snapping_turtle_moss.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/alligator_snapping_turtle.png");
 
     public RenderAlligatorSnappingTurtle(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelAlligatorSnappingTurtle(), 0.75F);

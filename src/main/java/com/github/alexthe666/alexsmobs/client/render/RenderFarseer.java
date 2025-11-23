@@ -31,16 +31,16 @@ import javax.annotation.Nullable;
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
 public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/farseer/farseer.png");
-    private static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/farseer/farseer_angry.png");
-    private static final ResourceLocation TEXTURE_CLAWS = new ResourceLocation("alexsmobs:textures/entity/farseer/farseer_claws.png");
-    private static final ResourceLocation TEXTURE_EYE = new ResourceLocation("alexsmobs:textures/entity/farseer/farseer_eye.png");
-    private static final ResourceLocation TEXTURE_SCARS = new ResourceLocation("alexsmobs:textures/entity/farseer/farseer_scars.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/farseer.png");
+    private static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/farseer_angry.png");
+    private static final ResourceLocation TEXTURE_CLAWS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/farseer_claws.png");
+    private static final ResourceLocation TEXTURE_EYE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/farseer_eye.png");
+    private static final ResourceLocation TEXTURE_SCARS = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/farseer_scars.png");
     private static final ResourceLocation[] PORTAL_TEXTURES = new ResourceLocation[]{
-        new ResourceLocation("alexsmobs:textures/entity/farseer/portal_0.png"),
-        new ResourceLocation("alexsmobs:textures/entity/farseer/portal_1.png"),
-        new ResourceLocation("alexsmobs:textures/entity/farseer/portal_2.png"),
-        new ResourceLocation("alexsmobs:textures/entity/farseer/portal_3.png")};
+        ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/portal_0.png"),
+        ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/portal_1.png"),
+        ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/portal_2.png"),
+        ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/portal_3.png")};
     private static final float HALF_SQRT_3 = (float)(Math.sqrt(3.0D) / 2.0D);
     private static final ModelFarseer EYE_MODEL = new ModelFarseer(0.1f);
     private static final ModelFarseer SCARS_MODEL = new ModelFarseer(0.05f);
@@ -234,7 +234,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
     private void renderFarseerModel(PoseStack matrixStackIn, MultiBufferSource source, RenderType defRenderType, float partialTicks, int packedLightIn, int overlayColors, float alphaIn, EntityFarseer entityIn) {
         if(entityIn.hasLaser()){
             VertexConsumer staticyInsides = AMRenderTypes.createMergedVertexConsumer(source.getBuffer(AMRenderTypes.STATIC_ENTITY), source.getBuffer(RenderType.entityTranslucent(TEXTURE_EYE)));
-            EYE_MODEL.renderToBuffer(matrixStackIn, staticyInsides, packedLightIn, NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1F);
+            EYE_MODEL.renderToBuffer(matrixStackIn, staticyInsides, packedLightIn, NO_OVERLAY);
         }
         VertexConsumer consumer;
         float hurt = Math.max(entityIn.hurtTime, entityIn.deathTime);
@@ -243,7 +243,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         if(hurt > 0){
             afterimageSpeed = Math.min(hurt / 20F, 1F) + 0.3F;
             VertexConsumer staticyScars = AMRenderTypes.createMergedVertexConsumer(source.getBuffer(AMRenderTypes.STATIC_ENTITY), source.getBuffer(RenderType.entityTranslucent(TEXTURE_SCARS)));
-            SCARS_MODEL.renderToBuffer(matrixStackIn, staticyScars, packedLightIn, overlayColors, 1.0F, 1.0F, 1.0F, 0.3F);
+            SCARS_MODEL.renderToBuffer(matrixStackIn, staticyScars, packedLightIn, overlayColors);
         }
         this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, overlayColors, 1.0F, 1.0F, 1.0F, alphaIn);
 

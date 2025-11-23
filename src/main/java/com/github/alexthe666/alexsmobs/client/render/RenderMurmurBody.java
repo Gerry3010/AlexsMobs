@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class RenderMurmurBody extends MobRenderer<EntityMurmur, ModelMurmurBody> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/murmur.png");
-    public static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/murmur_angry.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/murmur.png");
+    public static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/murmur_angry.png");
     public static boolean renderWithHead = false;
     private static final ModelMurmurNeck NECK_MODEL = new ModelMurmurNeck();
     private static final ModelMurmurHead HEAD_MODEL = new ModelMurmurHead();

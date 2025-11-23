@@ -22,13 +22,13 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderMimicOctopus extends MobRenderer<EntityMimicOctopus, ModelMimicOctopus> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus.png");
-    private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_overlay.png");
-    private static final ResourceLocation TEXTURE_CREEPER = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_creeper.png");
-    private static final ResourceLocation TEXTURE_GUARDIAN = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_guardian.png");
-    private static final ResourceLocation TEXTURE_PUFFERFISH = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_pufferfish.png");
-    private static final ResourceLocation TEXTURE_MIMICUBE = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_mimicube.png");
-    private static final ResourceLocation TEXTURE_EYES = new ResourceLocation("alexsmobs:textures/entity/mimic_octopus_eyes.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus.png");
+    private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_overlay.png");
+    private static final ResourceLocation TEXTURE_CREEPER = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_creeper.png");
+    private static final ResourceLocation TEXTURE_GUARDIAN = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_guardian.png");
+    private static final ResourceLocation TEXTURE_PUFFERFISH = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_pufferfish.png");
+    private static final ResourceLocation TEXTURE_MIMICUBE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_mimicube.png");
+    private static final ResourceLocation TEXTURE_EYES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimic_octopus_eyes.png");
     private static final ResourceLocation GUARDIAN_BEAM_TEXTURE = new ResourceLocation("textures/entity/guardian_beam.png");
     private static final RenderType BEAM_RENDER_TYPE = RenderType.entityCutoutNoCull(GUARDIAN_BEAM_TEXTURE);
 

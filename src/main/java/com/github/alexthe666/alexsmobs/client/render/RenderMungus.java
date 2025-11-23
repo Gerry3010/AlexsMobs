@@ -28,11 +28,11 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderMungus extends MobRenderer<EntityMungus, ModelMungus> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/mungus.png");
-    private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/mungus_beam.png");
-    private static final ResourceLocation TEXTURE_BEAM_OVERLAY = new ResourceLocation("alexsmobs:textures/entity/mungus_beam_overlay.png");
-    private static final ResourceLocation TEXTURE_SACK_OVERLAY = new ResourceLocation("alexsmobs:textures/entity/mungus_sack.png");
-    private static final ResourceLocation TEXTURE_SHOES = new ResourceLocation("alexsmobs:textures/entity/mungus_shoes.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mungus.png");
+    private static final ResourceLocation BEAM_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mungus_beam.png");
+    private static final ResourceLocation TEXTURE_BEAM_OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mungus_beam_overlay.png");
+    private static final ResourceLocation TEXTURE_SACK_OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mungus_sack.png");
+    private static final ResourceLocation TEXTURE_SHOES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mungus_shoes.png");
     private static final RenderType beamType = AMRenderTypes.getEyesNoFog(BEAM_TEXTURE);
 
     public RenderMungus(EntityRendererProvider.Context renderManagerIn) {
@@ -200,7 +200,7 @@ public class RenderMungus extends MobRenderer<EntityMungus, ModelMungus> {
                 VertexConsumer shoeBuffer = bufferIn.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_SHOES));
                 matrixStackIn.pushPose();
                 this.getParentModel().renderShoes();
-                this.getParentModel().renderToBuffer(matrixStackIn, shoeBuffer, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, shoeBuffer, packedLightIn, OverlayTexture.NO_OVERLAY);
                 this.getParentModel().postRenderShoes();
                 matrixStackIn.popPose();
             }

@@ -11,10 +11,10 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class LayerSoulVultureGlow extends RenderLayer<EntitySoulVulture, ModelSoulVulture> {
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("alexsmobs:textures/entity/soul_vulture/soul_vulture_glow.png");
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/soul_vulture/soul_vulture_flames_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/soul_vulture/soul_vulture_flames_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/soul_vulture/soul_vulture_flames_2.png");
+    private static final ResourceLocation TEXTURE_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/soul_vulture/soul_vulture_glow.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/soul_vulture/soul_vulture_flames_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/soul_vulture/soul_vulture_flames_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/soul_vulture/soul_vulture_flames_2.png");
 
     public LayerSoulVultureGlow(RenderSoulVulture renderSoulVulture) {
         super(renderSoulVulture);

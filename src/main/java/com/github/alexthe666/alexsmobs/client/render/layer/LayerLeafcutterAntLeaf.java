@@ -18,9 +18,9 @@ import net.minecraft.world.item.Items;
 
 public class LayerLeafcutterAntLeaf extends RenderLayer<EntityLeafcutterAnt, AdvancedEntityModel<EntityLeafcutterAnt>> {
 
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_leaf_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_leaf_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_leaf_2.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_leaf_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_leaf_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_leaf_2.png");
 
     public LayerLeafcutterAntLeaf(RenderLeafcutterAnt render) {
         super(render);

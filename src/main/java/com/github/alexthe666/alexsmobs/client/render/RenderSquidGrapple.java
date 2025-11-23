@@ -26,7 +26,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderSquidGrapple extends EntityRenderer<EntitySquidGrapple> {
-    private static final ResourceLocation SQUID_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/giant_squid.png");
+    private static final ResourceLocation SQUID_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/giant_squid.png");
     private static final ModelSquidGrapple SQUID_MODEL = new ModelSquidGrapple();
     private static final float TENTACLES_COLOR_R = 181F / 255F;
     private static final float TENTACLES_COLOR_G = 87F / 255F;
@@ -110,7 +110,7 @@ public class RenderSquidGrapple extends EntityRenderer<EntitySquidGrapple> {
         matrixStackIn.mulPose(Axis.XP.rotationDegrees(180 + Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot())));
         matrixStackIn.translate(0, -1.5F, -0.25F);
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(entityIn)));
-        SQUID_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1.0F);
+        SQUID_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         if (entityIn.getOwner() instanceof LivingEntity holder) {

@@ -15,7 +15,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderIceShard extends EntityRenderer<EntityIceShard> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/ice_shard.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/ice_shard.png");
 
     public RenderIceShard(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn);

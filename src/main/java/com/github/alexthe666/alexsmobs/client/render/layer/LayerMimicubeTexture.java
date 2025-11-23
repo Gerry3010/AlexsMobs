@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class LayerMimicubeTexture extends RenderLayer<EntityMimicube, ModelMimicube> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/mimicube_outer.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mimicube_outer.png");
 
     public LayerMimicubeTexture(RenderMimicube render) {
         super(render);

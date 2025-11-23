@@ -13,8 +13,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class LayerTusklinGear extends RenderLayer<EntityTusklin, ModelTusklin> {
-    private static final ResourceLocation TEXTURE_SADDLE = new ResourceLocation("alexsmobs:textures/entity/tusklin_saddle.png");
-    private static final ResourceLocation TEXTURE_SHOES = new ResourceLocation("alexsmobs:textures/entity/tusklin_hooves.png");
+    private static final ResourceLocation TEXTURE_SADDLE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tusklin_saddle.png");
+    private static final ResourceLocation TEXTURE_SHOES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tusklin_hooves.png");
 
     public LayerTusklinGear(RenderTusklin render) {
         super(render);

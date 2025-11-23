@@ -43,18 +43,18 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
 
     public static int ticksExisted = 0;
     private static final ModelShieldOfTheDeep SHIELD_OF_THE_DEEP_MODEL = new ModelShieldOfTheDeep();
-    private static final ResourceLocation SHIELD_OF_THE_DEEP_TEXTURE = new ResourceLocation("alexsmobs:textures/armor/shield_of_the_deep.png");
+    private static final ResourceLocation SHIELD_OF_THE_DEEP_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/armor/shield_of_the_deep.png");
     private static final ModelMysteriousWorm MYTERIOUS_WORM_MODEL = new ModelMysteriousWorm();
-    private static final ResourceLocation MYTERIOUS_WORM_TEXTURE = new ResourceLocation("alexsmobs:textures/item/mysterious_worm_model.png");
+    private static final ResourceLocation MYTERIOUS_WORM_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/item/mysterious_worm_model.png");
     private static final ModelEndPirateAnchor ANCHOR_MODEL = new ModelEndPirateAnchor();
-    private static final ResourceLocation ANCHOR_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor.png");
+    private static final ResourceLocation ANCHOR_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor.png");
     private static final ModelEndPirateAnchorWinch WINCH_MODEL = new ModelEndPirateAnchorWinch();
-    private static final ResourceLocation WINCH_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor_winch.png");
+    private static final ResourceLocation WINCH_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor_winch.png");
     private static final ModelEndPirateShipWheel SHIP_WHEEL_MODEL = new ModelEndPirateShipWheel();
-    private static final ResourceLocation SHIP_WHEEL_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/end_pirate/ship_wheel.png");
-    private static final ResourceLocation TRANSMUTATION_TABLE_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table.png");
-    private static final ResourceLocation TRANSMUTATION_TABLE_GLOW_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table_glow.png");
-    private static final ResourceLocation TRANSMUTATION_TABLE_OVERLAY = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table_overlay.png");
+    private static final ResourceLocation SHIP_WHEEL_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/ship_wheel.png");
+    private static final ResourceLocation TRANSMUTATION_TABLE_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table.png");
+    private static final ResourceLocation TRANSMUTATION_TABLE_GLOW_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table_glow.png");
+    private static final ResourceLocation TRANSMUTATION_TABLE_OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table_overlay.png");
     private static final ModelTransmutationTable TRANSMUTATION_TABLE_MODEL = new ModelTransmutationTable(0F);
     private static final ModelTransmutationTable TRANSMUTATION_TABLE_OVERLAY_MODEL = new ModelTransmutationTable(0.01F);
     private static List<ItemStack> DIMENSIONAL_CARVER_SHARDS;
@@ -83,17 +83,17 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
     private static List<ItemStack> getDimensionalCarverShards() {
         if (DIMENSIONAL_CARVER_SHARDS == null || DIMENSIONAL_CARVER_SHARDS.isEmpty()) {
             DIMENSIONAL_CARVER_SHARDS = Util.make(Lists.newArrayList(), (list) -> {
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_0"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_1"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_2"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_3"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_4"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_5"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_6"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_7"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_8"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_9"))));
-                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(new ResourceLocation("alexsmobs:dimensional_carver_shard_10"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_0"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_1"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_2"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_3"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_4"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_5"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_6"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_7"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_8"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_9"))));
+                list.add(new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("alexsmobs", "dimensional_carver_shard_10"))));
             });
         }
         return DIMENSIONAL_CARVER_SHARDS;
@@ -168,7 +168,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.translate(0.4F, -0.75F, 0.5F);
             matrixStackIn.mulPose(Axis.YP.rotationDegrees(-180));
             VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(bufferIn, RenderType.armorCutoutNoCull(SHIELD_OF_THE_DEEP_TEXTURE), false, itemStackIn.hasFoil());
-            SHIELD_OF_THE_DEEP_MODEL.renderToBuffer(matrixStackIn, vertexconsumer, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            SHIELD_OF_THE_DEEP_MODEL.renderToBuffer(matrixStackIn, vertexconsumer, combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         if (itemStackIn.getItem() == AMItemRegistry.MYSTERIOUS_WORM.get()) {
@@ -222,7 +222,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             TRANSMUTATION_TABLE_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityTranslucentEmissive(TRANSMUTATION_TABLE_GLOW_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
             TRANSMUTATION_TABLE_OVERLAY_MODEL.resetToDefaultPose();
             VertexConsumer staticyOverlay = bufferIn.getBuffer(RenderType.eyes(TRANSMUTATION_TABLE_OVERLAY));
-            TRANSMUTATION_TABLE_OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            TRANSMUTATION_TABLE_OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         if (itemStackIn.getItem() == AMItemRegistry.SHATTERED_DIMENSIONAL_CARVER.get()) {

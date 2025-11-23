@@ -12,9 +12,9 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderKomodoDragon extends MobRenderer<EntityKomodoDragon, ModelKomodoDragon> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/komodo_dragon.png");
-    private static final ResourceLocation TEXTURE_SADDLE = new ResourceLocation("alexsmobs:textures/entity/komodo_dragon_saddle.png");
-    private static final ResourceLocation TEXTURE_MAID = new ResourceLocation("alexsmobs:textures/entity/komodo_dragon_maid.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/komodo_dragon.png");
+    private static final ResourceLocation TEXTURE_SADDLE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/komodo_dragon_saddle.png");
+    private static final ResourceLocation TEXTURE_MAID = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/komodo_dragon_maid.png");
 
     public RenderKomodoDragon(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelKomodoDragon(0.0F), 0.6F);

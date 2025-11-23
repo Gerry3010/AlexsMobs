@@ -14,8 +14,8 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderEndPirateAnchorWinch<T extends TileEntityEndPirateAnchorWinch> implements BlockEntityRenderer<T> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor_winch.png");
-    private static final ResourceLocation TEXTURE_CHAIN = new ResourceLocation("alexsmobs:textures/entity/end_pirate/anchor_chain.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor_winch.png");
+    private static final ResourceLocation TEXTURE_CHAIN = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/end_pirate/anchor_chain.png");
     private static final ModelEndPirateAnchorWinch WINCH_MODEL = new ModelEndPirateAnchorWinch();
     private static final ModelEndPirateAnchorChain CHAIN_MODEL = new ModelEndPirateAnchorChain();
 

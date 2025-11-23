@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.LightLayer;
 
 public class LayerRaccoonEyes extends RenderLayer<EntityRaccoon, ModelRaccoon> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/raccoon_eyes.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/raccoon_eyes.png");
 
     public LayerRaccoonEyes(RenderRaccoon render) {
         super(render);

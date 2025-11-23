@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class RenderWarpedMosco extends MobRenderer<EntityWarpedMosco, ModelWarpedMosco> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/warped_mosco.png");
-    private static final ResourceLocation TEXTURE_EYES = new ResourceLocation("alexsmobs:textures/entity/warped_mosco_glow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_mosco.png");
+    private static final ResourceLocation TEXTURE_EYES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_mosco_glow.png");
 
     public RenderWarpedMosco(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelWarpedMosco(), 1F);

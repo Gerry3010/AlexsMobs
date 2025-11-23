@@ -15,10 +15,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderSpectre extends MobRenderer<EntitySpectre, ModelSpectre> {
-    private static final ResourceLocation TEXTURE_BONE = new ResourceLocation("alexsmobs:textures/entity/spectre_bone.png");
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/spectre.png");
-    private static final ResourceLocation TEXTURE_EYES = new ResourceLocation("alexsmobs:textures/entity/spectre_glow.png");
-    private static final ResourceLocation TEXTURE_LEAD = new ResourceLocation("alexsmobs:textures/entity/spectre_lead.png");
+    private static final ResourceLocation TEXTURE_BONE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/spectre_bone.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/spectre.png");
+    private static final ResourceLocation TEXTURE_EYES = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/spectre_glow.png");
+    private static final ResourceLocation TEXTURE_LEAD = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/spectre_lead.png");
 
     public RenderSpectre(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelSpectre(), 0.5F);

@@ -16,18 +16,18 @@ import net.minecraft.world.entity.Pose;
 public class RenderTerrapin extends MobRenderer<EntityTerrapin, ModelTerrapin> {
 
     private static final ResourceLocation[] SHELL_TEXTURES = {
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_0.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_1.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_2.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_3.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_4.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_shell_pattern_5.png")
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_0.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_1.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_2.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_3.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_4.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_shell_pattern_5.png")
     };
     private static final ResourceLocation[] SKIN_PATTERN_TEXTURES = {
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_skin_pattern_0.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_skin_pattern_1.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_skin_pattern_2.png"),
-            new ResourceLocation("alexsmobs:textures/entity/terrapin/overlay/terrapin_skin_pattern_3.png")
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_skin_pattern_0.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_skin_pattern_1.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_skin_pattern_2.png"),
+            ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/terrapin/overlay/terrapin_skin_pattern_3.png")
     };
 
     public RenderTerrapin(EntityRendererProvider.Context renderManagerIn) {

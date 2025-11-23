@@ -24,7 +24,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderVineLasso extends EntityRenderer<EntityVineLasso> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/vine_lasso.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/vine_lasso.png");
 
     private static final float VINES_COLOR_R = 96F / 255F;
     private static final float VINES_COLOR_G = 143F / 255F;

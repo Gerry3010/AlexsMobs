@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderStraddler extends MobRenderer<EntityStraddler, ModelStraddler> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/straddler.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/straddler.png");
     private static final ModelStradpole STRADPOLE_MODEL = new ModelStradpole();
     public RenderStraddler(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelStraddler(), 0.6F);

@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class LayerGrizzlyHoney extends RenderLayer<EntityGrizzlyBear, ModelGrizzlyBear> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/grizzly_bear_honey.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/grizzly_bear_honey.png");
 
     public LayerGrizzlyHoney(RenderGrizzlyBear renderGrizzlyBear) {
         super(renderGrizzlyBear);

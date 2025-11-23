@@ -13,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class LayerWarpedToadGlow extends RenderLayer<EntityWarpedToad, ModelWarpedToad> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/warped_toad_glow.png");
-    private static final ResourceLocation TEXTURE_BLINKING = new ResourceLocation("alexsmobs:textures/entity/warped_toad_glow_blink.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad_glow.png");
+    private static final ResourceLocation TEXTURE_BLINKING = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad_glow_blink.png");
 
     public LayerWarpedToadGlow(RenderWarpedToad renderWarpedToad) {
         super(renderWarpedToad);

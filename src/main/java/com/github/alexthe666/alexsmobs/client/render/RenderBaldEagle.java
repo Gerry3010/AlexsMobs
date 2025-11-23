@@ -23,8 +23,8 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 
 public class RenderBaldEagle extends MobRenderer<EntityBaldEagle, ModelBaldEagle> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/bald_eagle.png");
-    private static final ResourceLocation TEXTURE_CAP = new ResourceLocation("alexsmobs:textures/entity/bald_eagle_hood.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bald_eagle.png");
+    private static final ResourceLocation TEXTURE_CAP = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bald_eagle_hood.png");
 
     public RenderBaldEagle(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelBaldEagle(), 0.3F);

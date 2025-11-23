@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import org.joml.Quaternionf;
 
 public class RenderTossedItem  extends EntityRenderer<EntityTossedItem> {
-    public static final ResourceLocation DART_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/ancient_dart.png");
+    public static final ResourceLocation DART_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/ancient_dart.png");
     public static final ModelAncientDart DART_MODEL = new ModelAncientDart();
 
     public RenderTossedItem(EntityRendererProvider.Context renderManager) {
@@ -41,7 +41,7 @@ public class RenderTossedItem  extends EntityRenderer<EntityTossedItem> {
             matrixStackIn.translate(0, 0.5F, 0);
             matrixStackIn.scale(1F, 1F, 1F);
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(DART_MODEL.renderType(DART_TEXTURE));
-            DART_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            DART_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
             matrixStackIn.popPose();
         }else{
             matrixStackIn.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90.0F));

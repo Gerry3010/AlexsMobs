@@ -12,8 +12,8 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderSkreecher extends MobRenderer<EntitySkreecher, ModelSkreecher> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/skreecher.png");
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("alexsmobs:textures/entity/skreecher_glow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/skreecher.png");
+    private static final ResourceLocation TEXTURE_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/skreecher_glow.png");
 
     public RenderSkreecher(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelSkreecher(), 0.35F);

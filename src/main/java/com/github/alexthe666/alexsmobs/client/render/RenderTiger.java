@@ -28,12 +28,12 @@ import org.joml.Matrix4f;
 import javax.annotation.Nullable;
 
 public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger.png");
-    private static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_angry.png");
-    private static final ResourceLocation TEXTURE_SLEEPING = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_sleeping.png");
-    private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_white.png");
-    private static final ResourceLocation TEXTURE_ANGRY_WHITE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_white_angry.png");
-    private static final ResourceLocation TEXTURE_SLEEPING_WHITE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_white_sleeping.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger.png");
+    private static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_angry.png");
+    private static final ResourceLocation TEXTURE_SLEEPING = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_sleeping.png");
+    private static final ResourceLocation TEXTURE_WHITE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_white.png");
+    private static final ResourceLocation TEXTURE_ANGRY_WHITE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_white_angry.png");
+    private static final ResourceLocation TEXTURE_SLEEPING_WHITE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_white_sleeping.png");
 
     public RenderTiger(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelTiger(), 0.6F);

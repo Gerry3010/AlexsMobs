@@ -20,12 +20,12 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class RenderToucan extends MobRenderer<EntityToucan, ModelToucan> {
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_2.png");
-    private static final ResourceLocation TEXTURE_3 = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_3.png");
-    private static final ResourceLocation TEXTURE_GOLDEN = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_gold.png");
-    private static final ResourceLocation TEXTURE_SAM = new ResourceLocation("alexsmobs:textures/entity/toucan/toucan_sam.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_2.png");
+    private static final ResourceLocation TEXTURE_3 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_3.png");
+    private static final ResourceLocation TEXTURE_GOLDEN = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_gold.png");
+    private static final ResourceLocation TEXTURE_SAM = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/toucan/toucan_sam.png");
 
     public RenderToucan(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelToucan(), 0.2F);

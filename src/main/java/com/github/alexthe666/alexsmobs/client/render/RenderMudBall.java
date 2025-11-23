@@ -14,7 +14,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderMudBall extends EntityRenderer<EntityMudBall> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/mud_ball.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/mud_ball.png");
 
     public RenderMudBall(EntityRendererProvider.Context p_173962_) {
         super(p_173962_);

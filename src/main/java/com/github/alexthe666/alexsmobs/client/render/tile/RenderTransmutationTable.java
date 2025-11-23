@@ -19,9 +19,9 @@ import org.joml.Matrix4f;
 
 public class RenderTransmutationTable<T extends TileEntityTransmutationTable> implements BlockEntityRenderer<T> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table.png");
-    private static final ResourceLocation OVERLAY = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table_overlay.png");
-    private static final ResourceLocation GLOW_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/farseer/transmutation_table_glow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table.png");
+    private static final ResourceLocation OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table_overlay.png");
+    private static final ResourceLocation GLOW_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/farseer/transmutation_table_glow.png");
     private static final ModelTransmutationTable MODEL = new ModelTransmutationTable(0F);
     private static final ModelTransmutationTable OVERLAY_MODEL = new ModelTransmutationTable(0.01F);
 
@@ -48,7 +48,7 @@ public class RenderTransmutationTable<T extends TileEntityTransmutationTable> im
         MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getEyesAlphaEnabled(GLOW_TEXTURE)), 240, combinedOverlayIn, 1, 1, 1, 0.5F + (float)Math.sin(ageInTicks * 0.05F) * 0.25F);
         VertexConsumer staticyOverlay = AMRenderTypes.createMergedVertexConsumer(bufferIn.getBuffer(AMRenderTypes.STATIC_PORTAL), bufferIn.getBuffer(RenderType.entityCutoutNoCull(OVERLAY)));
         OVERLAY_MODEL.animate(tileEntityIn, partialTicks);
-        OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+        OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, OverlayTexture.NO_OVERLAY);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
     }

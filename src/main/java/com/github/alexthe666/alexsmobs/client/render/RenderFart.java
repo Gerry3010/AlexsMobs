@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class RenderFart extends EntityRenderer<EntityFart> {
-    private static final ResourceLocation FART_TEXTURE = new ResourceLocation("alexsmobs:textures/entity/fart.png");
+    private static final ResourceLocation FART_TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/fart.png");
     private static final ModelFart MODEL = new ModelFart();
 
     public RenderFart(EntityRendererProvider.Context renderManagerIn) {

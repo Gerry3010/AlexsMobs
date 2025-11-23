@@ -15,14 +15,14 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderCachalotEcho extends EntityRenderer<EntityCachalotEcho> {
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_2.png");
-    private static final ResourceLocation TEXTURE_3 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_3.png");
-    private static final ResourceLocation GREEN_TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_0_green.png");
-    private static final ResourceLocation GREEN_TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_1_green.png");
-    private static final ResourceLocation GREEN_TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_2_green.png");
-    private static final ResourceLocation GREEN_TEXTURE_3 = new ResourceLocation("alexsmobs:textures/entity/cachalot/whale_echo_3_green.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_2.png");
+    private static final ResourceLocation TEXTURE_3 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_3.png");
+    private static final ResourceLocation GREEN_TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_0_green.png");
+    private static final ResourceLocation GREEN_TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_1_green.png");
+    private static final ResourceLocation GREEN_TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_2_green.png");
+    private static final ResourceLocation GREEN_TEXTURE_3 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cachalot/whale_echo_3_green.png");
 
     public RenderCachalotEcho(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn);

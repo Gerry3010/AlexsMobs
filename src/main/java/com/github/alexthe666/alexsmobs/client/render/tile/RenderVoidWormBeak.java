@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderVoidWormBeak<T extends TileEntityVoidWormBeak> implements BlockEntityRenderer<T> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/void_worm/void_worm_beak.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/void_worm_beak.png");
     private static final ModelVoidWormBeak HEAD_MODEL = new ModelVoidWormBeak();
 
     public RenderVoidWormBeak(BlockEntityRendererProvider.Context rendererDispatcherIn) {

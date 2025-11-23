@@ -11,9 +11,9 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderRhinoceros extends MobRenderer<EntityRhinoceros, ModelRhinoceros> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/rhinoceros.png");
-    private static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/rhinoceros_angry.png");
-    private static final ResourceLocation TEXTURE_POTION = new ResourceLocation("alexsmobs:textures/entity/rhinoceros_potion.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/rhinoceros.png");
+    private static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/rhinoceros_angry.png");
+    private static final ResourceLocation TEXTURE_POTION = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/rhinoceros_potion.png");
 
     public RenderRhinoceros(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelRhinoceros(), 0.9F);

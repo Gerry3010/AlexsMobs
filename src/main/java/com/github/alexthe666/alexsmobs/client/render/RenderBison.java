@@ -15,11 +15,11 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderBison extends MobRenderer<EntityBison, AdvancedEntityModel<EntityBison>> {
-    private static final ResourceLocation TEXTURE_BABY = new ResourceLocation("alexsmobs:textures/entity/bison_baby.png");
-    private static final ResourceLocation TEXTURE_BABY_SNOWY = new ResourceLocation("alexsmobs:textures/entity/bison_baby_snowy.png");
-    private static final ResourceLocation TEXTURE_SNOWY = new ResourceLocation("alexsmobs:textures/entity/bison_snowy.png");
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/bison.png");
-    private static final ResourceLocation TEXTURE_SHEARED = new ResourceLocation("alexsmobs:textures/entity/bison_sheared.png");
+    private static final ResourceLocation TEXTURE_BABY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bison_baby.png");
+    private static final ResourceLocation TEXTURE_BABY_SNOWY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bison_baby_snowy.png");
+    private static final ResourceLocation TEXTURE_SNOWY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bison_snowy.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bison.png");
+    private static final ResourceLocation TEXTURE_SHEARED = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/bison_sheared.png");
     private final ModelBison modelBison = new ModelBison();
     private final ModelBisonBaby modelBaby = new ModelBisonBaby();
 

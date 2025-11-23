@@ -15,9 +15,9 @@ import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.DyeColor;
 
 public class RenderRaccoon extends MobRenderer<EntityRaccoon, ModelRaccoon> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/raccoon.png");
-    private static final ResourceLocation TEXTURE_RIGBY = new ResourceLocation("alexsmobs:textures/entity/raccoon_rigby.png");
-    private static final ResourceLocation TEXTURE_BANDANA = new ResourceLocation("alexsmobs:textures/entity/raccoon_bandana.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/raccoon.png");
+    private static final ResourceLocation TEXTURE_RIGBY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/raccoon_rigby.png");
+    private static final ResourceLocation TEXTURE_BANDANA = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/raccoon_bandana.png");
 
     public RenderRaccoon(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelRaccoon(), 0.4F);

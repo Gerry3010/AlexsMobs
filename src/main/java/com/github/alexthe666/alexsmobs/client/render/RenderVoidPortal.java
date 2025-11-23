@@ -14,12 +14,12 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderVoidPortal extends EntityRenderer<EntityVoidPortal> {
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/portal_idle_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/portal_idle_1.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/portal_idle_2.png");
-    private static final ResourceLocation TEXTURE_SHATTERED_0 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/shattered/portal_idle_0.png");
-    private static final ResourceLocation TEXTURE_SHATTERED_1 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/shattered/portal_idle_1.png");
-    private static final ResourceLocation TEXTURE_SHATTERED_2 = new ResourceLocation("alexsmobs:textures/entity/void_worm/portal/shattered/portal_idle_2.png");
+    private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/portal_idle_0.png");
+    private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/portal_idle_1.png");
+    private static final ResourceLocation TEXTURE_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/portal_idle_2.png");
+    private static final ResourceLocation TEXTURE_SHATTERED_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/shattered/portal_idle_0.png");
+    private static final ResourceLocation TEXTURE_SHATTERED_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/shattered/portal_idle_1.png");
+    private static final ResourceLocation TEXTURE_SHATTERED_2 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/void_worm/portal/shattered/portal_idle_2.png");
     private static final ResourceLocation[] TEXTURE_PROGRESS = new ResourceLocation[10];
     private static final ResourceLocation[] TEXTURE_SHATTERED_PROGRESS = new ResourceLocation[10];
     public RenderVoidPortal(EntityRendererProvider.Context renderManagerIn) {

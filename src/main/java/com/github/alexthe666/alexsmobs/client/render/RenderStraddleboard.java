@@ -16,8 +16,8 @@ import org.joml.Quaternionf;
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
 public class RenderStraddleboard extends EntityRenderer<EntityStraddleboard> {
-    private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation("alexsmobs:textures/entity/straddleboard_overlay.png");
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/straddleboard.png");
+    private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/straddleboard_overlay.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/straddleboard.png");
     private static final ModelStraddleboard BOARD_MODEL = new ModelStraddleboard();
 
     public RenderStraddleboard(EntityRendererProvider.Context renderManager) {
@@ -53,7 +53,7 @@ public class RenderStraddleboard extends EntityRenderer<EntityStraddleboard> {
         VertexConsumer ivertexbuilder2 = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_OVERLAY));
         BOARD_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder2, packedLightIn, NO_OVERLAY, r, g, b, 1.0F);
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-        BOARD_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        BOARD_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, NO_OVERLAY);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
 

@@ -18,8 +18,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
 public class RenderBlueJay extends MobRenderer<EntityBlueJay, ModelBlueJay> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/blue_jay.png");
-    private static final ResourceLocation TEXTURE_SHINY = new ResourceLocation("alexsmobs:textures/entity/blue_jay_shiny.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/blue_jay.png");
+    private static final ResourceLocation TEXTURE_SHINY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/blue_jay_shiny.png");
 
     public RenderBlueJay(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelBlueJay(), 0.2F);

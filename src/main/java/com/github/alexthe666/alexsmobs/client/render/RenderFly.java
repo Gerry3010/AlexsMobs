@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderFly extends MobRenderer<EntityFly, ModelFly> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/fly.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/fly.png");
 
     public RenderFly(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelFly(), 0.2F);

@@ -15,9 +15,9 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderGiantSquid extends MobRenderer<EntityGiantSquid, ModelGiantSquid> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/giant_squid.png");
-    private static final ResourceLocation TEXTURE_BLUE = new ResourceLocation("alexsmobs:textures/entity/giant_squid_blue.png");
-    private static final ResourceLocation TEXTURE_DEPRESSURIZED = new ResourceLocation("alexsmobs:textures/entity/giant_squid_depressurized.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/giant_squid.png");
+    private static final ResourceLocation TEXTURE_BLUE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/giant_squid_blue.png");
+    private static final ResourceLocation TEXTURE_DEPRESSURIZED = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/giant_squid_depressurized.png");
 
     public RenderGiantSquid(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelGiantSquid(), 1F);

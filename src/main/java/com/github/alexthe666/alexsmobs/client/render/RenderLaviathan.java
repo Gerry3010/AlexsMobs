@@ -24,11 +24,11 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 public class RenderLaviathan extends MobRenderer<EntityLaviathan, ModelLaviathan> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/laviathan.png");
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("alexsmobs:textures/entity/laviathan_glow.png");
-    private static final ResourceLocation TEXTURE_OBSIDIAN = new ResourceLocation("alexsmobs:textures/entity/laviathan_obsidian.png");
-    private static final ResourceLocation TEXTURE_GEAR = new ResourceLocation("alexsmobs:textures/entity/laviathan_gear.png");
-    private static final ResourceLocation TEXTURE_HELMET = new ResourceLocation("alexsmobs:textures/entity/laviathan_helmet.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/laviathan.png");
+    private static final ResourceLocation TEXTURE_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/laviathan_glow.png");
+    private static final ResourceLocation TEXTURE_OBSIDIAN = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/laviathan_obsidian.png");
+    private static final ResourceLocation TEXTURE_GEAR = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/laviathan_gear.png");
+    private static final ResourceLocation TEXTURE_HELMET = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/laviathan_helmet.png");
     private static final float REINS_COLOR_R = 98F / 255F;
     private static final float REINS_COLOR_G = 77F / 255F;
     private static final float REINS_COLOR_B = 52F / 255F;
@@ -212,15 +212,15 @@ public class RenderLaviathan extends MobRenderer<EntityLaviathan, ModelLaviathan
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityLaviathan laviathan, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (!laviathan.isObsidian()) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.eyes(TEXTURE_GLOW));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
             }
             if (laviathan.hasBodyGear()) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_GEAR));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
             }
             if (laviathan.hasHeadGear()) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_HELMET));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
             }
         }
 

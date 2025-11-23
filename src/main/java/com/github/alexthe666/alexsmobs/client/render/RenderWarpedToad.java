@@ -9,10 +9,10 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderWarpedToad extends MobRenderer<EntityWarpedToad, ModelWarpedToad> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/warped_toad.png");
-    private static final ResourceLocation TEXTURE_BLINKING = new ResourceLocation("alexsmobs:textures/entity/warped_toad_blink.png");
-    private static final ResourceLocation TEXTURE_PEPE = new ResourceLocation("alexsmobs:textures/entity/warped_toad_pepe.png");
-    private static final ResourceLocation TEXTURE_PEPE_BLINKING = new ResourceLocation("alexsmobs:textures/entity/warped_toad_pepe_blink.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad.png");
+    private static final ResourceLocation TEXTURE_BLINKING = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad_blink.png");
+    private static final ResourceLocation TEXTURE_PEPE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad_pepe.png");
+    private static final ResourceLocation TEXTURE_PEPE_BLINKING = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/warped_toad_pepe_blink.png");
 
     public RenderWarpedToad(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelWarpedToad(), 0.85F);

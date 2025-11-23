@@ -16,10 +16,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Pose;
 
 public class RenderLeafcutterAnt extends MobRenderer<EntityLeafcutterAnt, AdvancedEntityModel<EntityLeafcutterAnt>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant.png");
-    private static final ResourceLocation TEXTURE_QUEEN = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_queen.png");
-    private static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_angry.png");
-    private static final ResourceLocation TEXTURE_QUEEN_ANGRY = new ResourceLocation("alexsmobs:textures/entity/leafcutter_ant_queen_angry.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant.png");
+    private static final ResourceLocation TEXTURE_QUEEN = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_queen.png");
+    private static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_angry.png");
+    private static final ResourceLocation TEXTURE_QUEEN_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/leafcutter_ant_queen_angry.png");
     private final ModelLeafcutterAnt modelAnt = new ModelLeafcutterAnt();
     private final ModelLeafcutterAntQueen modelQueen = new ModelLeafcutterAntQueen();
 

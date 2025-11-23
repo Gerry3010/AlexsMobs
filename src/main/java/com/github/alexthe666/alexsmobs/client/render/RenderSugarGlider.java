@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import org.joml.Quaternionf;
 
 public class RenderSugarGlider extends MobRenderer<EntitySugarGlider, ModelSugarGlider> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/sugar_glider.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/sugar_glider.png");
 
     public RenderSugarGlider(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelSugarGlider(), 0.35F);

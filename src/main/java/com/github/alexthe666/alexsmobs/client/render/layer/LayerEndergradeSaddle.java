@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class LayerEndergradeSaddle extends RenderLayer<EntityEndergrade, ModelEndergrade> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/endergrade_saddle.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/endergrade_saddle.png");
 
     public LayerEndergradeSaddle(RenderEndergrade renderGrizzlyBear) {
         super(renderGrizzlyBear);

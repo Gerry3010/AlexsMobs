@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderLobster extends MobRenderer<EntityLobster, ModelLobster> {
-    private static final ResourceLocation TEXTURE_RED = new ResourceLocation("alexsmobs:textures/entity/lobster_red.png");
-    private static final ResourceLocation TEXTURE_BLUE = new ResourceLocation("alexsmobs:textures/entity/lobster_blue.png");
-    private static final ResourceLocation TEXTURE_YELLOW = new ResourceLocation("alexsmobs:textures/entity/lobster_yellow.png");
-    private static final ResourceLocation TEXTURE_REDBLUE = new ResourceLocation("alexsmobs:textures/entity/lobster_redblue.png");
-    private static final ResourceLocation TEXTURE_BLACK = new ResourceLocation("alexsmobs:textures/entity/lobster_black.png");
-    private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation("alexsmobs:textures/entity/lobster_white.png");
+    private static final ResourceLocation TEXTURE_RED = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_red.png");
+    private static final ResourceLocation TEXTURE_BLUE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_blue.png");
+    private static final ResourceLocation TEXTURE_YELLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_yellow.png");
+    private static final ResourceLocation TEXTURE_REDBLUE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_redblue.png");
+    private static final ResourceLocation TEXTURE_BLACK = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_black.png");
+    private static final ResourceLocation TEXTURE_WHITE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/lobster_white.png");
 
     public RenderLobster(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelLobster(), 0.25F);

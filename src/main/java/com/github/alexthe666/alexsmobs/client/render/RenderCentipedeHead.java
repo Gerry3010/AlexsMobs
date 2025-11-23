@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Pose;
 
 public class RenderCentipedeHead extends MobRenderer<EntityCentipedeHead, AdvancedEntityModel<EntityCentipedeHead>> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/cave_centipede.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/cave_centipede.png");
 
     public RenderCentipedeHead(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelCaveCentipede<>(0), 0.5F);

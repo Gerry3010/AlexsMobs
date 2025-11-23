@@ -14,9 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.LightLayer;
 
 public class LayerTigerEyes  extends RenderLayer<EntityTiger, ModelTiger> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_eyes.png");
-    private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_white_eyes.png");
-    private static final ResourceLocation TEXTURE_ANGRY = new ResourceLocation("alexsmobs:textures/entity/tiger/tiger_angry_eyes.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_eyes.png");
+    private static final ResourceLocation TEXTURE_WHITE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_white_eyes.png");
+    private static final ResourceLocation TEXTURE_ANGRY = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/tiger/tiger_angry_eyes.png");
 
     public LayerTigerEyes(RenderTiger render) {
         super(render);

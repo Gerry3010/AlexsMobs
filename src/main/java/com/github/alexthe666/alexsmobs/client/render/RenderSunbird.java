@@ -17,8 +17,8 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class RenderSunbird extends MobRenderer<EntitySunbird, ModelSunbird> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/sunbird.png");
-    private static final ResourceLocation TEXTURE_GLOW = new ResourceLocation("alexsmobs:textures/entity/sunbird_glow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/sunbird.png");
+    private static final ResourceLocation TEXTURE_GLOW = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/sunbird_glow.png");
 
     public RenderSunbird(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new ModelSunbird(), 0.5F);
