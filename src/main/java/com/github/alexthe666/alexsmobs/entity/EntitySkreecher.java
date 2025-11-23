@@ -150,7 +150,7 @@ public class EntitySkreecher extends Monster {
         prevClapProgress = clapProgress;
         prevClingProgress = clingProgress;
         prevDistanceToCeiling = this.getDistanceToCeiling();
-        boolean clingVisually = this.isClinging() || this.isJumpingUp() || this.isJumping();
+        boolean clingVisually = this.isClinging() || this.isJumpingUp() || this.jumping;
         if (clingVisually && clingProgress < 5F) {
             clingProgress++;
         }

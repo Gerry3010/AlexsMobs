@@ -402,7 +402,7 @@ public class EntitySeagull extends Animal implements ITargetsDroppedItems {
             if(map.getItem() == Items.FILLED_MAP || map.getItem() == Items.MAP){
                 net.minecraft.world.level.saveddata.maps.MapItemSavedData mapData = net.minecraft.world.item.MapItem.getSavedData(map, this.level());
                 if (mapData != null) {
-                    for(MapDecoration decoration : mapData.getAllDecorations()){
+                    for(MapDecoration decoration : mapData.getDecorations()){
                         if(decoration.type().value() == MapDecoration.Type.RED_X || decoration.type().value() == MapDecoration.Type.TARGET_X){
                             int x = decoration.x();
                             int z = decoration.y();
