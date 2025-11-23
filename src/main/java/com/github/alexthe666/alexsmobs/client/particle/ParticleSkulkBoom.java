@@ -24,7 +24,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class ParticleSkulkBoom extends Particle {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/particle/skulk_boom.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/particle/skulk_boom.png");
     private float size;
     private float prevSize;
     private float prevAlpha;

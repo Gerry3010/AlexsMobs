@@ -25,14 +25,14 @@ import org.joml.Vector3f;
 
 public class ParticleStaticSpark extends Particle {
     private static final ResourceLocation[] TEXTURES = new ResourceLocation[]{
-            new ResourceLocation("textures/particle/generic_0.png"),
-            new ResourceLocation("textures/particle/generic_1.png"),
-            new ResourceLocation("textures/particle/generic_2.png"),
-            new ResourceLocation("textures/particle/generic_3.png"),
-            new ResourceLocation("textures/particle/generic_4.png"),
-            new ResourceLocation("textures/particle/generic_5.png"),
-            new ResourceLocation("textures/particle/generic_6.png"),
-            new ResourceLocation("textures/particle/generic_7.png")
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_0.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_1.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_2.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_3.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_4.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_5.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_6.png"),
+            ResourceLocation.withDefaultNamespace("textures/particle/generic_7.png")
     };
     private int decrement = 1;
     private int textureIndex = 0;
