@@ -282,7 +282,7 @@ public class EntityTriops extends WaterAnimal implements ITargetsDroppedItems, B
     @Override
     public void onGetItem(ItemEntity e) {
         ItemStack stack = e.getItem();
-        if (stack.getItem().isEdible() && stack.getItem().getFoodProperties() != null) {
+        if (stack.getFoodProperties(null) != null) {
             this.gameEvent(GameEvent.EAT);
             this.playSound(SoundEvents.CAT_EAT, this.getVoicePitch(), this.getSoundVolume());
             this.heal(5);

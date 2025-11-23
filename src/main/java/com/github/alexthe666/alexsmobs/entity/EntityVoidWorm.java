@@ -61,7 +61,7 @@ import java.util.*;
 
 public class EntityVoidWorm extends Monster {
 
-    public static final ResourceLocation SPLITTER_LOOT = new ResourceLocation("alexsmobs", "entities/void_worm_splitter");
+    public static final ResourceLocation SPLITTER_LOOT = ResourceLocation.fromNamespaceAndPath("alexsmobs", "entities/void_worm_splitter");
     private static final EntityDataAccessor<Optional<UUID>> CHILD_UUID = SynchedEntityData.defineId(EntityVoidWorm.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Optional<UUID>> SPLIT_FROM_UUID = SynchedEntityData.defineId(EntityVoidWorm.class, EntityDataSerializers.OPTIONAL_UUID);
     private static final EntityDataAccessor<Integer> SEGMENT_COUNT = SynchedEntityData.defineId(EntityVoidWorm.class, EntityDataSerializers.INT);
@@ -118,8 +118,8 @@ public class EntityVoidWorm extends Monster {
     }
 
     @Nullable
-    protected ResourceLocation getDefaultLootTable() {
-        return this.isSplitter() ? SPLITTER_LOOT : super.getDefaultLootTable();
+    protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getDefaultLootTable() {
+        return this.isSplitter() ? net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, SPLITTER_LOOT) : super.getDefaultLootTable();
     }
 
     public void kill() {

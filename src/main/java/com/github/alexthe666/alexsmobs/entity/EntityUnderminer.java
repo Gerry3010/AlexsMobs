@@ -137,7 +137,7 @@ public class EntityUnderminer extends PathfinderMob {
         compound.putInt("ResetItemTime", resetStackTime);
         compound.putInt("MineCooldown", mineCooldown);
         if(lastGivenStack != null){
-            compound.put("MineStack", lastGivenStack.serializeNBT());
+            compound.put("MineStack", lastGivenStack.save(this.level().registryAccess()));
         }
     }
 
@@ -149,7 +149,7 @@ public class EntityUnderminer extends PathfinderMob {
         this.resetStackTime = compound.getInt("ResetItemTime");
         this.mineCooldown = compound.getInt("MineCooldown");
         if(compound.contains("MineStack")){
-            this.lastGivenStack = ItemStack.parseOptional(this.level().orElse(ItemStack.EMPTY).registryAccess(), compound.getCompound("MineStack"));
+            this.lastGivenStack = ItemStack.parseOptional(this.level().registryAccess(), compound.getCompound("MineStack"));
         }
     }
 
@@ -250,8 +250,8 @@ public class EntityUnderminer extends PathfinderMob {
     }
 
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag tag) {
-        spawnData = super.finalizeSpawn(level, difficultyInstance, mobSpawnType, spawnData, tag);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnData) {
+        spawnData = super.finalizeSpawn(level, difficultyInstance, mobSpawnType, spawnData);
         RandomSource randomsource = level.getRandom();
         this.populateDefaultEquipmentSlots(randomsource, difficultyInstance);
         if(random.nextFloat() < 0.3F){
@@ -348,7 +348,7 @@ public class EntityUnderminer extends PathfinderMob {
 
     }
 
-    protected void jumpFromGround() {
+    protected void jumpFromGround(Vec3 inputVec) {
 
     }
 
@@ -362,7 +362,7 @@ public class EntityUnderminer extends PathfinderMob {
     }
 
     private boolean isActuallyInAWall() {
-        final float f = this.getDimensions(this.getPose()).width * 0.1F;
+        final float f = this.getDimensions(this.getPose()).width() * 0.1F;
         AABB aabb = AABB.ofSize(this.getEyePosition(), f, 1.0E-6D, f);
         return BlockPos.betweenClosedStream(aabb).anyMatch((p_201942_) -> {
             BlockState blockstate = this.level().getBlockState(p_201942_);

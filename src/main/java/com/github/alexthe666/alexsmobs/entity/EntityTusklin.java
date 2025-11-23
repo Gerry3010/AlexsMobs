@@ -203,7 +203,7 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
             final float angle = (Maths.STARTING_ANGLE * this.yBodyRot);
             final double extraX = radius * Mth.sin(Mth.PI + angle);
             final double extraZ = radius * Mth.cos(angle);
-            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset() + passenger.getMyRidingOffset(this), this.getZ() + extraZ);
+            passenger.setPos(this.getX() + extraX, this.getY() + this.getPassengersRidingOffset(), this.getZ() + extraZ);
         }
     }
 
@@ -276,7 +276,7 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
     public void addAdditionalSaveData(CompoundTag p_31808_) {
         super.addAdditionalSaveData(p_31808_);
         if (!this.getShoeStack().isEmpty()) {
-            p_31808_.put("ShoeItem", this.getShoeStack().save(new CompoundTag()));
+            p_31808_.put("ShoeItem", this.getShoeStack().save(this.level().registryAccess()));
         }
         p_31808_.putInt("PassiveTicks", this.getPassiveTicks());
 
@@ -289,7 +289,7 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
         this.setPassiveTicks(p_31795_.getInt("PassiveTicks"));
         CompoundTag compoundtag = p_31795_.getCompound("ShoeItem");
         if (compoundtag != null && !compoundtag.isEmpty()) {
-            ItemStack itemstack = ItemStack.parseOptional(this.level().orElse(ItemStack.EMPTY).registryAccess(), compoundtag);
+            ItemStack itemstack = ItemStack.parseOptional(this.level().registryAccess(), compoundtag);
             if (itemstack.isEmpty()) {
                 AlexsMobs.LOGGER.warn("Unable to load item from: {}", compoundtag);
             }
