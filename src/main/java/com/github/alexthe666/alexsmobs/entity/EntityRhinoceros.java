@@ -359,8 +359,9 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
 
         target.hurt(this.damageSources().mobAttack(this), dmg);
         if(potion != null){
-            MobEffectInstance instance = new MobEffectInstance(potion, this.getPotionDuration(), this.getPotionLevel());
-            if (!target.hasEffect(potion) && target.addEffect(instance)) {
+            net.minecraft.core.Holder<MobEffect> holder = net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.wrapAsHolder(potion);
+            MobEffectInstance instance = new MobEffectInstance(holder, this.getPotionDuration(), this.getPotionLevel());
+            if (!target.hasEffect(holder) && target.addEffect(instance)) {
                 this.setInflictedCount(this.getInflictedCount() + 1);
             }
         }
@@ -423,7 +424,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         ItemStack itemstack = player.getItemInHand(hand);
         InteractionResult type = super.mobInteract(player, hand);
         if(!isBaby() && (itemstack.getItem() == Items.POTION || itemstack.getItem() == Items.SPLASH_POTION || itemstack.getItem() == Items.LINGERING_POTION)){
-            Potion contained = PotionUtils.getPotion(itemstack);
+            Potion contained = PotionContents.getPotion(itemstack);
             if(applyPotion(contained)){
                 this.gameEvent(GameEvent.ENTITY_INTERACT);
                 this.playSound(SoundEvents.DYE_USE);
@@ -451,7 +452,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         }else{
             if(potion.getEffects().size() >= 1){
                 MobEffectInstance first = potion.getEffects().get(0);
-                ResourceLocation loc = net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECTS.getKey(first.getEffect());
+                ResourceLocation loc = net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT.getKey(first.getEffect().value());
                 if(loc != null){
                     this.setAppliedPotionId(loc.toString());
                     this.setPotionLevel(first.getAmplifier());
