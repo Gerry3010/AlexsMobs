@@ -366,8 +366,11 @@ public class EntitySugarGlider extends TamableAnimal implements IFollower {
         if (rng < 0.25F && sapling != null) {
             return List.of(new ItemStack(sapling));
         }
-        LootTable loottable = this.level().getServer().getLootData().getLootTable(SUGAR_GLIDER_REWARD);
-        return loottable.getRandomItems((new LootParams.Builder((ServerLevel) this.level())).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.BLOCK_STATE, leafState).create(LootContextParamSets.PIGLIN_BARTER));
+        if (this.level().getServer() != null) {
+            LootTable loottable = this.level().getServer().getLootData().getLootTable(SUGAR_GLIDER_REWARD);
+            return loottable.getRandomItems((new LootParams.Builder((ServerLevel) this.level())).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.BLOCK_STATE, leafState).create(LootContextParamSets.PIGLIN_BARTER));
+        }
+        return List.of();
 
     }
 

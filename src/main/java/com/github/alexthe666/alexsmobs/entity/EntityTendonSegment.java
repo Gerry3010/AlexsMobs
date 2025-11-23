@@ -51,9 +51,6 @@ public class EntityTendonSegment  extends Entity {
         super(type, level);
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
-    }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -110,8 +107,8 @@ public class EntityTendonSegment  extends Entity {
                         hasTouched = true;
                         Entity entity = getCreatorEntity();
                         if(entity instanceof LivingEntity && this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel){
-                            if(current != creator && current.hurt(damageSources().mobProjectile(this, (LivingEntity)entity), (float) getDamageFor((LivingEntity)creator, (LivingEntity)entity))){
-                                ((LivingEntity) creator).doEnchantDamageEffects(serverLevel, (LivingEntity) creator, current);
+                            if(current != creator && current instanceof LivingEntity && current.hurt(damageSources().mobProjectile(this, (LivingEntity)entity), (float) getDamageFor((LivingEntity)creator, (LivingEntity)entity))){
+                                ((LivingEntity) creator).doEnchantDamageEffects(serverLevel, (LivingEntity) creator, (LivingEntity) current);
                             }
                         }
                     }

@@ -263,6 +263,7 @@ public class EntityTusklin extends Animal implements IAnimatedEntity {
         return type;
     }
 
+    @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(AMTagRegistry.TUSKLIN_BREEDABLES);
     }

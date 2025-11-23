@@ -348,8 +348,8 @@ public class EntityUnderminer extends PathfinderMob {
 
     }
 
-    protected void jumpFromGround(Vec3 inputVec) {
-
+    protected void jumpFromGround() {
+        // Underminer doesn't jump
     }
 
     public boolean isNoGravity() {

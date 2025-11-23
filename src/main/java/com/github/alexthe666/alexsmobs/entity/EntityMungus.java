@@ -312,7 +312,8 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
         int j = chunk.getSectionIndex(QuartPos.toBlock(l));
         LevelChunkSection section = chunk.getSection(j);
         if(section != null){
-            section.setBiomes(container);
+            // TODO: setBiomes is package-private in 1.21 - need reflection or alternative approach
+            // section.setBiomes(container);
         }
     }
 

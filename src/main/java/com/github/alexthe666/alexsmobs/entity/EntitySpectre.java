@@ -171,7 +171,7 @@ public class EntitySpectre extends Animal implements FlyingAnimal {
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(AMItemRegistry.SOUL_HEART.get());
+        return stack.getItem() == AMItemRegistry.SOUL_HEART.get();
     }
 
     protected void tickLeash() {

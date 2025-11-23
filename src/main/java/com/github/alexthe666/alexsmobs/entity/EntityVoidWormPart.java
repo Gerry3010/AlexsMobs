@@ -388,7 +388,7 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
+        return (Packet<ClientGamePacketListener>) net.neoforged.neoforge.network.PacketDistributor.ENTITY_SPAWNING.toVanillaPacket(this, PacketDistributor.ENTITY_SPAWN_CODEC);
     }
 
     public void pushEntities() {

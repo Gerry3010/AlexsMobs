@@ -570,7 +570,6 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
         return 0.1F;
     }
 
-    @Override
     protected void jumpFromGround() {
         if (!this.isSleeping() && !this.isSitting()) {
             super.jumpFromGround();

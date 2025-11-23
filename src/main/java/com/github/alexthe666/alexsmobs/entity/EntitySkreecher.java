@@ -242,7 +242,7 @@ public class EntitySkreecher extends Monster {
                         Warden warden = EntityType.WARDEN.create(this.level());
 
                         warden.moveTo(this.getX(), spawnAt.getY() + 1, this.getZ(), this.getYRot(), 0.0F);
-                        warden.finalizeSpawn((ServerLevel)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.TRIGGERED, (SpawnGroupData)null);
+                        warden.finalizeSpawn((ServerLevel)level(), level().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.TRIGGERED, null);
                         warden.setAttackTarget(this);
                         warden.increaseAngerAt(this, 79, false);
                         this.level().addFreshEntity(warden);

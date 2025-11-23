@@ -56,7 +56,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.registries.Registries;
-
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -193,6 +192,7 @@ public class EntityToucan extends Animal implements ITargetsDroppedItems {
     }
 
 
+    @Override
     public boolean isFood(ItemStack stack) {
         Item item = stack.getItem();
         return stack.is(AMTagRegistry.TOUCAN_BREEDABLES);

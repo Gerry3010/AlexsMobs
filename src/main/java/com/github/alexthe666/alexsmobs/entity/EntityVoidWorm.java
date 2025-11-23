@@ -403,7 +403,10 @@ public class EntityVoidWorm extends Monster {
                 this.dropAllDeathLoot(serverLevel, source);
             }
             this.dropEquipment();
-            this.dropExperience(serverLevel, source.getEntity());
+            Entity attacker = source.getEntity();
+            if (attacker != null) {
+                this.dropExperience(serverLevel, attacker);
+            }
 
             Collection<ItemEntity> drops = captureDrops(null);
 
@@ -469,7 +472,7 @@ public class EntityVoidWorm extends Monster {
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType
-            reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+            reason, @Nullable SpawnGroupData spawnDataIn) {
         this.setSegmentCount(25 + random.nextInt(15));
         this.setXRot(0.0F);
         this.setBaseMaxHealth(AMConfig.voidWormMaxHealth, true);

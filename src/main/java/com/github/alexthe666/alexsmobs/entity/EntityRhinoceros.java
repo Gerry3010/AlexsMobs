@@ -216,6 +216,7 @@ public class EntityRhinoceros extends Animal implements IAnimatedEntity {
         return AMSoundRegistry.RHINOCEROS_HURT.get();
     }
 
+    @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(AMTagRegistry.RHINOCEROS_BREEDABLES);
     }

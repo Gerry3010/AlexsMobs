@@ -299,6 +299,7 @@ public class EntityTerrapin extends Animal implements ISemiAquatic, Bucketable {
         }
     }
 
+    @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(AMTagRegistry.TERRAPIN_BREEDABLES);
     }

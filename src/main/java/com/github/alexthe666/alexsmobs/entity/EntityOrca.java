@@ -343,6 +343,7 @@ public class EntityOrca extends TamableAnimal implements IAnimatedEntity {
         return 1;
     }
 
+    @Override
     public boolean isFood(ItemStack stack) {
         return stack.getItem() == Items.SALMON;
     }
