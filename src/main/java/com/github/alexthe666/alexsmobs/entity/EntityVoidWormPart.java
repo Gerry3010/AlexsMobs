@@ -84,8 +84,8 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
         this.remove(RemovalReason.DISCARDED);
     }
 
-    public EntityDimensions getDimensions(Pose poseIn) {
-        return this.isTail() ? TAIL_SIZE.scale(getScale()) : super.getDimensions(poseIn);
+    public EntityDimensions getDefaultDimensions(Pose poseIn) {
+        return this.isTail() ? TAIL_SIZE.scale(getScale()) : super.getDefaultDimensions(poseIn);
     }
 
     public float getWormScale() {
@@ -199,7 +199,7 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
 
     @Override
     public void tick() {
-        isInsidePortal = false;
+        this.setPortalCooldown(20);
         prevWormAngle = this.getWormAngle();
         prevWormYaw = this.entityData.get(WORM_YAW);
         this.setDeltaMovement(Vec3.ZERO);
@@ -387,7 +387,6 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
         return null;
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
@@ -474,7 +473,7 @@ public class EntityVoidWormPart extends LivingEntity implements IHurtableMultipa
     }
 
     public boolean shouldContinuePersisting() {
-        return isAddedToWorld() || this.isRemoved();
+        return !this.isRemoved();
     }
 
     public float getWormYaw(float partialTicks) {

@@ -67,7 +67,6 @@ public class EntityVoidPortal extends Entity {
         }
     }
 
-    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return (Packet<ClientGamePacketListener>) PacketDistributor.getEntitySpawningPacket(this);
     }
@@ -179,7 +178,6 @@ public class EntityVoidPortal extends Entity {
             }
         } else {
             entity.unRide();
-            entity.setLevel(endpointWorld);
             Entity teleportedEntity = entity.getType().create(endpointWorld);
             if (teleportedEntity != null) {
                 teleportedEntity.restoreFrom(entity);
@@ -247,7 +245,7 @@ public class EntityVoidPortal extends Entity {
         EntityVoidPortal portal = AMEntityRegistry.VOID_PORTAL.get().create(world);
         portal.setAttachmentFacing(dir != null ? dir : this.getAttachmentFacing().getOpposite());
         BlockPos safeDestination = this.getDestination();
-        portal.teleportToWithTicket(safeDestination.getX() + 0.5f, safeDestination.getY() + 0.5f, safeDestination.getZ() + 0.5f);
+        portal.teleportTo(safeDestination.getX() + 0.5f, safeDestination.getY() + 0.5f, safeDestination.getZ() + 0.5f);
         portal.link(this);
         portal.exitDimension = this.level().dimension();
         world.addFreshEntity(portal);
