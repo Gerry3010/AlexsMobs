@@ -376,7 +376,7 @@ public class EntitySeagull extends Animal implements ITargetsDroppedItems {
     }
     @Override
     public boolean canTargetItem(ItemStack stack) {
-        return stack.getItem().isEdible() && !this.isSitting();
+        return stack.getFoodProperties(null) != null && !this.isSitting();
     }
 
     private void eatItemEffect(ItemStack heldItemMainhand) {
