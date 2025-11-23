@@ -713,7 +713,7 @@ public class EntityMantisShrimp extends TamableAnimal implements ISemiAquatic, I
         }
 
         private boolean isTeleportFriendlyBlock(BlockPos p_226329_1_) {
-            PathType lvt_2_1_ = WalkNodeEvaluator.getPathTypeWithinMobBB(this.world, p_226329_1_.mutable());
+            PathType lvt_2_1_ = WalkNodeEvaluator.getPathTypeStatic(tameable, p_226329_1_);
             if (world.getFluidState(p_226329_1_).is(FluidTags.WATER) || !world.getFluidState(p_226329_1_).is(FluidTags.WATER) && world.getFluidState(p_226329_1_.below()).is(FluidTags.WATER)) {
                 return true;
             }
