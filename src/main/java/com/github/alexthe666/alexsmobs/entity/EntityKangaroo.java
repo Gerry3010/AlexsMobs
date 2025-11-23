@@ -315,7 +315,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
             for (int i = 0; i < nbttaglist.size(); ++i) {
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT));
             }
         } else {
             ListTag nbttaglist = compound.getList("Items", 10);
@@ -324,7 +324,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
                 CompoundTag CompoundNBT = nbttaglist.getCompound(i);
                 int j = CompoundNBT.getByte("Slot") & 255;
                 this.initKangarooInventory();
-                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT).orElse(ItemStack.EMPTY));
+                this.kangarooInventory.setItem(j, ItemStack.parseOptional(this.level().registryAccess(), CompoundNBT));
             }
         }
         resetKangarooSlots();
@@ -885,11 +885,13 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
 
                 map.put(equipmentslottype, itemstack1);
                 if (!itemstack.isEmpty()) {
-                    this.getAttributes().removeAttributeModifiers(itemstack.getAttributeModifiers(equipmentslottype), net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE);
+                    net.minecraft.world.item.component.ItemAttributeModifiers mods = itemstack.getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS, net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
+                    this.getAttributes().removeAttributeModifiers(mods, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE);
                 }
 
                 if (!itemstack1.isEmpty()) {
-                    this.getAttributes().addTransientAttributeModifiers(itemstack1.getAttributeModifiers(equipmentslottype));
+                    net.minecraft.world.item.component.ItemAttributeModifiers mods = itemstack1.getOrDefault(net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS, net.minecraft.world.item.component.ItemAttributeModifiers.EMPTY);
+                    this.getAttributes().addTransientAttributeModifiers(mods);
                 }
             }
         }
