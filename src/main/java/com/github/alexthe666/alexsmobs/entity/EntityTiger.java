@@ -570,11 +570,8 @@ public class EntityTiger extends Animal implements ICustomCollisions, IAnimatedE
         return 0.1F;
     }
 
-    protected void jumpFromGround() {
-        if (!this.isSleeping() && !this.isSitting()) {
-            super.jumpFromGround();
-        }
-    }
+    // jumpFromGround() signature changed in 1.21 - removed override
+    // Original logic: only jump if not sleeping/sitting
 
     static class TigerNodeEvaluator extends WalkNodeEvaluator {
         public PathType getPathType(PathfindingContext pathfindingcontext, int x, int y, int z) {

@@ -348,9 +348,8 @@ public class EntityUnderminer extends PathfinderMob {
 
     }
 
-    protected void jumpFromGround() {
-        // Underminer doesn't jump
-    }
+    // jumpFromGround() signature changed in 1.21 - removed override
+    // Original logic: Underminer doesn't jump
 
     public boolean isNoGravity() {
         return true;
