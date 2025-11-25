@@ -36,7 +36,7 @@ public class RenderSkreecher extends MobRenderer<EntitySkreecher, ModelSkreecher
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntitySkreecher entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             VertexConsumer scorch = bufferIn.getBuffer(AMRenderTypes.getEyesAlphaEnabled(TEXTURE_GLOW));
             float alpha = (float)Math.sin((entitylivingbaseIn.tickCount + partialTicks) * 0.1F) * 0.35F + 0.5F;
-            this.getParentModel().renderToBuffer(matrixStackIn, scorch, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+            this.getParentModel().renderToBuffer(matrixStackIn, scorch, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
         }
     }
 }

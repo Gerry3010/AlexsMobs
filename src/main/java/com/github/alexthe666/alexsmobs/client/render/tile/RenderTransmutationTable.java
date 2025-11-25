@@ -45,7 +45,8 @@ public class RenderTransmutationTable<T extends TileEntityTransmutationTable> im
         matrixStackIn.pushPose();
         MODEL.animate(tileEntityIn, partialTicks);
         MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityTranslucent(TEXTURE)), combinedLightIn, combinedOverlayIn);
-        MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getEyesAlphaEnabled(GLOW_TEXTURE)), 240, combinedOverlayIn)Math.sin(ageInTicks * 0.05F) * 0.25F);
+        // Note: Alpha blending for glow texture handled by RenderType in 1.21
+        MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getEyesAlphaEnabled(GLOW_TEXTURE)), 240, combinedOverlayIn);
         VertexConsumer staticyOverlay = AMRenderTypes.createMergedVertexConsumer(bufferIn.getBuffer(AMRenderTypes.STATIC_PORTAL), bufferIn.getBuffer(RenderType.entityCutoutNoCull(OVERLAY)));
         OVERLAY_MODEL.animate(tileEntityIn, partialTicks);
         OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, OverlayTexture.NO_OVERLAY);

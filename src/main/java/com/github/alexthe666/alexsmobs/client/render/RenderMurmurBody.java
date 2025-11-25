@@ -33,7 +33,7 @@ public class RenderMurmurBody extends MobRenderer<EntityMurmur, ModelMurmurBody>
             float f = Mth.rotLerp(partialTicks, body.yBodyRotO, body.yBodyRot);
             float f7 = this.getBob(body, partialTicks);
             ResourceLocation loc = this.getTextureLocation(body);
-            int overlayCoords = getOverlayCoords(body));
+            int overlayCoords = getOverlayCoords(body);
             matrixStackIn.pushPose();
             this.setupRotations(body, matrixStackIn, f7, f, partialTicks);
             matrixStackIn.scale(-1.0F, -1.0F, 1.0F);

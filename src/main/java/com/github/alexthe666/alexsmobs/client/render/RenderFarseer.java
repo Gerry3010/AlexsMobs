@@ -157,7 +157,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         if (rendertype != null) {
             float portalLevel = entityIn.getFarseerOpacity(partialTicks);
             this.shadowRadius = 0.9F * portalLevel;
-            int i = getOverlayCoords(entityIn));
+            int i = getOverlayCoords(entityIn);
             this.renderFarseerModel(matrixStackIn, bufferIn, rendertype, partialTicks, packedLightIn, i, flag1 ? 0.15F : Mth.clamp(portalLevel, 0, 1), entityIn);
         }
         if (!entityIn.isSpectator()) {
@@ -342,7 +342,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityFarseer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (entitylivingbaseIn.getAnimation() == EntityFarseer.ANIMATION_EMERGE) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_CLAWS));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
             }
 
         }

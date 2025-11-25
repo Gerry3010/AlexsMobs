@@ -24,7 +24,7 @@ public class LayerWarpedToadGlow extends RenderLayer<EntityWarpedToad, ModelWarp
         if(!entitylivingbaseIn.isBased()){
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(AMRenderTypes.getEyesFlickering(entitylivingbaseIn.isBlinking() ? TEXTURE_BLINKING : TEXTURE, 0));
             final float alpha = 0.75F + (Mth.cos(ageInTicks * 0.2F) + 1F) * 0.125F;
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
         }
     }
 }

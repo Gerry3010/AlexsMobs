@@ -44,7 +44,7 @@ public class RenderStraddler extends MobRenderer<EntityStraddler, ModelStraddler
                 final float back = t <= 15 ? (t-6) * 0.05F : 0.25F;
                 matrixStackIn.translate(0F, -2.5F + back * 0.5F, 0.35F + back);
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(RenderStradpole.TEXTURE));
-                STRADPOLE_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(straddler));
+                STRADPOLE_MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(straddler);
                 matrixStackIn.popPose();
             }
         }

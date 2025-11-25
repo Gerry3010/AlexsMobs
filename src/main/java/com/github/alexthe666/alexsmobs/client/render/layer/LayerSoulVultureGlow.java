@@ -21,9 +21,9 @@ public class LayerSoulVultureGlow extends RenderLayer<EntitySoulVulture, ModelSo
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntitySoulVulture entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getGhost(TEXTURE_GLOW)), 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+        this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getGhost(TEXTURE_GLOW)), 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
         if(entitylivingbaseIn.hasSoulHeart()){
-            this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getGhost(getFlames(entitylivingbaseIn.tickCount))), 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+            this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.getGhost(getFlames(entitylivingbaseIn.tickCount))), 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
         }
     }
 

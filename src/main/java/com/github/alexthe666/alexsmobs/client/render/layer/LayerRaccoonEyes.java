@@ -34,7 +34,7 @@ public class LayerRaccoonEyes extends RenderLayer<EntityRaccoon, ModelRaccoon> {
         }
         if (brightness < 7 && !raccoon.isRigby()) {
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.eyes(TEXTURE));
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(raccoon));
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(raccoon);
         }
 
     }

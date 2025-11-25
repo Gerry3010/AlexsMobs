@@ -49,7 +49,7 @@ public class RenderBison extends MobRenderer<EntityBison, AdvancedEntityModel<En
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityBison entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (entitylivingbaseIn.isSnowy()) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(entitylivingbaseIn.isBaby() ? TEXTURE_BABY_SNOWY : TEXTURE_SNOWY));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
             }
         }
     }

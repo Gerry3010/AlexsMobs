@@ -148,7 +148,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
             float hide = (entityIn.prevHidingProgress + (entityIn.hidingProgress - entityIn.prevHidingProgress) * partialTicks) * 0.1F;
             float alpha = (1F - hide) * 0.6F;
             this.shadowRadius = 0.9F * alpha;
-            int i = getOverlayCoords(entityIn));
+            int i = getOverlayCoords(entityIn);
             this.renderUnderminerModel(matrixStackIn, bufferIn, rendertype, partialTicks, packedLightIn, i, flag1 ? 0.15F : Mth.clamp(alpha, 0, 1), entityIn);
         } else {
             this.shadowRadius = 0;
@@ -187,7 +187,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
 
     private void renderUnderminerModel(PoseStack matrixStackIn, MultiBufferSource source, RenderType defRenderType, float partialTicks, int packedLightIn, int overlayColors, float alphaIn, EntityUnderminer entityIn) {
         boolean hurt = Math.max(entityIn.hurtTime, entityIn.deathTime) > 0;
-        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn));
+        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn);
     }
 
 
