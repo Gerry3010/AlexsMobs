@@ -193,7 +193,7 @@ public class RenderMungus extends MobRenderer<EntityMungus, ModelMungus> {
             if (entitylivingbaseIn.getBeamTarget() != null) {
                 VertexConsumer beam = bufferIn.getBuffer(AMRenderTypes.getGhost(TEXTURE_BEAM_OVERLAY));
                 float beamAlpha = 0.75F + (Mth.cos(ageInTicks * 1) + 1F) * 0.125F;
-                this.getParentModel().renderToBuffer(matrixStackIn, beam, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
+                this.getParentModel().renderToBuffer(matrixStackIn, beam, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
             String s = ChatFormatting.stripFormatting(entitylivingbaseIn.getName().getString());
             if (s != null && s.toLowerCase().contains("drip")) {

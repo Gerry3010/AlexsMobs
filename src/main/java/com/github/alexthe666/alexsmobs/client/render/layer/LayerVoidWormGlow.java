@@ -51,7 +51,7 @@ public abstract class LayerVoidWormGlow<T extends LivingEntity> extends RenderLa
                 this.layerModel.renderToBuffer(matrixStackIn, consumer, 240, OverlayTexture.NO_OVERLAY);
             }else{
                 float f = getAlpha(worm);
-                this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.eyes(texture)), 240, LivingEntityRenderer.getOverlayCoords(worm);
+                this.getParentModel().renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.eyes(texture)), 240, LivingEntityRenderer.getOverlayCoords(worm));
             }
         }
     }

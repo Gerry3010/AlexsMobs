@@ -187,7 +187,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
 
     private void renderUnderminerModel(PoseStack matrixStackIn, MultiBufferSource source, RenderType defRenderType, float partialTicks, int packedLightIn, int overlayColors, float alphaIn, EntityUnderminer entityIn) {
         boolean hurt = Math.max(entityIn.hurtTime, entityIn.deathTime) > 0;
-        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn);
+        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, LivingEntityRenderer.getOverlayCoords(entityIn));
     }
 
 

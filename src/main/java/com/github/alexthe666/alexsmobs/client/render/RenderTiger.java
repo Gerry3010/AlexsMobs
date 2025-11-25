@@ -116,7 +116,7 @@ public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
             this.shadowRadius = 0.6F * (1 - stealthLevel * 0.1F);
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(rendertype);
             int i = getOverlayCoords(entityIn);
-            this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, i));
+            this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, i);
         }
 
         if (!entityIn.isSpectator()) {

@@ -43,14 +43,14 @@ public class RenderKomodoDragon extends MobRenderer<EntityKomodoDragon, ModelKom
                 this.getParentModel().copyPropertiesTo(MAID_MODEL);
                 MAID_MODEL.prepareMobModel(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
                 MAID_MODEL.setupAnim(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-                MAID_MODEL.renderToBuffer(matrixStackIn, maid, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
+                MAID_MODEL.renderToBuffer(matrixStackIn, maid, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
             if(entitylivingbaseIn.isSaddled()){
                 VertexConsumer saddle = bufferIn.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_SADDLE));
                 this.getParentModel().copyPropertiesTo(SADDLE_MODEL);
                 SADDLE_MODEL.prepareMobModel(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
                 SADDLE_MODEL.setupAnim(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-                SADDLE_MODEL.renderToBuffer(matrixStackIn, saddle, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
+                SADDLE_MODEL.renderToBuffer(matrixStackIn, saddle, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
         }
     }
