@@ -42,7 +42,7 @@ public class LayerLeafcutterAntLeaf extends RenderLayer<EntityLeafcutterAnt, Adv
             final float f = (float)(leafColor >> 16 & 255) / 255.0F;
             final float f1 = (float)(leafColor >> 8 & 255) / 255.0F;
             final float f2 = (float)(leafColor & 255) / 255.0F;
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), f, f1, f2, 1.0F);
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
 
 
         }

@@ -36,7 +36,7 @@ public class RenderEndPirateFlag<T extends TileEntityEndPirateFlag> implements B
         matrixStackIn.mulPose(Axis.YN.rotationDegrees(dir.getAxis() == Direction.Axis.Y ? -90.0F : 90.0F));
         matrixStackIn.pushPose();
         FLAG_MODEL.renderFlag(tileEntityIn, partialTicks);
-        FLAG_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn, 1, 1F, 1, 1);
+        FLAG_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
     }

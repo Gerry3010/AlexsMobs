@@ -194,13 +194,13 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
         modelIn.leftArm.z = renderer.getModel().arm_left.rotationPointZ - 0.5F;
         modelIn.rightArm.z = renderer.getModel().arm_right.rotationPointZ - 0.5F;
         modelIn.body.visible = false;
-        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         modelIn.body.visible = true;
         modelIn.rightArm.visible = false;
         modelIn.leftArm.visible = false;
         matrixStackIn.pushPose();
         matrixStackIn.scale(1.1F, 1.65F, 1.1F);
-        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         matrixStackIn.popPose();
         modelIn.rightArm.visible = true;
         modelIn.leftArm.visible = true;
@@ -222,7 +222,7 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
         modelIn.hat.x = 0F;
         modelIn.hat.y = 0F;
         modelIn.hat.z = 0F;
-        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
 
     }
 

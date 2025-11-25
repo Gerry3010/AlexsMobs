@@ -40,7 +40,7 @@ public class RenderRhinoceros extends MobRenderer<EntityRhinoceros, ModelRhinoce
                 float r = (float) (color >> 16 & 255) / 255.0F;
                 float g = (float) (color >> 8 & 255) / 255.0F;
                 float b = (float) (color & 255) / 255.0F;
-                this.getParentModel().renderToBuffer(p_225628_1_, p_225628_2_.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_POTION)), p_225628_3_, OverlayTexture.NO_OVERLAY, r, g, b, 1.0F);
+                this.getParentModel().renderToBuffer(p_225628_1_, p_225628_2_.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_POTION)), p_225628_3_, OverlayTexture.NO_OVERLAY);
             }
         }
     }

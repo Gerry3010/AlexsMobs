@@ -30,7 +30,7 @@ public class RenderFart extends EntityRenderer<EntityFart> {
         matrixStackIn.mulPose(Axis.XP.rotationDegrees(Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot())));
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(FART_TEXTURE));
         MODEL.setupAnim(entityIn, 0.0F, 0.0F, partialTicks, 0.0F, 0.0F);
-        MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
+        MODEL.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }

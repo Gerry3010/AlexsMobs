@@ -58,7 +58,7 @@ public class RenderMurmurHead extends MobRenderer<EntityMurmurHead, ModelMurmurH
             Vec3 moveDownFrom = bottom.subtract(top);
             Vec3 moveUpTowards = top.subtract(bottom);
             RenderType renderType = RenderType.entityCutoutNoCull(getTextureLocation(head));
-            int overlayCoords = getOverlayCoords(head, this.getWhiteOverlayProgress(head, partialTicks));
+            int overlayCoords = getOverlayCoords(head));
             matrixStackIn.translate(moveDownFrom.x, moveDownFrom.y - 0.5F, moveDownFrom.z);
             Vec3 currentNeckButt = Vec3.ZERO;
             int segmentCount = 0;

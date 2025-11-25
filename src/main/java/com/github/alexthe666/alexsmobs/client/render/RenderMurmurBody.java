@@ -33,7 +33,7 @@ public class RenderMurmurBody extends MobRenderer<EntityMurmur, ModelMurmurBody>
             float f = Mth.rotLerp(partialTicks, body.yBodyRotO, body.yBodyRot);
             float f7 = this.getBob(body, partialTicks);
             ResourceLocation loc = this.getTextureLocation(body);
-            int overlayCoords = getOverlayCoords(body, this.getWhiteOverlayProgress(body, partialTicks));
+            int overlayCoords = getOverlayCoords(body));
             matrixStackIn.pushPose();
             this.setupRotations(body, matrixStackIn, f7, f, partialTicks);
             matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
@@ -42,11 +42,11 @@ public class RenderMurmurBody extends MobRenderer<EntityMurmur, ModelMurmurBody>
             scale(body, matrixStackIn, partialTicks);
             HEAD_MODEL.resetToDefaultPose();
             HEAD_MODEL.animateHair(f7);
-            HEAD_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(loc)), packedLightIn, overlayCoords, 1, 1F, 1, 1);
+            HEAD_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(loc)), packedLightIn, overlayCoords);
             matrixStackIn.translate(0, 0.5F, 0);
             NECK_MODEL.resetToDefaultPose();
             NECK_MODEL.setAttributes(0.5F, 0, 0, 0);
-            NECK_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(loc)), packedLightIn, overlayCoords, 1, 1F, 1, 1);
+            NECK_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(loc)), packedLightIn, overlayCoords);
             matrixStackIn.popPose();
             matrixStackIn.popPose();
         }

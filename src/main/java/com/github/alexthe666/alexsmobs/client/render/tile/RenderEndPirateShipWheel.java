@@ -36,8 +36,8 @@ public class RenderEndPirateShipWheel<T extends TileEntityEndPirateShipWheel> im
         matrixStackIn.mulPose(dir.getOpposite().getRotation());
         matrixStackIn.pushPose();
         WHEEL_MODEL.renderWheel(tileEntityIn, partialTicks);
-        WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn, 1, 1F, 1, 1);
-        WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_GLOW)), 240, combinedOverlayIn, 1, 1F, 1, 1);
+        WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn);
+        WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_GLOW)), 240, combinedOverlayIn);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
     }

@@ -176,7 +176,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.translate(0, -2F, 0);
             matrixStackIn.mulPose(Axis.YP.rotationDegrees(-180));
             MYTERIOUS_WORM_MODEL.animateStack(itemStackIn);
-            MYTERIOUS_WORM_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(MYTERIOUS_WORM_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            MYTERIOUS_WORM_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(MYTERIOUS_WORM_TEXTURE)), combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         if (itemStackIn.getItem() == AMItemRegistry.FALCONRY_GLOVE.get()) {
@@ -218,8 +218,8 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.translate(0.5F, 1.6F, 0.5F);
             matrixStackIn.mulPose(Axis.XP.rotationDegrees(-180));
             TRANSMUTATION_TABLE_MODEL.resetToDefaultPose();
-            TRANSMUTATION_TABLE_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TRANSMUTATION_TABLE_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-            TRANSMUTATION_TABLE_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityTranslucentEmissive(TRANSMUTATION_TABLE_GLOW_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            TRANSMUTATION_TABLE_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TRANSMUTATION_TABLE_TEXTURE)), combinedLightIn, combinedOverlayIn);
+            TRANSMUTATION_TABLE_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityTranslucentEmissive(TRANSMUTATION_TABLE_GLOW_TEXTURE)), combinedLightIn, combinedOverlayIn);
             TRANSMUTATION_TABLE_OVERLAY_MODEL.resetToDefaultPose();
             VertexConsumer staticyOverlay = bufferIn.getBuffer(RenderType.eyes(TRANSMUTATION_TABLE_OVERLAY));
             TRANSMUTATION_TABLE_OVERLAY_MODEL.renderToBuffer(matrixStackIn, staticyOverlay, combinedLightIn, combinedOverlayIn);
@@ -263,7 +263,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.mulPose(Axis.XP.rotationDegrees(-180));
             matrixStackIn.scale(0.75F, 0.75F, 0.75F);
             ANCHOR_MODEL.animateStack(itemStackIn);
-            ANCHOR_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(ANCHOR_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            ANCHOR_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(ANCHOR_TEXTURE)), combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         if(itemStackIn.getItem() == AMBlockRegistry.END_PIRATE_ANCHOR_WINCH.get().asItem()){
@@ -271,7 +271,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.translate(1, -1F, 0);
             matrixStackIn.mulPose(Axis.YP.rotationDegrees(-180));
             WINCH_MODEL.animateStack(itemStackIn);
-            WINCH_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(WINCH_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            WINCH_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(WINCH_TEXTURE)), combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         if(itemStackIn.getItem() == AMBlockRegistry.END_PIRATE_SHIP_WHEEL.get().asItem()){
@@ -279,7 +279,7 @@ public class AMItemstackRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStackIn.mulPose(Axis.XP.rotationDegrees(-90));
             matrixStackIn.scale(0.8F, 0.8F, 0.8F);
             SHIP_WHEEL_MODEL.resetToDefaultPose();
-            SHIP_WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(SHIP_WHEEL_TEXTURE)), combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+            SHIP_WHEEL_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(SHIP_WHEEL_TEXTURE)), combinedLightIn, combinedOverlayIn);
             matrixStackIn.popPose();
         }
         */

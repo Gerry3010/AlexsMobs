@@ -35,7 +35,7 @@ public class RenderSandShot extends EntityRenderer<EntitySandShot> {
         float g = (float) (i >> 8 & 255) / 255.0F;
         float b = (float) (i & 255) / 255.0F;
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.model.renderType(SAND_SHOT));
-        this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, r, g, b, 1.0F);
+        this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         matrixStackIn.popPose();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }

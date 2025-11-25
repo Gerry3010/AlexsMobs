@@ -22,7 +22,7 @@ public class LayerCrimsonMosquitoBlood extends RenderLayer<EntityCrimsonMosquito
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityCrimsonMosquito entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if(entitylivingbaseIn.getBloodLevel() > 0){
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.eyes(entitylivingbaseIn.isSick() ? TEXTURE_SICK : TEXTURE));
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F));
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
         }
     }
 }

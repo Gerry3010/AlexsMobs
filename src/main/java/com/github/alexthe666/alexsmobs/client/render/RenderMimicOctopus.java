@@ -203,13 +203,13 @@ public class RenderMimicOctopus extends MobRenderer<EntityMimicOctopus, ModelMim
                 if(entitylivingbaseIn.getPrevMimicState() == entitylivingbaseIn.getMimicState()){
                     alphaPrev *= a;
                 }
-                this.getParentModel().renderToBuffer(matrixStackIn, prev, packedLightIn, getOverlayCoords(entitylivingbaseIn, 0), r, g, b, alphaPrev);
+                this.getParentModel().renderToBuffer(matrixStackIn, prev, packedLightIn, getOverlayCoords(entitylivingbaseIn));
             }
             float alphaCurrent = transProgress * 0.2F;
             VertexConsumer current = buffer.getBuffer(AMRenderTypes.entityTranslucent(getFor(entitylivingbaseIn.getMimicState())));
-            this.getParentModel().renderToBuffer(matrixStackIn, current, packedLightIn, getOverlayCoords(entitylivingbaseIn, 0), r, g, b, a * alphaCurrent);
+            this.getParentModel().renderToBuffer(matrixStackIn, current, packedLightIn, getOverlayCoords(entitylivingbaseIn));
             VertexConsumer eyes = buffer.getBuffer(AMRenderTypes.entityTranslucent(TEXTURE_EYES));
-            this.getParentModel().renderToBuffer(matrixStackIn, eyes, packedLightIn, getOverlayCoords(entitylivingbaseIn, 0), 1.0F, 1.0F, 1.0F, 1.0F);
+            this.getParentModel().renderToBuffer(matrixStackIn, eyes, packedLightIn, getOverlayCoords(entitylivingbaseIn));
         }
 
         public ResourceLocation getFor(EntityMimicOctopus.MimicState state) {

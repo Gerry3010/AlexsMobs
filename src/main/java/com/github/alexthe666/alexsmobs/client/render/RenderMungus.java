@@ -189,11 +189,11 @@ public class RenderMungus extends MobRenderer<EntityMungus, ModelMungus> {
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityMungus entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             VertexConsumer lead = bufferIn.getBuffer(AMRenderTypes.getEyesFlickering(TEXTURE_SACK_OVERLAY, 0));
             float alpha = 0.75F + (Mth.cos(ageInTicks * 0.2F) + 1F) * 0.125F;
-            this.getParentModel().renderToBuffer(matrixStackIn, lead, 240, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
+            this.getParentModel().renderToBuffer(matrixStackIn, lead, 240, OverlayTexture.NO_OVERLAY);
             if (entitylivingbaseIn.getBeamTarget() != null) {
                 VertexConsumer beam = bufferIn.getBuffer(AMRenderTypes.getGhost(TEXTURE_BEAM_OVERLAY));
                 float beamAlpha = 0.75F + (Mth.cos(ageInTicks * 1) + 1F) * 0.125F;
-                this.getParentModel().renderToBuffer(matrixStackIn, beam, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0), 1.0F, 1.0F, 1.0F, beamAlpha);
+                this.getParentModel().renderToBuffer(matrixStackIn, beam, 240, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
             String s = ChatFormatting.stripFormatting(entitylivingbaseIn.getName().getString());
             if (s != null && s.toLowerCase().contains("drip")) {
@@ -219,7 +219,7 @@ public class RenderMungus extends MobRenderer<EntityMungus, ModelMungus> {
             if (blockstate == null) {
                 return;
             }
-            int i = LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F);
+            int i = LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn);
             boolean altOrder = entitylivingbaseIn.isAltOrderMushroom();
             int mushroomCount = entitylivingbaseIn.getMushroomCount();
             matrixStackIn.pushPose();

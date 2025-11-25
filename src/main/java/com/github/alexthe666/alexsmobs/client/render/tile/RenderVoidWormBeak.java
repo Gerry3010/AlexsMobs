@@ -35,7 +35,7 @@ public class RenderVoidWormBeak<T extends TileEntityVoidWormBeak> implements Blo
         matrixStackIn.pushPose();
         matrixStackIn.translate(0, -0.01F, 0.0F);
         HEAD_MODEL.renderBeak(tileEntityIn, partialTicks);
-        HEAD_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn, 1, 1F, 1, 1);
+        HEAD_MODEL.renderToBuffer(matrixStackIn, bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE)), combinedLightIn, combinedOverlayIn);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
     }

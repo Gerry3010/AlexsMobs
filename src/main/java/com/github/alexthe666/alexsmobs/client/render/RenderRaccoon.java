@@ -62,7 +62,7 @@ public class RenderRaccoon extends MobRenderer<EntityRaccoon, ModelRaccoon> {
                     lvt_12_2_ = lvt_14_2_[1];
                     lvt_13_2_ = lvt_14_2_[2];
                 }
-                this.getParentModel().renderToBuffer(p_225628_1_, p_225628_2_.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_BANDANA)), p_225628_3_, OverlayTexture.NO_OVERLAY, lvt_11_2_, lvt_12_2_, lvt_13_2_, 1.0F);
+                this.getParentModel().renderToBuffer(p_225628_1_, p_225628_2_.getBuffer(AMRenderTypes.entityCutoutNoCull(TEXTURE_BANDANA)), p_225628_3_, OverlayTexture.NO_OVERLAY);
             }
         }
     }

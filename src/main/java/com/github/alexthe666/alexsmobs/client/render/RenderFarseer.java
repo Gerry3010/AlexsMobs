@@ -157,7 +157,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         if (rendertype != null) {
             float portalLevel = entityIn.getFarseerOpacity(partialTicks);
             this.shadowRadius = 0.9F * portalLevel;
-            int i = getOverlayCoords(entityIn, this.getWhiteOverlayProgress(entityIn, partialTicks));
+            int i = getOverlayCoords(entityIn));
             this.renderFarseerModel(matrixStackIn, bufferIn, rendertype, partialTicks, packedLightIn, i, flag1 ? 0.15F : Mth.clamp(portalLevel, 0, 1), entityIn);
         }
         if (!entityIn.isSpectator()) {
@@ -245,7 +245,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
             VertexConsumer staticyScars = AMRenderTypes.createMergedVertexConsumer(source.getBuffer(AMRenderTypes.STATIC_ENTITY), source.getBuffer(RenderType.entityTranslucent(TEXTURE_SCARS)));
             SCARS_MODEL.renderToBuffer(matrixStackIn, staticyScars, packedLightIn, overlayColors);
         }
-        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, overlayColors, 1.0F, 1.0F, 1.0F, alphaIn);
+        this.model.renderToBuffer(matrixStackIn, source.getBuffer(defRenderType), packedLightIn, overlayColors);
 
         matrixStackIn.pushPose();
         matrixStackIn.popPose();
@@ -264,11 +264,11 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         matrixStackIn.scale(scale + 1F, scale + 1F, scale + 1F);
         matrixStackIn.pushPose();
         matrixStackIn.translate(redOffset.x, redOffset.y, redOffset.z);
-        AFTERIMAGE_MODEL.renderToBuffer(matrixStackIn, source.getBuffer(afterimage), 240, overlayColors, 1.0F, 0F, 0F, afterimageAlpha1);
+        AFTERIMAGE_MODEL.renderToBuffer(matrixStackIn, source.getBuffer(afterimage), 240, overlayColors);
         matrixStackIn.popPose();
         matrixStackIn.pushPose();
         matrixStackIn.translate(blueOffset.x, blueOffset.y, blueOffset.z);
-        AFTERIMAGE_MODEL.renderToBuffer(matrixStackIn, source.getBuffer(afterimage), 240, overlayColors, 0F, 0F, 1.0F, afterimageAlpha2);
+        AFTERIMAGE_MODEL.renderToBuffer(matrixStackIn, source.getBuffer(afterimage), 240, overlayColors);
         matrixStackIn.popPose();
         matrixStackIn.popPose();
         AFTERIMAGE_MODEL.eye.showModel = true;
@@ -342,7 +342,7 @@ public class RenderFarseer extends MobRenderer<EntityFarseer, ModelFarseer> {
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityFarseer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (entitylivingbaseIn.getAnimation() == EntityFarseer.ANIMATION_EMERGE) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutoutNoCull(TEXTURE_CLAWS));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
 
         }

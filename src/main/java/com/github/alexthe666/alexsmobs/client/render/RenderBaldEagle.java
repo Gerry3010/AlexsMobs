@@ -84,7 +84,7 @@ public class RenderBaldEagle extends MobRenderer<EntityBaldEagle, ModelBaldEagle
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityBaldEagle entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (entitylivingbaseIn.hasCap()) {
                 VertexConsumer lead = bufferIn.getBuffer(RenderType.entityTranslucent(TEXTURE_CAP));
-                this.getParentModel().renderToBuffer(matrixStackIn, lead, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0), 1.0F, 1.0F, 1.0F, 1.0F);
+                this.getParentModel().renderToBuffer(matrixStackIn, lead, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
             }
         }
     }

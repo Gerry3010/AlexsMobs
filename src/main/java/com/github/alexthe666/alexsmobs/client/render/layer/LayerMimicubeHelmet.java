@@ -111,7 +111,7 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
             modelIn.hat.copyFrom(modelIn.head);
             modelIn.body.copyFrom(modelIn.head);
         }
-        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+        modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
     }
 
     protected void setModelSlotVisible(HumanoidModel p_188359_1_, EquipmentSlot slotIn) {

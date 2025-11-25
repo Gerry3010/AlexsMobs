@@ -60,7 +60,7 @@ public class RenderGiantSquid extends MobRenderer<EntityGiantSquid, ModelGiantSq
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityGiantSquid squid, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(TEXTURE_DEPRESSURIZED));
             float alpha = squid.prevDepressurization + (squid.getDepressurization() - squid.prevDepressurization) * partialTicks;
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(squid, 0.0F), 1.0F, 1.0F, 1.0F, alpha);
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(squid));
         }
     }
 }
