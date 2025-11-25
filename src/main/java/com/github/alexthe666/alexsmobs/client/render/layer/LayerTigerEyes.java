@@ -37,7 +37,7 @@ public class LayerTigerEyes  extends RenderLayer<EntityTiger, ModelTiger> {
             }
             if (brightness < 7 || tiger.getRemainingPersistentAngerTime() > 0) {
                 VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.eyes(tiger.getRemainingPersistentAngerTime() > 0 ? TEXTURE_ANGRY : tiger.isWhite() ? TEXTURE_WHITE : TEXTURE));
-                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(tiger));
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(tiger, 0.0F));
             }
         }
     }

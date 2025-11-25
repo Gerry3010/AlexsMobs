@@ -44,7 +44,7 @@ public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
     }
 
     public void render(EntityTiger entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
-        if (net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Pre<EntityTiger, ModelTiger>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn)))
+        if (net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Pre<>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn)).isCanceled())
             return;
         matrixStackIn.pushPose();
         this.model.attackTime = this.getAttackAnim(entityIn, partialTicks);
@@ -86,7 +86,7 @@ public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
         }
 
         float f7 = this.getBob(entityIn, partialTicks);
-        this.setupRotations(entityIn, matrixStackIn, f7, f, partialTicks);
+        this.setupRotations(entityIn, matrixStackIn, f7, f, partialTicks, f);
         matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
         this.scale(entityIn, matrixStackIn, partialTicks);
         matrixStackIn.translate(0.0D, -1.501F, 0.0D);
@@ -115,7 +115,7 @@ public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
             float stealthLevel = entityIn.prevStealthProgress + (entityIn.stealthProgress - entityIn.prevStealthProgress) * partialTicks;
             this.shadowRadius = 0.6F * (1 - stealthLevel * 0.1F);
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(rendertype);
-            int i = getOverlayCoords(entityIn);
+            int i = getOverlayCoords(entityIn, 0.0F);
             this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, i);
         }
 
@@ -132,10 +132,10 @@ public class RenderTiger extends MobRenderer<EntityTiger, ModelTiger> {
         }
         RenderNameTagEvent renderNameplateEvent = new RenderNameTagEvent(entityIn, entityIn.getDisplayName(), this, matrixStackIn, bufferIn, packedLightIn, partialTicks);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(renderNameplateEvent);
-        if (renderNameplateEvent.getResult() != net.minecraftforge.eventbus.api.Event.Result.DENY && (renderNameplateEvent.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW || this.shouldShowName(entityIn))) {
+        if (renderNameplateEvent.canRender()) {
             this.renderNameTag(entityIn, renderNameplateEvent.getContent(), matrixStackIn, bufferIn, packedLightIn);
         }
-        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Post<EntityTiger, ModelTiger>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn));
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Post<>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn));
     }
 
     private <E extends Entity> void renderLeash(EntityTiger tiger, float p_115463_, PoseStack p_115464_, MultiBufferSource p_115465_, E p_115466_) {

@@ -31,7 +31,7 @@ public class LayerRainbow extends RenderLayer {
             VertexConsumer ivertexbuilder = bufferIn.getBuffer(getRenderType(rainbowType));
             float alpha = 0.5F;
             matrixStackIn.pushPose();
-            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords((LivingEntity)entity, 0), 1, 1, 1, alpha);
+            this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords((LivingEntity)entity, 0.0F));
             matrixStackIn.popPose();
         }
     }

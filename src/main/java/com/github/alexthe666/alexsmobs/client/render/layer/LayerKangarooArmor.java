@@ -44,7 +44,7 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
 
     public static ResourceLocation getArmorResource(net.minecraft.world.entity.Entity entity, ItemStack stack, EquipmentSlot slot, @javax.annotation.Nullable String type) {
         ArmorItem item = (ArmorItem) stack.getItem();
-        String texture = item.getMaterial().getName();
+        String texture = item.getMaterial().value().assetId().toString();
         String domain = "minecraft";
         int idx = texture.indexOf(':');
         if (idx != -1) {
@@ -57,7 +57,7 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
         ResourceLocation resourcelocation = ARMOR_TEXTURE_RES_MAP.get(s1);
 
         if (resourcelocation == null) {
-            resourcelocation = new ResourceLocation(s1);
+            resourcelocation = ResourceLocation.parse(s1);
             ARMOR_TEXTURE_RES_MAP.put(s1, resourcelocation);
         }
 
@@ -177,22 +177,22 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
         modelIn.body.x = 0;
         modelIn.body.y = 0.25F;
         modelIn.body.z = -7.6F;
-        modelIn.rightArm.x = renderer.getModel().arm_right.rotationPointX;
-        modelIn.rightArm.y = renderer.getModel().arm_right.rotationPointY;
-        modelIn.rightArm.z = renderer.getModel().arm_right.rotationPointZ;
-        modelIn.rightArm.xRot = renderer.getModel().arm_right.rotateAngleX;
-        modelIn.rightArm.yRot = renderer.getModel().arm_right.rotateAngleY;
-        modelIn.rightArm.zRot = renderer.getModel().arm_right.rotateAngleZ;
-        modelIn.leftArm.x = renderer.getModel().arm_left.rotationPointX;
-        modelIn.leftArm.y = renderer.getModel().arm_left.rotationPointY;
-        modelIn.leftArm.z = renderer.getModel().arm_left.rotationPointZ;
-        modelIn.leftArm.xRot = renderer.getModel().arm_left.rotateAngleX;
-        modelIn.leftArm.yRot = renderer.getModel().arm_left.rotateAngleY;
-        modelIn.leftArm.zRot = renderer.getModel().arm_left.rotateAngleZ;
-        modelIn.leftArm.y = renderer.getModel().arm_left.rotationPointY - 4 + (sitProgress * 0.25F);
-        modelIn.rightArm.y = renderer.getModel().arm_right.rotationPointY - 4 + (sitProgress * 0.25F);
-        modelIn.leftArm.z = renderer.getModel().arm_left.rotationPointZ - 0.5F;
-        modelIn.rightArm.z = renderer.getModel().arm_right.rotationPointZ - 0.5F;
+        modelIn.rightArm.x = renderer.getModel().arm_right.x;
+        modelIn.rightArm.y = renderer.getModel().arm_right.y;
+        modelIn.rightArm.z = renderer.getModel().arm_right.z;
+        modelIn.rightArm.xRot = renderer.getModel().arm_right.xRot;
+        modelIn.rightArm.yRot = renderer.getModel().arm_right.yRot;
+        modelIn.rightArm.zRot = renderer.getModel().arm_right.zRot;
+        modelIn.leftArm.x = renderer.getModel().arm_left.x;
+        modelIn.leftArm.y = renderer.getModel().arm_left.y;
+        modelIn.leftArm.z = renderer.getModel().arm_left.z;
+        modelIn.leftArm.xRot = renderer.getModel().arm_left.xRot;
+        modelIn.leftArm.yRot = renderer.getModel().arm_left.yRot;
+        modelIn.leftArm.zRot = renderer.getModel().arm_left.zRot;
+        modelIn.leftArm.y = renderer.getModel().arm_left.y - 4 + (sitProgress * 0.25F);
+        modelIn.rightArm.y = renderer.getModel().arm_right.y - 4 + (sitProgress * 0.25F);
+        modelIn.leftArm.z = renderer.getModel().arm_left.z - 0.5F;
+        modelIn.rightArm.z = renderer.getModel().arm_right.z - 0.5F;
         modelIn.body.visible = false;
         modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         modelIn.body.visible = true;

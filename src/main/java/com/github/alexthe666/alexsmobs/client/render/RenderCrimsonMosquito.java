@@ -28,13 +28,13 @@ public class RenderCrimsonMosquito extends MobRenderer<EntityCrimsonMosquito, Mo
         return fly.isSick() || fly.getFleeingEntityId() != -1;
     }
 
-    protected void setupRotations(EntityCrimsonMosquito entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+    protected void setupRotations(EntityCrimsonMosquito entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks, float p_additional) {
         if (this.isShaking(entityLiving)) {
             rotationYaw += (float) (Math.cos((double) entityLiving.tickCount * 7F) * Math.PI * (double) 0.9F);
             float vibrate = 0.05F * entityLiving.getMosquitoScale();
             matrixStackIn.translate((entityLiving.getRandom().nextFloat() - 0.5F) * vibrate, (entityLiving.getRandom().nextFloat() - 0.5F) * vibrate, (entityLiving.getRandom().nextFloat() - 0.5F) * vibrate);
         }
-        super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+        super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks, p_additional);
     }
 
     public ResourceLocation getTextureLocation(EntityCrimsonMosquito entity) {

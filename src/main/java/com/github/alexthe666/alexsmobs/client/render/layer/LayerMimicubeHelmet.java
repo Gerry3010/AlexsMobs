@@ -39,7 +39,7 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
 
     public static ResourceLocation getArmorResource(net.minecraft.world.entity.Entity entity, ItemStack stack, EquipmentSlot slot, @javax.annotation.Nullable String type) {
         ArmorItem item = (ArmorItem) stack.getItem();
-        String texture = item.getMaterial().getName();
+        String texture = item.getMaterial().value().assetId().toString();
         String domain = "minecraft";
         int idx = texture.indexOf(':');
         if (idx != -1) {
@@ -52,7 +52,7 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
         ResourceLocation resourcelocation = ARMOR_TEXTURE_RES_MAP.get(s1);
 
         if (resourcelocation == null) {
-            resourcelocation = new ResourceLocation(s1);
+            resourcelocation = ResourceLocation.parse(s1);
             ARMOR_TEXTURE_RES_MAP.put(s1, resourcelocation);
         }
 
@@ -102,12 +102,12 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
             modelIn.body.y = 0;
             modelIn.head.setPos(0.0F, 1.0F, 0.0F);
             modelIn.hat.y = 0;
-            modelIn.head.xRot = renderer.getModel().body.rotateAngleX;
-            modelIn.head.yRot = renderer.getModel().body.rotateAngleY;
-            modelIn.head.zRot = renderer.getModel().body.rotateAngleZ;
-            modelIn.head.x = renderer.getModel().body.rotationPointX;
-            modelIn.head.y = renderer.getModel().body.rotationPointY;
-            modelIn.head.z = renderer.getModel().body.rotationPointZ;
+            modelIn.head.xRot = renderer.getModel().body.xRot;
+            modelIn.head.yRot = renderer.getModel().body.yRot;
+            modelIn.head.zRot = renderer.getModel().body.zRot;
+            modelIn.head.x = renderer.getModel().body.x;
+            modelIn.head.y = renderer.getModel().body.y;
+            modelIn.head.z = renderer.getModel().body.z;
             modelIn.hat.copyFrom(modelIn.head);
             modelIn.body.copyFrom(modelIn.head);
         }

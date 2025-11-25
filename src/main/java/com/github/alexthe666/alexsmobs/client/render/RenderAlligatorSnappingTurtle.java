@@ -40,7 +40,7 @@ public class RenderAlligatorSnappingTurtle extends MobRenderer<EntityAlligatorSn
             if(entitylivingbaseIn.getMoss() > 0){
                 float mossAlpha = 0.15F * Mth.clamp(entitylivingbaseIn.getMoss(), 0, 10);
                 VertexConsumer mossbuffer = bufferIn.getBuffer(AMRenderTypes.entityTranslucent(TEXTURE_MOSS));
-                this.getParentModel().renderToBuffer(matrixStackIn, mossbuffer, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn));
+                this.getParentModel().renderToBuffer(matrixStackIn, mossbuffer, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F));
             }
         }
     }

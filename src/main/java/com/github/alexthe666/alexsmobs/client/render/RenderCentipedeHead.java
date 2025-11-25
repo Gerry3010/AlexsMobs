@@ -22,7 +22,7 @@ public class RenderCentipedeHead extends MobRenderer<EntityCentipedeHead, Advanc
     }
 
     @Override
-    protected void setupRotations(EntityCentipedeHead entity, PoseStack stack, float pitchIn, float yawIn, float partialTickTime) {
+    protected void setupRotations(EntityCentipedeHead entity, PoseStack stack, float pitchIn, float yawIn, float partialTickTime, float p_additional) {
         if (this.isShaking(entity)) {
             yawIn += (float) (Math.cos((double) entity.tickCount * 3.25D) * Math.PI * (double) 0.4F);
         }
