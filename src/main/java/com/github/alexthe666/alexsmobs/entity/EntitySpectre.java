@@ -137,6 +137,7 @@ public class EntitySpectre extends Animal implements FlyingAnimal {
 
     public void tick() {
         super.tick();
+        this.tickLeash(); // Call custom leash handling
         Vec3 vector3d1 = this.getDeltaMovement();
         this.setYRot( -((float) Mth.atan2(vector3d1.x, vector3d1.z)) * Mth.RAD_TO_DEG);
         this.yBodyRot = this.getYRot();
@@ -174,10 +175,10 @@ public class EntitySpectre extends Animal implements FlyingAnimal {
         return stack.getItem() == AMItemRegistry.SOUL_HEART.get();
     }
 
-    protected void tickLeash() {
+    private void tickLeash() {
         if (this.getLeashHolder() != null) {
             if (this.getLeashHolder().isPassenger() || this.getLeashHolder() instanceof LeashFenceKnotEntity) {
-                super.tickLeash();
+                // Default leash behavior handled by parent Mob class in 1.21
                 return;
             }
             float f = this.distanceTo(this.getLeashHolder());

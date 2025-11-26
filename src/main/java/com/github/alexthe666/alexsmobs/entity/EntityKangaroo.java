@@ -125,7 +125,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
     public LivingEntity getControllingPassenger() {
         return null;
     }
-    protected void tickLeash() {
+    private void tickLeash() {
         // tickLeash method removed in 1.21 - implement directly
         Entity lvt_1_1_ = this.getLeashHolder();
         if (lvt_1_1_ != null && lvt_1_1_.level() == this.level()) {
@@ -428,6 +428,7 @@ public class EntityKangaroo extends TamableAnimal implements ContainerListener, 
 
     public void tick() {
         super.tick();
+        this.tickLeash(); // Call custom leash handling
         boolean moving = this.getDeltaMovement().lengthSqr() > 0.03D;
         int pouchTick = this.entityData.get(POUCH_TICK);
         this.prevTotalMovingProgress = totalMovingProgress;
