@@ -73,8 +73,8 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
                 boolean flag1 = itemstack.hasFoil();
                 int clampedLight = helmetSwap > 0 ? (int) (-100 * helmetSwap) : packedLightIn;
                 matrixStackIn.mulPose(Axis.YP.rotationDegrees(360 * helmetSwap));
-                if (armoritem instanceof net.minecraft.world.item.DyeableLeatherItem) { // Allow this for anything, not only cloth
-                    int i = ((net.minecraft.world.item.DyeableLeatherItem) armoritem).getColor(itemstack);
+                if (itemstack.has(net.minecraft.core.component.DataComponents.DYED_COLOR)) { // Check for dyed color component
+                    int i = itemstack.get(net.minecraft.core.component.DataComponents.DYED_COLOR).rgb();
                     float f = (float) (i >> 16 & 255) / 255.0F;
                     float f1 = (float) (i >> 8 & 255) / 255.0F;
                     float f2 = (float) (i & 255) / 255.0F;

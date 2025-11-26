@@ -92,8 +92,8 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
                         matrixStackIn.scale(0.7F, 0.7F, 0.7F);
                         final boolean flag1 = itemstack.hasFoil();
                         int clampedLight = packedLightIn;
-                        if (armoritem instanceof net.minecraft.world.item.DyeableLeatherItem) { // Allow this for anything, not only cloth
-                            final int i = ((net.minecraft.world.item.DyeableLeatherItem) armoritem).getColor(itemstack);
+                        if (itemstack.has(net.minecraft.core.component.DataComponents.DYED_COLOR)) { // Check for dyed color component
+                            final int i = itemstack.get(net.minecraft.core.component.DataComponents.DYED_COLOR).rgb();
                             final float f = (float) (i >> 16 & 255) / 255.0F;
                             final float f1 = (float) (i >> 8 & 255) / 255.0F;
                             final float f2 = (float) (i & 255) / 255.0F;
@@ -128,8 +128,8 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
                         matrixStackIn.scale(1F, 1F, 1F);
                         boolean flag1 = itemstack.hasFoil();
                         int clampedLight = packedLightIn;
-                        if (armoritem instanceof net.minecraft.world.item.DyeableLeatherItem) { // Allow this for anything, not only cloth
-                            int i = ((net.minecraft.world.item.DyeableLeatherItem) armoritem).getColor(itemstack);
+                        if (itemstack.has(net.minecraft.core.component.DataComponents.DYED_COLOR)) { // Check for dyed color component
+                            int i = itemstack.get(net.minecraft.core.component.DataComponents.DYED_COLOR).rgb();
                             float f = (float) (i >> 16 & 255) / 255.0F;
                             float f1 = (float) (i >> 8 & 255) / 255.0F;
                             float f2 = (float) (i & 255) / 255.0F;
