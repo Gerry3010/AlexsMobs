@@ -45,7 +45,7 @@ public class RenderSeal extends MobRenderer<EntitySeal, ModelSeal> {
     }
 
     @Override
-    protected void renderNameTag(EntitySeal seal, Component text, PoseStack poseStack, MultiBufferSource bufferSrc, int numberIn) {
+    protected void renderNameTag(EntitySeal seal, Component text, PoseStack poseStack, MultiBufferSource bufferSrc, int numberIn, float partialTicks) {
         if(seal.isTearsEasterEgg()){
             double d0 = this.entityRenderDispatcher.distanceToSqr(seal);
             if (net.neoforged.neoforge.client.ClientHooks.isNameplateInRenderDistance(seal, d0)) {
@@ -91,7 +91,7 @@ public class RenderSeal extends MobRenderer<EntitySeal, ModelSeal> {
                 poseStack.popPose();
             }
         }else{
-            super.renderNameTag(seal, text, poseStack, bufferSrc, numberIn);
+            super.renderNameTag(seal, text, poseStack, bufferSrc, numberIn, partialTicks);
         }
     }
 

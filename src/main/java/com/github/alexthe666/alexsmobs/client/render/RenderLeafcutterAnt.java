@@ -30,7 +30,7 @@ public class RenderLeafcutterAnt extends MobRenderer<EntityLeafcutterAnt, Advanc
 
 
     @Override
-    protected void setupRotations(EntityLeafcutterAnt entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+    protected void setupRotations(EntityLeafcutterAnt entityLiving, PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks, float p_115319_) {
         if (this.isShaking(entityLiving)) {
             rotationYaw += (float)(Math.cos((double)entityLiving.tickCount * 3.25D) * Math.PI * (double)0.4F);
         }

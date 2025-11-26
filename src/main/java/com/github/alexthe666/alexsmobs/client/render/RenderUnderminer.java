@@ -36,7 +36,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
     private static final ResourceLocation TEXTURE_DWARF = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/underminer_dwarf.png");
     private static final ResourceLocation TEXTURE_0 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/underminer_0.png");
     private static final ResourceLocation TEXTURE_1 = ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/entity/underminer_1.png");
-    public static final List<ResourceLocation> BREAKING_LOCATIONS = IntStream.range(0, 10).mapToObj((destroyStage) -> new ResourceLocation("alexsmobs:textures/block/ghostly_pickaxe/destroy_stage_" + destroyStage + ".png")).collect(Collectors.toList());
+    public static final List<ResourceLocation> BREAKING_LOCATIONS = IntStream.range(0, 10).mapToObj((destroyStage) -> ResourceLocation.fromNamespaceAndPath("alexsmobs", "textures/block/ghostly_pickaxe/destroy_stage_" + destroyStage + ".png")).collect(Collectors.toList());
     private static final ModelUnderminerDwarf DWARF_MODEL = new ModelUnderminerDwarf();
     private static HumanoidModel<EntityUnderminer> NORMAL_MODEL = null;
     private static final List<RenderType> DESTROY_TYPES = BREAKING_LOCATIONS.stream().map(AMRenderTypes::getGhostCrumbling).collect(Collectors.toList());
@@ -73,7 +73,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
     }
 
     public void render(EntityUnderminer entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
-        if (net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Pre<EntityUnderminer, EntityModel<EntityUnderminer>>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn)))
+        if (net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Pre<>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn)).isCanceled())
             return;
         matrixStackIn.pushPose();
         this.model.attackTime = this.getAttackAnim(entityIn, partialTicks);
@@ -115,7 +115,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
         }
 
         float f7 = this.getBob(entityIn, partialTicks);
-        this.setupRotations(entityIn, matrixStackIn, f7, f, partialTicks);
+        this.setupRotations(entityIn, matrixStackIn, f7, f, partialTicks, f);
         matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
         this.scale(entityIn, matrixStackIn, partialTicks);
         matrixStackIn.translate(0.0D, -1.501F, 0.0D);
@@ -148,7 +148,7 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
             float hide = (entityIn.prevHidingProgress + (entityIn.hidingProgress - entityIn.prevHidingProgress) * partialTicks) * 0.1F;
             float alpha = (1F - hide) * 0.6F;
             this.shadowRadius = 0.9F * alpha;
-            int i = getOverlayCoords(entityIn);
+            int i = getOverlayCoords(entityIn, 0.0F);
             this.renderUnderminerModel(matrixStackIn, bufferIn, rendertype, partialTicks, packedLightIn, i, flag1 ? 0.15F : Mth.clamp(alpha, 0, 1), entityIn);
         } else {
             this.shadowRadius = 0;
@@ -162,10 +162,10 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
         matrixStackIn.popPose();
         RenderNameTagEvent renderNameplateEvent = new RenderNameTagEvent(entityIn, entityIn.getDisplayName(), this, matrixStackIn, bufferIn, packedLightIn, partialTicks);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(renderNameplateEvent);
-        if (renderNameplateEvent.getResult() != net.minecraftforge.eventbus.api.Event.Result.DENY && (renderNameplateEvent.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW || this.shouldShowName(entityIn))) {
-            this.renderNameTag(entityIn, renderNameplateEvent.getContent(), matrixStackIn, bufferIn, packedLightIn);
+        if (renderNameplateEvent.canRender().isTrue() || (renderNameplateEvent.canRender().isDefault() && this.shouldShowName(entityIn))) {
+            this.renderNameTag(entityIn, renderNameplateEvent.getContent(), matrixStackIn, bufferIn, packedLightIn, partialTicks);
         }
-        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Post<EntityUnderminer, EntityModel<EntityUnderminer>>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn));
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.client.event.RenderLivingEvent.Post<>(entityIn, this, partialTicks, matrixStackIn, bufferIn, packedLightIn));
 
         BlockPos miningPos = entityIn.getMiningPos();
         if (miningPos != null) {
@@ -177,10 +177,10 @@ public class RenderUnderminer extends MobRenderer<EntityUnderminer, EntityModel<
             matrixStackIn.translate((double) miningPos.getX() - d0, (double) miningPos.getY() - d1, (double) miningPos.getZ() - d2);
             int progress = (int) Math.round((DESTROY_TYPES.size() - 1) * (float) Mth.clamp(entityIn.getMiningProgress(), 0F, 1.0F));
             PoseStack.Pose posestack$pose = matrixStackIn.last();
-            VertexConsumer vertexconsumer1 = new SheetedDecalTextureGenerator(bufferIn.getBuffer(DESTROY_TYPES.get(progress)), posestack$pose.pose(), posestack$pose.normal(), 1.0F);
+            VertexConsumer vertexconsumer1 = new SheetedDecalTextureGenerator(bufferIn.getBuffer(DESTROY_TYPES.get(progress)), posestack$pose);
 
-            net.minecraftforge.client.model.data.ModelData modelData = entityIn.level().getModelDataManager().getAt(miningPos);
-            Minecraft.getInstance().getBlockRenderer().renderBreakingTexture(entityIn.level().getBlockState(miningPos), miningPos, entityIn.level(), matrixStackIn, vertexconsumer1, modelData == null ? net.minecraftforge.client.model.data.ModelData.EMPTY : modelData);
+            net.neoforged.neoforge.client.model.data.ModelData modelData = entityIn.level().getModelDataManager().getAt(miningPos);
+            Minecraft.getInstance().getBlockRenderer().renderBreakingTexture(entityIn.level().getBlockState(miningPos), miningPos, entityIn.level(), matrixStackIn, vertexconsumer1, modelData == null ? net.neoforged.neoforge.client.model.data.ModelData.EMPTY : modelData);
             matrixStackIn.popPose();
         }
     }

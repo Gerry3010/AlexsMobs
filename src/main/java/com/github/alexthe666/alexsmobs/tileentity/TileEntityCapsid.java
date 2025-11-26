@@ -144,7 +144,7 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
 
     @OnlyIn(Dist.CLIENT)
     public net.minecraft.world.phys.AABB getRenderBoundingBox() {
-        return new net.minecraft.world.phys.AABB(worldPosition, worldPosition.offset(1, 2, 1));
+        return new net.minecraft.world.phys.AABB(net.minecraft.world.phys.Vec3.atLowerCornerOf(worldPosition), net.minecraft.world.phys.Vec3.atLowerCornerOf(worldPosition.offset(1, 2, 1)));
     }
 
     @Override
@@ -198,23 +198,23 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
             stack.setCount(this.getMaxStackSize());
         }
         lastRecipe = AlexsMobs.PROXY.getCapsidRecipeManager().getRecipeFor(stack);
-        this.saveAdditional(this.getUpdateTag());
+        this.setChanged();
         if (!level.isClientSide) {
             AlexsMobs.sendMSGToAll(new MessageUpdateCapsid(this.getBlockPos().asLong(), stacks.get(0)));
         }
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
+    protected void loadAdditional(CompoundTag compound, net.minecraft.core.HolderLookup.Provider registries) {
+        super.loadAdditional(compound, registries);
         this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.stacks);
+        ContainerHelper.loadAllItems(compound, this.stacks, registries);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        ContainerHelper.saveAllItems(compound, this.stacks);
+    protected void saveAdditional(CompoundTag compound, net.minecraft.core.HolderLookup.Provider registries) {
+        super.saveAdditional(compound, registries);
+        ContainerHelper.saveAllItems(compound, this.stacks, registries);
     }
 
     @Override
@@ -274,12 +274,23 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
         if (packet != null && packet.getTag() != null) {
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-            ContainerHelper.loadAllItems(packet.getTag(), this.stacks);
+            ContainerHelper.loadAllItems(packet.getTag(), this.stacks, level.registryAccess());
         }
     }
 
-    public CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    @Override
+    public CompoundTag getUpdateTag(net.minecraft.core.HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public void setItems(NonNullList<ItemStack> items) {
+        this.stacks = items;
+    }
+
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.stacks;
     }
 
     @Override
