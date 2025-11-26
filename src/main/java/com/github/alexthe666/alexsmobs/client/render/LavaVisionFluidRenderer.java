@@ -120,11 +120,11 @@ public class LavaVisionFluidRenderer extends LiquidBlockRenderer {
                         float f25;
                         if (vec3.x == 0.0D && vec3.z == 0.0D) {
                             TextureAtlasSprite textureatlassprite1 = atextureatlassprite[0];
-                            f18 = textureatlassprite1.getU(0.0D);
-                            f22 = textureatlassprite1.getV(0.0D);
+                            f18 = (float) textureatlassprite1.getU(0.0D);
+                            f22 = (float) textureatlassprite1.getV(0.0D);
                             f19 = f18;
-                            f23 = textureatlassprite1.getV(16.0D);
-                            f20 = textureatlassprite1.getU(16.0D);
+                            f23 = (float) textureatlassprite1.getV(16.0D);
+                            f20 = (float) textureatlassprite1.getU(16.0D);
                             f24 = f23;
                             f21 = f20;
                             f25 = f22;
@@ -133,14 +133,14 @@ public class LavaVisionFluidRenderer extends LiquidBlockRenderer {
                             float f26 = (float)Mth.atan2(vec3.z, vec3.x) - Mth.HALF_PI;
                             float f27 = Mth.sin(f26) * 0.25F;
                             float f28 = Mth.cos(f26) * 0.25F;
-                            f18 = textureatlassprite.getU((double)(8.0F + (-f28 - f27) * 16.0F));
-                            f22 = textureatlassprite.getV((double)(8.0F + (-f28 + f27) * 16.0F));
-                            f19 = textureatlassprite.getU((double)(8.0F + (-f28 + f27) * 16.0F));
-                            f23 = textureatlassprite.getV((double)(8.0F + (f28 + f27) * 16.0F));
-                            f20 = textureatlassprite.getU((double)(8.0F + (f28 + f27) * 16.0F));
-                            f24 = textureatlassprite.getV((double)(8.0F + (f28 - f27) * 16.0F));
-                            f21 = textureatlassprite.getU((double)(8.0F + (f28 - f27) * 16.0F));
-                            f25 = textureatlassprite.getV((double)(8.0F + (-f28 - f27) * 16.0F));
+                            f18 = (float) textureatlassprite.getU((double)(8.0F + (-f28 - f27) * 16.0F));
+                            f22 = (float) textureatlassprite.getV((double)(8.0F + (-f28 + f27) * 16.0F));
+                            f19 = (float) textureatlassprite.getU((double)(8.0F + (-f28 + f27) * 16.0F));
+                            f23 = (float) textureatlassprite.getV((double)(8.0F + (f28 + f27) * 16.0F));
+                            f20 = (float) textureatlassprite.getU((double)(8.0F + (f28 + f27) * 16.0F));
+                            f24 = (float) textureatlassprite.getV((double)(8.0F + (f28 - f27) * 16.0F));
+                            f21 = (float) textureatlassprite.getU((double)(8.0F + (f28 - f27) * 16.0F));
+                            f25 = (float) textureatlassprite.getV((double)(8.0F + (-f28 - f27) * 16.0F));
                         }
 
                         float f49 = (f18 + f19 + f20 + f21) / 4.0F;
@@ -247,7 +247,7 @@ public class LavaVisionFluidRenderer extends LiquidBlockRenderer {
                                 }
                             }
 
-                            float f54 = textureatlassprite2.getU(0.0D);
+                            float f54 = (float) textureatlassprite2.getU(0.0D);
                             float f55 = textureatlassprite2.getU(8.0D);
                             float f33 = textureatlassprite2.getV((double)((1.0F - f44) * 16.0F * 0.5F));
                             float f34 = textureatlassprite2.getV((double)((1.0F - f45) * 16.0F * 0.5F));

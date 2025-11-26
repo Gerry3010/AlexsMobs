@@ -49,7 +49,8 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
     public float prevYawSwitchProgress;
     public float yawSwitchProgress;
     public boolean vibratingThisTick = false;
-    IItemHandler[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
+    // TODO: Re-implement capability system using new NeoForge 1.21 API
+    // IItemHandler[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN);
     private float yawTarget = 0;
     private int transformTime = 0;
     private boolean fnaf = false;
@@ -270,7 +271,6 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) {
         if (packet != null && packet.getTag() != null) {
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
