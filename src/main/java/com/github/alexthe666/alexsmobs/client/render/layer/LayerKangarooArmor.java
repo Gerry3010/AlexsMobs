@@ -44,24 +44,18 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
 
     public static ResourceLocation getArmorResource(net.minecraft.world.entity.Entity entity, ItemStack stack, EquipmentSlot slot, @javax.annotation.Nullable String type) {
         ArmorItem item = (ArmorItem) stack.getItem();
-        String texture = item.getMaterial().value().assetId().toString();
-        String domain = "minecraft";
-        int idx = texture.indexOf(':');
-        if (idx != -1) {
-            domain = texture.substring(0, idx);
-            texture = texture.substring(idx + 1);
-        }
-        String s1 = String.format("%s:textures/models/armor/%s_layer_%d%s.png", domain, texture, (1), type == null ? "" : String.format("_%s", type));
-
-        s1 = net.neoforged.neoforge.client.ClientHooks.getArmorTexture(entity, stack, s1, slot, type);
-        ResourceLocation resourcelocation = ARMOR_TEXTURE_RES_MAP.get(s1);
-
-        if (resourcelocation == null) {
-            resourcelocation = ResourceLocation.parse(s1);
-            ARMOR_TEXTURE_RES_MAP.put(s1, resourcelocation);
-        }
-
-        return resourcelocation;
+        // In 1.21, ArmorMaterial is a Holder - get the key location
+        net.minecraft.core.Holder<net.minecraft.world.item.ArmorMaterial> materialHolder = item.getMaterial();
+        ResourceLocation materialId = materialHolder.unwrapKey().orElseThrow().location();
+        
+        // Construct texture path: namespace:textures/models/armor/name_layer_1.png
+        String suffix = type == null ? "" : ("_" + type);
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
+            materialId.getNamespace(),
+            "textures/models/armor/" + materialId.getPath() + "_layer_1" + suffix + ".png"
+        );
+        
+        return texture;
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityKangaroo roo, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
