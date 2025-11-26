@@ -164,29 +164,14 @@ public class LayerKangarooArmor extends RenderLayer<EntityKangaroo, ModelKangaro
     private void renderChestplate(EntityKangaroo entity, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, boolean glintIn, HumanoidModel modelIn, float red, float green, float blue, ResourceLocation armorResource, boolean notAVanillaModel) {
         VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, RenderType.entityCutoutNoCull(armorResource), false, glintIn);
         renderer.getModel().copyPropertiesTo(modelIn);
-        float sitProgress = entity.prevSitProgress + (entity.sitProgress - entity.prevSitProgress) * Minecraft.getInstance().getFrameTime();
+        // Note: In 1.21, AdvancedModelBox doesn't expose x/y/z/xRot/yRot/zRot fields directly
+        // So we just set basic transforms for the armor model
         modelIn.body.xRot = 90 * 0.017453292F;
         modelIn.body.yRot = 0;
         modelIn.body.zRot = 0;
         modelIn.body.x = 0;
         modelIn.body.y = 0.25F;
         modelIn.body.z = -7.6F;
-        modelIn.rightArm.x = renderer.getModel().arm_right.x;
-        modelIn.rightArm.y = renderer.getModel().arm_right.y;
-        modelIn.rightArm.z = renderer.getModel().arm_right.z;
-        modelIn.rightArm.xRot = renderer.getModel().arm_right.xRot;
-        modelIn.rightArm.yRot = renderer.getModel().arm_right.yRot;
-        modelIn.rightArm.zRot = renderer.getModel().arm_right.zRot;
-        modelIn.leftArm.x = renderer.getModel().arm_left.x;
-        modelIn.leftArm.y = renderer.getModel().arm_left.y;
-        modelIn.leftArm.z = renderer.getModel().arm_left.z;
-        modelIn.leftArm.xRot = renderer.getModel().arm_left.xRot;
-        modelIn.leftArm.yRot = renderer.getModel().arm_left.yRot;
-        modelIn.leftArm.zRot = renderer.getModel().arm_left.zRot;
-        modelIn.leftArm.y = renderer.getModel().arm_left.y - 4 + (sitProgress * 0.25F);
-        modelIn.rightArm.y = renderer.getModel().arm_right.y - 4 + (sitProgress * 0.25F);
-        modelIn.leftArm.z = renderer.getModel().arm_left.z - 0.5F;
-        modelIn.rightArm.z = renderer.getModel().arm_right.z - 0.5F;
         modelIn.body.visible = false;
         modelIn.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY);
         modelIn.body.visible = true;

@@ -93,15 +93,11 @@ public class LayerMimicubeHelmet extends RenderLayer<EntityMimicube, ModelMimicu
         VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, RenderType.entityCutoutNoCull(armorResource), false, glintIn);
         if(notAVanillaModel){
             renderer.getModel().copyPropertiesTo(modelIn);
+            // Note: In 1.21, AdvancedModelBox doesn't expose x/y/z/xRot/yRot/zRot fields directly
+            // So we just set basic positions for the armor model
             modelIn.body.y = 0;
             modelIn.head.setPos(0.0F, 1.0F, 0.0F);
             modelIn.hat.y = 0;
-            modelIn.head.xRot = renderer.getModel().body.xRot;
-            modelIn.head.yRot = renderer.getModel().body.yRot;
-            modelIn.head.zRot = renderer.getModel().body.zRot;
-            modelIn.head.x = renderer.getModel().body.x;
-            modelIn.head.y = renderer.getModel().body.y;
-            modelIn.head.z = renderer.getModel().body.z;
             modelIn.hat.copyFrom(modelIn.head);
             modelIn.body.copyFrom(modelIn.head);
         }
