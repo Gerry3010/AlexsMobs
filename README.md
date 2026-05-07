@@ -1,3 +1,15 @@
+# Archived Repository
+
+> This fork is now archived.
+>
+> Development of this project has moved to crabsatellite, who has taken over maintenance of the main [Alex’s Mobs project](https://github.com/AlexModGuy/AlexsMobs):
+[crabsatellite GitHub](https://github.com/crabsatellite)
+>
+> Please use their repository for future updates, issues, and contributions.
+>
+> If the main project becomes inactive again for a longer period of time in the future, I may consider re-activating this fork.
+
+
 # AlexsMobs
 
 > **ℹ️ AI-Assisted Port Notice**  
