@@ -2,8 +2,8 @@
 
 > This fork is now archived.
 >
-> Development of this project has moved to crabsatellite, who has taken over maintenance of the main [Alex’s Mobs project](https://github.com/AlexModGuy/AlexsMobs):
-[crabsatellite GitHub](https://github.com/crabsatellite)
+> Development of this project has moved to [Raguto's Repository](https://github.com/Raguto/AlexsMobs-1.21.1), who has taken over maintenance of a fork of the [original Alex’s Mobs project](https://github.com/AlexModGuy/AlexsMobs):
+[Raguto GitHub](https://github.com/Raguto)
 >
 > Please use their repository for future updates, issues, and contributions.
 >
